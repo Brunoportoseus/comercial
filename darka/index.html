@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta — Homologação Sistema Darka + Telefone WABA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      /* base escura */
+      --bg:#15131a;--bg2:#1e1b26;--bg3:#272332;
+      --ink:#f4f2f7;--muted:#9b96a8;--line:rgba(255,255,255,.08);
+      /* Darka — "seu mundo em cores" */
+      --c-red:#ff3d4d;--c-orange:#ff8a3d;--c-yellow:#ffd23d;
+      --c-green:#3ddc97;--c-blue:#3da5ff;--c-purple:#a06bff;
+      --brand:#ff3d4d;--brand-2:#ff8a3d;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Montserrat',sans-serif;background:var(--bg);
+      color:var(--ink);overflow-x:hidden;-webkit-overflow-scrolling:touch;line-height:1.65;
+    }
+    .wrap{max-width:920px;margin:0 auto;padding:0 1.5rem;}
+
+    /* ── SPECTRUM STRIP (assinatura da marca) ── */
+    .spectrum{height:6px;display:flex;}
+    .spectrum span{flex:1;}
+    .spectrum .s1{background:var(--c-red);}
+    .spectrum .s2{background:var(--c-orange);}
+    .spectrum .s3{background:var(--c-yellow);}
+    .spectrum .s4{background:var(--c-green);}
+    .spectrum .s5{background:var(--c-blue);}
+    .spectrum .s6{background:var(--c-purple);}
+
+    /* ── HERO ── */
+    .hero{
+      background:
+        radial-gradient(ellipse 50% 40% at 80% 0%,rgba(255,61,77,.14) 0%,transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 100%,rgba(61,165,255,.10) 0%,transparent 70%),
+        var(--bg);
+      padding:3.5rem 0 3rem;
+    }
+    .logo-row{display:flex;align-items:center;gap:.7rem;margin-bottom:2.2rem;}
+    .logo-mark{
+      width:42px;height:42px;border-radius:11px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--c-red),var(--c-orange));
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;
+    }
+    .logo-text{font-family:'Sora',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:.02em;}
+    .logo-text small{display:block;font-family:'Montserrat',sans-serif;font-weight:500;
+      font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:.1rem;}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:rgba(255,61,77,.12);border:1px solid rgba(255,61,77,.35);
+      color:var(--brand);font-size:.66rem;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;padding:.42rem 1rem;border-radius:2rem;margin-bottom:1.4rem;
+    }
+    .hero-badge::before{content:'';width:7px;height:7px;background:var(--brand);border-radius:50%;}
+    .hero h1{
+      font-family:'Sora',sans-serif;font-weight:800;
+      font-size:clamp(1.9rem,5vw,3.1rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:1rem;
+    }
+    .hero h1 em{font-style:normal;
+      background:linear-gradient(120deg,var(--c-red),var(--c-orange),var(--c-yellow));
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero p.lead{font-size:.95rem;color:var(--muted);max-width:560px;}
+
+    /* ── META CARDS ── */
+    .meta-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:1px;background:var(--line);border:1px solid var(--line);
+      border-radius:14px;overflow:hidden;margin-top:2.4rem;
+    }
+    .meta-cell{background:var(--bg2);padding:1.1rem 1.2rem;}
+    .meta-cell .k{font-size:.6rem;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;}
+    .meta-cell .v{font-family:'Sora',sans-serif;font-weight:600;font-size:.92rem;}
+
+    /* ── SECTION ── */
+    section{padding:3rem 0;border-top:1px solid var(--line);}
+    .sec-label{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;}
+    .sec-num{
+      font-family:'Sora',sans-serif;font-weight:800;font-size:.78rem;color:#fff;
+      width:30px;height:30px;border-radius:8px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--c-red),var(--c-orange));
+    }
+    .sec-label h2{font-family:'Sora',sans-serif;font-weight:700;
+      font-size:clamp(1.25rem,3vw,1.6rem);letter-spacing:-.01em;}
+    .sec-intro{color:var(--muted);font-size:.92rem;margin-bottom:1.5rem;max-width:680px;}
+
+    /* ── SCOPE LIST ── */
+    .scope{display:grid;gap:.7rem;}
+    .scope-item{
+      display:flex;gap:.9rem;background:var(--bg2);border:1px solid var(--line);
+      border-radius:12px;padding:1rem 1.15rem;
+    }
+    .scope-item .dot{
+      width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:.42rem;
+    }
+    .scope-item:nth-child(6n+1) .dot{background:var(--c-red);}
+    .scope-item:nth-child(6n+2) .dot{background:var(--c-orange);}
+    .scope-item:nth-child(6n+3) .dot{background:var(--c-yellow);}
+    .scope-item:nth-child(6n+4) .dot{background:var(--c-green);}
+    .scope-item:nth-child(6n+5) .dot{background:var(--c-blue);}
+    .scope-item:nth-child(6n+6) .dot{background:var(--c-purple);}
+    .scope-item h3{font-family:'Sora',sans-serif;font-weight:600;font-size:.92rem;margin-bottom:.2rem;}
+    .scope-item p{font-size:.82rem;color:var(--muted);}
+
+    /* ── SQUAD ── */
+    .squad-card{
+      background:
+        radial-gradient(ellipse 60% 80% at 100% 0%,rgba(61,165,255,.10) 0%,transparent 70%),
+        var(--bg2);
+      border:1px solid var(--line);border-radius:16px;padding:1.6rem;
+    }
+    .squad-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1.2rem;}
+    .squad-avatar{
+      width:52px;height:52px;border-radius:13px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--c-blue),var(--c-purple));
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;
+    }
+    .squad-head .role{font-family:'Sora',sans-serif;font-weight:700;font-size:1.02rem;}
+    .squad-head .team{font-size:.7rem;font-weight:600;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--c-blue);margin-top:.15rem;}
+    .squad-skills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.1rem;}
+    .skill{
+      font-size:.7rem;font-weight:600;padding:.34rem .8rem;border-radius:2rem;
+      background:var(--bg3);border:1px solid var(--line);color:var(--ink);
+    }
+    .skill.hot{background:rgba(255,61,77,.12);border-color:rgba(255,61,77,.35);color:var(--brand);}
+    .squad-resp{list-style:none;display:grid;gap:.55rem;}
+    .squad-resp li{display:flex;gap:.6rem;font-size:.85rem;color:var(--muted);}
+    .squad-resp li::before{content:'→';color:var(--brand-2);font-weight:700;flex-shrink:0;}
+
+    /* ── TIMELINE ── */
+    .timeline{display:grid;gap:.6rem;}
+    .tl-row{
+      display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;
+      background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;
+    }
+    .tl-day{
+      font-family:'Sora',sans-serif;font-weight:700;font-size:.74rem;
+      padding:.4rem .7rem;border-radius:8px;white-space:nowrap;
+      background:var(--bg3);border:1px solid var(--line);
+    }
+    .tl-row h3{font-family:'Sora',sans-serif;font-weight:600;font-size:.9rem;}
+    .tl-row p{font-size:.8rem;color:var(--muted);}
+
+    /* ── INVESTMENT ── */
+    .invest{
+      background:
+        linear-gradient(135deg,rgba(255,61,77,.16),rgba(255,138,61,.10)),
+        var(--bg2);
+      border:1px solid rgba(255,61,77,.35);border-radius:18px;
+      padding:2rem;text-align:center;
+    }
+    .invest .tag{
+      display:inline-flex;align-items:center;gap:.45rem;
+      font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--brand);background:rgba(255,61,77,.14);
+      border:1px solid rgba(255,61,77,.4);padding:.4rem 1rem;border-radius:2rem;margin-bottom:1rem;
+    }
+    .invest .label{font-size:.92rem;color:var(--muted);margin-bottom:.3rem;}
+    .invest .price{font-family:'Sora',sans-serif;font-weight:800;
+      font-size:clamp(2.6rem,8vw,3.8rem);line-height:1;letter-spacing:-.02em;}
+    .invest .price small{font-size:.4em;font-weight:600;color:var(--muted);}
+    .invest .note{font-size:.78rem;color:var(--muted);margin-top:.8rem;}
+    .invest-includes{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.3rem;
+      margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid var(--line);
+    }
+    .invest-includes span{font-size:.78rem;color:var(--ink);display:flex;align-items:center;gap:.4rem;}
+    .invest-includes span::before{content:'✓';color:var(--c-green);font-weight:800;}
+
+    /* ── TERMS ── */
+    .terms{list-style:none;display:grid;gap:.7rem;}
+    .terms li{
+      display:flex;gap:.7rem;font-size:.84rem;color:var(--muted);
+      background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:.85rem 1rem;
+    }
+    .terms li b{color:var(--ink);font-weight:600;}
+    .terms li::before{content:'';width:4px;align-self:stretch;border-radius:4px;
+      background:linear-gradient(var(--c-red),var(--c-purple));flex-shrink:0;}
+
+    /* ── SIGN ── */
+    .sign{padding:3rem 0 3.5rem;border-top:1px solid var(--line);}
+    .sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:1.8rem;}
+    .sign-line{border-top:1px solid var(--muted);margin-top:2.6rem;padding-top:.5rem;
+      font-size:.74rem;color:var(--muted);text-align:center;}
+    .btn-print{
+      display:inline-flex;align-items:center;gap:.55rem;cursor:pointer;
+      font-family:'Sora',sans-serif;font-weight:700;font-size:.8rem;
+      color:#fff;background:linear-gradient(135deg,var(--c-red),var(--c-orange));
+      border:none;padding:.85rem 1.6rem;border-radius:10px;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn-print:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,61,77,.3);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bg2);border-top:1px solid var(--line);
+      padding:1.8rem 0;text-align:center;}
+    footer p{font-size:.7rem;color:var(--muted);letter-spacing:.04em;line-height:1.9;}
+    footer a{color:var(--brand-2);text-decoration:none;}
+
+    @media (max-width:560px){
+      .sign-grid{grid-template-columns:1fr;gap:1.6rem;}
+      .tl-row{grid-template-columns:1fr;gap:.4rem;}
+    }
+
+    /* ── PRINT ── */
+    @media print{
+      body{background:#fff;color:#15131a;}
+      .hero,.invest,.squad-card,.meta-cell,.scope-item,.tl-row,.terms li,footer{
+        background:#fff !important;}
+      .btn-print,.float-note{display:none !important;}
+      section,.sign{border-color:#ddd;}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spectrum">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+    <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+  </div>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="logo-row">
+        <div class="logo-mark">D</div>
+        <div class="logo-text">DARKA
+          <small>Seu mundo em cores</small>
+        </div>
+      </div>
+
+      <span class="hero-badge">Proposta Comercial · Serviço de Urgência</span>
+      <h1>Homologação do sistema Darka com <em>telefone WABA</em></h1>
+      <p class="lead">
+        Habilitação e certificação do número WhatsApp Business API (WABA) junto à Meta,
+        com integração completa à plataforma de e-commerce da Darka em regime de urgência.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-cell"><div class="k">Cliente</div><div class="v">Tintas Darka</div></div>
+        <div class="meta-cell"><div class="k">Proposta nº</div><div class="v">WABA-2026-001</div></div>
+        <div class="meta-cell"><div class="k">Data</div><div class="v">22/05/2026</div></div>
+        <div class="meta-cell"><div class="k">Validade</div><div class="v">15 dias</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ── 1. OBJETIVO ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">1</span><h2>Objetivo</h2></div>
+      <p class="sec-intro">
+        Realizar a homologação do sistema da Darka com um número de telefone WABA
+        (WhatsApp Business API), garantindo que a loja
+        <strong>tintasdarka.wscommerce.com.br</strong> opere com um canal oficial de
+        WhatsApp verificado pela Meta — pronto para atendimento, notificações de pedido
+        e disparo de campanhas. O serviço é executado em <strong>regime de urgência</strong>,
+        com priorização da fila de homologação e da documentação exigida pela Meta.
+      </p>
+    </section>
+
+    <!-- ── 2. ESCOPO ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">2</span><h2>Escopo do serviço</h2></div>
+      <p class="sec-intro">Etapas contempladas na homologação do número WABA:</p>
+      <div class="scope">
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Verificação do Meta Business</h3>
+          <p>Conferência e ajuste da conta no Meta Business Manager e da verificação de negócio (Business Verification).</p>
+        </div></div>
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Cadastro do telefone WABA</h3>
+          <p>Registro do número, vínculo à conta WhatsApp Business e validação por código de confirmação.</p>
+        </div></div>
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Aprovação do nome de exibição</h3>
+          <p>Submissão e acompanhamento da aprovação do display name "Tintas Darka" junto à Meta.</p>
+        </div></div>
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Integração com a plataforma Darka</h3>
+          <p>Conexão do número WABA ao sistema da loja, configuração de webhooks e tokens de acesso.</p>
+        </div></div>
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Templates de mensagem</h3>
+          <p>Criação e submissão dos templates iniciais (confirmação de pedido, atendimento e boas-vindas).</p>
+        </div></div>
+        <div class="scope-item"><span class="dot"></span><div>
+          <h3>Testes e documentação de homologação</h3>
+          <p>Testes de envio/recebimento ponta a ponta e entrega do relatório técnico de homologação.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- ── 3. SQUAD DE MÍDIA ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">3</span><h2>Squad de Mídia</h2></div>
+      <p class="sec-intro">
+        Profissional alocado para conduzir a documentação e a validação do número junto à Meta:
+      </p>
+      <div class="squad-card">
+        <div class="squad-head">
+          <div class="squad-avatar">FB</div>
+          <div>
+            <div class="role">Especialista em Facebook Ads</div>
+            <div class="team">Squad de Mídia</div>
+          </div>
+        </div>
+        <div class="squad-skills">
+          <span class="skill">Facebook Ads / Meta Ads</span>
+          <span class="skill hot">Documentação WABA</span>
+          <span class="skill">Meta Business Manager</span>
+          <span class="skill">Verificação de negócio</span>
+          <span class="skill">Gestão de campanhas</span>
+        </div>
+        <ul class="squad-resp">
+          <li>Conduzir a documentação exigida pela Meta para homologação do número WABA.</li>
+          <li>Acompanhar a verificação de negócio e a aprovação do nome de exibição.</li>
+          <li>Garantir a conformidade da conta de anúncios para uso do canal WhatsApp.</li>
+          <li>Apoiar a estruturação de campanhas que utilizem o número WABA homologado.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 4. CRONOGRAMA ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">4</span><h2>Cronograma — regime de urgência</h2></div>
+      <p class="sec-intro">
+        Prazo estimado de <strong>3 a 5 dias úteis</strong> após o aceite e o envio dos
+        acessos necessários. Etapas sujeitas aos prazos de análise da Meta.
+      </p>
+      <div class="timeline">
+        <div class="tl-row">
+          <span class="tl-day">Dia 1</span>
+          <div><h3>Kickoff e coleta de acessos</h3>
+          <p>Levantamento de acessos, número de telefone e verificação do Meta Business.</p></div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-day">Dias 2–3</span>
+          <div><h3>Cadastro e documentação</h3>
+          <p>Registro do número WABA, submissão do nome de exibição e documentação à Meta.</p></div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-day">Dias 3–4</span>
+          <div><h3>Integração e templates</h3>
+          <p>Conexão à plataforma Darka e configuração dos templates de mensagem.</p></div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-day">Dias 4–5</span>
+          <div><h3>Testes e entrega</h3>
+          <p>Testes ponta a ponta e entrega do relatório de homologação.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. INVESTIMENTO ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">5</span><h2>Investimento</h2></div>
+      <div class="invest">
+        <span class="tag">⚡ Serviço de Urgência</span>
+        <div class="label">Homologação completa do sistema Darka com telefone WABA</div>
+        <div class="price"><small>R$</small> 1.800,00</div>
+        <p class="note">Valor único · Pagamento conforme condições abaixo</p>
+        <div class="invest-includes">
+          <span>Cadastro do número WABA</span>
+          <span>Documentação Meta</span>
+          <span>Integração à plataforma</span>
+          <span>Templates iniciais</span>
+          <span>Relatório de homologação</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. CONDIÇÕES ── -->
+    <section>
+      <div class="sec-label"><span class="sec-num">6</span><h2>Condições e observações</h2></div>
+      <ul class="terms">
+        <li><b>Forma de pagamento:</b>&nbsp;50% na aprovação da proposta e 50% na entrega do relatório de homologação. Pix ou boleto.</li>
+        <li><b>Pré-requisitos do cliente:</b>&nbsp;número de telefone disponível para WABA, acesso ao Meta Business Manager e à plataforma da loja.</li>
+        <li><b>Prazos da Meta:</b>&nbsp;as etapas de verificação e aprovação dependem da análise da Meta e podem variar independentemente do prazo do serviço.</li>
+        <li><b>Não incluso:</b>&nbsp;custos de mensagens/conversas cobrados pela Meta e verba de mídia de campanhas.</li>
+        <li><b>Validade:</b>&nbsp;esta proposta é válida por 15 dias a partir da data de emissão.</li>
+      </ul>
+    </section>
+
+    <!-- ── ACEITE ── -->
+    <section class="sign">
+      <div class="sec-label"><span class="sec-num">✓</span><h2>Aceite da proposta</h2></div>
+      <p class="sec-intro">
+        Para aprovar, assine abaixo ou responda formalmente confirmando o aceite das
+        condições descritas nesta proposta.
+      </p>
+      <button class="btn-print" onclick="window.print()">⤓ Imprimir / Salvar PDF</button>
+      <div class="sign-grid">
+        <div><div class="sign-line">Tintas Darka — Cliente</div></div>
+        <div><div class="sign-line">Squad de Mídia — Responsável técnico</div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>
+        Proposta WABA-2026-001 · Homologação Sistema Darka + Telefone WABA<br>
+        Tintas Darka — Seu mundo em cores · <a href="https://tintasdarka.wscommerce.com.br/">tintasdarka.wscommerce.com.br</a>
+      </p>
+    </div>
+  </footer>
+
+  <div class="spectrum">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+    <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+  </div>
+
+</body>
+</html>
