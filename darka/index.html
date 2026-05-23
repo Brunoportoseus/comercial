@@ -208,6 +208,22 @@
     footer p{font-size:.7rem;color:var(--muted);letter-spacing:.04em;line-height:1.9;}
     footer a{color:var(--brand-2);text-decoration:none;}
 
+    /* ── WEBSTORM BRAND ── */
+    .ws-brand{
+      margin-left:auto;display:flex;align-items:center;opacity:.95;
+    }
+    .ws-brand svg{height:34px;width:auto;display:block;}
+    .ws-foot{
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:.9rem;opacity:.85;
+    }
+    .ws-foot svg{height:28px;width:auto;display:block;}
+    @media (max-width:560px){
+      .logo-row{flex-wrap:wrap;}
+      .ws-brand{margin-left:0;margin-top:.6rem;width:100%;justify-content:flex-start;}
+      .ws-brand svg{height:28px;}
+    }
+
     @media (max-width:560px){
       .sign-grid{grid-template-columns:1fr;gap:1.6rem;}
       .tl-row{grid-template-columns:1fr;gap:.4rem;}
@@ -238,6 +254,15 @@
         <div class="logo-mark">D</div>
         <div class="logo-text">DARKA
           <small>Seu mundo em cores</small>
+        </div>
+        <div class="ws-brand" aria-label="Proposta por Webstorm">
+          <svg viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Webstorm">
+            <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+              <rect x="3" y="3" width="54" height="54" rx="12" ry="12"/>
+              <path d="M34 9 L17 33 L28 33 L24 51 L43 27 L32 27 Z"/>
+            </g>
+            <text x="70" y="44" font-family="Sora, Montserrat, sans-serif" font-weight="800" font-size="34" fill="#fff" letter-spacing="-1">webstorm</text>
+          </svg>
         </div>
       </div>
 
@@ -395,24 +420,19 @@
       </ul>
     </section>
 
-    <!-- ── ACEITE ── -->
-    <section class="sign">
-      <div class="sec-label"><span class="sec-num">✓</span><h2>Aceite da proposta</h2></div>
-      <p class="sec-intro">
-        Para aprovar, assine abaixo ou responda formalmente confirmando o aceite das
-        condições descritas nesta proposta.
-      </p>
-      <button class="btn-print" onclick="window.print()">⤓ Imprimir / Salvar PDF</button>
-      <div class="sign-grid">
-        <div><div class="sign-line">Tintas Darka — Cliente</div></div>
-        <div><div class="sign-line">Squad de Mídia — Responsável técnico</div></div>
-      </div>
-    </section>
-
   </main>
 
   <footer>
     <div class="wrap">
+      <div class="ws-foot" aria-label="Webstorm">
+        <svg viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Webstorm">
+          <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="3" y="3" width="54" height="54" rx="12" ry="12"/>
+            <path d="M34 9 L17 33 L28 33 L24 51 L43 27 L32 27 Z"/>
+          </g>
+          <text x="70" y="44" font-family="Sora, Montserrat, sans-serif" font-weight="800" font-size="34" fill="#fff" letter-spacing="-1">webstorm</text>
+        </svg>
+      </div>
       <p>
         Proposta WABA-2026-001 · Homologação Sistema Darka + Telefone WABA<br>
         Tintas Darka — Seu mundo em cores · <a href="https://tintasdarka.wscommerce.com.br/">tintasdarka.wscommerce.com.br</a>
