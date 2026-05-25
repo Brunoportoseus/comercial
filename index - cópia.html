@@ -178,6 +178,32 @@
     .invest-includes span{font-size:.78rem;color:var(--ink);display:flex;align-items:center;gap:.4rem;}
     .invest-includes span::before{content:'✓';color:var(--c-green);font-weight:800;}
 
+    /* ── HOURS BREAKDOWN ── */
+    .invest-hours{
+      margin-top:1.4rem;padding:1.3rem;
+      background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;text-align:left;
+    }
+    .hours-head{
+      display:flex;align-items:center;gap:.8rem;padding-bottom:1rem;margin-bottom:1rem;
+      border-bottom:1px solid var(--line);
+    }
+    .hours-head strong{font-family:'Sora',sans-serif;font-weight:800;font-size:1.7rem;
+      color:var(--c-orange);line-height:1;}
+    .hours-head span{font-size:.62rem;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--muted);}
+    .hours-blocks{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .hours-block{background:var(--bg3);border:1px solid var(--line);
+      border-radius:10px;padding:1rem 1.1rem;}
+    .hours-block-title{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;
+      margin-bottom:.7rem;display:flex;align-items:baseline;gap:.45rem;}
+    .hours-block-title strong{color:var(--c-orange);font-weight:800;font-size:1.05rem;}
+    .hours-block ul{list-style:none;display:grid;gap:.35rem;}
+    .hours-block li{font-size:.78rem;color:var(--muted);display:flex;gap:.45rem;line-height:1.4;}
+    .hours-block li::before{content:'→';color:var(--brand-2);font-weight:700;flex-shrink:0;}
+    @media (max-width:560px){
+      .hours-blocks{grid-template-columns:1fr;}
+    }
+
     /* ── TERMS ── */
     .terms{list-style:none;display:grid;gap:.7rem;}
     .terms li{
@@ -207,6 +233,25 @@
       padding:1.8rem 0;text-align:center;}
     footer p{font-size:.7rem;color:var(--muted);letter-spacing:.04em;line-height:1.9;}
     footer a{color:var(--brand-2);text-decoration:none;}
+
+    /* ── WEBSTORM BRAND ── */
+    .ws-brand{
+      margin-left:auto;display:flex;align-items:center;opacity:.95;
+    }
+    .ws-brand img{height:38px;width:auto;display:block;}
+    .ws-foot{
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:.9rem;opacity:.85;
+    }
+    .ws-foot img{height:30px;width:auto;display:block;}
+    @media (max-width:560px){
+      .logo-row{flex-wrap:wrap;}
+      .ws-brand{margin-left:0;margin-top:.6rem;width:100%;justify-content:flex-start;}
+      .ws-brand img{height:30px;}
+    }
+    @media print{
+      .ws-brand img,.ws-foot img{filter:invert(1);}
+    }
 
     @media (max-width:560px){
       .sign-grid{grid-template-columns:1fr;gap:1.6rem;}
@@ -239,6 +284,9 @@
         <div class="logo-text">DARKA
           <small>Seu mundo em cores</small>
         </div>
+        <div class="ws-brand" aria-label="Proposta por Webstorm">
+          <img src="Logo%20Ws%20Negativo.png" alt="Webstorm">
+        </div>
       </div>
 
       <span class="hero-badge">Proposta Comercial · Serviço de Urgência</span>
@@ -265,7 +313,7 @@
       <p class="sec-intro">
         Realizar a homologação do sistema da Darka com um número de telefone WABA
         (WhatsApp Business API), garantindo que a loja
-        <strong>tintasdarka.wscommerce.com.br</strong> opere com um canal oficial de
+        <strong>tintasdarka.com.br</strong> opere com um canal oficial de
         WhatsApp verificado pela Meta — pronto para atendimento, notificações de pedido
         e disparo de campanhas. O serviço é executado em <strong>regime de urgência</strong>,
         com priorização da fila de homologação e da documentação exigida pela Meta.
@@ -304,9 +352,9 @@
       </div>
     </section>
 
-    <!-- ── 3. SQUAD DE MÍDIA ── -->
+    <!-- ── 3. SQUAD DE MÍDIA WEBSTORM ── -->
     <section>
-      <div class="sec-label"><span class="sec-num">3</span><h2>Squad de Mídia</h2></div>
+      <div class="sec-label"><span class="sec-num">3</span><h2>Squad de Mídia WebStorm</h2></div>
       <p class="sec-intro">
         Profissional alocado para conduzir a documentação e a validação do número junto à Meta:
       </p>
@@ -315,7 +363,7 @@
           <div class="squad-avatar">FB</div>
           <div>
             <div class="role">Especialista em Facebook Ads</div>
-            <div class="team">Squad de Mídia</div>
+            <div class="team">Squad de Mídia WebStorm</div>
           </div>
         </div>
         <div class="squad-skills">
@@ -373,6 +421,31 @@
         <div class="label">Homologação completa do sistema Darka com telefone WABA</div>
         <div class="price"><small>R$</small> 1.800,00</div>
         <p class="note">Valor único · Pagamento conforme condições abaixo</p>
+        <div class="invest-hours">
+          <div class="hours-head">
+            <strong>10h</strong>
+            <span>Programação da carga horária</span>
+          </div>
+          <div class="hours-blocks">
+            <div class="hours-block">
+              <div class="hours-block-title"><strong>4h</strong> Configurações</div>
+              <ul>
+                <li>Verificação do Meta Business Manager</li>
+                <li>Cadastro do telefone WABA</li>
+                <li>Aprovação do nome de exibição</li>
+              </ul>
+            </div>
+            <div class="hours-block">
+              <div class="hours-block-title"><strong>6h</strong> Treinamento e Implementação</div>
+              <ul>
+                <li>Integração à plataforma Darka</li>
+                <li>Templates de mensagem</li>
+                <li>Testes ponta a ponta</li>
+                <li>Treinamento da equipe</li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div class="invest-includes">
           <span>Cadastro do número WABA</span>
           <span>Documentação Meta</span>
@@ -395,27 +468,16 @@
       </ul>
     </section>
 
-    <!-- ── ACEITE ── -->
-    <section class="sign">
-      <div class="sec-label"><span class="sec-num">✓</span><h2>Aceite da proposta</h2></div>
-      <p class="sec-intro">
-        Para aprovar, assine abaixo ou responda formalmente confirmando o aceite das
-        condições descritas nesta proposta.
-      </p>
-      <button class="btn-print" onclick="window.print()">⤓ Imprimir / Salvar PDF</button>
-      <div class="sign-grid">
-        <div><div class="sign-line">Tintas Darka — Cliente</div></div>
-        <div><div class="sign-line">Squad de Mídia — Responsável técnico</div></div>
-      </div>
-    </section>
-
   </main>
 
   <footer>
     <div class="wrap">
+      <div class="ws-foot" aria-label="Webstorm">
+        <img src="Logo%20Ws%20Negativo.png" alt="Webstorm">
+      </div>
       <p>
         Proposta WABA-2026-001 · Homologação Sistema Darka + Telefone WABA<br>
-        Tintas Darka — Seu mundo em cores · <a href="https://tintasdarka.wscommerce.com.br/">tintasdarka.wscommerce.com.br</a>
+        Tintas Darka — Seu mundo em cores · <a href="https://tintasdarka.com.br/">tintasdarka.com.br</a>
       </p>
     </div>
   </footer>
