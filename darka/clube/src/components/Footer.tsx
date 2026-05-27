@@ -42,25 +42,21 @@ export default function Footer() {
             href="https://webstorm.com.br/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 hover:text-white transition"
+            className="flex items-center gap-2 hover:opacity-80 transition"
             aria-label="Desenvolvido por Webstorm"
           >
-            <span className="text-[10px] uppercase tracking-[0.18em] text-white/45">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-white/55">
               Desenvolvido por
             </span>
-            {/* Logo Webstorm em pequeno, com filtro para ficar branca no fundo verde */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`${base}/logo-webstorm.svg`}
-              alt="Webstorm"
-              height={22}
-              style={{
-                height: "22px",
-                width: "auto",
-                filter: "brightness(0) invert(1)",
-                opacity: 0.85,
-              }}
-            />
+            {/* Logo Webstorm sobre pílula branca para contraste no rodapé verde */}
+            <span className="inline-flex items-center bg-white rounded-md px-2 py-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${base}/logo-webstorm.svg`}
+                alt="Webstorm"
+                style={{ height: "18px", width: "auto", display: "block" }}
+              />
+            </span>
           </a>
         </div>
       </div>
