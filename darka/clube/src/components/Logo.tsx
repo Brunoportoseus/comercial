@@ -1,7 +1,8 @@
 // Logo Tintas Darka.
-// Usa o SVG vetorial em /public/logo-darka.svg (faixa multicolor + marca).
-// A variação "light" é aplicada sobre fundos escuros.
-// Mantemos `showTagline` para retrocompatibilidade com chamadas existentes.
+// Usa sempre o arquivo oficial em /public/logo-darka.svg.
+// Quando aplicada sobre fundos escuros (variant="light"), um filtro CSS
+// converte a logo inteira em branco puro — assim mantemos um único
+// arquivo da marca, sem precisar de versão negativa separada.
 
 interface LogoProps {
   variant?: "light" | "dark";
@@ -15,23 +16,26 @@ export default function Logo({
   showTagline = true,
 }: LogoProps) {
   const dims = {
-    sm: { w: 64,  sub: "text-[9px]"  },
-    md: { w: 84,  sub: "text-[10px]" },
-    lg: { w: 112, sub: "text-[11px]" },
+    sm: { w: 72,  sub: "text-[9px]"  },
+    md: { w: 96,  sub: "text-[10px]" },
+    lg: { w: 128, sub: "text-[11px]" },
   }[size];
 
-  const src = variant === "light" ? "/logo-darka-light.svg" : "/logo-darka.svg";
-  const subColor = variant === "light" ? "text-white/75" : "text-darka-brand-green";
+  const subColor = variant === "light" ? "text-white/80" : "text-darka-brand-green";
 
   return (
     <div className="flex items-center gap-3">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={src}
+        src="/logo-darka.svg"
         alt="Tintas Darka"
         width={dims.w}
         className="block shrink-0"
-        style={{ height: "auto" }}
+        style={{
+          height: "auto",
+          // Sobre fundos escuros: zera saturação e força branco puro.
+          filter: variant === "light" ? "brightness(0) invert(1)" : undefined,
+        }}
       />
       {showTagline && (
         <span
