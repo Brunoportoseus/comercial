@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Logo Webstorm — reconstrução vetorial baseada na arte oficial.
+  Ícone (raio em "negativo" sobre quadrado arredondado) + wordmark
+  "webstorm" em fonte sans-serif bold. Cor preta por padrão; uso em
+  fundos escuros aplica filter CSS para inverter (ver Footer.tsx).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-label="Webstorm">
+  <!-- Ícone -->
+  <rect x="0" y="0" width="180" height="180" rx="38" fill="#000"/>
+  <path
+    d="M104,28 L60,104 L86,104 L74,152 L122,72 L94,72 L104,28 Z"
+    fill="#fff"/>
+
+  <!-- Wordmark "webstorm" -->
+  <text x="208" y="132"
+        font-family="'Sora','Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="700"
+        font-size="140"
+        letter-spacing="-4"
+        fill="#000">webstorm</text>
+</svg>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 export default function Footer() {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   return (
     <footer className="bg-darka-brand-green text-white/85 mt-16">
       <div className="spectrum-strip" />
@@ -34,8 +35,34 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} Tintas Darka — Seu mundo em cores. Todos os direitos reservados.
+      <div className="border-t border-white/10 py-5">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55">
+          <span>© {new Date().getFullYear()} Tintas Darka — Seu mundo em cores. Todos os direitos reservados.</span>
+          <a
+            href="https://webstorm.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 hover:text-white transition"
+            aria-label="Desenvolvido por Webstorm"
+          >
+            <span className="text-[10px] uppercase tracking-[0.18em] text-white/45">
+              Desenvolvido por
+            </span>
+            {/* Logo Webstorm em pequeno, com filtro para ficar branca no fundo verde */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${base}/logo-webstorm.svg`}
+              alt="Webstorm"
+              height={22}
+              style={{
+                height: "22px",
+                width: "auto",
+                filter: "brightness(0) invert(1)",
+                opacity: 0.85,
+              }}
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );
