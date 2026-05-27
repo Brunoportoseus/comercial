@@ -23,11 +23,15 @@ export default function Logo({
 
   const subColor = variant === "light" ? "text-white/80" : "text-darka-brand-green";
 
+  // basePath precisa ser prefixado manualmente em <img src> porque o
+  // Next.js só aplica automaticamente em rotas, não em assets estáticos.
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
   return (
     <div className="flex items-center gap-3">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/logo-darka.svg"
+        src={`${base}/logo-darka.svg`}
         alt="Tintas Darka"
         width={dims.w}
         className="block shrink-0"

@@ -12,6 +12,9 @@ const nextConfig = {
   trailingSlash: true,
   basePath,
   assetPrefix: basePath,
+  // Exposto ao client para uso em <img src> e outros assets estáticos
+  // — basePath não é aplicado automaticamente fora do roteador Next.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;
