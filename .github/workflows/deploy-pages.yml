@@ -1,0 +1,79 @@
+# Publica no GitHub Pages:
+#   - Os HTMLs estáticos da raiz do repo (propostas existentes)
+#   - O portal Clube do Pintor (Next.js) exportado em /clube/
+# URL final:
+#   https://brunoportoseus.github.io/comercial/
+#   https://brunoportoseus.github.io/comercial/clube/   ← portal
+#
+# Para funcionar, em Settings → Pages → Source: selecionar "GitHub Actions".
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: darka/clube/package-lock.json
+
+      - name: Instalar dependências do portal
+        working-directory: darka/clube
+        run: npm ci
+
+      - name: Build estático do portal (Next.js export)
+        working-directory: darka/clube
+        env:
+          NODE_ENV: production
+        run: npm run build
+
+      - name: Montar site final
+        run: |
+          mkdir -p _site
+          # Conteúdo já existente do repo (propostas HTML, etc.) — preserva tudo
+          # exceto pastas de build/dependências e arquivos do workflow.
+          rsync -av \
+            --exclude='_site' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='darka/clube/node_modules' \
+            --exclude='darka/clube/.next' \
+            --exclude='darka/clube/out' \
+            ./ _site/
+          # Substitui o source do Next pelo export estático em /clube
+          rm -rf _site/darka/clube
+          mkdir -p _site/clube
+          cp -R darka/clube/out/. _site/clube/
+          # Disable Jekyll (impede que o Pages reescreva caminhos com `_`).
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

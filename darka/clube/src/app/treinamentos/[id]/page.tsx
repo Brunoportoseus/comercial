@@ -5,6 +5,11 @@ import { mockTrainings } from "@/data/mock";
 
 interface PageProps { params: { id: string } }
 
+// Necessário para `output: 'export'` — pré-gera uma página por curso.
+export function generateStaticParams() {
+  return mockTrainings.map((t) => ({ id: t.id }));
+}
+
 export default function TreinamentoDetalhe({ params }: PageProps) {
   const t = mockTrainings.find((x) => x.id === params.id);
   if (!t) return notFound();
