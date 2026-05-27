@@ -48,15 +48,12 @@ export default function Footer() {
             <span className="text-[10px] uppercase tracking-[0.18em] text-white/55">
               Desenvolvido por
             </span>
-            {/* Logo Webstorm sobre pílula branca para contraste no rodapé verde */}
-            <span className="inline-flex items-center bg-white rounded-md px-2 py-1">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${base}/logo-webstorm.svg`}
-                alt="Webstorm"
-                style={{ height: "18px", width: "auto", display: "block" }}
-              />
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${base}/logo-webstorm.svg`}
+              alt="Webstorm"
+              style={{ height: "22px", width: "auto", display: "block" }}
+            />
           </a>
         </div>
       </div>
