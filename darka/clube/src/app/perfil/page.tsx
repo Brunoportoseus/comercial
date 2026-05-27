@@ -11,7 +11,7 @@ export default function PerfilPage() {
           <ProfileForm painter={mockPainter} />
         </div>
 
-        <aside className="rounded-3xl bg-secondary text-white p-6 sticky top-6">
+        <aside className="rounded-3xl bg-darka-brand-green text-white p-6 sticky top-6">
           <div className="text-[10px] uppercase tracking-widest text-white/65 font-bold">Meu nível no clube</div>
           <h3 className="font-display font-extrabold text-3xl mt-1">{mockPainter.level}</h3>
           <p className="text-white/65 text-sm mt-1">

@@ -52,8 +52,8 @@ export default function Sidebar() {
               className={[
                 "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition",
                 active
-                  ? "bg-primary text-white shadow-soft"
-                  : "text-text/80 hover:bg-surface-2",
+                  ? "bg-primary text-white shadow-soft border-l-4 border-darka-brand-green-soft pl-2"
+                  : "text-text/80 hover:bg-darka-brand-green/10 hover:text-darka-brand-green",
               ].join(" ")}
             >
               <Icon className="w-[18px] h-[18px]" />

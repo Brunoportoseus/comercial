@@ -45,15 +45,20 @@ export default function PublicHome() {
                 { n: 2, t: "Compre ou participe", d: "Compre produtos participantes ou ações do clube." },
                 { n: 3, t: "Acumule pontos", d: "Cada ação vira pontos e benefícios reais." },
                 { n: 4, t: "Troque por vantagens", d: "Descontos, brindes, cursos ou prêmios." },
-              ].map((s) => (
-                <li key={s.n} className="rounded-2xl bg-surface border border-black/5 p-5">
-                  <div className="w-10 h-10 rounded-xl bg-brand-gradient text-white font-display font-extrabold flex items-center justify-center">
-                    {s.n}
-                  </div>
-                  <h4 className="font-display font-bold text-base mt-4">{s.t}</h4>
-                  <p className="text-sm text-muted mt-1.5">{s.d}</p>
-                </li>
-              ))}
+              ].map((s) => {
+                // Alterna gradiente vinho/verde Darka entre os passos para
+                // equilibrar a paleta da marca em destaque.
+                const isGreen = s.n % 2 === 0;
+                return (
+                  <li key={s.n} className="rounded-2xl bg-surface border border-black/5 p-5">
+                    <div className={`w-10 h-10 rounded-xl text-white font-display font-extrabold flex items-center justify-center ${isGreen ? "bg-green-gradient" : "bg-brand-gradient"}`}>
+                      {s.n}
+                    </div>
+                    <h4 className="font-display font-bold text-base mt-4">{s.t}</h4>
+                    <p className="text-sm text-muted mt-1.5">{s.d}</p>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         </section>
@@ -86,22 +91,23 @@ export default function PublicHome() {
           </div>
         </section>
 
-        {/* CTA Final */}
-        <section className="py-16 lg:py-24 bg-secondary text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-painter-pattern opacity-50 pointer-events-none" />
+        {/* CTA Final — fundo em verde institucional Darka */}
+        <section className="py-16 lg:py-24 bg-darka-brand-green text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-40 pointer-events-none"
+               style={{ background: "radial-gradient(ellipse 50% 40% at 80% 0%, rgba(255,255,255,.18) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 100%, rgba(0,0,0,.25) 0%, transparent 60%)" }} />
           <div className="relative mx-auto max-w-3xl text-center px-4">
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
               Faça parte do Clube do Pintor{" "}
               <span className="text-accent">Darka</span>
             </h2>
-            <p className="mt-4 text-white/70 text-base sm:text-lg max-w-xl mx-auto">
+            <p className="mt-4 text-white/85 text-base sm:text-lg max-w-xl mx-auto">
               Seu trabalho merece reconhecimento. Cadastre-se grátis e comece a acumular benefícios hoje mesmo.
             </p>
             <div className="mt-7 flex flex-wrap gap-3 justify-center">
-              <Link href="/cadastro" className="px-7 py-3.5 rounded-xl bg-brand-gradient text-white font-bold hover:shadow-glow">
+              <Link href="/cadastro" className="px-7 py-3.5 rounded-xl bg-accent text-darka-brand-green font-extrabold hover:brightness-110">
                 Quero participar
               </Link>
-              <Link href="/login" className="px-7 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white font-bold hover:bg-white/15">
+              <Link href="/login" className="px-7 py-3.5 rounded-xl bg-white/10 border border-white/30 text-white font-bold hover:bg-white/15">
                 Já sou cadastrado
               </Link>
             </div>

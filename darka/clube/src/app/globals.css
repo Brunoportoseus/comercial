@@ -15,6 +15,9 @@
   --color-secondary: 24 22 28;       /* #18161c */
   /* Dourado de destaque para pontos e recompensas */
   --color-accent: 245 184 28;        /* #f5b81c */
+  /* Verde institucional da logomarca Tintas Darka */
+  --color-brand-green: 13 107 77;        /* #0d6b4d */
+  --color-brand-green-soft: 58 167 97;   /* #3aa761 */
 
   /* Tema light por padrão (portal premium) */
   --color-background: 247 246 244;   /* #f7f6f4 cinza claro neutro */
@@ -23,7 +26,7 @@
   --color-text: 24 22 28;            /* grafite */
   --color-muted: 110 105 118;        /* cinza médio */
 
-  --color-success: 34 160 102;
+  --color-success: 13 107 77;        /* alinhado ao verde da marca */
   --color-warning: 220 130 30;
   --color-danger: 200 38 50;
 

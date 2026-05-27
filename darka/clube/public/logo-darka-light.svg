@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Variação para fundos escuros — texto em branco, faixa mantida. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Tintas Darka">
+  <defs>
+    <linearGradient id="darka-ribbon-light" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#e6342b"/>
+      <stop offset="18%"  stop-color="#f3742a"/>
+      <stop offset="38%"  stop-color="#f0c020"/>
+      <stop offset="58%"  stop-color="#3aa761"/>
+      <stop offset="78%"  stop-color="#3aa1d9"/>
+      <stop offset="100%" stop-color="#5d4b9e"/>
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M14,52
+       C 50,18 90,18 130,40
+       C 170,62 210,62 240,38
+       L 240,76
+       C 210,98 170,98 130,76
+       C 90,54 50,54 14,86 Z"
+    fill="url(#darka-ribbon-light)"/>
+
+  <text x="120" y="118" text-anchor="middle"
+        font-family="'Sora','Inter',Arial,sans-serif"
+        font-weight="700" font-size="20" letter-spacing="2"
+        fill="#ffffff">TINTAS</text>
+
+  <text x="120" y="160" text-anchor="middle"
+        font-family="'Sora','Inter',Arial,sans-serif"
+        font-weight="800" font-size="44" letter-spacing="1"
+        fill="#ffffff">DARKA</text>
+</svg>

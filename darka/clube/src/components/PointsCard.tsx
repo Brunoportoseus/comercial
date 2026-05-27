@@ -9,7 +9,7 @@ export default function PointsCard({ painter }: Props) {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-secondary text-white p-6 lg:p-8 shadow-soft">
       <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full" style={{ background: "radial-gradient(circle, rgba(245,184,28,.35), transparent 60%)" }} />
-      <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full" style={{ background: "radial-gradient(circle, rgba(138,18,32,.55), transparent 60%)" }} />
+      <div className="absolute -bottom-20 -left-16 w-72 h-72 rounded-full" style={{ background: "radial-gradient(circle, rgba(13,107,77,.7), transparent 60%)" }} />
 
       <div className="relative">
         <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/70">

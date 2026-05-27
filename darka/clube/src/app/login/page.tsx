@@ -6,8 +6,9 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Lado visual */}
-      <aside className="hidden lg:flex relative bg-secondary text-white overflow-hidden flex-col p-10 justify-between">
-        <div className="absolute inset-0 bg-painter-pattern opacity-60" />
+      <aside className="hidden lg:flex relative bg-darka-brand-green text-white overflow-hidden flex-col p-10 justify-between">
+        <div className="absolute inset-0 opacity-50"
+             style={{ background: "radial-gradient(ellipse 60% 50% at 20% 0%, rgba(255,255,255,.18) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 100% 100%, rgba(0,0,0,.3) 0%, transparent 60%)" }} />
         <div className="relative">
           <Link href="/"><Logo variant="light" size="lg" /></Link>
         </div>

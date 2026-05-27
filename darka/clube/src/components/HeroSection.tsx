@@ -5,14 +5,14 @@ export default function HeroSection() {
     <section className="relative bg-painter-pattern bg-background">
       <div className="mx-auto max-w-6xl px-4 lg:px-6 py-16 lg:py-24 grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary text-[11px] font-bold tracking-[0.16em] uppercase px-3 py-1.5 border border-primary/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-darka-brand-green/10 text-darka-brand-green text-[11px] font-bold tracking-[0.16em] uppercase px-3 py-1.5 border border-darka-brand-green/25">
+            <span className="w-1.5 h-1.5 rounded-full bg-darka-brand-green" />
             Programa de relacionamento Darka
           </span>
 
           <h1 className="font-display font-extrabold mt-5 text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-text">
             Clube do Pintor{" "}
-            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(120deg,#8a1220,#ff3d4d 40%,#ff8a3d)" }}>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(120deg,#0d6b4d,#3aa761 50%,#8a1220)" }}>
               Darka
             </span>
           </h1>
@@ -48,7 +48,7 @@ export default function HeroSection() {
         <div className="relative">
           <div className="relative mx-auto w-full max-w-sm rounded-3xl bg-secondary text-white p-6 shadow-soft overflow-hidden">
             <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full" style={{ background: "radial-gradient(circle, rgba(255,138,61,.45), transparent 60%)" }} />
-            <div className="absolute -bottom-16 -left-12 w-52 h-52 rounded-full" style={{ background: "radial-gradient(circle, rgba(255,61,77,.35), transparent 60%)" }} />
+            <div className="absolute -bottom-16 -left-12 w-52 h-52 rounded-full" style={{ background: "radial-gradient(circle, rgba(13,107,77,.45), transparent 60%)" }} />
             <div className="relative">
               <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-white/60">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Nível Prata

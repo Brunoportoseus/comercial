@@ -5,9 +5,9 @@ const config: Config = {
   // Classes geradas dinamicamente em runtime (NotificationItem,
   // VoucherCard, TrainingCard etc.) precisam ser pré-incluídas.
   safelist: [
-    ...["darka-red", "darka-orange", "darka-yellow", "darka-green", "darka-blue", "darka-purple"].flatMap((c) => [
+    ...["darka-red", "darka-orange", "darka-yellow", "darka-green", "darka-blue", "darka-purple", "darka-brand-green", "darka-brand-green-soft"].flatMap((c) => [
       `bg-${c}`, `text-${c}`, `border-${c}`,
-      `bg-${c}/10`, `bg-${c}/15`, `bg-${c}/20`,
+      `bg-${c}/8`, `bg-${c}/10`, `bg-${c}/15`, `bg-${c}/20`, `bg-${c}/25`,
     ]),
   ],
   theme: {
@@ -26,12 +26,15 @@ const config: Config = {
         warning: "rgb(var(--color-warning) / <alpha-value>)",
         danger: "rgb(var(--color-danger) / <alpha-value>)",
         // Cores complementares Darka (espectro)
-        "darka-red": "#ff3d4d",
-        "darka-orange": "#ff8a3d",
-        "darka-yellow": "#ffd23d",
-        "darka-green": "#3ddc97",
-        "darka-blue": "#3da5ff",
-        "darka-purple": "#a06bff",
+        "darka-red": "#e6342b",
+        "darka-orange": "#f3742a",
+        "darka-yellow": "#f0c020",
+        "darka-green": "#3aa761",
+        "darka-blue": "#3aa1d9",
+        "darka-purple": "#5d4b9e",
+        // Verde institucional da logomarca (mapeado via CSS var)
+        "darka-brand-green": "rgb(var(--color-brand-green) / <alpha-value>)",
+        "darka-brand-green-soft": "rgb(var(--color-brand-green-soft) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
@@ -51,6 +54,8 @@ const config: Config = {
           "linear-gradient(135deg, rgb(var(--color-primary)), rgb(var(--color-secondary)))",
         "accent-gradient":
           "linear-gradient(135deg, rgb(var(--color-accent)), #ffb347)",
+        "green-gradient":
+          "linear-gradient(135deg, rgb(var(--color-brand-green)), rgb(var(--color-brand-green-soft)))",
       },
     },
   },

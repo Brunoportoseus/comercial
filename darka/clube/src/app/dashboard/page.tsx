@@ -58,10 +58,10 @@ export default function DashboardPage() {
 
       {/* Stats rápidos */}
       <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <Stat color="darka-red"    label="Vouchers ativos" value={mockVouchers.length.toString()} href="/vouchers" />
-        <Stat color="darka-orange" label="Prêmios disponíveis" value={mockRewards.filter(r => r.status === "disponivel").length.toString()} href="/premios" />
-        <Stat color="darka-blue"   label="Cursos abertos" value={mockTrainings.length.toString()} href="/treinamentos" />
-        <Stat color="darka-purple" label="Indicações" value="3" href="/indicacoes" />
+        <Stat color="darka-red"              label="Vouchers ativos" value={mockVouchers.length.toString()} href="/vouchers" />
+        <Stat color="darka-brand-green"      label="Prêmios disponíveis" value={mockRewards.filter(r => r.status === "disponivel").length.toString()} href="/premios" />
+        <Stat color="darka-blue"             label="Cursos abertos" value={mockTrainings.length.toString()} href="/treinamentos" />
+        <Stat color="darka-brand-green-soft" label="Indicações" value="3" href="/indicacoes" />
       </div>
 
       {/* Vouchers em destaque */}
