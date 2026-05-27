@@ -19,7 +19,8 @@ export default function Header() {
       <div className="spectrum-strip" />
       <div className="mx-auto max-w-6xl px-4 lg:px-6 py-3 flex items-center gap-6">
         <Link href="/" aria-label="Início Clube do Pintor Darka">
-          <Logo size="md" />
+          {/* Header em tamanho "lg" — ~30% maior que o md padrão */}
+          <Logo size="lg" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 ml-2">
