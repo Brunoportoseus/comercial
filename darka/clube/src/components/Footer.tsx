@@ -52,7 +52,13 @@ export default function Footer() {
             <img
               src={`${base}/logo-webstorm.svg`}
               alt="Webstorm"
-              style={{ height: "22px", width: "auto", display: "block" }}
+              style={{
+                height: "18px",
+                width: "auto",
+                display: "block",
+                // Inverte a logo (preta) para branco no rodapé verde
+                filter: "brightness(0) invert(1)",
+              }}
             />
           </a>
         </div>
