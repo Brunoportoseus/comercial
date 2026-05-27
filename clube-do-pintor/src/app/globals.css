@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   PALETA DE CORES — CLUBE DO PINTOR DARKA
+   Troque os valores abaixo para reaplicar a marca em outro tema.
+   Cada cor está em formato R G B (sem alpha) para permitir o
+   modificador <alpha-value> do Tailwind (ex.: bg-primary/50).
+   ============================================================ */
+:root {
+  /* Vermelho vinho institucional Darka */
+  --color-primary: 138 18 32;        /* #8a1220 */
+  /* Preto/grafite para áreas de contraste */
+  --color-secondary: 24 22 28;       /* #18161c */
+  /* Dourado de destaque para pontos e recompensas */
+  --color-accent: 245 184 28;        /* #f5b81c */
+
+  /* Tema light por padrão (portal premium) */
+  --color-background: 247 246 244;   /* #f7f6f4 cinza claro neutro */
+  --color-surface: 255 255 255;      /* branco */
+  --color-surface-2: 244 240 236;    /* areia */
+  --color-text: 24 22 28;            /* grafite */
+  --color-muted: 110 105 118;        /* cinza médio */
+
+  --color-success: 34 160 102;
+  --color-warning: 220 130 30;
+  --color-danger: 200 38 50;
+
+  --font-sans: "Inter", "Montserrat", system-ui, sans-serif;
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+}
+
+/* Variante dark (preparada para integração futura ao tema escuro Darka) */
+.theme-dark {
+  --color-background: 21 19 26;
+  --color-surface: 30 27 38;
+  --color-surface-2: 39 35 50;
+  --color-text: 244 242 247;
+  --color-muted: 155 150 168;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-text));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faixa multicolor — assinatura da marca Darka ("Seu mundo em cores") */
+.spectrum-strip {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #ff3d4d 0%,
+    #ff8a3d 20%,
+    #ffd23d 40%,
+    #3ddc97 60%,
+    #3da5ff 80%,
+    #a06bff 100%
+  );
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-muted) / 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-muted) / 0.5); }
+
+/* Animações utilitárias */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up .5s ease-out both; }
+
+/* Padrão de fundo sutil para hero do portal público */
+.bg-painter-pattern {
+  background-image:
+    radial-gradient(ellipse 45% 35% at 85% 0%, rgb(var(--color-primary) / 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 50% at 0% 100%, rgb(var(--color-accent) / 0.15) 0%, transparent 60%);
+}
+
+/* Ajuste para PWA standalone (esconde estética de barra do navegador) */
+@media (display-mode: standalone) {
+  body { overscroll-behavior-y: none; }
+}
