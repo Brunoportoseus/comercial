@@ -174,7 +174,7 @@ ul { list-style: none; }
   gap: 32px;
 }
 
-.navbar-logo img { height: 36px; }
+.navbar-logo img { height: 43px; }
 
 .navbar-nav {
   display: flex;
@@ -1525,7 +1525,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .cta-block { padding: 48px 28px; }
   .hero-stats { flex-wrap: wrap; gap: 16px; }
   .steps-grid { grid-template-columns: 1fr; }
-  .navbar-logo img { height: 30px; }
+  .navbar-logo img { height: 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 
