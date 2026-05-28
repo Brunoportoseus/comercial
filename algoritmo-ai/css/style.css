@@ -1507,6 +1507,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 }
 
 @media (max-width: 768px) {
+  html, body { overflow-x: hidden; }
   section { padding: 64px 0; }
   .navbar-nav, .navbar-actions { display: none; }
   .hamburger { display: flex; }
@@ -1519,17 +1520,24 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .ai-grid { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: repeat(3, 1fr); }
   .diff-grid { grid-template-columns: 1fr 1fr; }
-  .checklist-grid { grid-template-columns: 1fr 1fr; }
+  .checklist-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .cta-block { padding: 48px 28px; }
+  .cta-block { padding: 48px 20px; }
   .hero-stats { flex-wrap: wrap; gap: 16px; }
   .steps-grid { grid-template-columns: 1fr; }
   .navbar-logo img { height: 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .platforms-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .platform-card { padding: 24px 16px; }
+  .platform-card-name { font-size: 16px; }
+  .two-col-intro { grid-template-columns: 1fr; gap: 32px; }
+  /* hero 48h page */
+  .section-48h .container > div[style*="grid-template-columns:1fr 1fr"] { display: flex !important; flex-direction: column !important; gap: 40px !important; }
 }
 
 @media (max-width: 480px) {
+  html, body { overflow-x: hidden; }
   .container { padding: 0 16px; }
   .audit-items { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1538,8 +1546,13 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-ctas { flex-direction: column; }
   .cta-buttons { flex-direction: column; align-items: center; }
-  .platforms-row { gap: 8px; }
-  .platform-badge { padding: 8px 14px; font-size: 13px; }
+  .platforms-row { gap: 8px; flex-direction: column; align-items: stretch; }
+  .platform-badge { padding: 10px 16px; font-size: 13px; justify-content: center; }
+  .platforms-grid { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: 1fr 1fr; }
+  .about-card-stats { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 30px; }
+  .section-title { font-size: 24px; }
 }
 
 /* ===== PLATFORMS PAGE ===== */
@@ -1606,7 +1619,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 }
 
 @media (max-width: 768px) {
-  .two-col-intro { grid-template-columns: 1fr; gap: 40px; }
+  .two-col-intro { grid-template-columns: 1fr !important; gap: 40px !important; margin-bottom: 40px; }
 }
 
 /* ===== SCROLL INDICATOR ===== */
