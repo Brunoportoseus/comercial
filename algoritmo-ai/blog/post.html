@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Artigo | Algoritmo.AI</title>
+  <meta name="description" id="pageDesc" content="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── POST PAGE ──────────────────────────── */
+    .post-hero {
+      background: var(--bg-dark);
+      padding: 100px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-hero::before {
+      content:'';position:absolute;inset:0;
+      background-image:linear-gradient(rgba(76,111,255,0.05) 1px, transparent 1px),linear-gradient(90deg,rgba(76,111,255,0.05) 1px, transparent 1px);
+      background-size:60px 60px;
+    }
+    .post-hero-inner { position:relative;z-index:2;padding-bottom:48px; }
+    .post-breadcrumb {
+      font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:20px;
+    }
+    .post-breadcrumb a { color:rgba(255,255,255,0.5);text-decoration:none; }
+    .post-breadcrumb a:hover { color:white; }
+    .post-cat-badge {
+      display:inline-block;padding:4px 12px;border-radius:20px;
+      background:rgba(76,111,255,0.2);color:#A5B4FC;
+      font-size:12px;font-weight:700;margin-bottom:16px;
+    }
+    .post-title {
+      font-size:clamp(26px,4vw,44px);font-weight:800;color:white;
+      line-height:1.2;margin-bottom:20px;max-width:800px;
+    }
+    .post-meta {
+      display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+      color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:36px;
+    }
+    .post-meta span { display:flex;align-items:center;gap:5px; }
+    .post-cover {
+      width:100%;max-height:460px;object-fit:cover;display:block;
+      border-radius:16px 16px 0 0;
+    }
+
+    /* ── CONTENT LAYOUT ─────────────────────── */
+    .post-layout {
+      display:grid;grid-template-columns:1fr 300px;gap:40px;
+      align-items:start;padding:48px 0 80px;
+    }
+    .post-content {
+      font-size:16px;line-height:1.8;color:#1F2937;
+    }
+    .post-content h2 {
+      font-size:24px;font-weight:800;color:#0B1120;
+      margin:36px 0 14px;
+    }
+    .post-content h3 {
+      font-size:19px;font-weight:700;color:#1F2937;
+      margin:28px 0 10px;
+    }
+    .post-content p { margin-bottom:18px; }
+    .post-content ul,
+    .post-content ol {
+      padding-left:24px;margin-bottom:18px;
+    }
+    .post-content li { margin-bottom:8px; }
+    .post-content blockquote {
+      border-left:4px solid #4C6FFF;padding:16px 20px;
+      background:rgba(76,111,255,0.06);border-radius:0 8px 8px 0;
+      margin:24px 0;font-style:italic;color:#374151;
+    }
+    .post-content strong { color:#0B1120; }
+    .post-content a { color:#4C6FFF; }
+
+    /* ── SIDEBAR ────────────────────────────── */
+    .post-sidebar { position:sticky;top:80px; }
+    .sidebar-card {
+      background:white;border:1px solid #E5E9F0;border-radius:14px;
+      padding:20px;margin-bottom:20px;
+    }
+    .sidebar-card h4 {
+      font-size:13px;font-weight:700;color:#9CA3AF;
+      text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;
+    }
+    .sidebar-tags { display:flex;flex-wrap:wrap;gap:8px; }
+    .sidebar-tag {
+      padding:4px 12px;border-radius:20px;background:#F3F4F6;
+      color:#6B7280;font-size:12px;font-weight:600;
+    }
+
+    /* ── CTA BLOCK ──────────────────────────── */
+    .post-cta {
+      background:linear-gradient(135deg,#0B1120 0%,#061B3A 60%,#0B1120 100%);
+      border:1px solid rgba(76,111,255,0.2);
+      border-radius:20px;padding:40px;margin:48px 0;
+      text-align:center;position:relative;overflow:hidden;
+    }
+    .post-cta::before {
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at 50% 0%,rgba(76,111,255,0.15) 0%,transparent 60%);
+    }
+    .post-cta-inner { position:relative;z-index:2; }
+    .post-cta h3 {
+      font-size:22px;font-weight:800;color:white;margin-bottom:12px;
+    }
+    .post-cta p {
+      font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:500px;margin:0 auto 24px;
+    }
+    .post-cta-buttons { display:flex;gap:12px;justify-content:center;flex-wrap:wrap; }
+
+    /* ── RELATED ──────────────────────────────── */
+    .related-section { padding:0 0 80px; }
+    .related-section h2 {
+      font-size:22px;font-weight:800;color:#0B1120;margin-bottom:24px;
+    }
+    .related-grid {
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;
+    }
+    .related-card {
+      background:white;border:1px solid #E5E9F0;border-radius:12px;
+      overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .related-card:hover { transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .related-card-img { width:100%;height:140px;object-fit:cover;display:block; }
+    .related-card-body { padding:14px 16px; }
+    .related-card-cat { font-size:10px;font-weight:700;color:#4C6FFF;margin-bottom:6px;text-transform:uppercase; }
+    .related-card h3 { font-size:14px;font-weight:700;color:#1F2937;line-height:1.4;margin-bottom:8px; }
+    .related-card a { font-size:12px;font-weight:700;color:#4C6FFF;text-decoration:none; }
+
+    /* ── NOT FOUND ─────────────────────────────── */
+    .post-not-found {
+      text-align:center;padding:120px 24px;
+    }
+    .post-not-found h2 { font-size:28px;font-weight:800;margin-bottom:12px; }
+    .post-not-found p { font-size:15px;color:#6B7280;margin-bottom:24px; }
+
+    @media(max-width:900px) {
+      .post-layout { grid-template-columns:1fr; }
+      .post-sidebar { position:static; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <img src="../images/logo.svg" alt="Algoritmo.AI" />
+      </a>
+      <div class="navbar-nav">
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#solucoes">Soluções</a>
+        <a href="../index.html#projeto48h">Projeto 48h</a>
+        <a href="../index.html#plataformas">Plataformas</a>
+        <a href="index.html">Blog</a>
+        <a href="../index.html#contato">Contato</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="../index.html#contato" class="btn btn-primary btn-sm">Diagnóstico gratuito</a>
+        <a id="adminLink" href="../admin/index.html" class="btn btn-outline btn-sm" style="display:none;">Admin</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">×</button>
+  <a href="../index.html#sobre">Sobre</a>
+  <a href="../index.html#solucoes">Soluções</a>
+  <a href="../index.html#projeto48h">Projeto 48h</a>
+  <a href="../index.html#plataformas">Plataformas</a>
+  <a href="index.html">Blog</a>
+  <a href="../index.html#contato">Contato</a>
+  <a href="../index.html#contato" class="btn btn-primary" style="margin-top:16px;text-align:center;">Diagnóstico gratuito</a>
+</nav>
+
+<!-- HERO (populated by JS) -->
+<section class="post-hero" id="postHero" style="display:none;">
+  <div class="container">
+    <div class="post-hero-inner">
+      <div class="post-breadcrumb">
+        <a href="index.html">Blog</a> / <span id="breadcrumbCat"></span>
+      </div>
+      <div class="post-cat-badge" id="heroCat"></div>
+      <h1 class="post-title" id="heroTitle"></h1>
+      <div class="post-meta">
+        <span>✍️ <span id="heroAutor"></span></span>
+        <span>📅 <span id="heroDate"></span></span>
+        <span>⏱ <span id="heroRead"></span></span>
+      </div>
+    </div>
+  </div>
+  <img class="post-cover" id="heroCover" src="" alt="" />
+</section>
+
+<!-- CONTENT -->
+<div class="container" id="postContainer">
+  <div style="text-align:center;padding:120px 0;color:#9CA3AF;">Carregando artigo...</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../images/logo-white.svg" alt="Algoritmo.AI" style="height:36px;margin-bottom:4px;" />
+        <p>Projetos digitais, e-commerce e inteligência artificial para empresas que querem vender melhor e crescer com estratégia.</p>
+      </div>
+      <div>
+        <div class="footer-title">Soluções</div>
+        <div class="footer-links">
+          <a href="../index.html#solucoes">Lojas Virtuais</a>
+          <a href="../index.html#solucoes">Sites Institucionais</a>
+          <a href="../index.html#auditoria">Auditoria de E-commerce</a>
+          <a href="../index.html#ia">Inteligência Artificial</a>
+          <a href="../pages/projeto-digital-48-horas.html">Projeto em 48 Horas</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Blog</div>
+        <div class="footer-links">
+          <a href="index.html">Todos os artigos</a>
+          <a href="index.html?cat=ecommerce">E-commerce</a>
+          <a href="index.html?cat=inteligencia-artificial">Inteligência Artificial</a>
+          <a href="index.html?cat=ferramentas-digitais">Ferramentas Digitais</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Empresa</div>
+        <div class="footer-links">
+          <a href="../index.html#sobre">Sobre</a>
+          <a href="../index.html#diferenciais">Diferenciais</a>
+          <a href="../index.html#faq">FAQ</a>
+          <a href="../index.html#contato">Contato</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Algoritmo.AI — Todos os direitos reservados.</span>
+      <span>Projetos digitais com estratégia e inteligência artificial.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" href="https://wa.me/5511999999999" id="waFloat" target="_blank" rel="noopener" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="../js/main.js"></script>
+<script>
+(function() {
+  // Show admin link
+  if (sessionStorage.getItem('algoritmo_auth') === 'true') {
+    document.getElementById('adminLink').style.display = 'inline-flex';
+  }
+
+  // WA config
+  const cfg = JSON.parse(localStorage.getItem('algoritmo_config') || '{}');
+  const waNum = cfg.whatsapp || '5511999999999';
+  document.getElementById('waFloat').href = 'https://wa.me/' + waNum;
+
+  // Default data fallback
+  const defaultPosts = [
+    {id:1,titulo:'Como saber se sua loja virtual precisa de uma auditoria de performance',slug:'auditoria-de-performance-loja-virtual',resumo:'Muitas lojas virtuais perdem vendas todos os dias por problemas que poderiam ser identificados.',conteudo:'<p>Conteúdo completo no admin.</p>',imagemCapa:'',categoria_id:1,autor:'Algoritmo.AI',publicado_em:'2025-05-01',tempo_leitura:'7 min',status:'publicado',tags:[]},
+    {id:2,titulo:'O que uma empresa precisa para colocar um site profissional no ar em 48 horas',slug:'site-profissional-48-horas',resumo:'Colocar um site no ar em 48 horas é possível.',conteudo:'<p>Conteúdo completo no admin.</p>',imagemCapa:'',categoria_id:4,autor:'Algoritmo.AI',publicado_em:'2025-05-08',tempo_leitura:'6 min',status:'publicado',tags:[]},
+    {id:3,titulo:'Como a inteligência artificial pode ajudar pequenas empresas a vender melhor',slug:'inteligencia-artificial-para-pequenas-empresas',resumo:'A IA não é mais exclusiva de grandes corporações.',conteudo:'<p>Conteúdo completo no admin.</p>',imagemCapa:'',categoria_id:2,autor:'Algoritmo.AI',publicado_em:'2025-05-15',tempo_leitura:'8 min',status:'publicado',tags:[]},
+    {id:4,titulo:'Shopify, Tray, Nuvemshop ou WooCommerce: qual plataforma escolher?',slug:'shopify-tray-nuvemshop-woocommerce-qual-escolher',resumo:'A escolha da plataforma de e-commerce é fundamental.',conteudo:'<p>Conteúdo completo no admin.</p>',imagemCapa:'',categoria_id:1,autor:'Algoritmo.AI',publicado_em:'2025-05-20',tempo_leitura:'9 min',status:'publicado',tags:[]},
+    {id:5,titulo:'Por que instalar Google Analytics, Tag Manager e Pixel da Meta desde o início',slug:'google-analytics-tag-manager-pixel-meta-desde-inicio',resumo:'Dados desde o primeiro dia são insubstituíveis.',conteudo:'<p>Conteúdo completo no admin.</p>',imagemCapa:'',categoria_id:5,autor:'Algoritmo.AI',publicado_em:'2025-05-26',tempo_leitura:'7 min',status:'publicado',tags:[]}
+  ];
+  const defaultCats = [
+    {id:1,nome:'E-commerce',slug:'ecommerce'},{id:2,nome:'Inteligência Artificial',slug:'inteligencia-artificial'},
+    {id:3,nome:'Marketing Digital',slug:'marketing-digital'},{id:4,nome:'Sites Institucionais',slug:'sites-institucionais'},
+    {id:5,nome:'Ferramentas Digitais',slug:'ferramentas-digitais'}
+  ];
+
+  const allPosts = JSON.parse(localStorage.getItem('algoritmo_posts') || 'null') || defaultPosts;
+  const allCats = JSON.parse(localStorage.getItem('algoritmo_categorias') || 'null') || defaultCats;
+
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  function getCatName(id) { const c = allCats.find(c => c.id == id); return c ? c.nome : ''; }
+  function fmtDate(str) {
+    if (!str) return '';
+    return new Date(str + 'T12:00:00').toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'});
+  }
+
+  function placeholderSvg(idx) {
+    const colors = [['#4C6FFF','#00C2FF'],['#6A5CFF','#4C6FFF'],['#0B1120','#4C6FFF'],['#00C2FF','#4C6FFF'],['#1F2937','#6A5CFF']];
+    const [c1,c2] = colors[idx % colors.length];
+    const icons = ['🛒','🤖','📊','⚡','🎯'];
+    const icon = encodeURIComponent(icons[idx % icons.length]);
+    return `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='${encodeURIComponent(c1)}'/><stop offset='100%25' stop-color='${encodeURIComponent(c2)}'/></linearGradient></defs><rect width='1200' height='500' fill='url(%23g)'/><text x='600' y='250' font-family='sans-serif' font-size='120' fill='rgba(255,255,255,0.2)' text-anchor='middle' dominant-baseline='middle'>${icon}</text></svg>`;
+  }
+
+  if (!slug) {
+    document.getElementById('postContainer').innerHTML = `
+      <div class="post-not-found">
+        <h2>Artigo não encontrado</h2>
+        <p>O slug não foi informado na URL.</p>
+        <a href="index.html" class="btn btn-primary">← Voltar ao Blog</a>
+      </div>`;
+    return;
+  }
+
+  const post = allPosts.find(p => p.slug === slug && p.status === 'publicado');
+
+  if (!post) {
+    document.getElementById('postContainer').innerHTML = `
+      <div class="post-not-found">
+        <h2>Artigo não encontrado</h2>
+        <p>Este artigo não existe ou foi removido.</p>
+        <a href="index.html" class="btn btn-primary">← Voltar ao Blog</a>
+      </div>`;
+    return;
+  }
+
+  // Meta
+  document.getElementById('pageTitle').textContent = (post.meta_title || post.titulo) + ' | Algoritmo.AI';
+  document.getElementById('pageDesc').content = post.meta_description || post.resumo || '';
+
+  const postIdx = allPosts.indexOf(post);
+  const coverImg = post.imagemCapa || placeholderSvg(postIdx);
+  const catName = getCatName(post.categoria_id);
+
+  // Hero
+  const hero = document.getElementById('postHero');
+  hero.style.display = 'block';
+  document.getElementById('breadcrumbCat').textContent = catName;
+  document.getElementById('heroCat').textContent = catName;
+  document.getElementById('heroTitle').textContent = post.titulo;
+  document.getElementById('heroAutor').textContent = post.autor || 'Algoritmo.AI';
+  document.getElementById('heroDate').textContent = fmtDate(post.publicado_em);
+  document.getElementById('heroRead').textContent = post.tempo_leitura || '5 min';
+  const coverEl = document.getElementById('heroCover');
+  coverEl.src = coverImg;
+  coverEl.alt = post.titulo;
+
+  // Related posts
+  const related = allPosts
+    .filter(p => p.id !== post.id && p.status === 'publicado')
+    .sort((a,b) => {
+      if (a.categoria_id === post.categoria_id && b.categoria_id !== post.categoria_id) return -1;
+      if (b.categoria_id === post.categoria_id && a.categoria_id !== post.categoria_id) return 1;
+      return 0;
+    })
+    .slice(0,3);
+
+  // Tags
+  const tags = Array.isArray(post.tags) ? post.tags : (post.tags ? post.tags.split(',').map(t=>t.trim()) : []);
+
+  // Content
+  document.getElementById('postContainer').innerHTML = `
+    <div class="post-layout" style="background:var(--bg-light);margin:0 -24px;padding-left:24px;padding-right:24px;" >
+      <article class="post-content" style="background:transparent;">
+        ${post.conteudo || ''}
+
+        <!-- CTA BLOCK -->
+        <div class="post-cta">
+          <div class="post-cta-inner">
+            <div style="font-size:32px;margin-bottom:12px;">🚀</div>
+            <h3>Quer aplicar isso no seu negócio?</h3>
+            <p>A Algoritmo.AI ajuda empresas a implementar estratégias digitais, e-commerce, automações e soluções com inteligência artificial de forma prática e orientada a resultado.</p>
+            <div class="post-cta-buttons">
+              <a href="https://wa.me/${waNum}" target="_blank" class="btn btn-primary btn-lg">💬 Falar no WhatsApp</a>
+              <a href="../index.html#contato" class="btn btn-outline-white btn-lg">Solicitar diagnóstico</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="post-sidebar">
+        <div class="sidebar-card">
+          <h4>Categoria</h4>
+          <a href="index.html?cat=${allCats.find(c=>c.id==post.categoria_id)?.slug||''}" style="display:inline-block;padding:6px 14px;border-radius:20px;background:rgba(76,111,255,0.1);color:#4C6FFF;font-size:13px;font-weight:700;text-decoration:none;">${catName}</a>
+        </div>
+        ${tags.length > 0 ? `
+        <div class="sidebar-card">
+          <h4>Tags</h4>
+          <div class="sidebar-tags">
+            ${tags.map(t => `<span class="sidebar-tag">${t}</span>`).join('')}
+          </div>
+        </div>` : ''}
+        <div class="sidebar-card" style="background:linear-gradient(135deg,#0B1120,#061B3A);border-color:rgba(76,111,255,0.2);">
+          <h4 style="color:rgba(255,255,255,0.4);">Diagnóstico Gratuito</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:14px;">Fale com a Algoritmo.AI e descubra as melhores oportunidades para seu negócio digital.</p>
+          <a href="https://wa.me/${waNum}" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;font-size:12px;">💬 Falar no WhatsApp</a>
+        </div>
+      </aside>
+    </div>
+
+    ${related.length > 0 ? `
+    <div class="related-section">
+      <h2>Artigos relacionados</h2>
+      <div class="related-grid">
+        ${related.map((r, i) => `
+          <div class="related-card">
+            <img class="related-card-img" src="${r.imagemCapa || placeholderSvg(i)}" alt="${r.titulo}" loading="lazy" />
+            <div class="related-card-body">
+              <div class="related-card-cat">${getCatName(r.categoria_id)}</div>
+              <h3>${r.titulo}</h3>
+              <a href="post.html?slug=${r.slug}">Ler artigo →</a>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>` : ''}`;
+
+})();
+</script>
+</body>
+</html>

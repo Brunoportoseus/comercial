@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Algoritmo.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR OVERLAY (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../images/logo-white.svg" alt="Algoritmo.AI" />
+    </div>
+    <div class="sidebar-logo-text" style="padding:0 20px 8px;font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.1em;">Admin Panel</div>
+
+    <div class="sidebar-divider"></div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Geral</div>
+      <a class="sidebar-link active" data-section="dashboard" onclick="navigate('dashboard')">
+        <span class="link-icon">📊</span> Dashboard
+      </a>
+      <a class="sidebar-link" data-section="home" onclick="navigate('home')">
+        <span class="link-icon">🏠</span> Página Home
+      </a>
+
+      <div class="sidebar-section-label" style="margin-top:8px;">Blog</div>
+      <a class="sidebar-link" data-section="posts" onclick="navigate('posts')">
+        <span class="link-icon">📝</span> Posts
+      </a>
+      <a class="sidebar-link" data-section="categorias" onclick="navigate('categorias')">
+        <span class="link-icon">🏷️</span> Categorias
+      </a>
+
+      <div class="sidebar-section-label" style="margin-top:8px;">Conteúdo</div>
+      <a class="sidebar-link" data-section="servicos" onclick="navigate('servicos')">
+        <span class="link-icon">⚙️</span> Serviços
+      </a>
+      <a class="sidebar-link" data-section="projeto48h" onclick="navigate('projeto48h')">
+        <span class="link-icon">⚡</span> Projeto 48h
+      </a>
+      <a class="sidebar-link" data-section="midia" onclick="navigate('midia')">
+        <span class="link-icon">🖼️</span> Mídia
+      </a>
+
+      <div class="sidebar-section-label" style="margin-top:8px;">Sistema</div>
+      <a class="sidebar-link" data-section="config" onclick="navigate('config')">
+        <span class="link-icon">🔧</span> Configurações
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../blog/index.html" target="_blank" class="btn-logout" style="margin-bottom:8px;text-decoration:none;justify-content:center;">
+        <span>🌐</span> Ver Blog
+      </a>
+      <a href="../index.html" target="_blank" class="btn-logout" style="margin-bottom:8px;text-decoration:none;justify-content:center;">
+        <span>👁️</span> Ver Site
+      </a>
+      <button class="btn-logout" onclick="logout()">
+        <span>🚪</span> Sair
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <button class="topbar-hamburger" id="hamburgerBtn" onclick="openSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      <div class="topbar-actions" id="topbarActions"></div>
+      <div class="topbar-user">
+        <div class="avatar" id="userAvatar">A</div>
+        <span id="userName">Admin</span>
+      </div>
+    </div>
+
+    <div class="admin-content" id="adminContent">
+      <!-- Sections rendered by JS -->
+    </div>
+  </main>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- POST MODAL -->
+<div class="modal-overlay" id="postModal">
+  <div class="modal" style="max-width:780px;">
+    <div class="modal-header">
+      <div class="modal-title" id="postModalTitle">Novo Post</div>
+      <button class="modal-close" onclick="closePostModal()">×</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Título *</label>
+        <input type="text" id="postTitulo" class="form-control" placeholder="Título do post" oninput="autoSlug()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Slug</label>
+        <input type="text" id="postSlug" class="form-control" placeholder="titulo-do-post" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoria</label>
+        <select id="postCategoria" class="form-control"></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Autor</label>
+        <input type="text" id="postAutor" class="form-control" value="Algoritmo.AI" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tempo de leitura</label>
+        <input type="text" id="postTempoLeitura" class="form-control" placeholder="5 min" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Resumo *</label>
+        <textarea id="postResumo" class="form-control" rows="2" placeholder="2-3 frases de resumo do post..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Imagem de Capa</label>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <div class="cover-preview" id="coverPreview" style="width:180px;height:100px;flex-shrink:0;">
+            <img id="coverImg" src="" alt="" style="display:none;" />
+            <span id="coverPlaceholder" style="font-size:11px;color:#9CA3AF;">Sem imagem</span>
+          </div>
+          <div>
+            <input type="file" id="coverFile" accept="image/*" style="display:none;" onchange="handleCoverUpload(event)" />
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('coverFile').click()">📎 Selecionar imagem</button>
+            <button type="button" class="btn btn-secondary btn-sm" style="margin-left:6px;" onclick="clearCover()">✕ Remover</button>
+          </div>
+        </div>
+        <input type="hidden" id="postImagemCapa" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Conteúdo *</label>
+        <div id="quillEditor"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tags (separadas por vírgula)</label>
+        <input type="text" id="postTags" class="form-control" placeholder="ecommerce, shopify, vendas" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select id="postStatus" class="form-control">
+          <option value="publicado">Publicado</option>
+          <option value="rascunho">Rascunho</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Meta Title</label>
+        <input type="text" id="postMetaTitle" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Palavra-chave</label>
+        <input type="text" id="postPalavraChave" class="form-control" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Meta Description</label>
+        <textarea id="postMetaDesc" class="form-control" rows="2"></textarea>
+      </div>
+    </div>
+    <input type="hidden" id="postEditId" />
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="savePost()">💾 Salvar Post</button>
+      <button class="btn btn-secondary" onclick="closePostModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICO MODAL -->
+<div class="modal-overlay" id="servicoModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="servicoModalTitle">Novo Serviço</div>
+      <button class="modal-close" onclick="closeServicoModal()">×</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Nome *</label>
+        <input type="text" id="servicoNome" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ícone (emoji)</label>
+        <input type="text" id="servicoIcone" class="form-control" placeholder="🏪" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Descrição Curta</label>
+        <input type="text" id="servicoDescCurta" class="form-control" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Descrição Completa</label>
+        <textarea id="servicoDescCompleta" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ordem</label>
+        <input type="number" id="servicoOrdem" class="form-control" value="1" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select id="servicoStatus" class="form-control">
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+      </div>
+    </div>
+    <input type="hidden" id="servicoEditId" />
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="saveServico()">💾 Salvar Serviço</button>
+      <button class="btn btn-secondary" onclick="closeServicoModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIA MODAL -->
+<div class="modal-overlay" id="categoriaModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header">
+      <div class="modal-title" id="categoriaModalTitle">Nova Categoria</div>
+      <button class="modal-close" onclick="closeCategoriaModal()">×</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nome *</label>
+      <input type="text" id="categoriaNome" class="form-control" oninput="autoCatSlug()" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Slug</label>
+      <input type="text" id="categoriaSlug" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Descrição</label>
+      <input type="text" id="categoriaDescricao" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <select id="categoriaStatus" class="form-control">
+        <option value="ativo">Ativa</option>
+        <option value="inativo">Inativa</option>
+      </select>
+    </div>
+    <input type="hidden" id="categoriaEditId" />
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="saveCategoria()">💾 Salvar</button>
+      <button class="btn btn-secondary" onclick="closeCategoriaModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
