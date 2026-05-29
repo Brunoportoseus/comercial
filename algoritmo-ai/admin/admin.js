@@ -195,7 +195,8 @@ const SECTION_TITLES = {
   servicos: 'Serviços',
   projeto48h: 'Projeto 48h',
   midia: 'Mídia',
-  config: 'Configurações'
+  config: 'Configurações',
+  layouts: 'Layouts dos Cards'
 };
 
 function navigate(section) {
@@ -217,7 +218,8 @@ function navigate(section) {
     servicos: renderServicos,
     projeto48h: renderProjeto48h,
     midia: renderMidia,
-    config: renderConfig
+    config: renderConfig,
+    layouts: renderLayouts
   };
   if (renders[section]) renders[section](content);
 }
@@ -1001,6 +1003,258 @@ function saveConfig() {
   };
   DB.set('algoritmo_config', cfg);
   toast('Configurações salvas!');
+}
+
+// ── LAYOUTS DOS CARDS ────────────────────────
+
+const CARD_TYPES = [
+  { id: 'servicos',    label: 'Serviços',                    icon: '🏪' },
+  { id: 'diferenciais',label: 'Diferenciais',               icon: '⭐' },
+  { id: 'projeto48h',  label: 'Projeto Digital em 48h',     icon: '⚡' },
+  { id: 'plataformas', label: 'Plataformas Atendidas',      icon: '🔗' },
+  { id: 'ferramentas', label: 'Ferramentas Configuradas',   icon: '🔧' },
+  { id: 'blog',        label: 'Posts do Blog',              icon: '📝' },
+  { id: 'etapas',      label: 'Etapas do Processo',        icon: '📋' },
+  { id: 'indicadores', label: 'Indicadores e Números',      icon: '📊' },
+  { id: 'beneficios',  label: 'Benefícios',                 icon: '✅' },
+  { id: 'faq',         label: 'Perguntas Frequentes (FAQ)', icon: '❓' },
+];
+
+const CARD_DEFAULTS = {
+  style: 'default', size: 'medio', align: 'esquerda',
+  bgColor: '#FFFFFF', textColor: '#1F2937', btnColor: '#4C6FFF', borderColor: '#E5E9F0',
+  useSombra: true, useGradiente: false, useIcone: true, useImagem: false,
+  status: 'ativo', ordem: 1
+};
+
+function getLayouts() {
+  return DB.get('algoritmo_layouts') || {};
+}
+
+function saveLayout(typeId, data) {
+  const all = getLayouts();
+  all[typeId] = { ...CARD_DEFAULTS, ...all[typeId], ...data };
+  DB.set('algoritmo_layouts', all);
+}
+
+function renderLayouts() {
+  setTitle('Layouts dos Cards', `<button class="btn btn-primary btn-sm" onclick="saveAllLayouts()">💾 Salvar todos</button>`);
+  const all = getLayouts();
+  const cards = CARD_TYPES.map(t => {
+    const d = { ...CARD_DEFAULTS, ...(all[t.id] || {}) };
+    return `
+    <div class="card" style="margin-bottom:20px;" id="layout-card-${t.id}">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #E5E9F0;">
+        <span style="font-size:24px;">${t.icon}</span>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:#1F2937;">${t.label}</div>
+          <div style="font-size:12px;color:#9CA3AF;">ID: ${t.id}</div>
+        </div>
+        <div style="margin-left:auto;">
+          <span class="badge-status ${d.status === 'ativo' ? 'status-pub' : 'status-draft'}">${d.status === 'ativo' ? 'Ativo' : 'Inativo'}</span>
+        </div>
+      </div>
+      <div class="form-grid" style="gap:12px 20px;">
+        <div class="form-group">
+          <label class="form-label">Estilo visual</label>
+          <select class="form-control" id="${t.id}_style">
+            <option value="default" ${d.style==='default'?'selected':''}>Padrão</option>
+            <option value="elevado" ${d.style==='elevado'?'selected':''}>Elevado (sombra forte)</option>
+            <option value="outline" ${d.style==='outline'?'selected':''}>Outline (borda)</option>
+            <option value="flat" ${d.style==='flat'?'selected':''}>Flat (sem sombra)</option>
+            <option value="glass" ${d.style==='glass'?'selected':''}>Glass (transparente)</option>
+            <option value="gradiente" ${d.style==='gradiente'?'selected':''}>Gradiente</option>
+            <option value="escuro" ${d.style==='escuro'?'selected':''}>Escuro (dark)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tamanho</label>
+          <select class="form-control" id="${t.id}_size">
+            <option value="pequeno" ${d.size==='pequeno'?'selected':''}>Pequeno</option>
+            <option value="medio" ${d.size==='medio'?'selected':''}>Médio</option>
+            <option value="grande" ${d.size==='grande'?'selected':''}>Grande</option>
+            <option value="completo" ${d.size==='completo'?'selected':''}>Largura total</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alinhamento</label>
+          <select class="form-control" id="${t.id}_align">
+            <option value="esquerda" ${d.align==='esquerda'?'selected':''}>Esquerda</option>
+            <option value="centro" ${d.align==='centro'?'selected':''}>Centro</option>
+            <option value="direita" ${d.align==='direita'?'selected':''}>Direita</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ordem de exibição</label>
+          <input type="number" class="form-control" id="${t.id}_ordem" value="${d.ordem}" min="1" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cor de fundo</label>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input type="color" id="${t.id}_bgColor" value="${d.bgColor}" style="width:44px;height:36px;border-radius:8px;border:1px solid #E5E9F0;cursor:pointer;padding:2px;" />
+            <input type="text" class="form-control" id="${t.id}_bgColorTxt" value="${d.bgColor}" style="flex:1;" oninput="syncColor('${t.id}','bg')" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cor do texto</label>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input type="color" id="${t.id}_textColor" value="${d.textColor}" style="width:44px;height:36px;border-radius:8px;border:1px solid #E5E9F0;cursor:pointer;padding:2px;" />
+            <input type="text" class="form-control" id="${t.id}_textColorTxt" value="${d.textColor}" style="flex:1;" oninput="syncColor('${t.id}','text')" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cor do botão</label>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input type="color" id="${t.id}_btnColor" value="${d.btnColor}" style="width:44px;height:36px;border-radius:8px;border:1px solid #E5E9F0;cursor:pointer;padding:2px;" />
+            <input type="text" class="form-control" id="${t.id}_btnColorTxt" value="${d.btnColor}" style="flex:1;" oninput="syncColor('${t.id}','btn')" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cor da borda</label>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input type="color" id="${t.id}_borderColor" value="${d.borderColor}" style="width:44px;height:36px;border-radius:8px;border:1px solid #E5E9F0;cursor:pointer;padding:2px;" />
+            <input type="text" class="form-control" id="${t.id}_borderColorTxt" value="${d.borderColor}" style="flex:1;" oninput="syncColor('${t.id}','border')" />
+          </div>
+        </div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:10px;">
+          <label class="form-label">Opções visuais</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="${t.id}_useSombra" ${d.useSombra?'checked':''} style="width:16px;height:16px;accent-color:#4C6FFF;" />
+            Usar sombra
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="${t.id}_useGradiente" ${d.useGradiente?'checked':''} style="width:16px;height:16px;accent-color:#4C6FFF;" />
+            Usar gradiente
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="${t.id}_useIcone" ${d.useIcone?'checked':''} style="width:16px;height:16px;accent-color:#4C6FFF;" />
+            Mostrar ícone
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+            <input type="checkbox" id="${t.id}_useImagem" ${d.useImagem?'checked':''} style="width:16px;height:16px;accent-color:#4C6FFF;" />
+            Usar imagem
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control" id="${t.id}_status">
+            <option value="ativo" ${d.status==='ativo'?'selected':''}>Ativo</option>
+            <option value="inativo" ${d.status==='inativo'?'selected':''}>Inativo</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:16px;background:#F7F9FC;border-radius:12px;border:1px solid #E5E9F0;">
+        <div style="font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">Pré-visualização</div>
+        <div id="preview-${t.id}" style="display:flex;justify-content:flex-start;"></div>
+      </div>
+      <div style="margin-top:12px;text-align:right;">
+        <button class="btn btn-primary btn-sm" onclick="saveSingleLayout('${t.id}')">💾 Salvar este card</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('adminContent').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <p style="color:#6B7280;font-size:14px;">Configure o estilo visual de cada tipo de card usado no site. As preferências são salvas e podem ser aplicadas ao site.</p>
+    </div>
+    <div style="background:rgba(76,111,255,0.06);border:1px solid rgba(76,111,255,0.2);border-radius:12px;padding:14px 18px;margin-bottom:24px;font-size:13px;color:#4C6FFF;">
+      💡 <strong>Dica:</strong> Salve as configurações e use os estilos como referência ao atualizar o CSS do site. Em breve, as configurações serão aplicadas automaticamente.
+    </div>
+    ${cards}`;
+
+  // Sync color pickers with text inputs
+  CARD_TYPES.forEach(t => {
+    ['bgColor','textColor','btnColor','borderColor'].forEach(field => {
+      const picker = document.getElementById(`${t.id}_${field}`);
+      const txt = document.getElementById(`${t.id}_${field}Txt`);
+      if (picker && txt) {
+        picker.addEventListener('input', () => { txt.value = picker.value; updatePreview(t.id); });
+        txt.addEventListener('input', () => {
+          if (/^#[0-9A-Fa-f]{6}$/.test(txt.value)) { picker.value = txt.value; }
+          updatePreview(t.id);
+        });
+      }
+      const inputs = ['style','size','align','ordem','status',
+        `${t.id}_useSombra`,`${t.id}_useGradiente`,`${t.id}_useIcone`,`${t.id}_useImagem`];
+    });
+    // Live preview
+    ['style','size','align','status'].forEach(f => {
+      const el = document.getElementById(`${t.id}_${f}`);
+      if (el) el.addEventListener('change', () => updatePreview(t.id));
+    });
+    ['useSombra','useGradiente','useIcone','useImagem'].forEach(f => {
+      const el = document.getElementById(`${t.id}_${f}`);
+      if (el) el.addEventListener('change', () => updatePreview(t.id));
+    });
+    updatePreview(t.id);
+  });
+}
+
+function syncColor(typeId, field) {
+  const map = { bg: 'bgColor', text: 'textColor', btn: 'btnColor', border: 'borderColor' };
+  const key = map[field];
+  const txt = document.getElementById(`${typeId}_${key}Txt`);
+  const picker = document.getElementById(`${typeId}_${key}`);
+  if (txt && picker && /^#[0-9A-Fa-f]{6}$/.test(txt.value)) {
+    picker.value = txt.value;
+    updatePreview(typeId);
+  }
+}
+
+function getLayoutFormData(typeId) {
+  const g = id => { const el = document.getElementById(id); return el ? el.value : null; };
+  const gc = id => { const el = document.getElementById(id); return el ? el.checked : false; };
+  return {
+    style:        g(`${typeId}_style`),
+    size:         g(`${typeId}_size`),
+    align:        g(`${typeId}_align`),
+    ordem:        parseInt(g(`${typeId}_ordem`)) || 1,
+    bgColor:      g(`${typeId}_bgColorTxt`) || g(`${typeId}_bgColor`),
+    textColor:    g(`${typeId}_textColorTxt`) || g(`${typeId}_textColor`),
+    btnColor:     g(`${typeId}_btnColorTxt`) || g(`${typeId}_btnColor`),
+    borderColor:  g(`${typeId}_borderColorTxt`) || g(`${typeId}_borderColor`),
+    useSombra:    gc(`${typeId}_useSombra`),
+    useGradiente: gc(`${typeId}_useGradiente`),
+    useIcone:     gc(`${typeId}_useIcone`),
+    useImagem:    gc(`${typeId}_useImagem`),
+    status:       g(`${typeId}_status`),
+  };
+}
+
+function updatePreview(typeId) {
+  const el = document.getElementById(`preview-${typeId}`);
+  if (!el) return;
+  const d = getLayoutFormData(typeId);
+  const type = CARD_TYPES.find(t => t.id === typeId);
+  const bg = d.useGradiente ? 'linear-gradient(135deg, #4C6FFF 0%, #6A5CFF 50%, #00C2FF 100%)' : d.bgColor;
+  const shadow = d.useSombra ? '0 4px 16px rgba(76,111,255,0.12)' : 'none';
+  const border = `1px solid ${d.borderColor}`;
+  const widths = { pequeno: '160px', medio: '200px', grande: '260px', completo: '100%' };
+  const w = widths[d.size] || '200px';
+  const align = d.align === 'centro' ? 'center' : d.align === 'direita' ? 'right' : 'left';
+  const textCol = d.useGradiente ? '#fff' : d.textColor;
+  el.innerHTML = `
+    <div style="background:${bg};border:${border};border-radius:12px;padding:16px 18px;width:${w};box-shadow:${shadow};text-align:${align};transition:all 0.2s;">
+      ${d.useIcone ? `<div style="font-size:22px;margin-bottom:8px;">${type ? type.icon : '📦'}</div>` : ''}
+      ${d.useImagem ? `<div style="width:100%;height:60px;background:rgba(0,0,0,0.08);border-radius:8px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:${textCol};opacity:0.6;">Imagem</div>` : ''}
+      <div style="font-size:13px;font-weight:700;color:${textCol};margin-bottom:4px;">${type ? type.label : 'Card'}</div>
+      <div style="font-size:11px;color:${textCol};opacity:0.65;margin-bottom:10px;">Texto de exemplo do card</div>
+      <div style="display:inline-block;background:${d.btnColor};color:#fff;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;">Ação</div>
+    </div>`;
+}
+
+function saveSingleLayout(typeId) {
+  const data = getLayoutFormData(typeId);
+  saveLayout(typeId, data);
+  toast(`Layout "${CARD_TYPES.find(t=>t.id===typeId)?.label}" salvo!`);
+}
+
+function saveAllLayouts() {
+  CARD_TYPES.forEach(t => {
+    const el = document.getElementById(`${t.id}_style`);
+    if (el) saveLayout(t.id, getLayoutFormData(t.id));
+  });
+  toast('Todos os layouts salvos com sucesso!');
 }
 
 // ── INIT ─────────────────────────────────────
