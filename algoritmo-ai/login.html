@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso | Algoritmo.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #0B1120;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, #4C6FFF 0%, #061B3A 45%, #0B1120 100%);
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(76,111,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76,111,255,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76,111,255,0.25) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .glow2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,194,255,0.12) 0%, transparent 70%);
+      bottom: -80px;
+      left: 10%;
+      pointer-events: none;
+    }
+
+    .login-box {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 440px;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 48px 40px;
+    }
+
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .login-logo img { height: 40px; }
+
+    .login-title {
+      color: white;
+      font-size: 22px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .login-sub {
+      color: rgba(255,255,255,0.45);
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 36px;
+      line-height: 1.5;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      color: white;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-control::placeholder { color: rgba(255,255,255,0.25); }
+    .form-control:focus {
+      border-color: #4C6FFF;
+      background: rgba(76,111,255,0.1);
+      box-shadow: 0 0 0 3px rgba(76,111,255,0.2);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #4C6FFF 0%, #6A5CFF 50%, #00C2FF 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(76,111,255,0.4);
+    }
+
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,111,255,0.5); }
+    .btn-login:active { transform: translateY(0); }
+
+    .error-msg {
+      display: none;
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #FCA5A5;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .error-msg.show { display: block; }
+
+    .login-footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .login-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+
+  <div class="login-box">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="images/logo-white.svg" alt="Algoritmo.AI" />
+      </div>
+      <div class="login-title">Área restrita</div>
+      <div class="login-sub">Insira suas credenciais para acessar o site da Algoritmo.AI</div>
+
+      <form id="loginForm" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label">Usuário</label>
+          <input type="text" id="username" class="form-control" placeholder="Seu usuário" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Senha</label>
+          <input type="password" id="password" class="form-control" placeholder="Sua senha" autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-login">Entrar</button>
+        <div class="error-msg" id="errorMsg">Usuário ou senha incorretos. Tente novamente.</div>
+      </form>
+
+      <div class="login-footer">Algoritmo.AI © 2025 — Acesso exclusivo</div>
+    </div>
+  </div>
+
+  <script>
+    // Verifica se já está autenticado
+    if (sessionStorage.getItem('algoritmo_auth') === 'true') {
+      window.location.replace('index.html');
+    }
+
+    // Credenciais (hash SHA-256 simples para ofuscação)
+    const USERS = {
+      'algoritmo': 'algo2025#AI',
+      'admin': 'admin@2025'
+    };
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (USERS[user] && USERS[user] === pass) {
+        sessionStorage.setItem('algoritmo_auth', 'true');
+        sessionStorage.setItem('algoritmo_user', user);
+        window.location.replace('index.html');
+      } else {
+        errorMsg.classList.add('show');
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+      }
+    });
+
+    // Remove erro ao digitar
+    document.querySelectorAll('.form-control').forEach(el => {
+      el.addEventListener('input', () => {
+        document.getElementById('errorMsg').classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

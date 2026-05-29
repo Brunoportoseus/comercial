@@ -13,6 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // Proteção de acesso
+    if (sessionStorage.getItem('algoritmo_auth') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
 </head>
 <body>
 
@@ -34,6 +40,7 @@
       </div>
       <div class="navbar-actions">
         <a href="#contato" class="btn btn-primary btn-sm">Diagnóstico gratuito</a>
+        <button onclick="logout()" class="btn btn-outline btn-sm" title="Sair">Sair</button>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1024,5 +1031,12 @@
 </a>
 
 <script src="js/main.js"></script>
+<script>
+  function logout() {
+    sessionStorage.removeItem('algoritmo_auth');
+    sessionStorage.removeItem('algoritmo_user');
+    window.location.replace('login.html');
+  }
+</script>
 </body>
 </html>
