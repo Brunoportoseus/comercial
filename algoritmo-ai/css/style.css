@@ -168,7 +168,8 @@ ul { list-style: none; }
 }
 
 .navbar.scrolled .navbar-logo img {
-  height: 64px;
+  height: 52px;
+  width: auto;
 }
 
 .navbar-inner {
@@ -178,7 +179,7 @@ ul { list-style: none; }
   gap: 32px;
 }
 
-.navbar-logo img { height: 130px; }
+.navbar-logo img { height: 80px; width: auto; }
 
 .navbar-nav {
   display: flex;
@@ -1530,8 +1531,8 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .cta-block { padding: 48px 20px; }
   .hero-stats { flex-wrap: wrap; gap: 16px; }
   .steps-grid { grid-template-columns: 1fr; }
-  .navbar-logo img { height: 80px; }
-  .navbar.scrolled .navbar-logo img { height: 48px; }
+  .navbar-logo img { height: 56px; width: auto; }
+  .navbar.scrolled .navbar-logo img { height: 40px; width: auto; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .platforms-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .platform-card { padding: 24px 16px; }
