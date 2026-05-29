@@ -401,7 +401,22 @@ html, body {
   box-shadow: 0 0 0 3px rgba(76,111,255,0.1);
 }
 
-.quick-action-icon { font-size: 24px; }
+.quick-action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(76,111,255,0.08) 0%, rgba(106,92,255,0.08) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: all 0.15s;
+}
+
+.quick-action:hover .quick-action-icon {
+  background: linear-gradient(135deg, #4C6FFF 0%, #6A5CFF 50%, #00C2FF 100%);
+  color: white;
+}
 
 /* ── TABLES ─────────────────────────────── */
 .table-wrap {
