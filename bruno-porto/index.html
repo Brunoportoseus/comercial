@@ -83,7 +83,43 @@
       transition:transform .2s,box-shadow .2s;
     }
     .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(61,165,255,.4);}
-    @media(max-width:860px){ .nav-links a:not(.nav-cta){display:none;} }
+
+    .nav-toggle{
+      display:none;background:none;border:1px solid var(--line);
+      width:42px;height:42px;border-radius:10px;cursor:pointer;
+      align-items:center;justify-content:center;color:var(--ink);
+      transition:background .2s;
+    }
+    .nav-toggle:hover{background:rgba(255,255,255,.04);}
+    .nav-toggle svg line{transition:transform .3s,opacity .2s;transform-origin:center;}
+    .nav-toggle.open svg line:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle.open svg line:nth-child(2){opacity:0;}
+    .nav-toggle.open svg line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+    @media(max-width:860px){
+      .nav-toggle{display:flex;}
+      .nav-links{
+        position:fixed;top:68px;left:0;right:0;
+        flex-direction:column;align-items:stretch;gap:0;
+        background:rgba(11,13,18,.98);
+        backdrop-filter:saturate(180%) blur(16px);
+        -webkit-backdrop-filter:saturate(180%) blur(16px);
+        padding:1rem 1.5rem 2rem;
+        border-bottom:1px solid var(--line);
+        transform:translateY(-110%);transition:transform .3s ease;
+        max-height:calc(100vh - 68px);overflow-y:auto;
+      }
+      .nav-links.open{transform:translateY(0);}
+      .nav-links a{
+        padding:1rem 0;font-size:1.05rem;color:var(--ink);
+        border-bottom:1px solid var(--line);
+      }
+      .nav-links a:last-child{border-bottom:none;}
+      .nav-cta{
+        margin-top:1rem;text-align:center;border-radius:999px;
+        border-bottom:none!important;
+      }
+    }
 
     /* ── HERO ── */
     .hero{
@@ -291,6 +327,44 @@
     .tl-desc{color:var(--muted);font-size:.95rem;}
     .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
 
+    /* ── BLOG ── */
+    .blog-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .blog-intro{
+      display:flex;justify-content:space-between;align-items:flex-end;
+      gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem;
+    }
+    .blog-intro p{color:var(--muted);max-width:520px;font-size:1rem;}
+    .blog-all{
+      color:var(--brand);font-size:.92rem;font-weight:600;
+      display:inline-flex;align-items:center;gap:.4rem;
+      transition:gap .2s;flex-shrink:0;
+    }
+    .blog-all:hover{gap:.7rem;}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    @media(max-width:980px){ .blog-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:600px){ .blog-grid{grid-template-columns:1fr;} }
+    .blog-card{
+      position:relative;display:flex;flex-direction:column;
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius-lg);padding:1.6rem;
+      transition:transform .3s,border-color .3s,background .3s;overflow:hidden;
+    }
+    .blog-card::after{
+      content:"";position:absolute;top:0;left:0;right:0;height:3px;
+      background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s;
+    }
+    .blog-card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.35);}
+    .blog-card:hover::after{transform:scaleX(1);}
+    .blog-card-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .blog-card h3{font-size:1.1rem;line-height:1.3;margin-bottom:.6rem;}
+    .blog-card p{color:var(--muted);font-size:.92rem;flex:1;margin-bottom:1.2rem;}
+    .blog-card-cta{
+      display:inline-flex;align-items:center;gap:.4rem;
+      color:var(--brand);font-weight:600;font-size:.88rem;
+      transition:gap .2s;
+    }
+    .blog-card:hover .blog-card-cta{gap:.7rem;color:var(--brand-2);}
+
     /* ── FORMAÇÃO ── */
     .education-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
     @media(max-width:980px){ .education-grid{grid-template-columns:1fr 1fr;} }
@@ -459,7 +533,14 @@
         <div class="brand-mark"><img src="assets/logo-bp.png" alt="Bruno Porto" /></div>
         <div class="brand-name">Bruno Porto<span>Comercial · Growth · Digital</span></div>
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" id="navToggle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+      <div class="nav-links" id="navLinks">
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Serviços</a>
         <a href="#experiencia">Experiência</a>
@@ -808,6 +889,65 @@
     </div>
   </section>
 
+  <!-- ─────────── BLOG ─────────── -->
+  <section id="blog" class="blog-section">
+    <div class="wrap">
+      <div class="blog-intro reveal">
+        <div>
+          <span class="eyebrow">Blog</span>
+          <h2 class="section-title">Ideias práticas sobre IA, CRM e crescimento comercial.</h2>
+        </div>
+        <a href="/blog/" class="blog-all">
+          Ver todos os artigos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="blog-grid">
+
+        <a href="/blog/posts/ia-no-comercial/" class="blog-card reveal">
+          <div class="blog-card-tags">
+            <span class="chip">IA</span>
+            <span class="chip">Comercial</span>
+          </div>
+          <h3>IA aplicada no comercial: por onde começar sem complicar</h3>
+          <p>Três aplicações práticas que dão resultado nos primeiros 30 dias — sem equipe técnica nem orçamento de startup.</p>
+          <span class="blog-card-cta">
+            Ler artigo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="/blog/posts/crm-que-vende/" class="blog-card reveal">
+          <div class="blog-card-tags">
+            <span class="chip">CRM</span>
+            <span class="chip">Automação</span>
+          </div>
+          <h3>CRM que vende: o trio que faz a diferença</h3>
+          <p>Por que 70% das implantações de CRM falham — e os 3 pilares que separam um CRM útil de um CRM que vira obrigação.</p>
+          <span class="blog-card-cta">
+            Ler artigo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="/blog/posts/ecommerce-conversao/" class="blog-card reveal">
+          <div class="blog-card-tags">
+            <span class="chip">E-commerce</span>
+            <span class="chip">Conversão</span>
+          </div>
+          <h3>E-commerce: 5 ajustes que aumentam conversão sem reformar a loja</h3>
+          <p>Antes de gastar mais em tráfego, vale olhar pra esses cinco pontos da operação. Impacto direto no faturamento.</p>
+          <span class="blog-card-cta">
+            Ler artigo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ─────────── FORMAÇÃO ─────────── -->
   <section id="formacao">
     <div class="wrap">
@@ -918,6 +1058,20 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
