@@ -63,7 +63,8 @@
       padding-top:env(safe-area-inset-top);
     }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:55px;}
-    .brand{display:flex;align-items:center;gap:.7rem;font-weight:700;}
+    .nav-inner > *{margin:0;align-self:center;}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:700;line-height:1;}
     .brand-mark{
       width:40px;height:40px;border-radius:10px;flex-shrink:0;
       display:flex;align-items:center;justify-content:center;
@@ -72,8 +73,8 @@
     .brand-mark img{
       width:100%;height:100%;object-fit:contain;display:block;
     }
-    .brand-name{font-family:'Sora',sans-serif;font-size:1.1rem;line-height:1.15;}
-    .brand-name span{color:var(--muted);font-weight:400;font-size:.85rem;display:block;margin-top:0;letter-spacing:.01em;}
+    .brand-name{font-family:'Sora',sans-serif;font-size:1.1rem;line-height:1.15;display:flex;flex-direction:column;justify-content:center;}
+    .brand-name span{color:var(--muted);font-weight:400;font-size:.85rem;display:block;margin-top:1px;letter-spacing:.01em;line-height:1.1;}
     .nav-links{display:flex;gap:2rem;align-items:center;}
     .nav-links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s;}
     .nav-links a:hover{color:var(--ink);}
