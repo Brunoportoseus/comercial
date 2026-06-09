@@ -28,15 +28,15 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.2
   border-bottom:1px solid var(--line);
   padding-top:env(safe-area-inset-top);
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:52px;}
-.brand{display:flex;align-items:center;gap:.65rem;font-weight:700;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:44px;}
+.brand{display:flex;align-items:center;gap:.55rem;font-weight:700;}
 .brand-mark{
-  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  width:32px;height:32px;border-radius:9px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 .brand-mark img{width:100%;height:100%;object-fit:contain;display:block;}
-.brand-name{font-family:'Sora',sans-serif;font-size:.95rem;line-height:1.15;}
-.brand-name span{color:var(--muted);font-weight:400;font-size:.74rem;display:block;letter-spacing:.01em;}
+.brand-name{font-family:'Sora',sans-serif;font-size:.88rem;line-height:1.1;}
+.brand-name span{color:var(--muted);font-weight:400;font-size:.68rem;display:block;letter-spacing:.01em;}
 .nav-links{display:flex;gap:2rem;align-items:center;}
 .nav-links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s;}
 .nav-links a:hover,.nav-link-active{color:var(--ink)!important;}
@@ -48,17 +48,17 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.2
 }
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(61,165,255,.4);}
 @media(max-width:860px){
-  .nav{padding-top:max(env(safe-area-inset-top),10px);}
-  .nav-inner{height:56px;}
-  .brand-mark{width:34px;height:34px;}
-  .brand-name{font-size:.88rem;}
-  .brand-name span{font-size:.64rem;}
+  .nav{padding-top:env(safe-area-inset-top);}
+  .nav-inner{height:46px;}
+  .brand-mark{width:28px;height:28px;border-radius:8px;}
+  .brand-name{font-size:.82rem;}
+  .brand-name span{font-size:.58rem;}
   .nav-links a:not(.nav-cta){display:none;}
 }
 
 /* === BLOG HERO === */
 .blog-hero{
-  position:relative;padding:7.5rem 0 4rem;
+  position:relative;padding:6rem 0 4rem;
   background:
     radial-gradient(ellipse 60% 50% at 85% 10%,rgba(124,92,255,.16) 0%,transparent 60%),
     radial-gradient(ellipse 50% 40% at 5% 80%,rgba(61,165,255,.14) 0%,transparent 60%),
@@ -175,7 +175,7 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.2
 
 /* === ARTICLE === */
 .article{
-  padding:6.5rem 0 4rem;
+  padding:5rem 0 4rem;
   background:
     radial-gradient(ellipse 50% 40% at 85% 5%,rgba(124,92,255,.1) 0%,transparent 60%),
     var(--bg);
