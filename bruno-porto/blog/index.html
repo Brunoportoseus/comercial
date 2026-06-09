@@ -30,7 +30,14 @@
         <div class="brand-mark"><img src="/assets/logo-bp.png" alt="Bruno Porto" /></div>
         <div class="brand-name">Bruno Porto<span>Comercial · Growth · Digital · IA</span></div>
       </a>
-      <div class="nav-links">
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" id="navToggle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+      <div class="nav-links" id="navLinks">
         <a href="/#sobre">Sobre</a>
         <a href="/#servicos">Serviços</a>
         <a href="/#experiencia">Experiência</a>
@@ -139,6 +146,21 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }));
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
