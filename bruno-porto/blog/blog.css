@@ -48,9 +48,9 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.2
 }
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(61,165,255,.4);}
 @media(max-width:860px){
-  .nav{padding-top:env(safe-area-inset-top);}
-  .nav-inner{height:58px;}
-  .brand-mark{width:35px;height:35px;border-radius:9px;}
+  .nav{padding-top:calc(env(safe-area-inset-top) + 8px);}
+  .nav-inner{height:70px;}
+  .brand-mark{width:38px;height:38px;border-radius:9px;}
   .brand-name{font-size:1.02rem;}
   .brand-name span{font-size:.72rem;}
   .nav-links a:not(.nav-cta){display:none;}
