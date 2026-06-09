@@ -408,7 +408,7 @@
     @media(max-width:980px){ .brand-grid{grid-template-columns:repeat(4,1fr);} }
     @media(max-width:600px){ .brand-grid{grid-template-columns:repeat(3,1fr);} }
     @media(max-width:420px){ .brand-grid{grid-template-columns:repeat(2,1fr);} }
-    .brand{
+    .brand-card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:14px;
@@ -418,19 +418,19 @@
       transition:transform .25s,border-color .25s,background .25s;
       position:relative;overflow:hidden;
     }
-    .brand:hover{
+    .brand-card:hover{
       transform:translateY(-3px);
       border-color:rgba(124,92,255,.35);
       background:rgba(255,255,255,.04);
     }
-    .brand img{
+    .brand-card img{
       max-width:90%;max-height:72%;
       object-fit:contain;
       filter:brightness(0) invert(1);
       opacity:.78;
       transition:opacity .25s,transform .25s;
     }
-    .brand:hover img{opacity:1;transform:scale(1.06);}
+    .brand-card:hover img{opacity:1;transform:scale(1.06);}
     .brand-label{
       font-family:'Sora',sans-serif;
       font-size:.78rem;font-weight:600;
@@ -439,7 +439,7 @@
       text-align:center;
       transition:color .25s;
     }
-    .brand:hover .brand-label{color:var(--ink);}
+    .brand-card:hover .brand-label{color:var(--ink);}
     .brands-foot{
       margin-top:2rem;text-align:center;color:var(--muted);
       font-size:.88rem;
@@ -818,75 +818,75 @@
       </div>
 
       <div class="brand-grid">
-        <div class="brand reveal" title="Carmim">
+        <div class="brand-card reveal" title="Carmim">
           <img src="assets/logos/carmim.png" alt="Carmim" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Carmim</span>
         </div>
-        <div class="brand reveal" title="Carmen Steffens">
+        <div class="brand-card reveal" title="Carmen Steffens">
           <img src="assets/logos/carmen-steffens.png" alt="Carmen Steffens" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Carmen Steffens</span>
         </div>
-        <div class="brand reveal" title="Yahoo">
+        <div class="brand-card reveal" title="Yahoo">
           <img src="assets/logos/yahoo.png" alt="Yahoo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Yahoo</span>
         </div>
-        <div class="brand reveal" title="Colcci">
+        <div class="brand-card reveal" title="Colcci">
           <img src="assets/logos/colcci.png" alt="Colcci" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Colcci</span>
         </div>
-        <div class="brand reveal" title="Mormaii">
+        <div class="brand-card reveal" title="Mormaii">
           <img src="assets/logos/mormaii.png" alt="Mormaii" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Mormaii</span>
         </div>
-        <div class="brand reveal" title="Mueller">
+        <div class="brand-card reveal" title="Mueller">
           <img src="assets/logos/mueller.png" alt="Mueller" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Mueller</span>
         </div>
-        <div class="brand reveal" title="Vonder">
+        <div class="brand-card reveal" title="Vonder">
           <img src="assets/logos/vonder.png" alt="Vonder" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Vonder</span>
         </div>
-        <div class="brand reveal" title="Ferragens Negrão">
+        <div class="brand-card reveal" title="Ferragens Negrão">
           <img src="assets/logos/ferragens-negrao.png" alt="Ferragens Negrão" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Ferragens Negrão</span>
         </div>
-        <div class="brand reveal" title="Karsten">
+        <div class="brand-card reveal" title="Karsten">
           <img src="assets/logos/karsten.svg" alt="Karsten" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Karsten</span>
         </div>
-        <div class="brand reveal" title="Thais Rodrigues">
+        <div class="brand-card reveal" title="Thais Rodrigues">
           <img src="assets/logos/thais-rodrigues.png" alt="Thais Rodrigues" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Thais Rodrigues</span>
         </div>
-        <div class="brand reveal" title="Artefama">
+        <div class="brand-card reveal" title="Artefama">
           <img src="assets/logos/artefama.png" alt="Artefama" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Artefama</span>
         </div>
-        <div class="brand reveal" title="TUPER">
+        <div class="brand-card reveal" title="TUPER">
           <img src="assets/logos/tuper.png" alt="TUPER" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">TUPER</span>
         </div>
-        <div class="brand reveal" title="Móveis Campo Largo">
+        <div class="brand-card reveal" title="Móveis Campo Largo">
           <img src="assets/logos/moveis-campo-largo.png" alt="Móveis Campo Largo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Móveis Campo Largo</span>
         </div>
-        <div class="brand reveal" title="Farma Sesi">
+        <div class="brand-card reveal" title="Farma Sesi">
           <img src="assets/logos/farma-sesi.png" alt="Farma Sesi" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Farma Sesi</span>
         </div>
-        <div class="brand reveal" title="Via Inox Tramontina">
+        <div class="brand-card reveal" title="Via Inox Tramontina">
           <img src="assets/logos/via-inox-tramontina.png" alt="Via Inox Tramontina" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Via Inox Tramontina</span>
         </div>
-        <div class="brand reveal" title="King 55">
+        <div class="brand-card reveal" title="King 55">
           <img src="assets/logos/king-55.png" alt="King 55" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">King 55</span>
         </div>
-        <div class="brand reveal" title="Havan">
+        <div class="brand-card reveal" title="Havan">
           <img src="assets/logos/havan.png" alt="Havan" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Havan</span>
         </div>
-        <div class="brand reveal" title="Casa do Marceneiro">
+        <div class="brand-card reveal" title="Casa do Marceneiro">
           <img src="assets/logos/casa-do-marceneiro.png" alt="Casa do Marceneiro" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <span class="brand-label" style="display:none">Casa do Marceneiro</span>
         </div>
