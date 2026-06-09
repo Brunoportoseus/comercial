@@ -98,15 +98,18 @@
     .nav-toggle.open svg line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
     @media(max-width:860px){
-      .nav{padding-top:calc(env(safe-area-inset-top) + 8px);}
-      .nav-inner{height:70px;}
+      .nav{
+        padding-top:max(env(safe-area-inset-top),50px);
+        background:rgba(11,13,18,.98);
+      }
+      .nav-inner{height:62px;}
       .nav-toggle{display:flex;width:40px;height:40px;border-radius:9px;}
       .brand-mark{width:38px;height:38px;border-radius:9px;}
       .brand-name{font-size:1.02rem;line-height:1.1;}
       .brand-name span{font-size:.72rem;letter-spacing:.01em;}
-      .hero{padding-top:8.5rem!important;}
+      .hero{padding-top:9.5rem!important;}
       .nav-links{
-        position:fixed;top:calc(70px + env(safe-area-inset-top) + 8px);left:0;right:0;
+        position:fixed;top:calc(62px + max(env(safe-area-inset-top),50px));left:0;right:0;
         flex-direction:column;align-items:stretch;gap:0;
         background:rgba(11,13,18,.98);
         backdrop-filter:saturate(180%) blur(16px);
@@ -114,7 +117,7 @@
         padding:1rem 1.5rem 2rem;
         border-bottom:1px solid var(--line);
         transform:translateY(-110%);transition:transform .3s ease;
-        max-height:calc(100vh - 70px - env(safe-area-inset-top) - 8px);overflow-y:auto;
+        max-height:calc(100vh - 62px - max(env(safe-area-inset-top),50px));overflow-y:auto;
       }
       .nav-links.open{transform:translateY(0);}
       .nav-links a{
