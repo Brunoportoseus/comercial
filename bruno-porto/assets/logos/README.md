@@ -4,12 +4,12 @@ Coloque os arquivos das logos nesta pasta, com **exatamente** estes nomes:
 
 | Marca              | Nome do arquivo            | Status      |
 |--------------------|----------------------------|-------------|
-| Carmin             | `carmin.png`               | ⚠️ Faltando |
+| Carmim             | `carmim.png`               | ✅          |
 | Carmen Steffens    | `carmen-steffens.png`      | ✅          |
 | Yahoo              | `yahoo.png`                | ✅          |
 | Colcci             | `colcci.png`               | ✅          |
 | Mormaii            | `mormaii.png`              | ✅          |
-| Mueller            | `mueller.png`              | ⚠️ Faltando |
+| Mueller            | `mueller.png`              | ✅          |
 | Vonder             | `vonder.png`               | ✅          |
 | Ferragens Negrão   | `ferragens-negrao.png`     | ✅          |
 | Karsten            | `karsten.svg`              | ✅          |
