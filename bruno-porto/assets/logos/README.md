@@ -19,6 +19,9 @@ Coloque os arquivos das logos nesta pasta, com **exatamente** estes nomes:
 | Móveis Campo Largo | `moveis-campo-largo.png`   |
 | Farma Sesi         | `farma-sesi.png`           |
 | Via Inox Tramontina| `via-inox-tramontina.png`  |
+| King 55            | `king-55.png`              |
+| Havan              | `havan.png`                |
+| Casa do Marceneiro | `casa-do-marceneiro.png`   |
 
 ## Dicas
 
