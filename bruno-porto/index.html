@@ -109,17 +109,14 @@
       .brand-name span{font-size:.72rem;letter-spacing:.01em;}
       .hero{padding-top:9.5rem!important;}
       .nav-links{
-        position:fixed;top:calc(62px + max(env(safe-area-inset-top),50px));left:0;right:0;
+        display:none;
+        position:absolute;top:100%;left:0;right:0;
         flex-direction:column;align-items:stretch;gap:0;
         background:rgba(11,13,18,.98);
-        backdrop-filter:saturate(180%) blur(16px);
-        -webkit-backdrop-filter:saturate(180%) blur(16px);
-        padding:1rem 1.5rem 2rem;
+        padding:.5rem 1.5rem 1.5rem;
         border-bottom:1px solid var(--line);
-        transform:translateY(-110%);transition:transform .3s ease;
-        max-height:calc(100vh - 62px - max(env(safe-area-inset-top),50px));overflow-y:auto;
       }
-      .nav-links.open{transform:translateY(0);}
+      .nav-links.open{display:flex;}
       .nav-links a{
         padding:1rem 0;font-size:1.05rem;color:var(--ink);
         border-bottom:1px solid var(--line);
@@ -128,6 +125,7 @@
       .nav-cta{
         margin-top:1rem;text-align:center;border-radius:999px;
         border-bottom:none!important;
+        background:var(--grad)!important;color:#fff!important;
       }
     }
 
