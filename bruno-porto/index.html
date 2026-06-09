@@ -336,13 +336,13 @@
       background:rgba(255,255,255,.04);
     }
     .brand img{
-      max-width:100%;max-height:60%;
+      max-width:90%;max-height:72%;
       object-fit:contain;
-      filter:grayscale(100%) brightness(1.6) contrast(.95);
+      filter:brightness(0) invert(1);
       opacity:.78;
-      transition:filter .25s,opacity .25s;
+      transition:opacity .25s,transform .25s;
     }
-    .brand:hover img{filter:none;opacity:1;}
+    .brand:hover img{opacity:1;transform:scale(1.06);}
     .brand-label{
       font-family:'Sora',sans-serif;
       font-size:.78rem;font-weight:600;
