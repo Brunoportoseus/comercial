@@ -16,6 +16,9 @@ Coloque os arquivos das logos nesta pasta, com **exatamente** estes nomes:
 | Thais Rodrigues    | `thais-rodrigues.png`      |
 | Artefama           | `artefama.png`             |
 | TUPER              | `tuper.png`                |
+| Móveis Campo Largo | `moveis-campo-largo.png`   |
+| Farma Sesi         | `farma-sesi.png`           |
+| Via Inox Tramontina| `via-inox-tramontina.png`  |
 
 ## Dicas
 
