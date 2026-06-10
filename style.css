@@ -148,12 +148,12 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 
 /* Logo */
 .logo-wrapper { display: flex; align-items: center; gap: 10px; }
-.logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+.logo-icon { width: 44px; height: 48px; flex-shrink: 0; }
 .logo-text { display: flex; flex-direction: column; }
 .logo-name {
   font-size: 1.15rem;
   font-weight: 800;
-  color: var(--blue);
+  color: #0D2B5E;
   line-height: 1.1;
   letter-spacing: -.02em;
 }
