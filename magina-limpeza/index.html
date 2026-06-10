@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magina Limpeza e Conservação | Serviços de Limpeza Profissional</title>
+  <meta name="description" content="A Magina Limpeza e Conservação oferece serviços profissionais de limpeza residencial, comercial, pós-obra, condomínios e conservação de ambientes em Curitiba. Solicite um orçamento." />
+  <meta name="keywords" content="limpeza profissional Curitiba, limpeza comercial, limpeza residencial, limpeza pós-obra, conservação de ambientes, limpeza de condomínios" />
+  <meta name="author" content="Magina Limpeza e Conservação" />
+  <meta property="og:title" content="Magina Limpeza e Conservação | Serviços de Limpeza Profissional" />
+  <meta property="og:description" content="Soluções profissionais em limpeza, conservação e cuidado com ambientes em Curitiba." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#inicio" class="nav__logo">
+        <!-- LOGO SVG personalizada -->
+        <div class="logo-wrapper">
+          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="24" cy="24" r="24" fill="#1565C0"/>
+            <path d="M14 32 C14 32 16 20 24 18 C32 16 34 28 34 28" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M20 32 L22 22 L26 22 L28 32" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <ellipse cx="24" cy="33" rx="8" ry="2.5" fill="#4FC3F7" opacity="0.5"/>
+            <path d="M18 34 Q24 36 30 34" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-name">Magina</span>
+            <span class="logo-sub">Limpeza &amp; Conservação</span>
+          </div>
+        </div>
+      </a>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#inicio" class="nav__link">Início</a></li>
+        <li><a href="#sobre" class="nav__link">Sobre</a></li>
+        <li><a href="#servicos" class="nav__link">Serviços</a></li>
+        <li><a href="#diferenciais" class="nav__link">Diferenciais</a></li>
+        <li><a href="#galeria" class="nav__link">Galeria</a></li>
+        <li><a href="#contato" class="nav__link">Contato</a></li>
+        <li>
+          <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="nav__cta">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            WhatsApp
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <div class="hero__bg">
+        <!-- Substituir por foto real da empresa -->
+        <img
+          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80"
+          alt="Equipe Magina Limpeza e Conservação em ação"
+          class="hero__img"
+          loading="eager"
+        />
+        <div class="hero__overlay"></div>
+      </div>
+      <div class="hero__content container">
+        <span class="hero__badge">Curitiba e Região</span>
+        <h1 class="hero__title">Magina Limpeza<br />e Conservação</h1>
+        <p class="hero__subtitle">Soluções profissionais em limpeza, conservação<br class="d-none-sm" /> e cuidado com ambientes.</p>
+        <div class="hero__actions">
+          <a href="#contato" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/></svg>
+            Solicitar orçamento
+          </a>
+          <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="btn btn--whatsapp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Falar pelo WhatsApp
+          </a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>+500</strong>
+            <span>Clientes atendidos</span>
+          </div>
+          <div class="hero__stat">
+            <strong>100%</strong>
+            <span>Compromisso com qualidade</span>
+          </div>
+          <div class="hero__stat">
+            <strong>Curitiba</strong>
+            <span>e Região</span>
+          </div>
+        </div>
+      </div>
+      <a href="#sobre" class="hero__scroll" aria-label="Rolar para baixo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section class="sobre section" id="sobre">
+      <div class="container">
+        <div class="sobre__grid">
+          <div class="sobre__img-wrap">
+            <!-- Substituir por foto real da empresa -->
+            <img
+              src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80"
+              alt="Equipe Magina Limpeza preparada para atendimento"
+              class="sobre__img"
+              loading="lazy"
+            />
+            <div class="sobre__badge-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              <div>
+                <strong>Empresa confiável</strong>
+                <span>CNPJ: 60.704.627/0001-55</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sobre__content">
+            <span class="section__label">Quem somos</span>
+            <h2 class="section__title">Compromisso com limpeza,<br />qualidade e confiança</h2>
+            <p class="sobre__text">
+              A <strong>Magina Limpeza e Conservação</strong> oferece serviços especializados para empresas, residências, condomínios e ambientes corporativos que buscam limpeza, organização e cuidado constante. Nosso trabalho é realizado com atenção aos detalhes, buscando sempre entregar ambientes mais limpos, seguros e agradáveis.
+            </p>
+            <p class="sobre__text">
+              Sediada em <strong>Curitiba</strong>, atendemos empresas e residências com equipes treinadas, equipamentos adequados e processos que garantem resultado de qualidade em cada serviço prestado.
+            </p>
+            <ul class="sobre__list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M5 13l4 4L19 7"/></svg>
+                Equipe qualificada e uniformizada
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M5 13l4 4L19 7"/></svg>
+                Produtos e equipamentos profissionais
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M5 13l4 4L19 7"/></svg>
+                Atendimento rápido e personalizado
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M5 13l4 4L19 7"/></svg>
+                Serviços para Curitiba e região
+              </li>
+            </ul>
+            <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="btn btn--primary">
+              Solicitar orçamento gratuito
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section class="servicos section section--alt" id="servicos">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">O que fazemos</span>
+          <h2 class="section__title">Nossos Serviços</h2>
+          <p class="section__desc">Soluções completas de limpeza e conservação para todos os tipos de ambientes.</p>
+        </div>
+
+        <div class="servicos__grid">
+
+          <article class="servico__card" data-aos="fade-up">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Limpeza residencial" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h3>Limpeza Residencial</h3>
+              <p>Limpeza completa de casas e apartamentos com atenção a cada detalhe, garantindo ambientes higienizados e aconchegantes.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up" data-aos-delay="100">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Limpeza comercial" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3>Limpeza Comercial</h3>
+              <p>Soluções de limpeza para comércios, lojas e estabelecimentos que precisam de um ambiente sempre apresentável e seguro.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up" data-aos-delay="150">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Limpeza pós-obra" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+              </div>
+              <h3>Limpeza Pós-Obra</h3>
+              <p>Remoção completa de resíduos de construção, poeira e sujeiras pesadas para entregar o espaço pronto para uso.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Conservação de ambientes" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Conservação de Ambientes</h3>
+              <p>Manutenção contínua e planejada de espaços, preservando a higiene e a boa apresentação ao longo do tempo.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up" data-aos-delay="100">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80" alt="Limpeza de escritórios" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <h3>Limpeza de Escritórios</h3>
+              <p>Ambiente de trabalho sempre limpo e organizado, aumentando a produtividade e bem-estar dos colaboradores.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up" data-aos-delay="150">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=600&q=80" alt="Limpeza de condomínios" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><rect x="10" y="14" width="4" height="8"/></svg>
+              </div>
+              <h3>Limpeza de Condomínios</h3>
+              <p>Serviços contínuos para manter halls, garagens, escadas e áreas comuns sempre limpos e conservados.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80" alt="Higienização de áreas comuns" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h3>Higienização de Áreas Comuns</h3>
+              <p>Desinfecção e higienização de ambientes de uso coletivo com produtos adequados e eficazes.</p>
+            </div>
+          </article>
+
+          <article class="servico__card" data-aos="fade-up" data-aos-delay="100">
+            <div class="servico__img-wrap">
+              <!-- Substituir por foto real -->
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Serviços gerais" loading="lazy" />
+            </div>
+            <div class="servico__body">
+              <div class="servico__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <h3>Serviços Gerais sob Demanda</h3>
+              <p>Atendimento flexível para necessidades específicas: eventos, limpezas pontuais, manutenções e muito mais.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="servicos__cta">
+          <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Solicitar orçamento agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section class="diferenciais section" id="diferenciais">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">Por que nos escolher</span>
+          <h2 class="section__title">Nossos Diferenciais</h2>
+          <p class="section__desc">O que faz a Magina ser a melhor escolha para cuidar do seu ambiente.</p>
+        </div>
+
+        <div class="diferenciais__grid">
+
+          <div class="diferencial__item" data-aos="fade-up">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Atendimento Personalizado</h3>
+            <p>Cada cliente recebe um atendimento único, adaptado às suas necessidades e rotina.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="80">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Equipe Preparada</h3>
+            <p>Profissionais treinados, uniformizados e comprometidos com a excelência em cada serviço.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="160">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Compromisso com Prazos</h3>
+            <p>Cumprimos horários e prazos combinados. Pontualidade e respeito ao seu tempo.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="240">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Cuidado com os Detalhes</h3>
+            <p>Limpeza minuciosa que não passa nada despercebido — do chão ao teto, de canto a canto.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="80">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3>Produtos e Processos Adequados</h3>
+            <p>Utilizamos produtos de qualidade e técnicas corretas para cada tipo de superfície e ambiente.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="160">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <h3>Serviços sob Medida</h3>
+            <p>Montamos um plano de serviço personalizado de acordo com o tamanho e demanda do seu espaço.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="240">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.98 5.98l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3>Orçamento Rápido pelo WhatsApp</h3>
+            <p>Solicite seu orçamento agora pelo WhatsApp e receba retorno rápido sem complicações.</p>
+          </div>
+
+          <div class="diferencial__item" data-aos="fade-up" data-aos-delay="320">
+            <div class="diferencial__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+            </div>
+            <h3>Foco em Qualidade e Confiança</h3>
+            <p>Nosso maior compromisso é a sua satisfação — serviços confiáveis que fidelizam clientes.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERIA ===== -->
+    <section class="galeria section section--alt" id="galeria">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">Nosso trabalho</span>
+          <h2 class="section__title">Galeria de Fotos</h2>
+          <p class="section__desc">Confira alguns dos ambientes que cuidamos com dedicação e profissionalismo.</p>
+        </div>
+
+        <div class="galeria__grid">
+          <!-- As imagens abaixo são temporárias. Substituir por fotos reais da empresa -->
+          <div class="galeria__item galeria__item--lg">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80" alt="Equipe de limpeza profissional" loading="lazy" />
+            <div class="galeria__overlay"><span>Equipe profissional</span></div>
+          </div>
+          <div class="galeria__item">
+            <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&q=80" alt="Ambiente limpo e organizado" loading="lazy" />
+            <div class="galeria__overlay"><span>Ambiente limpo</span></div>
+          </div>
+          <div class="galeria__item">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Limpeza residencial" loading="lazy" />
+            <div class="galeria__overlay"><span>Limpeza residencial</span></div>
+          </div>
+          <div class="galeria__item">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Limpeza comercial" loading="lazy" />
+            <div class="galeria__overlay"><span>Limpeza comercial</span></div>
+          </div>
+          <div class="galeria__item">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Conservação de áreas comuns" loading="lazy" />
+            <div class="galeria__overlay"><span>Áreas comuns</span></div>
+          </div>
+          <div class="galeria__item galeria__item--lg">
+            <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=900&q=80" alt="Equipamentos e materiais de limpeza" loading="lazy" />
+            <div class="galeria__overlay"><span>Equipamentos profissionais</span></div>
+          </div>
+        </div>
+
+        <p class="galeria__note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          As imagens acima são ilustrativas. Fotos reais dos serviços serão inseridas em breve.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CTA ORÇAMENTO ===== -->
+    <section class="orcamento section">
+      <div class="container">
+        <div class="orcamento__box">
+          <div class="orcamento__content">
+            <h2>Precisa de uma empresa de limpeza confiável?</h2>
+            <p>Fale com a <strong>Magina Limpeza e Conservação</strong> e solicite um orçamento personalizado. Atendemos Curitiba e região com agilidade e qualidade.</p>
+          </div>
+          <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Chamar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section class="contato section section--alt" id="contato">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">Entre em contato</span>
+          <h2 class="section__title">Fale com a Magina</h2>
+          <p class="section__desc">Estamos prontos para atender você em Curitiba e região. Entre em contato agora.</p>
+        </div>
+
+        <div class="contato__grid">
+          <div class="contato__info">
+            <div class="contato__card">
+              <div class="contato__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3>Localização</h3>
+                <p>Curitiba — Paraná, Brasil</p>
+              </div>
+            </div>
+
+            <div class="contato__card">
+              <div class="contato__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.98 5.98l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h3>WhatsApp</h3>
+                <p>+55 41 8816-9249</p>
+                <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="contato__link contato__link--wa">
+                  Chamar no WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div class="contato__card">
+              <div class="contato__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <h3>E-mail</h3>
+                <p>smm.muniz@gmail.com</p>
+                <a href="mailto:smm.muniz@gmail.com" class="contato__link">
+                  Enviar e-mail
+                </a>
+              </div>
+            </div>
+
+            <div class="contato__card">
+              <div class="contato__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01M9 12h6"/></svg>
+              </div>
+              <div>
+                <h3>CNPJ</h3>
+                <p>60.704.627/0001-55</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contato__form-wrap">
+            <form class="contato__form" id="contatoForm" novalidate>
+              <h3>Solicite um orçamento</h3>
+              <p>Preencha o formulário e entraremos em contato rapidamente.</p>
+
+              <div class="form__group">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+              </div>
+
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" placeholder="seu@email.com" />
+                </div>
+                <div class="form__group">
+                  <label for="telefone">Telefone / WhatsApp *</label>
+                  <input type="tel" id="telefone" name="telefone" placeholder="(41) 9 9999-9999" required />
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="servico">Tipo de serviço</label>
+                <select id="servico" name="servico">
+                  <option value="">Selecione o serviço...</option>
+                  <option>Limpeza Residencial</option>
+                  <option>Limpeza Comercial</option>
+                  <option>Limpeza Pós-Obra</option>
+                  <option>Conservação de Ambientes</option>
+                  <option>Limpeza de Escritórios</option>
+                  <option>Limpeza de Condomínios</option>
+                  <option>Higienização de Áreas Comuns</option>
+                  <option>Serviços Gerais sob Demanda</option>
+                </select>
+              </div>
+
+              <div class="form__group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente o que precisa..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full">
+                Enviar mensagem pelo WhatsApp
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="logo-wrapper">
+            <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="24" cy="24" r="24" fill="#1565C0"/>
+              <path d="M14 32 C14 32 16 20 24 18 C32 16 34 28 34 28" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M20 32 L22 22 L26 22 L28 32" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <ellipse cx="24" cy="33" rx="8" ry="2.5" fill="#4FC3F7" opacity="0.5"/>
+              <path d="M18 34 Q24 36 30 34" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-name">Magina</span>
+              <span class="logo-sub">Limpeza &amp; Conservação</span>
+            </div>
+          </div>
+          <p>Soluções profissionais em limpeza e conservação para Curitiba e região.</p>
+          <p class="footer__cnpj">CNPJ: 60.704.627/0001-55</p>
+        </div>
+
+        <div class="footer__col">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="#servicos">Limpeza Residencial</a></li>
+            <li><a href="#servicos">Limpeza Comercial</a></li>
+            <li><a href="#servicos">Limpeza Pós-Obra</a></li>
+            <li><a href="#servicos">Conservação de Ambientes</a></li>
+            <li><a href="#servicos">Limpeza de Escritórios</a></li>
+            <li><a href="#servicos">Limpeza de Condomínios</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Links rápidos</h4>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <ul class="footer__contact">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Curitiba — PR
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+              <a href="https://wa.me/554188169249" target="_blank" rel="noopener">+55 41 8816-9249</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:smm.muniz@gmail.com">smm.muniz@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2025 Magina Limpeza e Conservação — CNPJ: 60.704.627/0001-55. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BOTÃO FIXO WHATSAPP ===== -->
+  <a href="https://wa.me/554188169249" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chamar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span class="whatsapp-fab__tooltip">Fale conosco!</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
