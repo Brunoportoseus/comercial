@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrutura de Agentes | Algoritmo.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    if (sessionStorage.getItem('algoritmo_auth') !== 'true') {
+      window.location.replace('../login.html');
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #4C6FFF;
+      --violet: #6A5CFF;
+      --cyan: #00C2FF;
+      --deep: #061B3A;
+      --bg-dark: #0B1120;
+      --text: #1F2937;
+      --text-muted: #6B7280;
+      --white: #FFFFFF;
+      --border: #E5E9F0;
+      --gradient-main: linear-gradient(135deg, #4C6FFF 0%, #6A5CFF 50%, #00C2FF 100%);
+      --shadow-md: 0 4px 16px rgba(76,111,255,0.12), 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(76,111,255,0.16), 0 4px 16px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-lg: 20px;
+
+      /* Agent type colors */
+      --color-orchestrator: #4C6FFF;
+      --color-commercial: #10B981;
+      --color-support: #F59E0B;
+      --color-content: #8B5CF6;
+      --color-data: #06B6D4;
+      --color-automation: #EF4444;
+      --color-media: #EC4899;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text);
+      background: #F7F9FC;
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* NAV */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,17,32,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 64px;
+    }
+    .navbar-logo {
+      font-size: 20px;
+      font-weight: 800;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .navbar-back {
+      margin-left: auto;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .navbar-back:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: radial-gradient(circle at top left, #4C6FFF 0%, #061B3A 45%, #0B1120 100%);
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { width: 8px; height: 8px; background: #00C2FF; border-radius: 50%; display: block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.15;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #00C2FF, #6A5CFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* CONTAINER */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 24px; }
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--deep);
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 15px;
+    }
+
+    /* ORCHESTRATOR */
+    .orchestrator-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .orchestrator-card {
+      background: linear-gradient(135deg, #4C6FFF, #6A5CFF);
+      border-radius: 20px;
+      padding: 32px 48px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 12px 40px rgba(76,111,255,0.35);
+      position: relative;
+      min-width: 280px;
+    }
+    .orchestrator-card::after {
+      content: '';
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 24px;
+      background: #4C6FFF;
+    }
+    .agent-icon { font-size: 40px; margin-bottom: 12px; }
+    .orchestrator-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .orchestrator-card p { font-size: 14px; opacity: 0.8; }
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* CONNECTOR LINE */
+    .connector-h {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .connector-h-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #4C6FFF 10%, #4C6FFF 90%, transparent 100%);
+      width: 90%;
+      max-width: 900px;
+      position: relative;
+    }
+    .connector-h-line::before,
+    .connector-h-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 24px;
+      background: #4C6FFF;
+    }
+    .connector-h-line::before { left: 0; }
+    .connector-h-line::after { right: 0; }
+
+    /* SQUADS GRID */
+    .squads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    /* SQUAD CARD */
+    .squad-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .squad-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .squad-header {
+      padding: 24px 24px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .squad-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .squad-header-text h3 { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+    .squad-header-text p { font-size: 13px; color: var(--text-muted); }
+
+    .squad-agents { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 10px; }
+
+    .agent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      background: #F7F9FC;
+      border: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .agent-item:hover { background: #EEF2FF; }
+    .agent-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .agent-info { flex: 1; }
+    .agent-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .agent-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .agent-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .agent-tag {
+      background: rgba(76,111,255,0.08);
+      color: var(--primary);
+      border-radius: 100px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .agent-status {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .status-active { background: #ECFDF5; color: #059669; }
+    .status-active .status-dot { background: #059669; }
+    .status-dev { background: #FEF3C7; color: #D97706; }
+    .status-dev .status-dot { background: #D97706; }
+    .status-planned { background: #F3F4F6; color: #6B7280; }
+    .status-planned .status-dot { background: #9CA3AF; }
+
+    /* METRICS */
+    .metrics-bar {
+      background: linear-gradient(135deg, #061B3A, #0B1120);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin: 48px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .metric { color: #fff; }
+    .metric-value {
+      font-size: 40px;
+      font-weight: 800;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-label { font-size: 14px; color: rgba(255,255,255,0.55); }
+
+    /* FLOW */
+    .flow-section { background: #fff; border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); border: 1px solid var(--border); margin-bottom: 48px; }
+    .flow-title { font-size: 20px; font-weight: 800; margin-bottom: 28px; color: var(--deep); }
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 120px;
+      flex: 1;
+    }
+    .flow-step-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .flow-step-label { font-size: 13px; font-weight: 600; color: var(--deep); }
+    .flow-step-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .flow-arrow {
+      font-size: 24px;
+      color: #CBD5E1;
+      flex-shrink: 0;
+      padding: 0 4px;
+      margin-top: -28px;
+    }
+
+    /* SQUAD COLORS */
+    .sq-commercial .squad-icon { background: #ECFDF5; }
+    .sq-support .squad-icon { background: #FEF3C7; }
+    .sq-content .squad-icon { background: #F3E8FF; }
+    .sq-data .squad-icon { background: #ECFEFF; }
+    .sq-automation .squad-icon { background: #FEF2F2; }
+    .sq-media .squad-icon { background: #FDF2F8; }
+
+    .sq-commercial .squad-header { border-bottom: 3px solid #10B981; }
+    .sq-support .squad-header { border-bottom: 3px solid #F59E0B; }
+    .sq-content .squad-header { border-bottom: 3px solid #8B5CF6; }
+    .sq-data .squad-header { border-bottom: 3px solid #06B6D4; }
+    .sq-automation .squad-header { border-bottom: 3px solid #EF4444; }
+    .sq-media .squad-header { border-bottom: 3px solid #EC4899; }
+
+    /* FOOTER */
+    .page-footer {
+      background: var(--bg-dark);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+    .page-footer a { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 20px 56px; }
+      .squads-grid { grid-template-columns: 1fr; }
+      .metrics-bar { padding: 28px 20px; gap: 24px; }
+      .flow-steps { flex-direction: column; gap: 8px; }
+      .flow-arrow { transform: rotate(90deg); margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <span class="navbar-logo">Algoritmo.AI</span>
+    <a href="../index.html" class="navbar-back">← Voltar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span></span>
+    Estrutura Operacional de Agentes
+  </div>
+  <h1>Nossos <span>Agentes de IA</span><br>em Ação</h1>
+  <p>Squads especializados com agentes inteligentes que operam de forma coordenada para entregar resultados reais em cada frente do negócio.</p>
+</div>
+
+<!-- ORCHESTRATOR -->
+<div class="section container">
+  <div style="text-align:center; margin-bottom: 16px;">
+    <span class="section-title">Arquitetura Multi-Agente</span>
+    <p class="section-sub">Um orquestrador central coordena os squads e distribui as tarefas para os agentes especializados</p>
+  </div>
+
+  <div class="orchestrator-wrap">
+    <div class="orchestrator-card">
+      <div class="agent-icon">🧠</div>
+      <h2>Agente Orquestrador</h2>
+      <p>Coordena, prioriza e direciona todos os squads</p>
+      <span class="tag">MASTER AGENT</span>
+    </div>
+  </div>
+
+  <div class="connector-h">
+    <div class="connector-h-line"></div>
+  </div>
+
+  <!-- SQUADS GRID -->
+  <div class="squads-grid">
+
+    <!-- SQUAD COMERCIAL -->
+    <div class="squad-card sq-commercial">
+      <div class="squad-header">
+        <div class="squad-icon">💼</div>
+        <div class="squad-header-text">
+          <h3>Squad Comercial</h3>
+          <p>Prospecção, qualificação e vendas</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFDF5;">🎯</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Prospecção</div>
+            <div class="agent-desc">Identifica leads qualificados, pesquisa empresas e mapeia decisores antes do primeiro contato.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">LinkedIn</span>
+              <span class="agent-tag">CRM</span>
+              <span class="agent-tag">ICP</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFDF5;">🤝</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Qualificação</div>
+            <div class="agent-desc">Conduz o BANT, identifica dor, orçamento e prazo de decisão via WhatsApp ou formulário.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">WhatsApp</span>
+              <span class="agent-tag">BANT</span>
+              <span class="agent-tag">Funil</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFDF5;">📅</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Agendamento</div>
+            <div class="agent-desc">Agenda reuniões automaticamente no Google Calendar, envia confirmações e lembretes.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Calendar</span>
+              <span class="agent-tag">E-mail</span>
+              <span class="agent-tag">SMS</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SQUAD ATENDIMENTO -->
+    <div class="squad-card sq-support">
+      <div class="squad-header">
+        <div class="squad-icon">💬</div>
+        <div class="squad-header-text">
+          <h3>Squad de Atendimento</h3>
+          <p>Suporte, retenção e satisfação</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF3C7;">🙋</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Primeiro Nível</div>
+            <div class="agent-desc">Responde perguntas frequentes, resolve dúvidas simples e triagem de tickets 24/7.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">FAQ</span>
+              <span class="agent-tag">24/7</span>
+              <span class="agent-tag">Triagem</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF3C7;">🔁</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Retenção</div>
+            <div class="agent-desc">Detecta clientes em risco de churn, aciona ofertas personalizadas e escala para humano se necessário.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Churn</span>
+              <span class="agent-tag">CRM</span>
+              <span class="agent-tag">Oferta</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF3C7;">⭐</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de NPS</div>
+            <div class="agent-desc">Dispara pesquisas de satisfação, coleta feedbacks e gera relatório de sentimento automaticamente.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">NPS</span>
+              <span class="agent-tag">Survey</span>
+              <span class="agent-tag">Relatório</span>
+            </div>
+          </div>
+          <span class="agent-status status-planned"><span class="status-dot"></span>Planejado</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SQUAD CONTEÚDO -->
+    <div class="squad-card sq-content">
+      <div class="squad-header">
+        <div class="squad-icon">✍️</div>
+        <div class="squad-header-text">
+          <h3>Squad de Conteúdo</h3>
+          <p>Criação, distribuição e SEO</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#F3E8FF;">📝</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente Redator</div>
+            <div class="agent-desc">Cria artigos de blog, e-mails e roteiros de vídeo com base em briefing e tom de voz da marca.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Blog</span>
+              <span class="agent-tag">E-mail</span>
+              <span class="agent-tag">Roteiro</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#F3E8FF;">🔍</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de SEO</div>
+            <div class="agent-desc">Pesquisa palavras-chave, audita páginas e gera sugestões de otimização on-page automaticamente.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Keywords</span>
+              <span class="agent-tag">Auditoria</span>
+              <span class="agent-tag">On-page</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#F3E8FF;">📣</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Social Media</div>
+            <div class="agent-desc">Agenda posts, adapta conteúdo para cada rede e monitora engajamento e menções da marca.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Instagram</span>
+              <span class="agent-tag">LinkedIn</span>
+              <span class="agent-tag">Agendamento</span>
+            </div>
+          </div>
+          <span class="agent-status status-planned"><span class="status-dot"></span>Planejado</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SQUAD DADOS -->
+    <div class="squad-card sq-data">
+      <div class="squad-header">
+        <div class="squad-icon">📊</div>
+        <div class="squad-header-text">
+          <h3>Squad de Dados</h3>
+          <p>Análise, inteligência e relatórios</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFEFF;">📈</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente Analítico</div>
+            <div class="agent-desc">Coleta métricas de e-commerce, CRM e campanhas e gera dashboards e insights de forma autônoma.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Dashboard</span>
+              <span class="agent-tag">KPIs</span>
+              <span class="agent-tag">GA4</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFEFF;">🔮</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente Preditivo</div>
+            <div class="agent-desc">Modela previsão de demanda, LTV e propensão de compra usando histórico do CRM e loja virtual.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">LTV</span>
+              <span class="agent-tag">Previsão</span>
+              <span class="agent-tag">ML</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#ECFEFF;">🗂️</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Relatórios</div>
+            <div class="agent-desc">Gera relatórios semanais e mensais em PDF/Google Docs e envia para stakeholders automaticamente.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">PDF</span>
+              <span class="agent-tag">Google Docs</span>
+              <span class="agent-tag">Auto-send</span>
+            </div>
+          </div>
+          <span class="agent-status status-planned"><span class="status-dot"></span>Planejado</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SQUAD AUTOMAÇÃO -->
+    <div class="squad-card sq-automation">
+      <div class="squad-header">
+        <div class="squad-icon">⚙️</div>
+        <div class="squad-header-text">
+          <h3>Squad de Automação</h3>
+          <p>Integrações, fluxos e processos</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF2F2;">🔗</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Integração</div>
+            <div class="agent-desc">Conecta plataformas via API e webhooks — e-commerce, CRM, ERP, WhatsApp e marketplaces.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">API</span>
+              <span class="agent-tag">Webhook</span>
+              <span class="agent-tag">ERP</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF2F2;">📦</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Pedidos</div>
+            <div class="agent-desc">Monitora pedidos em tempo real, dispara atualizações de status e gerencia logística reversa.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Pedidos</span>
+              <span class="agent-tag">Logística</span>
+              <span class="agent-tag">Notificação</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FEF2F2;">💸</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente Financeiro</div>
+            <div class="agent-desc">Concilia pagamentos, alerta inadimplência e organiza fluxo de caixa de forma automatizada.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Conciliação</span>
+              <span class="agent-tag">Fluxo de Caixa</span>
+              <span class="agent-tag">Alerta</span>
+            </div>
+          </div>
+          <span class="agent-status status-planned"><span class="status-dot"></span>Planejado</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SQUAD MÍDIA -->
+    <div class="squad-card sq-media">
+      <div class="squad-header">
+        <div class="squad-icon">📱</div>
+        <div class="squad-header-text">
+          <h3>Squad de Mídia</h3>
+          <p>Campanhas pagas e performance</p>
+        </div>
+      </div>
+      <div class="squad-agents">
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FDF2F8;">🎯</div>
+          <div class="agent-info">
+            <div class="agent-name">Especialista Facebook Ads</div>
+            <div class="agent-desc">Conduz documentação WABA, verificação de negócio Meta e estruturação de campanhas WhatsApp.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Meta Ads</span>
+              <span class="agent-tag">WABA</span>
+              <span class="agent-tag">Campanhas</span>
+            </div>
+          </div>
+          <span class="agent-status status-active"><span class="status-dot"></span>Ativo</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FDF2F8;">🔎</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Performance</div>
+            <div class="agent-desc">Monitora ROAS, CPA e CTR em tempo real e sugere ajustes de lances e criativos automaticamente.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">ROAS</span>
+              <span class="agent-tag">CPA</span>
+              <span class="agent-tag">Otimização</span>
+            </div>
+          </div>
+          <span class="agent-status status-dev"><span class="status-dot"></span>Em Desenvolvimento</span>
+        </div>
+
+        <div class="agent-item">
+          <div class="agent-dot" style="background:#FDF2F8;">🖼️</div>
+          <div class="agent-info">
+            <div class="agent-name">Agente de Criativos</div>
+            <div class="agent-desc">Gera variações de copy e briefings visuais para testes A/B em campanhas de mídia paga.</div>
+            <div class="agent-tags">
+              <span class="agent-tag">Copy</span>
+              <span class="agent-tag">A/B Test</span>
+              <span class="agent-tag">Criativo</span>
+            </div>
+          </div>
+          <span class="agent-status status-planned"><span class="status-dot"></span>Planejado</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /squads-grid -->
+</div><!-- /section -->
+
+<!-- METRICS -->
+<div class="container">
+  <div class="metrics-bar">
+    <div class="metric">
+      <span class="metric-value">6</span>
+      <span class="metric-label">Squads Ativos</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">18</span>
+      <span class="metric-label">Agentes Mapeados</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">7</span>
+      <span class="metric-label">Agentes Ativos</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">6</span>
+      <span class="metric-label">Em Desenvolvimento</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">5</span>
+      <span class="metric-label">Planejados</span>
+    </div>
+  </div>
+</div>
+
+<!-- FLUXO -->
+<div class="section container">
+  <div class="flow-section">
+    <div class="flow-title">🔄 Fluxo de Operação dos Agentes</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#EEF2FF;">🎯</div>
+        <div class="flow-step-label">Trigger</div>
+        <div class="flow-step-sub">Lead, evento ou<br>agendamento</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#F0FDF4;">🧠</div>
+        <div class="flow-step-label">Orquestrador</div>
+        <div class="flow-step-sub">Analisa e direciona<br>para o squad certo</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#FEF3C7;">🤖</div>
+        <div class="flow-step-label">Agente Especialista</div>
+        <div class="flow-step-sub">Executa a tarefa<br>com contexto</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#F3E8FF;">🔗</div>
+        <div class="flow-step-label">Integração</div>
+        <div class="flow-step-sub">CRM, WhatsApp,<br>plataformas</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#ECFEFF;">📊</div>
+        <div class="flow-step-label">Métricas</div>
+        <div class="flow-step-sub">Resultado registrado<br>e analisado</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-icon" style="background:#FEF2F2;">🔄</div>
+        <div class="flow-step-label">Aprendizado</div>
+        <div class="flow-step-sub">Agentes melhoram<br>continuamente</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <p>Algoritmo.AI &copy; 2025 · Estrutura de Agentes v1.0 · <a href="../index.html">Voltar ao início</a></p>
+</footer>
+
+</body>
+</html>
