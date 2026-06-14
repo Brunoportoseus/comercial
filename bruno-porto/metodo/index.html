@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Método — Squad de Agentes com IA | Bruno Porto Seus</title>
+  <meta name="description" content="Como entrego sites profissionais com blog e admin em até 12h usando um squad de 8 agentes especializados com IA. Stack profissional, custo mínimo." />
+  <meta property="og:title" content="Método — Squad de Agentes com IA" />
+  <meta property="og:description" content="Squad de 8 agentes especializados que entrega sites profissionais com blog e admin em até 12 horas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brunoportoseus.com.br/metodo/" />
+  <meta property="og:image" content="https://www.brunoportoseus.com.br/assets/og-card.jpg" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#0b0d12;--bg2:#11141c;--bg3:#171b26;--card:#141822;
+      --ink:#f5f7fb;--muted:#9aa1b3;--line:rgba(255,255,255,.08);
+      --brand:#3da5ff;--brand-2:#7c5cff;--accent:#3ddc97;
+      --grad:linear-gradient(135deg,#3da5ff 0%,#7c5cff 60%,#a06bff 100%);
+      --grad-soft:linear-gradient(135deg,rgba(61,165,255,.18),rgba(124,92,255,.18));
+      --radius:16px;--radius-lg:22px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Inter',system-ui,sans-serif;background:var(--bg);
+      color:var(--ink);overflow-x:hidden;line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%;display:block;}
+    a{color:inherit;text-decoration:none;}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem;}
+    h1,h2,h3,h4{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.15;}
+
+    /* ── NAV ── */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      background:rgba(11,13,18,.95);
+      backdrop-filter:saturate(180%) blur(14px);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      border-bottom:1px solid var(--line);
+      padding-top:env(safe-area-inset-top);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:55px;}
+    .nav-inner > *{margin:0;align-self:center;}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:700;line-height:1;}
+    .brand-mark{
+      width:40px;height:40px;border-radius:10px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;overflow:hidden;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;display:block;}
+    .brand-name{font-family:'Sora',sans-serif;font-size:1.1rem;line-height:1.15;display:flex;flex-direction:column;justify-content:center;}
+    .brand-name span{color:var(--muted);font-weight:400;font-size:.85rem;display:block;letter-spacing:.01em;line-height:1.1;}
+    .back-home{
+      color:var(--muted);font-size:.92rem;font-weight:500;
+      display:inline-flex;align-items:center;gap:.4rem;
+      transition:color .2s,gap .2s;
+    }
+    .back-home:hover{color:var(--ink);gap:.6rem;}
+    @media(max-width:860px){
+      .nav{padding-top:max(env(safe-area-inset-top),40px);background:rgba(11,13,18,.98);}
+      .nav-inner{height:auto;min-height:calc(50px + max(env(safe-area-inset-top),30px));}
+      .brand-mark{width:34px;height:34px;border-radius:9px;}
+      .brand-name{font-size:.95rem;line-height:1.1;}
+      .brand-name span{font-size:.68rem;}
+      .back-home span{display:none;}
+    }
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;padding:8rem 0 5rem;
+      background:
+        radial-gradient(ellipse 60% 50% at 85% 10%,rgba(124,92,255,.18) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 40% at 5% 80%,rgba(61,165,255,.16) 0%,transparent 60%),
+        var(--bg);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:54px 54px;
+      mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 0%,transparent 80%);
+      pointer-events:none;
+    }
+    .hero .wrap{position:relative;max-width:900px;text-align:center;}
+    .eyebrow{
+      display:inline-block;font-size:.82rem;font-weight:700;
+      letter-spacing:.18em;text-transform:uppercase;
+      color:var(--brand);margin-bottom:1rem;
+    }
+    .hero h1{
+      font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;margin-bottom:1.3rem;
+    }
+    .hero h1 .grad{
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p.lead{
+      font-size:1.15rem;color:var(--muted);max-width:680px;margin:0 auto 2.5rem;
+    }
+    .hero-stats{
+      display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
+    }
+    .stat strong{
+      display:block;font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:700;
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .stat span{font-size:.88rem;color:var(--muted);}
+
+    /* ── SECTIONS ── */
+    section{padding:5rem 0;}
+    .section-head{text-align:center;margin-bottom:3rem;}
+    .section-head .eyebrow{margin-bottom:.6rem;}
+    .section-head h2{
+      font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;margin-bottom:.8rem;
+      max-width:780px;margin-left:auto;margin-right:auto;
+    }
+    .section-head p{
+      color:var(--muted);font-size:1.02rem;max-width:640px;margin:0 auto;
+    }
+
+    /* ── DIAGRAMA ── */
+    .diagram{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .org-chart{
+      max-width:920px;margin:0 auto;
+      display:flex;flex-direction:column;align-items:center;gap:0;
+    }
+    .org-node{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:14px;padding:1rem 1.4rem;
+      font-family:'Sora',sans-serif;font-weight:600;font-size:.95rem;
+      text-align:center;min-width:180px;
+      transition:border-color .25s,transform .25s;
+      position:relative;
+    }
+    .org-node:hover{border-color:rgba(124,92,255,.4);transform:translateY(-2px);}
+    .org-node small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;margin-top:.2rem;}
+    .org-node.lead{
+      background:var(--grad);color:#fff;border:none;padding:1.2rem 1.8rem;
+      box-shadow:0 12px 30px rgba(124,92,255,.35);
+    }
+    .org-node.lead small{color:rgba(255,255,255,.85);}
+    .org-node.tier-2{background:rgba(124,92,255,.08);border-color:rgba(124,92,255,.25);}
+    .org-line{width:2px;height:32px;background:linear-gradient(180deg,rgba(124,92,255,.6),rgba(255,255,255,.05));}
+    .org-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    .org-row-h{
+      position:relative;padding-top:32px;
+    }
+    .org-row-h::before{
+      content:"";position:absolute;top:0;left:50%;width:2px;height:32px;
+      background:linear-gradient(180deg,rgba(124,92,255,.6),rgba(255,255,255,.05));
+      transform:translateX(-50%);
+    }
+    @media(max-width:680px){
+      .org-row{flex-direction:column;align-items:center;}
+      .org-node{min-width:240px;}
+    }
+
+    /* ── AGENTES GRID ── */
+    .agents-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;
+    }
+    @media(max-width:780px){ .agents-grid{grid-template-columns:1fr;} }
+    .agent-card{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius-lg);padding:1.8rem;
+      position:relative;overflow:hidden;
+      transition:transform .3s,border-color .3s;
+    }
+    .agent-card::after{
+      content:"";position:absolute;top:0;left:0;right:0;height:3px;
+      background:var(--grad);transform:scaleX(0);transform-origin:left;
+      transition:transform .35s;
+    }
+    .agent-card:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.35);}
+    .agent-card:hover::after{transform:scaleX(1);}
+    .agent-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem;}
+    .agent-num{
+      width:36px;height:36px;border-radius:10px;flex-shrink:0;
+      background:var(--grad-soft);border:1px solid rgba(124,92,255,.3);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Sora',sans-serif;font-weight:700;color:#d6dbff;font-size:.95rem;
+    }
+    .agent-card h3{font-size:1.15rem;}
+    .agent-card .role{font-size:.85rem;color:var(--brand);font-weight:500;margin-top:.15rem;}
+    .agent-desc{color:var(--muted);font-size:.93rem;margin-bottom:1.2rem;}
+    .deliverables{
+      display:flex;flex-direction:column;gap:.5rem;
+      padding-top:1.1rem;border-top:1px solid var(--line);
+    }
+    .deliverable{
+      display:flex;align-items:flex-start;gap:.6rem;
+      font-size:.88rem;color:#cbd0dd;
+    }
+    .deliverable svg{color:var(--accent);flex-shrink:0;margin-top:3px;}
+
+    /* ── STACK / TABELA ── */
+    .stack-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .stack-table{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius);overflow:hidden;
+    }
+    .stack-row{
+      display:grid;grid-template-columns:1.4fr 2fr 1fr;
+      padding:1rem 1.5rem;align-items:center;
+      border-bottom:1px solid var(--line);
+      font-size:.93rem;
+    }
+    .stack-row:last-child{border-bottom:none;}
+    .stack-row.header{
+      background:rgba(124,92,255,.08);
+      font-weight:600;color:var(--ink);font-size:.82rem;
+      text-transform:uppercase;letter-spacing:.05em;
+    }
+    .stack-row.total{
+      background:var(--grad-soft);
+      font-weight:700;color:var(--ink);
+    }
+    .stack-row .cost{color:var(--accent);font-weight:600;font-family:'JetBrains Mono',monospace;}
+    @media(max-width:680px){
+      .stack-row{grid-template-columns:1fr;gap:.3rem;padding:1rem;}
+      .stack-row.header{display:none;}
+      .stack-row > *::before{content:attr(data-label);color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;margin-right:.5rem;}
+    }
+
+    /* ── PROCESS TIMELINE ── */
+    .process{position:relative;}
+    .process-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+      counter-reset:step;
+    }
+    @media(max-width:980px){ .process-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:600px){ .process-grid{grid-template-columns:1fr;} }
+    .process-step{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius);padding:1.4rem;
+      position:relative;
+    }
+    .process-step::before{
+      counter-increment:step;
+      content:counter(step);
+      position:absolute;top:-12px;left:1.4rem;
+      width:32px;height:32px;border-radius:50%;
+      background:var(--grad);color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;
+      box-shadow:0 6px 16px rgba(124,92,255,.4);
+    }
+    .process-step h4{font-size:1rem;margin:.5rem 0 .5rem;}
+    .process-step p{font-size:.85rem;color:var(--muted);}
+    .process-step .time{
+      display:inline-block;margin-top:.7rem;
+      font-size:.72rem;color:var(--brand);font-weight:600;
+      letter-spacing:.05em;text-transform:uppercase;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section{
+      padding:6rem 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 50%,rgba(124,92,255,.16) 0%,transparent 70%),
+        var(--bg);
+    }
+    .cta-card{
+      background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+      border:1px solid var(--line);border-radius:28px;
+      padding:3.5rem 2.5rem;text-align:center;
+      max-width:780px;margin:0 auto;position:relative;overflow:hidden;
+    }
+    .cta-card::before{
+      content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;
+      background:linear-gradient(135deg,rgba(124,92,255,.55),transparent 35%,rgba(61,165,255,.45));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+    }
+    .cta-card h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:1rem;}
+    .cta-card p{color:var(--muted);font-size:1.05rem;margin-bottom:2rem;max-width:540px;margin-left:auto;margin-right:auto;}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:1rem 1.7rem;border-radius:999px;font-weight:600;font-size:.97rem;
+      transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;
+    }
+    .btn-primary{
+      background:var(--grad);color:#fff;
+      box-shadow:0 12px 30px rgba(61,165,255,.3);
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(61,165,255,.45);}
+
+    /* ── FOOTER ── */
+    footer{padding:2.5rem 0;border-top:1px solid var(--line);background:var(--bg);}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;}
+    footer p{color:var(--muted);font-size:.85rem;}
+
+    /* ── PRINCIPLES ── */
+    .principles-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+    }
+    @media(max-width:880px){ .principles-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:560px){ .principles-grid{grid-template-columns:1fr;} }
+    .principle{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius);padding:1.4rem;
+      transition:transform .25s,border-color .25s;
+    }
+    .principle:hover{transform:translateY(-3px);border-color:rgba(124,92,255,.3);}
+    .principle h4{font-size:1rem;margin-bottom:.5rem;}
+    .principle p{font-size:.88rem;color:var(--muted);}
+
+    /* ── REVEAL ── */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s;}
+    .reveal.in{opacity:1;transform:none;}
+
+    /* WhatsApp float */
+    .wa-float{
+      position:fixed;bottom:1.5rem;right:1.5rem;z-index:40;
+      width:56px;height:56px;border-radius:50%;
+      background:#25d366;color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 12px 30px rgba(37,211,102,.45);
+      transition:transform .2s;
+    }
+    .wa-float:hover{transform:scale(1.08);}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand">
+        <div class="brand-mark"><img src="/assets/logo-bp.png" alt="Bruno Porto" /></div>
+        <div class="brand-name">Bruno Porto<span>Comercial · Growth · Digital · IA</span></div>
+      </a>
+      <a href="/" class="back-home">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 12-14 0"/><path d="m12 5-7 7 7 7"/></svg>
+        <span>Voltar ao site</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow reveal">O Método</span>
+      <h1 class="reveal">Squad de <span class="grad">8 agentes especializados</span> com IA, do briefing ao deploy.</h1>
+      <p class="lead reveal">
+        Não é um "site feito por IA". É um time multidisciplinar, com IA como motor, executando em paralelo. Posicionamento, design, dev, conteúdo e infraestrutura — coordenados em um único fluxo.
+      </p>
+      <div class="hero-stats reveal">
+        <div class="stat"><strong>8</strong><span>agentes especializados</span></div>
+        <div class="stat"><strong>12h</strong><span>do briefing ao site no ar</span></div>
+        <div class="stat"><strong>R$ 3,33</strong><span>de custo mensal (só domínio)</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DIAGRAMA -->
+  <section class="diagram" id="diagrama">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Estrutura</span>
+        <h2>Coordenação central, execução distribuída</h2>
+        <p>Um orquestrador mantém o contexto e prioridades. Três frentes paralelas entregam estratégia, produção e infraestrutura.</p>
+      </div>
+
+      <div class="org-chart reveal">
+        <div class="org-node lead">
+          Orquestrador (Claude)
+          <small>Coordena, mantém contexto, prioriza</small>
+        </div>
+        <div class="org-line"></div>
+        <div class="org-row">
+          <div class="org-node tier-2">Estratégia & Conteúdo</div>
+          <div class="org-node tier-2">Produção Digital</div>
+          <div class="org-node tier-2">Infra & Deploy</div>
+        </div>
+        <div class="org-row org-row-h">
+          <div class="org-node">Brand Voice<small>Tom e posicionamento</small></div>
+          <div class="org-node">Copy<small>Textos do site e blog</small></div>
+          <div class="org-node">Designer<small>Visual e identidade</small></div>
+          <div class="org-node">Dev<small>Código e admin</small></div>
+          <div class="org-node">Marketing<small>Conteúdo e SEO</small></div>
+          <div class="org-node">DevOps<small>Deploy e CI/CD</small></div>
+          <div class="org-node">DNS<small>Domínio e roteamento</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTES -->
+  <section id="agentes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Os Agentes</span>
+        <h2>O que cada agente faz, na prática</h2>
+        <p>Cada agente tem escopo claro e entregas mensuráveis. Sem retrabalho, sem zona cinzenta.</p>
+      </div>
+
+      <div class="agents-grid">
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">1</div>
+            <div>
+              <h3>Brand Voice Agent</h3>
+              <div class="role">Estratégia & Conteúdo</div>
+            </div>
+          </div>
+          <p class="agent-desc">Define a personalidade textual da marca. O que pode e não pode ser dito. Tom geral, palavras-chave, posicionamento.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Slogan e tagline</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tom de voz e guidelines</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Posicionamento por persona</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">2</div>
+            <div>
+              <h3>Copy Agent</h3>
+              <div class="role">Estratégia & Conteúdo</div>
+            </div>
+          </div>
+          <p class="agent-desc">Escreve todos os textos do site e dos posts. Hero, serviços, experiência, CTAs, mensagens pré-preenchidas de WhatsApp.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Headlines e leads do hero</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cards de serviços e timeline</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Posts completos de blog</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Meta tags e Open Graph</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">3</div>
+            <div>
+              <h3>Designer Agent</h3>
+              <div class="role">Produção Digital</div>
+            </div>
+          </div>
+          <p class="agent-desc">Identidade visual completa. Paleta, tipografia, layouts, microinterações, logos, cartões para redes sociais e tratamento de fotos.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sistema de cores e tipografia</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Logo + favicons</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Social card 1200×630</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tratamento de logos de clientes</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">4</div>
+            <div>
+              <h3>Dev Agent</h3>
+              <div class="role">Produção Digital</div>
+            </div>
+          </div>
+          <p class="agent-desc">Implementa HTML/CSS/JS, garante performance, responsividade e acessibilidade. Constrói também o painel admin do blog.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Site responsivo (mobile-first)</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sistema de design em CSS vars</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Admin SPA com editor markdown</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Integração GitHub API</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">5</div>
+            <div>
+              <h3>Marketing Agent</h3>
+              <div class="role">Produção Digital</div>
+            </div>
+          </div>
+          <p class="agent-desc">Estratégia editorial do blog. Define pilares de conteúdo, produz posts evergreen, otimiza SEO básico e estrutura para compartilhamento.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Estratégia editorial (3 pilares)</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3 posts iniciais publicados</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>SEO técnico básico</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Estrutura para repurpose nas redes</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">6</div>
+            <div>
+              <h3>DevOps Agent</h3>
+              <div class="role">Infra & Deploy</div>
+            </div>
+          </div>
+          <p class="agent-desc">Configura repositório, pipeline de CI/CD e hospedagem. Garante deploy automático em ~1 minuto após cada commit.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Repositório GitHub configurado</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cloudflare Workers Static Assets</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pipeline push → deploy</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CDN global em 300+ PoPs</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">7</div>
+            <div>
+              <h3>DNS & Domínio Agent</h3>
+              <div class="role">Infra & Deploy</div>
+            </div>
+          </div>
+          <p class="agent-desc">Gerencia domínio, migração DNS, certificado SSL e regras de redirecionamento. Garante todas as URLs apontando ao destino certo.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Migração DNS para Cloudflare</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Custom Domain conectado</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>HTTPS automático via Cloudflare</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Redirect SEO apex → www (301)</div>
+          </div>
+        </article>
+
+        <article class="agent-card reveal">
+          <div class="agent-head">
+            <div class="agent-num">★</div>
+            <div>
+              <h3>Orquestrador</h3>
+              <div class="role">Coordenação central</div>
+            </div>
+          </div>
+          <p class="agent-desc">Mantém visão de produto. Prioriza tarefas, evita retrabalho, garante consistência entre agentes. Documenta decisões e padrões.</p>
+          <div class="deliverables">
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Captura e organização de requisitos</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priorização contínua</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Documentação técnica</div>
+            <div class="deliverable"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Garantia de qualidade entre módulos</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Processo</span>
+        <h2>Do briefing ao site no ar em 4 etapas</h2>
+        <p>Cada cliente passa pela mesma linha de produção. Previsível, mensurável, reproduzível.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <h4>Briefing & Estratégia</h4>
+          <p>Entrevista de descoberta, posicionamento, brand voice. Tom, palavras-chave e diferenciais definidos.</p>
+          <span class="time">~2h</span>
+        </div>
+        <div class="process-step reveal">
+          <h4>Identidade & Conteúdo</h4>
+          <p>Designer + Copy produzem em paralelo. Visual, logos, social card, textos, posts iniciais.</p>
+          <span class="time">~4h</span>
+        </div>
+        <div class="process-step reveal">
+          <h4>Build & Admin</h4>
+          <p>Dev monta site responsivo, blog e admin com editor. Tudo conectado ao repositório.</p>
+          <span class="time">~4h</span>
+        </div>
+        <div class="process-step reveal">
+          <h4>Deploy & Domínio</h4>
+          <p>DevOps + DNS publicam, configuram domínio próprio, SSL e redirects. Cliente recebe acesso ao admin.</p>
+          <span class="time">~2h</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="stack-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Stack & Custos</span>
+        <h2>Tecnologia profissional, custo mínimo</h2>
+        <p>Sem framework pesado, sem dependência de plataforma proprietária. Tudo aberto e portável.</p>
+      </div>
+
+      <div class="stack-table reveal">
+        <div class="stack-row header">
+          <div>Camada</div>
+          <div>Tecnologia</div>
+          <div>Custo</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">Código</div>
+          <div data-label="Tecnologia">HTML + CSS + JS vanilla</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">Versionamento</div>
+          <div data-label="Tecnologia">GitHub</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">Hospedagem</div>
+          <div data-label="Tecnologia">Cloudflare Workers Static Assets</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">CDN + HTTPS</div>
+          <div data-label="Tecnologia">Cloudflare Free (300+ PoPs)</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">DNS</div>
+          <div data-label="Tecnologia">Cloudflare Free</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">Admin do blog</div>
+          <div data-label="Tecnologia">SPA + GitHub API</div>
+          <div data-label="Custo" class="cost">R$ 0</div>
+        </div>
+        <div class="stack-row">
+          <div data-label="Camada">Domínio</div>
+          <div data-label="Tecnologia">Registro.br (.com.br)</div>
+          <div data-label="Custo" class="cost">~R$ 40/ano</div>
+        </div>
+        <div class="stack-row total">
+          <div data-label="Camada">Total mensal</div>
+          <div data-label="Tecnologia">Stack profissional completa</div>
+          <div data-label="Custo" class="cost">~R$ 3,33</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPIOS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Princípios</span>
+        <h2>O que guia cada decisão técnica</h2>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle reveal">
+          <h4>📝 Conteúdo &gt; Design</h4>
+          <p>Texto bom em layout simples bate visual bonito com conteúdo fraco. Sempre.</p>
+        </div>
+        <div class="principle reveal">
+          <h4>⚡ Performance é feature</h4>
+          <p>CDN, sem frameworks pesados, sem dependências externas que travam o carregamento.</p>
+        </div>
+        <div class="principle reveal">
+          <h4>♻️ Reaproveitamento</h4>
+          <p>Cada agente cria componentes reutilizáveis. Um novo cliente começa em 90%.</p>
+        </div>
+        <div class="principle reveal">
+          <h4>📚 Doc como código</h4>
+          <p>Comentários, READMEs, padrões versionados. Quem entrar depois entende rápido.</p>
+        </div>
+        <div class="principle reveal">
+          <h4>💰 Custo mínimo, qualidade máxima</h4>
+          <p>Stack gratuita e profissional. Você paga só o domínio.</p>
+        </div>
+        <div class="principle reveal">
+          <h4>🎛️ Cliente autônomo</h4>
+          <p>Admin do blog + GitHub web permitem manutenção sem precisar de dev.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <h2>Quer um site assim para sua empresa?</h2>
+        <p>Em uma conversa de 30 minutos a gente alinha posicionamento, escopo e prazo. Site completo no ar em até 12 horas após o briefing.</p>
+        <a href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20vi%20a%20p%C3%A1gina%20do%20m%C3%A9todo%20e%20quero%20conversar." target="_blank" rel="noopener" class="btn btn-primary">
+          Falar no WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> Bruno Porto Seus · Comercial · Growth · Digital · IA</p>
+      <a href="/" style="color:var(--muted);font-size:.85rem;">www.brunoportoseus.com.br</a>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20quero%20conversar%20sobre%20consultoria%20digital." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
