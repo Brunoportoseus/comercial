@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carta de Apresentação — Bruno Porto Seus | Consultoria Comercial Digital</title>
+  <meta name="description" content="Carta de apresentação de Bruno Porto Seus — Consultor Sênior em E-commerce, IA e Estratégia Comercial Digital. Mais de 30 anos ajudando empresas a crescer na internet." />
+  <meta property="og:title" content="Carta de Apresentação — Bruno Porto Seus" />
+  <meta property="og:description" content="Consultor Sênior em E-commerce, IA e Estratégia Comercial Digital. +30 anos de experiência." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.brunoportoseus.com.br/carta/" />
+  <meta property="og:image" content="https://www.brunoportoseus.com.br/assets/og-card.jpg" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --bg2: #11141c;
+      --card: #141822;
+      --ink: #f5f7fb;
+      --muted: #9aa1b3;
+      --line: rgba(255,255,255,.08);
+      --brand: #3da5ff;
+      --brand-2: #7c5cff;
+      --accent: #3ddc97;
+      --grad: linear-gradient(135deg,#3da5ff 0%,#7c5cff 60%,#a06bff 100%);
+      --grad-soft: linear-gradient(135deg,rgba(61,165,255,.12),rgba(124,92,255,.12));
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ── TOPO / REMETENTE ── */
+    .sender {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--grad);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800; color: #fff; font-size: 1.5rem;
+      box-shadow: 0 12px 32px rgba(124,92,255,.4);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .sender-info { flex: 1; }
+    .sender-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      line-height: 1.15;
+    }
+    .sender-role {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-top: .2rem;
+    }
+    .sender-meta {
+      display: flex; flex-wrap: wrap; gap: .5rem 1.2rem;
+      margin-top: .7rem;
+    }
+    .sender-meta a {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .83rem; color: var(--brand);
+      transition: opacity .2s;
+    }
+    .sender-meta a:hover { opacity: .75; }
+    .sender-meta svg { flex-shrink: 0; }
+
+    /* ── DATA ── */
+    .date-line {
+      font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+    }
+
+    /* ── SAUDAÇÃO ── */
+    .greeting {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem; font-weight: 700;
+      margin-bottom: 1.8rem;
+      line-height: 1.25;
+    }
+    .greeting .grad {
+      background: var(--grad);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* ── BODY TEXT ── */
+    .carta p {
+      color: rgba(245,247,251,.85);
+      font-size: 1.02rem;
+      margin-bottom: 1.4rem;
+    }
+    .carta p strong { color: var(--ink); font-weight: 600; }
+
+    /* ── DESTAQUES ── */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2.2rem 0;
+    }
+    @media (max-width: 620px) { .highlights { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 400px) { .highlights { grid-template-columns: 1fr; } }
+    .highlight {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: border-color .25s, transform .25s;
+    }
+    .highlight:hover { border-color: rgba(124,92,255,.35); transform: translateY(-3px); }
+    .highlight strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.65rem; font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      line-height: 1.1;
+      margin-bottom: .35rem;
+    }
+    .highlight span { font-size: .82rem; color: var(--muted); }
+
+    /* ── FRENTES ── */
+    .frentes {
+      background: var(--grad-soft);
+      border: 1px solid rgba(124,92,255,.2);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .frentes h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+    .frentes ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem .8rem;
+    }
+    @media (max-width: 520px) { .frentes ul { grid-template-columns: 1fr; } }
+    .frentes li {
+      display: flex; align-items: flex-start; gap: .5rem;
+      font-size: .92rem; color: rgba(245,247,251,.85);
+    }
+    .frentes li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: .58em;
+    }
+
+    /* ── ASSINATURA ── */
+    .signature {
+      margin-top: 2.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .signature p {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-bottom: .35rem;
+    }
+    .signature .sig-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--ink);
+      margin-top: .5rem;
+      margin-bottom: .2rem;
+    }
+    .signature .sig-role {
+      font-size: .88rem; color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: var(--grad);
+      color: #fff;
+      padding: .9rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 700; font-size: .95rem;
+      box-shadow: 0 10px 28px rgba(61,165,255,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(61,165,255,.42); }
+    .cta-btn svg { flex-shrink: 0; }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #111; }
+      .page { max-width: 100%; padding: 1.5cm; }
+      .sender, .highlight, .frentes { border-color: #ddd !important; background: #f8f8f8 !important; }
+      .highlight strong, .greeting .grad, .sig-name { color: #1a1a1a !important; -webkit-background-clip: unset !important; background-clip: unset !important; }
+      .cta-btn { background: #222 !important; box-shadow: none !important; }
+      .sender-meta a { color: #1a56db !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── REMETENTE ── -->
+  <div class="sender">
+    <div class="avatar">
+      <img src="/assets/foto.jpg" alt="Bruno Porto Seus" onerror="this.style.display='none';this.parentNode.textContent='BP'" />
+    </div>
+    <div class="sender-info">
+      <div class="sender-name">Bruno Porto Seus</div>
+      <div class="sender-role">Consultor Sênior · E-commerce · IA · CRM · Estratégia Comercial Digital</div>
+      <div class="sender-meta">
+        <a href="https://www.brunoportoseus.com.br" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          brunoportoseus.com.br
+        </a>
+        <a href="https://wa.me/5541998448989" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          (41) 99844-8989
+        </a>
+        <a href="mailto:bruno@brunoportoseus.com.br">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          bruno@brunoportoseus.com.br
+        </a>
+        <span style="display:flex;align-items:center;gap:.35rem;font-size:.83rem;color:var(--muted)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Curitiba, PR
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DATA ── -->
+  <p class="date-line">Curitiba, <span id="data-hoje"></span></p>
+
+  <!-- ── SAUDAÇÃO ── -->
+  <h1 class="greeting">
+    Apresentação Profissional<br />
+    <span class="grad">Bruno Porto Seus</span>
+  </h1>
+
+  <!-- ── CORPO DA CARTA ── -->
+  <div class="carta">
+
+    <p>
+      É com satisfação que me apresento. Sou <strong>Bruno Porto Seus</strong>, consultor sênior especializado em
+      <strong>E-commerce, Inteligência Artificial e Estratégia Comercial Digital</strong>, com sede em Curitiba, PR.
+    </p>
+
+    <p>
+      Ao longo de <strong>mais de 30 anos</strong> de atuação, dediquei minha carreira a ajudar empresas a modernizar
+      suas operações, estruturar processos de vendas e transformar tecnologia em crescimento real e sustentável.
+      Não trabalho com promessas genéricas: minha proposta é sempre prática, baseada em diagnóstico preciso e
+      execução orientada a resultado.
+    </p>
+
+    <!-- NÚMEROS -->
+    <div class="highlights">
+      <div class="highlight">
+        <strong>+30</strong>
+        <span>anos de experiência em vendas e digital</span>
+      </div>
+      <div class="highlight">
+        <strong>3</strong>
+        <span>décadas conectando negócios e tecnologia</span>
+      </div>
+      <div class="highlight">
+        <strong>17 anos</strong>
+        <span>à frente da Webstorm Soluções Digitais</span>
+      </div>
+    </div>
+
+    <p>
+      Minha trajetória combina gestão comercial B2B, liderança de equipes e operações digitais desde a virada do
+      milênio. Fui um dos primeiros a conduzir catálogos digitais no mercado paranaense (1992–2006), dirigi
+      estrategicamente a <strong>Webstorm Soluções Digitais</strong> por 17 anos (2009–2026) e hoje atuo de forma
+      independente, entregando consultoria sênior a empresas que querem estruturar ou escalar sua operação digital
+      com inteligência e método.
+    </p>
+
+    <!-- FRENTES DE ATUAÇÃO -->
+    <div class="frentes">
+      <h4>Frentes de atuação</h4>
+      <ul>
+        <li>E-commerce — implantação e escala de lojas virtuais</li>
+        <li>CRM e automação comercial de ponta a ponta</li>
+        <li>IA aplicada a vendas, marketing e produtividade</li>
+        <li>Diagnóstico e reestruturação de processos digitais</li>
+        <li>Marketing digital e geração de demanda qualificada</li>
+        <li>Experiência do cliente — do primeiro clique ao pós-venda</li>
+      </ul>
+    </div>
+
+    <p>
+      Trabalho lado a lado com empresários e equipes que desejam <strong>clareza estratégica, ferramentas certas
+      e execução disciplinada</strong>. Meu diferencial está em unir visão de negócio com conhecimento técnico
+      profundo — traduzindo tecnologia em linguagem comercial e decisões em resultado mensurável.
+    </p>
+
+    <p>
+      Coloco-me à disposição para uma conversa sem compromisso. Gosto de entender o contexto de cada empresa antes
+      de propor qualquer caminho — porque a solução certa começa sempre pelo diagnóstico correto.
+    </p>
+
+  </div>
+
+  <!-- ── ASSINATURA ── -->
+  <div class="signature">
+    <p>Atenciosamente,</p>
+    <div class="sig-name">Bruno Porto Seus</div>
+    <div class="sig-role">Consultor Sênior · E-commerce · IA · Estratégia Comercial Digital</div>
+
+    <a
+      href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20li%20sua%20carta%20de%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar."
+      target="_blank"
+      rel="noopener"
+      class="cta-btn"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.136 1.535 5.874L0 24l6.323-1.508A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.944 0-3.752-.535-5.288-1.462l-.378-.224-3.753.896.912-3.653-.246-.394A9.785 9.785 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+      Iniciar conversa pelo WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<script>
+  const d = new Date();
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  document.getElementById('data-hoje').textContent =
+    d.getDate() + ' de ' + meses[d.getMonth()] + ' de ' + d.getFullYear();
+</script>
+
+</body>
+</html>
