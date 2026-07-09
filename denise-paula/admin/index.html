@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Denise de Paula Blog</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0c1c2e;
+      --navy-m:  #132740;
+      --gold:    #b8965a;
+      --gold-d:  #9a7840;
+      --white:   #ffffff;
+      --cream:   #f9f6f1;
+      --border:  #d8cdbf;
+      --muted:   #8a9bb0;
+      --danger:  #c0392b;
+      --success: #27ae60;
+      --font-s:  'Montserrat', sans-serif;
+      --font-e:  'Cormorant Garamond', serif;
+    }
+
+    body {
+      font-family: var(--font-s);
+      font-weight: 300;
+      color: var(--navy);
+      background: #f0ede8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Login ─────────────────────────── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--navy);
+    }
+    .login-box {
+      background: var(--white);
+      padding: 64px 56px;
+      width: 100%;
+      max-width: 440px;
+    }
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .login-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-e); font-size: 20px; color: var(--gold);
+    }
+    .login-name { font-family: var(--font-e); font-size: 18px; color: var(--navy); }
+    .login-tag  { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+
+    .login-title { font-family: var(--font-e); font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 32px; }
+
+    .form-field { margin-bottom: 20px; }
+    .form-field label { display: block; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .form-field input {
+      width: 100%; border: 1px solid var(--border); padding: 14px 16px;
+      font-family: var(--font-s); font-size: 13px; font-weight: 300; color: var(--navy);
+      outline: none; background: var(--cream); transition: border-color .2s;
+    }
+    .form-field input:focus { border-color: var(--gold); }
+
+    .btn {
+      display: inline-block; font-family: var(--font-s); font-size: 10px;
+      font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      padding: 14px 28px; border: none; cursor: pointer; transition: all .2s; text-decoration: none;
+    }
+    .btn-gold { background: var(--gold); color: var(--white); }
+    .btn-gold:hover { background: var(--gold-d); }
+    .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+    .btn-outline:hover { background: var(--gold); color: var(--white); }
+    .btn-danger { background: var(--danger); color: var(--white); }
+    .btn-danger:hover { background: #a93226; }
+    .btn-sm { padding: 9px 18px; font-size: 9px; }
+    .btn-full { width: 100%; text-align: center; }
+
+    .login-err { background: #fdecea; border-left: 3px solid var(--danger); padding: 12px 16px; font-size: 12px; color: var(--danger); margin-bottom: 20px; display: none; }
+
+    /* ── App shell ─────────────────────── */
+    #appShell { display: none; flex: 1; flex-direction: column; }
+
+    .admin-header {
+      background: var(--navy);
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      border-bottom: 1px solid rgba(184,150,90,.2);
+      flex-shrink: 0;
+    }
+    .admin-header-logo { display: flex; align-items: center; gap: 12px; }
+    .admin-header-icon { width: 36px; height: 36px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-e); font-size: 16px; color: var(--gold); }
+    .admin-header-name { font-family: var(--font-e); font-size: 16px; color: var(--white); }
+    .admin-header-tag  { font-size: 8px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    .admin-header-right { display: flex; align-items: center; gap: 16px; }
+    .admin-user { font-size: 11px; color: rgba(255,255,255,.6); }
+    .admin-logout { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; cursor: pointer; }
+    .admin-logout:hover { color: var(--gold); }
+
+    .admin-body { display: flex; flex: 1; min-height: 0; }
+
+    /* ── Sidebar ────────────────────────── */
+    .admin-sidebar {
+      width: 220px; background: var(--white);
+      border-right: 1px solid var(--border); flex-shrink: 0;
+      padding: 32px 0;
+    }
+    .sidebar-section { margin-bottom: 32px; }
+    .sidebar-section-label {
+      font-size: 8px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); padding: 0 24px; margin-bottom: 8px; display: block;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 24px; font-size: 12px; font-weight: 500;
+      color: #5a7090; text-decoration: none; cursor: pointer;
+      transition: all .15s; border-left: 2px solid transparent;
+      background: none; border-top: none; border-right: none; border-bottom: none;
+      width: 100%; text-align: left; font-family: var(--font-s);
+    }
+    .sidebar-link:hover { color: var(--navy); background: var(--cream); }
+    .sidebar-link.active { color: var(--navy); border-left-color: var(--gold); background: var(--cream); font-weight: 600; }
+    .sidebar-icon { font-size: 14px; width: 18px; text-align: center; }
+
+    /* ── Main ───────────────────────────── */
+    .admin-main { flex: 1; overflow-y: auto; padding: 40px 48px; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .page-title { font-family: var(--font-e); font-size: 32px; font-weight: 300; color: var(--navy); }
+    .page-subtitle { font-size: 12px; font-weight: 300; color: var(--muted); margin-top: 4px; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 40px; }
+    .stat-box { background: var(--white); padding: 28px 28px; border-top: 2px solid transparent; }
+    .stat-box.gold { border-top-color: var(--gold); }
+    .stat-box.navy { border-top-color: var(--navy); }
+    .stat-box.green { border-top-color: var(--success); }
+    .stat-box.muted { border-top-color: var(--muted); }
+    .stat-box-num { font-family: var(--font-e); font-size: 40px; font-weight: 300; color: var(--navy); line-height: 1; margin-bottom: 8px; }
+    .stat-box-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* Table */
+    .data-table-wrap { background: var(--white); overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th {
+      background: var(--cream); padding: 14px 20px;
+      font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); text-align: left; border-bottom: 1px solid var(--border);
+    }
+    .data-table td { padding: 16px 20px; font-size: 13px; font-weight: 300; color: var(--navy); border-bottom: 1px solid #f0ece6; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #faf8f4; }
+    .table-actions { display: flex; gap: 8px; }
+
+    .badge {
+      display: inline-block; font-size: 9px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px;
+    }
+    .badge-pub { background: #e8f5e9; color: var(--success); }
+    .badge-draft { background: #fff3e0; color: #e67e22; }
+
+    /* Editor */
+    .editor-grid { display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: start; }
+    .editor-panel { background: var(--white); padding: 36px 36px; }
+    .editor-panel h4 { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .field input, .field select, .field textarea {
+      width: 100%; border: 1px solid var(--border); padding: 13px 16px;
+      font-family: var(--font-s); font-size: 13px; font-weight: 300; color: var(--navy);
+      outline: none; background: var(--cream); resize: vertical; transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
+
+    .editor-area {
+      width: 100%; min-height: 360px;
+      border: 1px solid var(--border); padding: 16px 18px;
+      font-family: var(--font-s); font-size: 13px; font-weight: 300; color: var(--navy);
+      outline: none; background: var(--cream); resize: vertical; line-height: 1.9;
+      transition: border-color .2s;
+    }
+    .editor-area:focus { border-color: var(--gold); }
+
+    .editor-toolbar {
+      display: flex; gap: 4px; flex-wrap: wrap;
+      background: var(--cream); border: 1px solid var(--border); border-bottom: none;
+      padding: 8px 12px;
+    }
+    .tool-btn {
+      width: 32px; height: 32px; background: none; border: 1px solid transparent;
+      cursor: pointer; font-size: 13px; color: var(--navy); display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .tool-btn:hover { background: var(--white); border-color: var(--border); }
+
+    .notification { padding: 14px 18px; font-size: 12px; margin-bottom: 20px; display: none; }
+    .notification.success { background: #e8f5e9; color: var(--success); border-left: 3px solid var(--success); }
+    .notification.error   { background: #fdecea; color: var(--danger);  border-left: 3px solid var(--danger);  }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .admin-sidebar { display: none; }
+      .admin-main { padding: 24px; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .editor-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-icon">DP</div>
+      <div>
+        <div class="login-name">Denise de Paula</div>
+        <div class="login-tag">Área Administrativa</div>
+      </div>
+    </div>
+    <h2 class="login-title">Acesso Restrito</h2>
+    <div class="login-err" id="loginErr">Usuário ou senha inválidos.</div>
+    <form onsubmit="doLogin(event)">
+      <div class="form-field">
+        <label>Usuário</label>
+        <input type="text" id="loginUser" placeholder="admin" autocomplete="username">
+      </div>
+      <div class="form-field">
+        <label>Senha</label>
+        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-gold btn-full" style="margin-top:8px">Entrar →</button>
+    </form>
+    <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center">
+      Credenciais padrão: admin / denise2024
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APP SHELL
+══════════════════════════════════════════ -->
+<div id="appShell" style="display:none;flex-direction:column;min-height:100vh">
+
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="admin-header-logo">
+      <div class="admin-header-icon">DP</div>
+      <div>
+        <div class="admin-header-name">Denise de Paula</div>
+        <div class="admin-header-tag">Painel Administrativo</div>
+      </div>
+    </div>
+    <div class="admin-header-right">
+      <span class="admin-user" id="adminUserLabel">Admin</span>
+      <a href="../index.html" class="admin-logout" style="color:var(--muted);text-decoration:none">Ver Site</a>
+      <button class="admin-logout" onclick="doLogout()">Sair</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-section">
+        <span class="sidebar-section-label">Principal</span>
+        <button class="sidebar-link active" onclick="showPage('dashboard',this)">
+          <span class="sidebar-icon">▣</span> Dashboard
+        </button>
+        <button class="sidebar-link" onclick="showPage('posts',this)">
+          <span class="sidebar-icon">✎</span> Artigos
+        </button>
+        <button class="sidebar-link" onclick="showPage('newpost',this)">
+          <span class="sidebar-icon">+</span> Novo Artigo
+        </button>
+        <button class="sidebar-link" onclick="showPage('categories',this)">
+          <span class="sidebar-icon">◈</span> Categorias
+        </button>
+      </div>
+      <div class="sidebar-section">
+        <span class="sidebar-section-label">Site</span>
+        <button class="sidebar-link" onclick="showPage('leads',this)">
+          <span class="sidebar-icon">◎</span> Leads
+        </button>
+        <button class="sidebar-link" onclick="showPage('settings',this)">
+          <span class="sidebar-icon">⚙</span> Configurações
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="admin-main">
+      <div id="notification" class="notification"></div>
+
+      <!-- ── DASHBOARD ─── -->
+      <div id="page-dashboard" class="page active">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">Visão geral do blog e conteúdo</p>
+          </div>
+          <button class="btn btn-gold btn-sm" onclick="showPage('newpost',document.querySelector('[onclick*=newpost]'))">+ Novo Artigo</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box gold">
+            <div class="stat-box-num" id="statTotal">6</div>
+            <div class="stat-box-label">Total de Artigos</div>
+          </div>
+          <div class="stat-box navy">
+            <div class="stat-box-num" id="statPub">4</div>
+            <div class="stat-box-label">Publicados</div>
+          </div>
+          <div class="stat-box green">
+            <div class="stat-box-num" id="statDraft">2</div>
+            <div class="stat-box-label">Rascunhos</div>
+          </div>
+          <div class="stat-box muted">
+            <div class="stat-box-num" id="statCats">4</div>
+            <div class="stat-box-label">Categorias</div>
+          </div>
+        </div>
+
+        <div class="data-table-wrap">
+          <table class="data-table" id="dashRecentTable"></table>
+        </div>
+      </div>
+
+      <!-- ── POSTS LIST ─── -->
+      <div id="page-posts" class="page">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Artigos</h1>
+            <p class="page-subtitle">Gerencie todos os artigos do blog</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input type="text" id="postSearch" placeholder="Buscar artigos…"
+              style="border:1px solid var(--border);padding:9px 14px;font-family:var(--font-s);font-size:12px;outline:none;background:var(--white);color:var(--navy)"
+              oninput="renderPostsTable()">
+            <button class="btn btn-gold btn-sm" onclick="showPage('newpost',document.querySelector('[onclick*=newpost]'))">+ Novo</button>
+          </div>
+        </div>
+        <div class="data-table-wrap">
+          <table class="data-table" id="postsTable"></table>
+        </div>
+      </div>
+
+      <!-- ── NEW / EDIT POST ─── -->
+      <div id="page-newpost" class="page">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" id="editorPageTitle">Novo Artigo</h1>
+            <p class="page-subtitle">Preencha os campos e salve o artigo</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="cancelEdit()">← Voltar</button>
+        </div>
+
+        <div class="editor-grid">
+          <div>
+            <div class="editor-panel" style="margin-bottom:2px">
+              <h4>Conteúdo</h4>
+              <div class="field">
+                <label>Título do Artigo *</label>
+                <input type="text" id="fTitle" placeholder="Digite o título do artigo…">
+              </div>
+              <div class="field">
+                <label>Resumo (aparece na listagem)</label>
+                <textarea id="fExcerpt" rows="2" placeholder="Breve descrição do artigo…"></textarea>
+              </div>
+              <div class="field">
+                <label>Conteúdo Completo</label>
+                <div class="editor-toolbar">
+                  <button class="tool-btn" title="Negrito" onclick="insertTag('strong')"><b>B</b></button>
+                  <button class="tool-btn" title="Itálico" onclick="insertTag('em')"><i>I</i></button>
+                  <button class="tool-btn" title="H2" onclick="insertTag('h2')">H2</button>
+                  <button class="tool-btn" title="Parágrafo" onclick="insertTag('p')">¶</button>
+                  <button class="tool-btn" title="Link" onclick="insertLink()">🔗</button>
+                  <button class="tool-btn" title="Lista" onclick="insertList()">☰</button>
+                </div>
+                <textarea class="editor-area" id="fContent" placeholder="Escreva o conteúdo completo do artigo aqui. Você pode usar HTML básico."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="editor-panel" style="margin-bottom:2px">
+              <h4>Publicação</h4>
+              <div class="field">
+                <label>Status</label>
+                <select id="fStatus">
+                  <option value="published">Publicado</option>
+                  <option value="draft">Rascunho</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Categoria</label>
+                <select id="fCategory">
+                  <option value="tecnica">Técnica &amp; Arte</option>
+                  <option value="cuidados">Cuidados &amp; Pós-Proc.</option>
+                  <option value="faq">Dúvidas Frequentes</option>
+                  <option value="tendencias">Tendências</option>
+                </select>
+              </div>
+              <input type="hidden" id="fEditId" value="">
+              <button class="btn btn-gold btn-full" onclick="savePost()" style="margin-top:8px">Salvar Artigo</button>
+              <button class="btn btn-outline btn-full" onclick="previewPost()" style="margin-top:8px">Pré-visualizar</button>
+            </div>
+
+            <div class="editor-panel">
+              <h4>SEO &amp; Meta</h4>
+              <div class="field">
+                <label>Slug (URL)</label>
+                <input type="text" id="fSlug" placeholder="meu-artigo-url">
+              </div>
+              <div class="field">
+                <label>Meta Descrição</label>
+                <textarea id="fMeta" rows="3" placeholder="Descrição para motores de busca…"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CATEGORIES ─── -->
+      <div id="page-categories" class="page">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Categorias</h1>
+            <p class="page-subtitle">Organize os artigos por categoria</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+          <div class="data-table-wrap">
+            <table class="data-table" id="catsTable"></table>
+          </div>
+          <div class="editor-panel">
+            <h4>Nova Categoria</h4>
+            <div class="field">
+              <label>Nome da Categoria</label>
+              <input type="text" id="newCatName" placeholder="Ex: Beleza & Saúde">
+            </div>
+            <div class="field">
+              <label>Slug</label>
+              <input type="text" id="newCatSlug" placeholder="beleza-e-saude">
+            </div>
+            <button class="btn btn-gold" onclick="addCategory()">Adicionar Categoria</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LEADS ─── -->
+      <div id="page-leads" class="page">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Leads Capturados</h1>
+            <p class="page-subtitle">Contatos recebidos pelos formulários do site</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="exportLeads()">⬇ Exportar CSV</button>
+        </div>
+        <div class="data-table-wrap">
+          <table class="data-table" id="leadsTable"></table>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:16px">
+          Nota: Os leads são armazenados localmente neste navegador como demonstração. Em produção, integre com seu CRM ou banco de dados.
+        </p>
+      </div>
+
+      <!-- ── SETTINGS ─── -->
+      <div id="page-settings" class="page">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Configurações</h1>
+            <p class="page-subtitle">Configurações do painel administrativo</p>
+          </div>
+        </div>
+        <div class="editor-panel" style="max-width:520px">
+          <h4>Alterar Senha</h4>
+          <div class="field">
+            <label>Senha Atual</label>
+            <input type="password" id="sCurrPass" placeholder="••••••••">
+          </div>
+          <div class="field">
+            <label>Nova Senha</label>
+            <input type="password" id="sNewPass" placeholder="••••••••">
+          </div>
+          <div class="field">
+            <label>Confirmar Nova Senha</label>
+            <input type="password" id="sConfPass" placeholder="••••••••">
+          </div>
+          <button class="btn btn-gold" onclick="changePassword()">Atualizar Senha</button>
+        </div>
+
+        <div class="editor-panel" style="max-width:520px;margin-top:2px">
+          <h4>Links Rápidos</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
+            <a href="../index.html" class="btn btn-outline" style="display:block;text-align:center">Ver Site Principal</a>
+            <a href="../blog.html" class="btn btn-outline" style="display:block;text-align:center">Ver Blog Público</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Preview modal -->
+<div id="previewModal" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(12,28,46,.95);overflow-y:auto;padding:40px 24px">
+  <div style="max-width:760px;margin:0 auto;background:var(--white);padding:60px;position:relative">
+    <button onclick="closePreview()" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy)">✕</button>
+    <div id="previewContent"></div>
+  </div>
+</div>
+
+<script>
+/* ======================================================
+   DATA STORE (localStorage)
+   ====================================================== */
+const STORE = {
+  get(key) { try { return JSON.parse(localStorage.getItem('dp_'+key)) } catch { return null } },
+  set(key, val) { localStorage.setItem('dp_'+key, JSON.stringify(val)) }
+};
+
+// Default posts
+const DEFAULT_POSTS = [
+  { id: 1, title: 'Fio a Fio vs. Sombreado: Qual Técnica é Ideal para Você?', excerpt: 'Entenda as diferenças entre as principais técnicas de micropigmentação de sobrancelhas.', content: '<p>Conteúdo completo do artigo sobre técnicas...</p>', category: 'tecnica', status: 'published', slug: 'fio-a-fio-vs-sombreado' },
+  { id: 2, title: 'Cuidados Essenciais nos 10 Dias Após a Micropigmentação', excerpt: 'O pós-procedimento é determinante para a qualidade e durabilidade do resultado.', content: '<p>Conteúdo sobre cuidados pós-procedimento...</p>', category: 'cuidados', status: 'published', slug: 'cuidados-pos-micropigmentacao' },
+  { id: 3, title: 'Quanto Tempo Dura a Micropigmentação?', excerpt: 'Duração, retoques e fatores que influenciam a permanência do pigmento.', content: '<p>Conteúdo sobre durabilidade...</p>', category: 'faq', status: 'published', slug: 'quanto-tempo-dura' },
+  { id: 4, title: 'As Tendências de Sobrancelhas que Dominam 2024', excerpt: 'Conheça os formatos em alta e como adaptar ao seu rosto.', content: '<p>Conteúdo sobre tendências...</p>', category: 'tendencias', status: 'published', slug: 'tendencias-sobrancelhas-2024' },
+  { id: 5, title: 'Micropigmentação Labial: Aquarela, Contorno ou Efeito Batom?', excerpt: 'Cada técnica labial entrega um resultado distinto.', content: '<p>Conteúdo sobre técnicas labiais...</p>', category: 'tecnica', status: 'draft', slug: 'tecnicas-micropigmentacao-labial' },
+  { id: 6, title: 'Micropigmentação Dói? O Que Esperar Durante o Procedimento', excerpt: 'Resposta honesta sobre a sensação durante o procedimento.', content: '<p>Conteúdo sobre a sensação...</p>', category: 'faq', status: 'draft', slug: 'micropigmentacao-doi' },
+];
+
+const DEFAULT_CATS = [
+  { id: 1, name: 'Técnica & Arte', slug: 'tecnica' },
+  { id: 2, name: 'Cuidados & Pós-Proc.', slug: 'cuidados' },
+  { id: 3, name: 'Dúvidas Frequentes', slug: 'faq' },
+  { id: 4, name: 'Tendências', slug: 'tendencias' },
+];
+
+const DEFAULT_LEADS = [
+  { id: 1, name: 'Ana Cláudia M.', phone: '(41) 99999-0001', service: 'Micropigmentação de Sobrancelhas', ts: '2024-01-15' },
+  { id: 2, name: 'Mariana S.', phone: '(11) 99999-0002', service: 'Micropigmentação Labial', ts: '2024-01-18' },
+  { id: 3, name: 'Fernanda L.', phone: '(41) 99999-0003', service: 'Refazer Sobrancelhas', ts: '2024-01-22' },
+];
+
+function initStore() {
+  if (!STORE.get('posts')) STORE.set('posts', DEFAULT_POSTS);
+  if (!STORE.get('cats'))  STORE.set('cats',  DEFAULT_CATS);
+  if (!STORE.get('leads')) STORE.set('leads', DEFAULT_LEADS);
+  if (!STORE.get('pass'))  STORE.set('pass',  'denise2024');
+}
+
+function getPosts() { return STORE.get('posts') || []; }
+function getCats()  { return STORE.get('cats')  || []; }
+function getLeads() { return STORE.get('leads') || []; }
+
+/* ======================================================
+   AUTH
+   ====================================================== */
+function doLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const stored = STORE.get('pass') || 'denise2024';
+  if (u === 'admin' && p === stored) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appShell').style.display = 'flex';
+    document.getElementById('adminUserLabel').textContent = 'admin';
+    initStore();
+    refreshDashboard();
+    renderPostsTable();
+    renderCatsTable();
+    renderLeadsTable();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  document.getElementById('appShell').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginErr').style.display = 'none';
+}
+
+/* ======================================================
+   PAGE ROUTING
+   ====================================================== */
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id === 'newpost' && !document.getElementById('fEditId').value) {
+    resetEditor();
+  }
+  clearNotification();
+}
+
+/* ======================================================
+   NOTIFICATIONS
+   ====================================================== */
+function showNotification(msg, type='success') {
+  const n = document.getElementById('notification');
+  n.textContent = msg;
+  n.className = 'notification ' + type;
+  n.style.display = 'block';
+  setTimeout(() => n.style.display = 'none', 4000);
+}
+function clearNotification() {
+  document.getElementById('notification').style.display = 'none';
+}
+
+/* ======================================================
+   DASHBOARD
+   ====================================================== */
+function refreshDashboard() {
+  const posts = getPosts();
+  const pub   = posts.filter(p => p.status === 'published').length;
+  const draft = posts.filter(p => p.status === 'draft').length;
+  document.getElementById('statTotal').textContent = posts.length;
+  document.getElementById('statPub').textContent   = pub;
+  document.getElementById('statDraft').textContent = draft;
+  document.getElementById('statCats').textContent  = getCats().length;
+
+  const table = document.getElementById('dashRecentTable');
+  const recent = [...posts].reverse().slice(0, 6);
+  table.innerHTML = `
+    <thead><tr>
+      <th>Título</th><th>Categoria</th><th>Status</th><th>Ações</th>
+    </tr></thead>
+    <tbody>
+      ${recent.map(p => `
+        <tr>
+          <td>${p.title}</td>
+          <td>${catName(p.category)}</td>
+          <td><span class="badge ${p.status==='published'?'badge-pub':'badge-draft'}">${p.status==='published'?'Publicado':'Rascunho'}</span></td>
+          <td><div class="table-actions">
+            <button class="btn btn-outline btn-sm" onclick="editPost(${p.id})">Editar</button>
+          </div></td>
+        </tr>`).join('')}
+    </tbody>`;
+}
+
+/* ======================================================
+   POSTS TABLE
+   ====================================================== */
+function catName(slug) {
+  const c = getCats().find(c => c.slug === slug);
+  return c ? c.name : slug;
+}
+
+function renderPostsTable() {
+  const q = document.getElementById('postSearch')?.value.toLowerCase() || '';
+  const posts = getPosts().filter(p => !q || p.title.toLowerCase().includes(q));
+  const table = document.getElementById('postsTable');
+  if (!table) return;
+  table.innerHTML = `
+    <thead><tr>
+      <th>Título</th><th>Categoria</th><th>Status</th><th>Ações</th>
+    </tr></thead>
+    <tbody>
+      ${posts.length ? posts.map(p => `
+        <tr>
+          <td><strong>${p.title}</strong><br><span style="font-size:11px;color:var(--muted)">${p.slug}</span></td>
+          <td>${catName(p.category)}</td>
+          <td><span class="badge ${p.status==='published'?'badge-pub':'badge-draft'}">${p.status==='published'?'Publicado':'Rascunho'}</span></td>
+          <td><div class="table-actions">
+            <button class="btn btn-outline btn-sm" onclick="editPost(${p.id})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="deletePost(${p.id})">Excluir</button>
+          </div></td>
+        </tr>`).join('') : '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:40px">Nenhum artigo encontrado.</td></tr>'}
+    </tbody>`;
+}
+
+/* ======================================================
+   POST EDITOR
+   ====================================================== */
+let nextId = 100;
+
+function resetEditor() {
+  document.getElementById('fEditId').value = '';
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fExcerpt').value = '';
+  document.getElementById('fContent').value = '';
+  document.getElementById('fStatus').value = 'published';
+  document.getElementById('fCategory').value = 'tecnica';
+  document.getElementById('fSlug').value = '';
+  document.getElementById('fMeta').value = '';
+  document.getElementById('editorPageTitle').textContent = 'Novo Artigo';
+}
+
+function editPost(id) {
+  const post = getPosts().find(p => p.id === id);
+  if (!post) return;
+  document.getElementById('fEditId').value = id;
+  document.getElementById('fTitle').value = post.title;
+  document.getElementById('fExcerpt').value = post.excerpt || '';
+  document.getElementById('fContent').value = post.content || '';
+  document.getElementById('fStatus').value = post.status;
+  document.getElementById('fCategory').value = post.category;
+  document.getElementById('fSlug').value = post.slug || '';
+  document.getElementById('fMeta').value = post.meta || '';
+  document.getElementById('editorPageTitle').textContent = 'Editar Artigo';
+  showPage('newpost', document.querySelector('[onclick*=newpost]'));
+}
+
+function cancelEdit() {
+  resetEditor();
+  showPage('posts', document.querySelector('[onclick*="\'posts\'"]'));
+}
+
+function slugify(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-').trim();
+}
+
+document.getElementById('fTitle')?.addEventListener('input', function() {
+  const slug = document.getElementById('fSlug');
+  if (!slug.value || slug.dataset.auto !== 'false') {
+    slug.value = slugify(this.value);
+    slug.dataset.auto = 'true';
+  }
+});
+document.getElementById('fSlug')?.addEventListener('input', function() {
+  this.dataset.auto = 'false';
+});
+
+function savePost() {
+  const title = document.getElementById('fTitle').value.trim();
+  if (!title) { showNotification('O título é obrigatório.', 'error'); return; }
+
+  const posts  = getPosts();
+  const editId = parseInt(document.getElementById('fEditId').value) || null;
+
+  const data = {
+    title,
+    excerpt: document.getElementById('fExcerpt').value.trim(),
+    content: document.getElementById('fContent').value.trim(),
+    status:  document.getElementById('fStatus').value,
+    category:document.getElementById('fCategory').value,
+    slug:    document.getElementById('fSlug').value.trim() || slugify(title),
+    meta:    document.getElementById('fMeta').value.trim(),
+  };
+
+  if (editId) {
+    const idx = posts.findIndex(p => p.id === editId);
+    if (idx > -1) { posts[idx] = { ...posts[idx], ...data }; }
+  } else {
+    data.id = ++nextId;
+    posts.push(data);
+  }
+
+  STORE.set('posts', posts);
+  refreshDashboard();
+  renderPostsTable();
+  showNotification(editId ? 'Artigo atualizado com sucesso!' : 'Artigo criado com sucesso!');
+  resetEditor();
+  showPage('posts', document.querySelector('[onclick*="\'posts\'"]'));
+}
+
+function deletePost(id) {
+  if (!confirm('Deseja excluir este artigo permanentemente?')) return;
+  const posts = getPosts().filter(p => p.id !== id);
+  STORE.set('posts', posts);
+  refreshDashboard();
+  renderPostsTable();
+  showNotification('Artigo excluído.');
+}
+
+function previewPost() {
+  const title   = document.getElementById('fTitle').value || 'Sem título';
+  const content = document.getElementById('fContent').value || '';
+  const cat     = document.getElementById('fCategory');
+  const catText = cat.options[cat.selectedIndex]?.text || '';
+  document.getElementById('previewContent').innerHTML = `
+    <span style="font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#b8965a;display:block;margin-bottom:16px">${catText}</span>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,38px);font-weight:300;color:#0c1c2e;line-height:1.2;margin-bottom:28px">${title}</h1>
+    <div style="width:40px;height:1px;background:#b8965a;margin-bottom:36px"></div>
+    <div style="font-size:15px;font-weight:300;color:#3a5070;line-height:2">${content}</div>
+  `;
+  document.getElementById('previewModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePreview() {
+  document.getElementById('previewModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* ======================================================
+   EDITOR TOOLBAR
+   ====================================================== */
+function insertTag(tag) {
+  const ta = document.getElementById('fContent');
+  const s = ta.selectionStart, e = ta.selectionEnd;
+  const sel = ta.value.substring(s, e) || 'texto';
+  const ins = `<${tag}>${sel}</${tag}>`;
+  ta.value = ta.value.substring(0, s) + ins + ta.value.substring(e);
+  ta.focus();
+}
+
+function insertLink() {
+  const url = prompt('URL do link:');
+  if (!url) return;
+  const ta = document.getElementById('fContent');
+  const s = ta.selectionStart, e = ta.selectionEnd;
+  const text = ta.value.substring(s, e) || 'clique aqui';
+  const ins = `<a href="${url}">${text}</a>`;
+  ta.value = ta.value.substring(0, s) + ins + ta.value.substring(e);
+}
+
+function insertList() {
+  const ta = document.getElementById('fContent');
+  const ins = '\n<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n  <li>Item 3</li>\n</ul>\n';
+  const s = ta.selectionStart;
+  ta.value = ta.value.substring(0, s) + ins + ta.value.substring(s);
+}
+
+/* ======================================================
+   CATEGORIES
+   ====================================================== */
+function renderCatsTable() {
+  const cats  = getCats();
+  const posts = getPosts();
+  const table = document.getElementById('catsTable');
+  if (!table) return;
+  table.innerHTML = `
+    <thead><tr><th>Nome</th><th>Slug</th><th>Artigos</th><th>Ações</th></tr></thead>
+    <tbody>
+      ${cats.map(c => `<tr>
+        <td><strong>${c.name}</strong></td>
+        <td><code style="font-size:11px;background:var(--cream);padding:2px 6px">${c.slug}</code></td>
+        <td>${posts.filter(p => p.category === c.slug).length}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteCat(${c.id})">Excluir</button></td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+function addCategory() {
+  const name = document.getElementById('newCatName').value.trim();
+  const slug = document.getElementById('newCatSlug').value.trim() || slugify(name);
+  if (!name) { showNotification('Nome da categoria é obrigatório.', 'error'); return; }
+  const cats = getCats();
+  if (cats.some(c => c.slug === slug)) { showNotification('Já existe uma categoria com este slug.', 'error'); return; }
+  cats.push({ id: Date.now(), name, slug });
+  STORE.set('cats', cats);
+  document.getElementById('newCatName').value = '';
+  document.getElementById('newCatSlug').value = '';
+  renderCatsTable();
+  refreshDashboard();
+  showNotification('Categoria criada com sucesso!');
+  // update editor select
+  const sel = document.getElementById('fCategory');
+  const opt = document.createElement('option');
+  opt.value = slug; opt.textContent = name;
+  sel.appendChild(opt);
+}
+
+function deleteCat(id) {
+  if (!confirm('Excluir esta categoria?')) return;
+  const cats = getCats().filter(c => c.id !== id);
+  STORE.set('cats', cats);
+  renderCatsTable();
+  refreshDashboard();
+  showNotification('Categoria excluída.');
+}
+
+/* ======================================================
+   LEADS
+   ====================================================== */
+function renderLeadsTable() {
+  const leads = getLeads();
+  const table = document.getElementById('leadsTable');
+  if (!table) return;
+  table.innerHTML = `
+    <thead><tr><th>#</th><th>Nome</th><th>WhatsApp</th><th>Serviço</th><th>Data</th><th>Ação</th></tr></thead>
+    <tbody>
+      ${leads.length ? leads.map(l => `<tr>
+        <td>${l.id}</td>
+        <td>${l.name}</td>
+        <td><a href="https://wa.me/55${l.phone.replace(/\D/g,'')}" target="_blank" style="color:var(--gold)">${l.phone}</a></td>
+        <td>${l.service}</td>
+        <td>${l.ts}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteLead(${l.id})">✕</button></td>
+      </tr>`).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:40px">Nenhum lead ainda.</td></tr>'}
+    </tbody>`;
+}
+
+function deleteLead(id) {
+  if (!confirm('Remover este lead?')) return;
+  const leads = getLeads().filter(l => l.id !== id);
+  STORE.set('leads', leads);
+  renderLeadsTable();
+}
+
+function exportLeads() {
+  const leads = getLeads();
+  if (!leads.length) { showNotification('Nenhum lead para exportar.', 'error'); return; }
+  const header = 'ID,Nome,WhatsApp,Serviço,Data\n';
+  const rows   = leads.map(l => `${l.id},"${l.name}","${l.phone}","${l.service}","${l.ts}"`).join('\n');
+  const blob   = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'leads-denise-paula.csv';
+  a.click();
+}
+
+/* ======================================================
+   SETTINGS
+   ====================================================== */
+function changePassword() {
+  const curr = document.getElementById('sCurrPass').value;
+  const newp = document.getElementById('sNewPass').value;
+  const conf = document.getElementById('sConfPass').value;
+  const stored = STORE.get('pass') || 'denise2024';
+  if (curr !== stored) { showNotification('Senha atual incorreta.', 'error'); return; }
+  if (!newp || newp.length < 6) { showNotification('A nova senha deve ter pelo menos 6 caracteres.', 'error'); return; }
+  if (newp !== conf) { showNotification('As senhas não coincidem.', 'error'); return; }
+  STORE.set('pass', newp);
+  document.getElementById('sCurrPass').value = '';
+  document.getElementById('sNewPass').value  = '';
+  document.getElementById('sConfPass').value = '';
+  showNotification('Senha alterada com sucesso!');
+}
+
+/* ======================================================
+   INIT
+   ====================================================== */
+initStore();
+// Auto-login for demo if already visited (optional — remove for production)
+// doLogin({ preventDefault: ()=>{} }); // uncomment to skip login
+</script>
+</body>
+</html>
