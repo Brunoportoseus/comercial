@@ -70,6 +70,9 @@ jobs:
 
   deploy:
     needs: build
+    # O environment github-pages só permite deploy a partir da branch default.
+    # Em branches de PR (claude/**) o build valida; o deploy roda só na main.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
