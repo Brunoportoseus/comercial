@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Tirar a operação da cabeça do dono">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1829"/>
+      <stop offset="1" stop-color="#122035"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="0" y="0" width="10" height="630" fill="#13BDA8"/>
+  <g transform="translate(820,120)">
+    <rect x="60"  y="70"  width="70"  height="70"  rx="4" fill="#16A6B8"/>
+    <rect x="145" y="30"  width="76"  height="110" rx="4" fill="#FFFFFF" opacity="0.92"/>
+    <rect x="60"  y="155" width="46"  height="66"  rx="4" fill="#FFFFFF" opacity="0.92"/>
+    <rect x="118" y="155" width="32"  height="30"  rx="4" fill="#16A6B8"/>
+    <rect x="118" y="192" width="32"  height="29"  rx="4" fill="#7C93AC"/>
+    <rect x="162" y="155" width="59"  height="66"  rx="4" fill="#16A6B8"/>
+  </g>
+  <text x="90" y="300" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="4" fill="#13BDA8">PROCESSOS</text>
+  <text x="86" y="390" font-family="'Segoe UI', Arial, sans-serif" font-size="80" font-weight="800" fill="#FFFFFF">Tirar a operação</text>
+  <text x="86" y="478" font-family="'Segoe UI', Arial, sans-serif" font-size="80" font-weight="800" fill="#FFFFFF">da cabeça do dono</text>
+  <text x="90" y="558" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="600" fill="#8896A9">Porto &amp; Feiges</text>
+</svg>
