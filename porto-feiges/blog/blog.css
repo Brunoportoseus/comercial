@@ -169,6 +169,14 @@ h1,h2,h3 { font-family: 'DM Serif Display', Georgia, serif; text-wrap: balance; 
   transition: border-color .2s, transform .2s;
 }
 .post-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+.post-cover {
+  width: calc(100% + 3.2rem);
+  margin: -1.6rem -1.6rem .35rem;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  display: block;
+}
 .post-chips { display: flex; gap: .4rem; flex-wrap: wrap; }
 .chip {
   display: inline-block;

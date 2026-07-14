@@ -139,6 +139,7 @@ function slugify(s) {
 
 async function listPosts(request, env, url) {
   if (!env.DB) return json({ posts: [] });
+  await ensureSeeded(env); // carrega as matérias iniciais na primeira visita
   const all = url.searchParams.get("all") === "1" && (await isAuthed(request, env));
   const where = all ? "" : "WHERE published = 1";
   const { results } = await env.DB.prepare(
@@ -340,17 +341,24 @@ ${FOOTER}
 
 /* ───────────────────────── Seed ───────────────────────── */
 
-async function seedPosts(env) {
-  if (!env.DB) return json({ error: "sem_banco" }, 500);
+// Insere as matérias iniciais se a tabela estiver vazia. Idempotente e sem auth.
+// Retorna quantas foram inseridas (0 se já havia conteúdo).
+async function ensureSeeded(env) {
+  if (!env.DB) return 0;
   const count = await env.DB.prepare(`SELECT COUNT(*) AS n FROM posts`).first();
-  if (count && count.n > 0) return json({ ok: true, skipped: true, existentes: count.n });
-
+  if (count && count.n > 0) return 0;
   for (const post of SEED) {
     await env.DB.prepare(
-      `INSERT INTO posts (slug, title, deck, tags, content, published) VALUES (?, ?, ?, ?, ?, 1)`
-    ).bind(post.slug, post.title, post.deck, post.tags, post.content).run();
+      `INSERT INTO posts (slug, title, deck, tags, cover, content, published) VALUES (?, ?, ?, ?, ?, ?, 1)`
+    ).bind(post.slug, post.title, post.deck, post.tags, post.cover || "", post.content).run();
   }
-  return json({ ok: true, inseridos: SEED.length });
+  return SEED.length;
+}
+
+async function seedPosts(env) {
+  if (!env.DB) return json({ error: "sem_banco" }, 500);
+  const inserted = await ensureSeeded(env);
+  return json({ ok: true, inseridos: inserted, skipped: inserted === 0 });
 }
 
 const SEED = [
@@ -359,6 +367,7 @@ const SEED = [
     title: "Do improviso ao sistema: o que muda na prática",
     deck: "Não é sobre tecnologia nem sobre contratar mais gente. É sobre instalar a lógica que faz a operação se repetir sem o dono no centro de tudo.",
     tags: "método",
+    cover: "/assets/blog/do-improviso.svg",
     content: `
 <p>A maioria das PMEs que atendemos cresceu com o dono na linha de frente. Ele vende, ele decide, ele resolve. É uma força enorme no começo — e um teto invisível depois.</p>
 <p>Quando o negócio depende de uma pessoa para funcionar, ele não cresce além dessa pessoa. Ela pode trabalhar mais horas, mas o limite é físico. A alternativa não é contratar mais gente: é mudar como as coisas são feitas.</p>
@@ -383,6 +392,7 @@ const SEED = [
     title: "CRM que funciona para PME: o que importa antes de escolher a ferramenta",
     deck: "A maioria das implementações de CRM falha antes de começar. O erro não é de sistema — é de processo. O que resolver primeiro.",
     tags: "crm,vendas",
+    cover: "/assets/blog/crm.svg",
     content: `
 <p>Toda semana alguém nos procura com a mesma história: "A gente tentou implementar CRM. Ficou seis meses, a equipe odiou, abandonamos. Qual sistema você recomenda?"</p>
 <p>A resposta que ninguém quer ouvir: o problema provavelmente não era o sistema.</p>
@@ -411,6 +421,7 @@ const SEED = [
     title: "Por que tráfego pago não funciona sem a base comercial pronta",
     deck: "Você não tem problema de tráfego. Você tem problema de conversão. Jogar dinheiro em anúncio em cima de funil quebrado só acelera o prejuízo.",
     tags: "tráfego,vendas",
+    cover: "/assets/blog/trafego.svg",
     content: `
 <p>É o diagnóstico que mais repetimos: empresa reclamando que "tráfego não funciona" quando o problema está na conversão, não na aquisição.</p>
 <p>Você paga para trazer uma pessoa até a sua loja, site ou WhatsApp. E aí, o que acontece? Se o que acontece é fraco, contratar mais tráfego só escala o problema.</p>
