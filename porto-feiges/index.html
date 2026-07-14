@@ -17,6 +17,8 @@
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <link rel="icon" href="/assets/favicon.svg" />
+
   <!-- Schema.org Organization -->
   <script type="application/ld+json">
   {
@@ -136,16 +138,9 @@
       height: 64px;
     }
     .nav-brand {
-      display: flex; align-items: baseline; gap: .25rem;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.1rem;
-      color: #fff;
-      letter-spacing: -.01em;
+      display: flex; align-items: center;
     }
-    .nav-brand em {
-      font-style: italic;
-      color: var(--teal-light);
-    }
+    .nav-brand img { height: 28px; width: auto; display: block; }
     .nav-links {
       display: flex; align-items: center; gap: 2rem;
     }
@@ -828,7 +823,7 @@
   <!-- ─── NAV ─── -->
   <nav class="nav" aria-label="Navegação principal">
     <div class="wrap nav-inner">
-      <a href="/" class="nav-brand">Porto <em>&</em> Feiges</a>
+      <a href="/" class="nav-brand"><img src="/assets/logo.svg" alt="Porto & Feiges" /></a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <line x1="4" y1="6" x2="20" y2="6" id="ham-top"/>

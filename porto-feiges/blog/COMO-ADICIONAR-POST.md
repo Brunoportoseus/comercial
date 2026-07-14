@@ -1,52 +1,35 @@
-# Como adicionar um post ao blog
+# Como publicar matérias
 
-## Estrutura de um post
+As matérias agora são gerenciadas pelo **painel Admin** — não é mais preciso editar arquivos nem fazer commit.
 
-1. Crie uma pasta em `blog/posts/nome-do-post/`
-2. Crie o arquivo `index.html` dentro dela
-3. Use qualquer post existente como template (copie e edite)
+## Acesso
 
-## Campos para ajustar em cada post
+1. Acesse `https://portoefeiges.com.br/admin/`
+2. Digite a senha de acesso (definida em `ADMIN_PASSWORD` — ver `SETUP-ADMIN.md`)
 
-- `<title>` — título da aba do navegador
-- `<meta name="description">` — aparece no Google e no link do WhatsApp
-- `<meta property="og:title">` e `og:description` — preview do link
-- `<meta property="og:url">` — URL completa do post
-- Chips no `data-tags` do card em `blog/index.html` (ex: `data-tags="crm vendas"`)
-- Conteúdo do artigo dentro de `.post-content`
+## Publicar uma matéria
 
-## Tags disponíveis
+1. Clique em **+ Nova matéria**
+2. Preencha:
+   - **Título** — obrigatório
+   - **URL (slug)** — deixe em branco para gerar automaticamente do título
+   - **Tags** — separadas por vírgula (ex: `método, vendas`). Viram os filtros do blog.
+   - **Resumo** — 1-2 frases; aparece no card e no preview do WhatsApp
+   - **Imagem de capa** — opcional
+   - **Conteúdo** — use os botões da barra (H2, H3, parágrafo, citação, lista, imagem)
+3. Deixe **Publicado** marcado (ou desmarque para salvar como rascunho)
+4. Clique em **Salvar**
 
-`método` · `crm` · `tráfego` · `vendas` · `automação`
+A matéria fica no ar na hora, em `/blog/posts/<slug>/`.
 
-Para adicionar uma nova tag: adicione o botão em `blog/index.html` no bloco `.filter-row`.
+## Imagens
 
-## Adicionar o card na listagem
+- **Capa:** botão "Enviar capa" no editor
+- **No meio do texto:** botão "Inserir imagem" na barra do conteúdo — a imagem é enviada e inserida onde está o cursor
 
-Abra `blog/index.html` e adicione um bloco `.post-card` dentro de `#postsGrid`:
+As imagens ficam armazenadas no bucket R2 e são servidas por `/api/images/...`.
 
-```html
-<a href="/blog/posts/nome-do-post/" class="post-card" data-tags="tag1 tag2">
-  <div class="post-chips">
-    <span class="chip">Tag</span>
-  </div>
-  <h2>Título do post</h2>
-  <p>Resumo em 1-2 frases.</p>
-  <span class="post-cta">Ler <svg ...></svg></span>
-</a>
-```
+## Importante
 
-## Regras de conteúdo (briefing)
-
-- Sem data de publicação — os posts são conteúdo perene
-- Tom: sênior, direto, sem jargão de agência
-- Cada post termina com CTA para WhatsApp
-- Posts relacionados: apontar para 2 outros posts no bloco `.related-posts`
-- Nunca prometer resultado que não pode provar
-
-## Número do WhatsApp
-
-Substituir `5541999999999` pelo número real do Bruno em:
-- `index.html` (2 ocorrências)
-- `blog/index.html` (1 ocorrência)
-- Cada post (1 ocorrência cada)
+- **Sem data de publicação** — conforme o briefing, as matérias não exibem data (são conteúdo perene). A ordem na listagem segue a data de criação, mas ela não aparece no site.
+- **Editar/Excluir:** na lista do admin, clique em **Editar**; o botão de excluir fica dentro do editor.

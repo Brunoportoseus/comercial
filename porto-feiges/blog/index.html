@@ -9,6 +9,7 @@
   <meta property="og:description" content="Ideias práticas para PMEs venderem mais. Do improviso ao sistema." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://portoefeiges.com.br/blog/" />
+  <link rel="icon" href="/assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -18,7 +19,7 @@
 
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a href="/" class="nav-brand">Porto <em>&</em> Feiges</a>
+      <a href="/" class="nav-brand"><img src="/assets/logo.svg" alt="Porto & Feiges" /></a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
@@ -48,47 +49,11 @@
 
   <section class="posts-section">
     <div class="wrap">
-
-      <div class="filter-row">
+      <div class="filter-row" id="filterRow">
         <button class="filter-btn active" data-tag="all">Todos</button>
-        <button class="filter-btn" data-tag="método">Método</button>
-        <button class="filter-btn" data-tag="crm">CRM</button>
-        <button class="filter-btn" data-tag="tráfego">Tráfego</button>
-        <button class="filter-btn" data-tag="vendas">Vendas</button>
-        <button class="filter-btn" data-tag="automação">Automação</button>
       </div>
-
       <div class="posts-grid" id="postsGrid">
-
-        <a href="/blog/posts/do-improviso-ao-sistema/" class="post-card" data-tags="método">
-          <div class="post-chips">
-            <span class="chip">Método</span>
-          </div>
-          <h2>Do improviso ao sistema: o que muda na prática</h2>
-          <p>Não é sobre tecnologia nem sobre contratar mais gente. É sobre instalar a lógica que faz a operação se repetir sem o dono no centro de tudo.</p>
-          <span class="post-cta">Ler <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="/blog/posts/crm-que-funciona/" class="post-card" data-tags="crm vendas">
-          <div class="post-chips">
-            <span class="chip">CRM</span>
-            <span class="chip">Vendas</span>
-          </div>
-          <h2>CRM que funciona para PME: o que importa antes de escolher a ferramenta</h2>
-          <p>A maioria das implementações de CRM falha antes de começar. O erro não é de sistema — é de processo. O que resolver primeiro.</p>
-          <span class="post-cta">Ler <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="/blog/posts/trafego-pago-sem-base/" class="post-card" data-tags="tráfego vendas">
-          <div class="post-chips">
-            <span class="chip">Tráfego</span>
-            <span class="chip">Vendas</span>
-          </div>
-          <h2>Por que tráfego pago não funciona sem a base comercial pronta</h2>
-          <p>Você não tem problema de tráfego. Você tem problema de conversão. Jogar dinheiro em anúncio em cima de funil quebrado só acelera o prejuízo.</p>
-          <span class="post-cta">Ler <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
+        <div class="empty-state" id="loading">Carregando matérias…</div>
       </div>
     </div>
   </section>
@@ -118,20 +83,54 @@
       navToggle.setAttribute('aria-expanded', open);
     });
 
-    // Tag filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.post-card');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const tag = btn.dataset.tag;
-        cards.forEach(card => {
-          const tags = card.dataset.tags || '';
-          card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+    const ARROW = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    function esc(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+    let allPosts = [];
+
+    function cardHtml(p){
+      const tags = (p.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+      const chips = tags.map(t=>`<span class="chip">${esc(cap(t))}</span>`).join('');
+      return `<a href="/blog/posts/${encodeURIComponent(p.slug)}/" class="post-card" data-tags="${esc(tags.join(' '))}">
+        <div class="post-chips">${chips}</div>
+        <h2>${esc(p.title)}</h2>
+        <p>${esc(p.deck||'')}</p>
+        <span class="post-cta">Ler ${ARROW}</span>
+      </a>`;
+    }
+
+    function render(tag){
+      const grid = document.getElementById('postsGrid');
+      const posts = tag && tag!=='all'
+        ? allPosts.filter(p => (p.tags||'').split(',').map(x=>x.trim()).includes(tag))
+        : allPosts;
+      if (!posts.length){ grid.innerHTML = '<div class="empty-state">Nenhuma matéria por aqui ainda.</div>'; return; }
+      grid.innerHTML = posts.map(cardHtml).join('');
+    }
+
+    function buildFilters(){
+      const tags = new Set();
+      allPosts.forEach(p => (p.tags||'').split(',').map(t=>t.trim()).filter(Boolean).forEach(t=>tags.add(t)));
+      const row = document.getElementById('filterRow');
+      [...tags].sort().forEach(t => {
+        const b = document.createElement('button');
+        b.className = 'filter-btn'; b.dataset.tag = t; b.textContent = cap(t);
+        row.appendChild(b);
+      });
+      row.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          row.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+          btn.classList.add('active');
+          render(btn.dataset.tag);
         });
       });
-    });
+    }
+
+    fetch('/api/posts')
+      .then(r => r.json())
+      .then(d => { allPosts = d.posts || []; buildFilters(); render('all'); })
+      .catch(() => { document.getElementById('postsGrid').innerHTML = '<div class="empty-state">Não foi possível carregar as matérias.</div>'; });
   </script>
 </body>
 </html>
