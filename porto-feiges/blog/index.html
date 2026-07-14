@@ -92,7 +92,9 @@
     function cardHtml(p){
       const tags = (p.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
       const chips = tags.map(t=>`<span class="chip">${esc(cap(t))}</span>`).join('');
+      const cover = p.cover ? `<img class="post-cover" src="${esc(p.cover)}" alt="" loading="lazy" />` : '';
       return `<a href="/blog/posts/${encodeURIComponent(p.slug)}/" class="post-card" data-tags="${esc(tags.join(' '))}">
+        ${cover}
         <div class="post-chips">${chips}</div>
         <h2>${esc(p.title)}</h2>
         <p>${esc(p.deck||'')}</p>
