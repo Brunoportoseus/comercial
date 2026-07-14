@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "porto-feiges",
+  "compatibility_date": "2026-06-09",
+  "main": "./_worker.js",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "porto-feiges",
+      "database_id": "768fbabc-84d7-495b-9c48-1e934c0a3efc"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMAGES",
+      "bucket_name": "porto-feiges-images"
+    }
+  ]
+  // Secrets (configurar via `wrangler secret put` ou no painel Cloudflare):
+  //   ADMIN_PASSWORD  — senha de acesso ao /admin
+  //   AUTH_SECRET     — string aleatória longa para assinar o cookie de sessão
+}

@@ -1,0 +1,51 @@
+# Deploy do site Porto & Feiges para Cloudflare Workers (Workers + D1 + R2).
+#
+# Este site NÃO roda no GitHub Pages: ele depende do _worker.js (API do admin,
+# SSR do blog, upload de imagens), que só executa em Cloudflare Workers.
+#
+# Pré-requisitos (uma vez):
+#   1. Preencher `database_id` em porto-feiges/wrangler.jsonc (ver SETUP-ADMIN.md)
+#   2. Criar o bucket R2 e o D1, e rodar o schema.sql
+#   3. Definir os secrets do repositório (Settings → Secrets and variables → Actions):
+#        CLOUDFLARE_API_TOKEN   — token com permissão de editar Workers/D1/R2
+#        CLOUDFLARE_ACCOUNT_ID  — id da conta Cloudflare
+#      E os secrets do Worker (feito via wrangler, não aqui):
+#        ADMIN_PASSWORD, AUTH_SECRET  (ver SETUP-ADMIN.md)
+#
+# Enquanto CLOUDFLARE_API_TOKEN não existir, o passo de deploy é pulado e o
+# workflow permanece verde — serve como scaffold até você habilitar.
+#
+# Alternativa recomendada: conectar o projeto no painel Cloudflare (Workers
+# Builds / integração com o GitHub), como já é feito para o bruno-porto. Nesse
+# caso este workflow é dispensável.
+
+name: Deploy Porto & Feiges (Cloudflare)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "porto-feiges/**"
+      - ".github/workflows/deploy-porto-feiges.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Aviso quando o token não está configurado
+        if: env.CF_TOKEN == ''
+        run: echo "CLOUDFLARE_API_TOKEN não configurado — pulando deploy. Veja porto-feiges/SETUP-ADMIN.md."
+
+      - name: Deploy via Wrangler
+        if: env.CF_TOKEN != ''
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: porto-feiges
+          command: deploy

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — Porto & Feiges</title>
+  <link rel="icon" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:#0B1829; --navy-mid:#122035; --navy-soft:#1B2E48;
+      --teal:#0A9B87; --teal-light:#13BDA8; --teal-dim:rgba(10,155,135,.15);
+      --ink:#EEF2F7; --muted:#8896A9; --line:rgba(255,255,255,.10);
+      --danger:#E05252; --radius:8px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--navy); color:var(--ink);
+      line-height:1.6; -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3 { font-family:'DM Serif Display',Georgia,serif; font-weight:400; }
+    a { color:var(--teal-light); text-decoration:none; }
+    input, textarea, select, button { font-family:inherit; font-size:.95rem; }
+    .hidden { display:none !important; }
+
+    /* ─ Topbar ─ */
+    .topbar {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 1.5rem; border-bottom:1px solid var(--line);
+      background:var(--navy-mid); position:sticky; top:0; z-index:10;
+    }
+    .topbar .brand { display:flex; align-items:center; gap:.6rem; font-family:'DM Serif Display',serif; font-size:1.1rem; }
+    .topbar .brand span { color:var(--teal-light); }
+    .topbar-actions { display:flex; gap:.75rem; align-items:center; }
+    .btn {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:var(--teal); color:#fff; border:none; cursor:pointer;
+      padding:.55rem 1.1rem; border-radius:var(--radius); font-weight:600;
+      transition:background .2s, transform .1s;
+    }
+    .btn:hover { background:var(--teal-light); }
+    .btn:active { transform:translateY(1px); }
+    .btn.ghost { background:transparent; border:1px solid var(--line); color:var(--muted); }
+    .btn.ghost:hover { color:var(--ink); border-color:var(--teal); }
+    .btn.danger { background:transparent; border:1px solid var(--danger); color:var(--danger); }
+    .btn.danger:hover { background:var(--danger); color:#fff; }
+    .btn.sm { padding:.35rem .8rem; font-size:.82rem; }
+
+    .wrap { max-width:960px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+
+    /* ─ Login ─ */
+    .login-screen {
+      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1.5rem;
+    }
+    .login-card {
+      width:100%; max-width:380px; background:var(--navy-mid);
+      border:1px solid var(--line); border-radius:12px; padding:2.25rem;
+    }
+    .login-card h1 { font-size:1.6rem; margin-bottom:.35rem; }
+    .login-card p { color:var(--muted); font-size:.9rem; margin-bottom:1.5rem; }
+    .field { display:flex; flex-direction:column; gap:.35rem; margin-bottom:1rem; }
+    .field label { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+    .field input, .field textarea, .field select {
+      background:var(--navy); border:1.5px solid var(--line); color:var(--ink);
+      padding:.7rem .85rem; border-radius:var(--radius); width:100%;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { outline:none; border-color:var(--teal); }
+    .msg { font-size:.85rem; margin-top:.5rem; min-height:1.2em; }
+    .msg.err { color:var(--danger); }
+    .msg.ok { color:var(--teal-light); }
+
+    /* ─ Lista de posts ─ */
+    .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+    .section-head h2 { font-size:1.5rem; }
+    .post-list { display:flex; flex-direction:column; gap:.75rem; }
+    .post-row {
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      background:var(--navy-mid); border:1px solid var(--line); border-radius:var(--radius);
+      padding:1rem 1.25rem;
+    }
+    .post-row-main { min-width:0; }
+    .post-row-main h3 { font-family:'Inter',sans-serif; font-size:.95rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .post-row-meta { display:flex; gap:.5rem; align-items:center; margin-top:.3rem; flex-wrap:wrap; }
+    .tag { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; background:var(--teal-dim); color:var(--teal-light); padding:.15rem .5rem; border-radius:100px; }
+    .badge-draft { font-size:.68rem; font-weight:700; text-transform:uppercase; color:#E0A052; border:1px solid #E0A052; padding:.1rem .45rem; border-radius:100px; }
+    .post-row-actions { display:flex; gap:.5rem; flex-shrink:0; }
+    .empty { text-align:center; color:var(--muted); padding:3rem 1rem; border:1px dashed var(--line); border-radius:12px; }
+
+    /* ─ Editor ─ */
+    .editor-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.5rem; }
+    .toolbar button {
+      background:var(--navy); border:1px solid var(--line); color:var(--muted);
+      padding:.3rem .6rem; border-radius:6px; cursor:pointer; font-size:.78rem; font-weight:600;
+    }
+    .toolbar button:hover { color:var(--ink); border-color:var(--teal); }
+    #content { min-height:320px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.85rem; line-height:1.6; resize:vertical; }
+    .row2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media (max-width:600px){ .row2 { grid-template-columns:1fr; } }
+    .cover-preview { margin-top:.5rem; }
+    .cover-preview img { max-height:140px; border-radius:var(--radius); border:1px solid var(--line); }
+    .switch { display:flex; align-items:center; gap:.5rem; }
+    .switch input { width:auto; }
+    .preview-pane {
+      background:#fff; color:#111827; border-radius:var(--radius); padding:1.5rem; margin-top:.5rem;
+      max-height:420px; overflow:auto;
+    }
+    .preview-pane h2 { font-family:'DM Serif Display',serif; color:#111827; font-size:1.4rem; margin:1.2rem 0 .5rem; }
+    .preview-pane h3 { font-family:'Inter',sans-serif; font-weight:700; font-size:1rem; margin:1rem 0 .35rem; }
+    .preview-pane p { margin-bottom:.8rem; color:#2D3748; }
+    .preview-pane blockquote { border-left:3px solid var(--teal); padding:.5rem 1rem; margin:1rem 0; background:var(--teal-dim); font-style:italic; }
+    .preview-pane ul,.preview-pane ol { margin:.5rem 0 .8rem 1.25rem; }
+    .preview-pane img { max-width:100%; border-radius:6px; }
+    .hint { font-size:.78rem; color:var(--muted); }
+    .toast {
+      position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%);
+      background:var(--teal); color:#fff; padding:.7rem 1.4rem; border-radius:100px;
+      font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.4);
+      opacity:0; pointer-events:none; transition:opacity .25s, transform .25s;
+    }
+    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+    .toast.err { background:var(--danger); }
+    .spinner { display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,.4); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- ─── LOGIN ─── -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <h1>Painel <span style="color:var(--teal-light)">·</span></h1>
+      <p>Porto &amp; Feiges — publicação de matérias e imagens.</p>
+      <form id="loginForm">
+        <div class="field">
+          <label for="password">Senha de acesso</label>
+          <input type="password" id="password" autocomplete="current-password" required />
+        </div>
+        <button class="btn" type="submit" style="width:100%; justify-content:center;">Entrar</button>
+        <div class="msg err" id="loginMsg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── APP ─── -->
+  <div id="app" class="hidden">
+    <div class="topbar">
+      <div class="brand">Porto <span>&amp;</span> Feiges <span style="color:var(--muted); font-size:.8rem; margin-left:.3rem;">admin</span></div>
+      <div class="topbar-actions">
+        <a href="/" target="_blank" class="btn ghost sm">Ver site ↗</a>
+        <button class="btn ghost sm" id="logoutBtn">Sair</button>
+      </div>
+    </div>
+
+    <!-- LISTA -->
+    <div class="wrap" id="listView">
+      <div class="section-head">
+        <h2>Matérias</h2>
+        <button class="btn" id="newBtn">+ Nova matéria</button>
+      </div>
+      <div class="post-list" id="postList"></div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="wrap hidden" id="editView">
+      <div class="section-head">
+        <h2 id="editTitle">Nova matéria</h2>
+        <button class="btn ghost sm" id="backBtn">← Voltar</button>
+      </div>
+
+      <div class="editor-grid">
+        <div class="field">
+          <label for="title">Título</label>
+          <input type="text" id="title" placeholder="Ex.: Como estruturar o comercial em 90 dias" />
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="slug">URL (slug) — deixe em branco para gerar do título</label>
+            <input type="text" id="slug" placeholder="como-estruturar-o-comercial" />
+          </div>
+          <div class="field">
+            <label for="tags">Tags (separadas por vírgula)</label>
+            <input type="text" id="tags" placeholder="método, vendas" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="deck">Resumo / subtítulo (aparece no card e no preview do WhatsApp)</label>
+          <textarea id="deck" rows="2" placeholder="Uma ou duas frases que resumem o post."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Imagem de capa (opcional)</label>
+          <div style="display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;">
+            <input type="file" id="coverFile" accept="image/*" style="border:none; padding:0;" />
+            <button class="btn ghost sm" type="button" id="coverUploadBtn">Enviar capa</button>
+          </div>
+          <input type="hidden" id="cover" />
+          <div class="cover-preview" id="coverPreview"></div>
+        </div>
+
+        <div class="field">
+          <label for="content">Conteúdo</label>
+          <div class="toolbar">
+            <button type="button" data-wrap="h2">Título H2</button>
+            <button type="button" data-wrap="h3">Subtítulo H3</button>
+            <button type="button" data-wrap="p">Parágrafo</button>
+            <button type="button" data-wrap="strong">Negrito</button>
+            <button type="button" data-wrap="blockquote">Citação</button>
+            <button type="button" data-wrap="ul">Lista</button>
+            <button type="button" id="insertImgBtn">Inserir imagem</button>
+          </div>
+          <textarea id="content" placeholder="Escreva em HTML simples. Use os botões acima para inserir blocos."></textarea>
+          <span class="hint">Aceita HTML. Os botões inserem os blocos prontos. A imagem enviada é inserida no ponto do cursor.</span>
+        </div>
+
+        <div class="field">
+          <label>Pré-visualização</label>
+          <div class="preview-pane" id="preview"></div>
+        </div>
+
+        <div class="switch">
+          <input type="checkbox" id="published" checked />
+          <label for="published" style="text-transform:none; letter-spacing:0; font-size:.9rem; color:var(--ink);">Publicado (desmarque para salvar como rascunho)</label>
+        </div>
+
+        <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+          <button class="btn" id="saveBtn">Salvar</button>
+          <button class="btn danger hidden" id="deleteBtn">Excluir matéria</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="inlineImgFile" accept="image/*" class="hidden" />
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let editingSlug = null; // null = nova
+
+    /* ── API helper ── */
+    async function api(path, opts = {}) {
+      const res = await fetch(path, { credentials: "same-origin", ...opts });
+      const data = await res.json().catch(() => ({}));
+      return { ok: res.ok, status: res.status, data };
+    }
+
+    function toast(msg, isErr) {
+      const t = $("toast");
+      t.textContent = msg;
+      t.classList.toggle("err", !!isErr);
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2600);
+    }
+
+    /* ── Auth ── */
+    async function checkAuth() {
+      const { data } = await api("/api/me");
+      if (data.authed) showApp(); else showLogin();
+    }
+    function showLogin() { $("loginScreen").classList.remove("hidden"); $("app").classList.add("hidden"); }
+    function showApp() { $("loginScreen").classList.add("hidden"); $("app").classList.remove("hidden"); loadPosts(); }
+
+    $("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      $("loginMsg").textContent = "";
+      const { ok, data } = await api("/api/login", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: $("password").value }),
+      });
+      if (ok) { $("password").value = ""; showApp(); }
+      else $("loginMsg").textContent = data.error === "senha_incorreta" ? "Senha incorreta." : "Erro ao entrar. Verifique a configuração.";
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      await api("/api/logout", { method: "POST" });
+      showLogin();
+    });
+
+    /* ── Lista ── */
+    async function loadPosts() {
+      const { data } = await api("/api/posts?all=1");
+      const list = $("postList");
+      const posts = data.posts || [];
+      if (!posts.length) {
+        list.innerHTML = '<div class="empty">Nenhuma matéria ainda. Clique em <strong>+ Nova matéria</strong> para começar.</div>';
+        return;
+      }
+      list.innerHTML = posts.map((p) => `
+        <div class="post-row">
+          <div class="post-row-main">
+            <h3>${escapeHtml(p.title)}</h3>
+            <div class="post-row-meta">
+              ${!p.published ? '<span class="badge-draft">Rascunho</span>' : ""}
+              ${(p.tags || "").split(",").filter(Boolean).map((t) => `<span class="tag">${escapeHtml(t.trim())}</span>`).join("")}
+              <span class="hint">/blog/posts/${escapeHtml(p.slug)}/</span>
+            </div>
+          </div>
+          <div class="post-row-actions">
+            <a class="btn ghost sm" href="/blog/posts/${encodeURIComponent(p.slug)}/" target="_blank">Ver</a>
+            <button class="btn sm" data-edit="${escapeHtml(p.slug)}">Editar</button>
+          </div>
+        </div>`).join("");
+      list.querySelectorAll("[data-edit]").forEach((b) =>
+        b.addEventListener("click", () => openEditor(b.dataset.edit))
+      );
+    }
+
+    /* ── Editor ── */
+    $("newBtn").addEventListener("click", () => openEditor(null));
+    $("backBtn").addEventListener("click", showList);
+
+    function showList() {
+      $("editView").classList.add("hidden");
+      $("listView").classList.remove("hidden");
+      loadPosts();
+    }
+
+    async function openEditor(slug) {
+      editingSlug = slug;
+      $("listView").classList.add("hidden");
+      $("editView").classList.remove("hidden");
+      $("deleteBtn").classList.toggle("hidden", !slug);
+      $("editTitle").textContent = slug ? "Editar matéria" : "Nova matéria";
+      ["title","slug","tags","deck","content","cover"].forEach((f) => ($(f).value = ""));
+      $("published").checked = true;
+      $("coverPreview").innerHTML = "";
+      if (slug) {
+        const { data } = await api("/api/posts/" + encodeURIComponent(slug));
+        const p = data.post;
+        if (p) {
+          $("title").value = p.title || "";
+          $("slug").value = p.slug || "";
+          $("tags").value = p.tags || "";
+          $("deck").value = p.deck || "";
+          $("content").value = p.content || "";
+          $("cover").value = p.cover || "";
+          $("published").checked = p.published !== 0;
+          if (p.cover) $("coverPreview").innerHTML = `<img src="${escapeHtml(p.cover)}" alt="capa" />`;
+        }
+      }
+      renderPreview();
+    }
+
+    /* toolbar */
+    document.querySelectorAll(".toolbar [data-wrap]").forEach((btn) => {
+      btn.addEventListener("click", () => wrapSelection(btn.dataset.wrap));
+    });
+    function wrapSelection(tag) {
+      const ta = $("content");
+      const s = ta.selectionStart, e = ta.selectionEnd;
+      const sel = ta.value.slice(s, e) || "texto";
+      let ins;
+      if (tag === "ul") ins = `\n<ul>\n  <li>${sel}</li>\n</ul>\n`;
+      else if (tag === "strong") ins = `<strong>${sel}</strong>`;
+      else ins = `\n<${tag}>${sel}</${tag}>\n`;
+      ta.value = ta.value.slice(0, s) + ins + ta.value.slice(e);
+      ta.focus();
+      renderPreview();
+    }
+
+    $("content").addEventListener("input", renderPreview);
+    $("deck").addEventListener("input", renderPreview);
+    $("title").addEventListener("input", renderPreview);
+    function renderPreview() {
+      $("preview").innerHTML =
+        (($("title").value) ? `<h2 style="font-size:1.6rem">${escapeHtml($("title").value)}</h2>` : "") +
+        (($("deck").value) ? `<p style="color:#4B5A6E;font-size:1.05rem">${escapeHtml($("deck").value)}</p>` : "") +
+        $("content").value;
+    }
+
+    /* upload de capa */
+    $("coverUploadBtn").addEventListener("click", async () => {
+      const f = $("coverFile").files[0];
+      if (!f) { toast("Selecione um arquivo primeiro.", true); return; }
+      const url = await uploadFile(f);
+      if (url) {
+        $("cover").value = url;
+        $("coverPreview").innerHTML = `<img src="${escapeHtml(url)}" alt="capa" />`;
+        toast("Capa enviada.");
+      }
+    });
+
+    /* inserir imagem no conteúdo */
+    $("insertImgBtn").addEventListener("click", () => $("inlineImgFile").click());
+    $("inlineImgFile").addEventListener("change", async () => {
+      const f = $("inlineImgFile").files[0];
+      if (!f) return;
+      const url = await uploadFile(f);
+      if (url) {
+        const ta = $("content");
+        const s = ta.selectionStart;
+        const tag = `\n<img src="${url}" alt="" />\n`;
+        ta.value = ta.value.slice(0, s) + tag + ta.value.slice(s);
+        renderPreview();
+        toast("Imagem inserida.");
+      }
+      $("inlineImgFile").value = "";
+    });
+
+    async function uploadFile(file) {
+      const fd = new FormData();
+      fd.append("file", file);
+      const { ok, data } = await api("/api/upload", { method: "POST", body: fd });
+      if (ok && data.url) return data.url;
+      toast(data.error || "Falha no upload.", true);
+      return null;
+    }
+
+    /* salvar */
+    $("saveBtn").addEventListener("click", async () => {
+      const payload = {
+        title: $("title").value.trim(),
+        slug: $("slug").value.trim(),
+        tags: $("tags").value,
+        deck: $("deck").value.trim(),
+        cover: $("cover").value,
+        content: $("content").value,
+        published: $("published").checked,
+      };
+      if (!payload.title) { toast("Informe um título.", true); return; }
+      if (!payload.content.trim()) { toast("Escreva algum conteúdo.", true); return; }
+      const btn = $("saveBtn");
+      btn.innerHTML = '<span class="spinner"></span> Salvando';
+      let res;
+      if (editingSlug) res = await api("/api/posts/" + encodeURIComponent(editingSlug), {
+        method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+      });
+      else res = await api("/api/posts", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+      });
+      btn.textContent = "Salvar";
+      if (res.ok) { toast("Matéria salva."); showList(); }
+      else if (res.data.error === "slug_ja_existe") toast("Já existe matéria com essa URL. Mude o slug.", true);
+      else toast(res.data.error || "Erro ao salvar.", true);
+    });
+
+    /* excluir */
+    $("deleteBtn").addEventListener("click", async () => {
+      if (!editingSlug) return;
+      if (!confirm("Excluir esta matéria? Não dá para desfazer.")) return;
+      const { ok } = await api("/api/posts/" + encodeURIComponent(editingSlug), { method: "DELETE" });
+      if (ok) { toast("Matéria excluída."); showList(); }
+      else toast("Erro ao excluir.", true);
+    });
+
+    function escapeHtml(s) {
+      return (s || "").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    checkAuth();
+  </script>
+</body>
+</html>
