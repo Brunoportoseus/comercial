@@ -1,0 +1,7 @@
+# Não servir estes arquivos como assets estáticos públicos.
+# O _worker.js é o código do Worker (entrypoint), não um asset.
+_worker.js
+wrangler.jsonc
+schema.sql
+SETUP-ADMIN.md
+blog/COMO-ADICIONAR-POST.md
