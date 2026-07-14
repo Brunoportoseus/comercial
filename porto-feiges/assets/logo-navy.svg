@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 200" role="img" aria-label="Porto &amp; Feiges">
+  <!-- Versão navy (para fundo claro / placeholder até o arquivo oficial ser enviado) -->
+  <g>
+    <rect x="24"  y="44"  width="48" height="48" rx="2" fill="#16697A"/>
+    <rect x="80"  y="18"  width="52" height="74" rx="2" fill="#0E2A47"/>
+    <rect x="24"  y="100" width="30" height="44" rx="2" fill="#0E2A47"/>
+    <rect x="60"  y="100" width="22" height="20" rx="2" fill="#16697A"/>
+    <rect x="60"  y="124" width="22" height="20" rx="2" fill="#0E2A47"/>
+    <rect x="88"  y="100" width="44" height="44" rx="2" fill="#16697A"/>
+  </g>
+  <line x1="150" y1="20" x2="150" y2="146" stroke="#0E2A47" stroke-opacity="0.25" stroke-width="2"/>
+  <g font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" letter-spacing="-1">
+    <text x="172" y="80"  font-size="60" fill="#0E2A47">Porto</text>
+    <text x="172" y="148" font-size="60" fill="#0E2A47"><tspan fill="#16697A">&amp;</tspan> Feiges</text>
+  </g>
+</svg>

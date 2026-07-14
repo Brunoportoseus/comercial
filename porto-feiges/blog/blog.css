@@ -65,11 +65,13 @@ h1,h2,h3 { font-family: 'DM Serif Display', Georgia, serif; text-wrap: balance; 
   height: 64px;
 }
 .nav-brand {
-  font-family: 'DM Serif Display', serif; font-size: 1.1rem;
-  color: #fff; letter-spacing: -.01em;
+  display: flex; align-items: center;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
 }
 .nav-brand em { font-style: italic; color: var(--teal-light); }
-.nav-brand img { height: 40px; width: auto; display: block; }
+.nav-brand img { height: 30px; width: auto; display: block; }
 .empty-state {
   grid-column: 1 / -1;
   text-align: center; color: var(--fg-muted);
