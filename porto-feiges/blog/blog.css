@@ -69,7 +69,7 @@ h1,h2,h3 { font-family: 'DM Serif Display', Georgia, serif; text-wrap: balance; 
   color: #fff; letter-spacing: -.01em;
 }
 .nav-brand em { font-style: italic; color: var(--teal-light); }
-.nav-brand img { height: 26px; width: auto; display: block; }
+.nav-brand img { height: 40px; width: auto; display: block; }
 .empty-state {
   grid-column: 1 / -1;
   text-align: center; color: var(--fg-muted);

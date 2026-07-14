@@ -1,12 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 44" role="img" aria-label="Porto & Feiges">
-  <!-- Símbolo: do improviso ao sistema — barras que sobem e se alinham -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 200" role="img" aria-label="Porto & Feiges">
+  <!-- Símbolo: mosaico de blocos (versão reversa, para fundo navy) -->
   <g>
-    <rect x="2" y="2" width="40" height="40" rx="9" fill="#0A9B87"/>
-    <rect x="10" y="26" width="5.5" height="9"  rx="1.4" fill="#0B1829" opacity="0.55"/>
-    <rect x="19.25" y="20" width="5.5" height="15" rx="1.4" fill="#0B1829" opacity="0.78"/>
-    <rect x="28.5" y="12" width="5.5" height="23" rx="1.4" fill="#0B1829"/>
-    <path d="M10 12 L20 12" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+    <rect x="24"  y="44"  width="48" height="48" rx="2" fill="#16A6B8"/>
+    <rect x="80"  y="18"  width="52" height="74" rx="2" fill="#FFFFFF"/>
+    <rect x="24"  y="100" width="30" height="44" rx="2" fill="#FFFFFF"/>
+    <rect x="60"  y="100" width="22" height="20" rx="2" fill="#16A6B8"/>
+    <rect x="60"  y="124" width="22" height="20" rx="2" fill="#7C93AC"/>
+    <rect x="88"  y="100" width="44" height="44" rx="2" fill="#16A6B8"/>
   </g>
-  <!-- Wordmark -->
-  <text x="54" y="29" font-family="'DM Serif Display', Georgia, serif" font-size="22" fill="#ffffff">Porto <tspan fill="#13BDA8" font-style="italic">&amp;</tspan> Feiges</text>
+  <!-- Divisória -->
+  <line x1="150" y1="20" x2="150" y2="146" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2"/>
+  <!-- Wordmark (fontes de sistema — SVGs referenciados por <img> não carregam webfonts) -->
+  <g font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" letter-spacing="-1">
+    <text x="172" y="80"  font-size="60" fill="#FFFFFF">Porto</text>
+    <text x="172" y="148" font-size="60" fill="#FFFFFF"><tspan fill="#16A6B8">&amp;</tspan> Feiges</text>
+  </g>
 </svg>
