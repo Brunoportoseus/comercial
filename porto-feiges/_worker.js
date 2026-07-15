@@ -14,6 +14,18 @@ export default {
     const url = new URL(request.url);
     const p = url.pathname;
 
+    // ── Modo manutenção (ligado por env.MAINTENANCE = "on"/"1"/"true") ──
+    // O /admin, a /api e os /assets continuam acessíveis; o resto vê a
+    // página de manutenção. Para desligar, remova a variável ou use "off".
+    const maint = String(env.MAINTENANCE || "").toLowerCase();
+    if (maint === "on" || maint === "1" || maint === "true") {
+      const liberado =
+        p === "/api" || p.startsWith("/api/") ||
+        p === "/admin" || p.startsWith("/admin/") ||
+        p.startsWith("/assets/");
+      if (!liberado) return maintenanceResponse();
+    }
+
     try {
       if (p === "/api" || p.startsWith("/api/")) {
         return await handleApi(request, env, url);
@@ -567,5 +579,69 @@ function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: { "Content-Type": "application/json; charset=utf-8" },
+  });
+}
+
+/* ───────────────────────── Página de manutenção ───────────────────────── */
+
+function maintenanceResponse() {
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Em manutenção — Porto & Feiges</title>
+<link rel="icon" href="/assets/favicon.svg" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;
+    background:linear-gradient(135deg,#0B1829 0%,#122035 100%);color:#fff;
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;text-align:center}
+  .box{max-width:560px}
+  .brand{display:inline-flex;align-items:center;gap:18px;margin-bottom:2.5rem}
+  .brand .word{font-weight:900;font-size:34px;line-height:.98;letter-spacing:-1px;text-align:left}
+  .divider{width:3px;height:60px;background:rgba(255,255,255,.28)}
+  .eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#13BDA8;margin-bottom:1rem}
+  h1{font-family:Georgia,serif;font-size:clamp(2rem,6vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem}
+  h1 em{font-style:italic;color:#13BDA8}
+  p{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:2rem}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;
+    font-weight:700;font-size:1rem;padding:.85rem 1.6rem;border-radius:8px;text-decoration:none}
+  .foot{margin-top:2.5rem;font-size:.85rem;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="brand">
+      <svg width="86" height="82" viewBox="0 0 132 126" aria-hidden="true">
+        <rect x="4" y="30" width="46" height="46" rx="2" fill="#16A6B8"/>
+        <rect x="58" y="0" width="50" height="72" rx="2" fill="#FFFFFF"/>
+        <rect x="4" y="82" width="30" height="40" rx="2" fill="#FFFFFF"/>
+        <rect x="40" y="82" width="22" height="19" rx="2" fill="#16A6B8"/>
+        <rect x="40" y="103" width="22" height="19" rx="2" fill="#7C93AC"/>
+        <rect x="66" y="82" width="42" height="40" rx="2" fill="#16A6B8"/>
+      </svg>
+      <div class="divider"></div>
+      <div class="word">Porto<br>&amp; Feiges</div>
+    </div>
+    <div class="eyebrow">Site em manutenção</div>
+    <h1>Já <em>voltamos.</em></h1>
+    <p>Estamos fazendo alguns ajustes por aqui. Enquanto isso, fale com a gente direto no WhatsApp — respondemos rápido.</p>
+    <a class="btn" href="https://wa.me/5541999999999?text=Oi%2C+vim+pelo+site+da+Porto+%26+Feiges" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.057 23.882l6.174-1.621A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.374l-.36-.213-3.664.96.978-3.578-.233-.371A9.818 9.818 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <div class="foot">Porto &amp; Feiges · Curitiba/PR</div>
+  </div>
+</body>
+</html>`;
+  return new Response(html, {
+    status: 503,
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Retry-After": "3600",
+      "Cache-Control": "no-store",
+    },
   });
 }
