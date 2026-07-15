@@ -514,16 +514,29 @@
       margin-bottom: 2.5rem;
     }
     .marcas-grid {
-      display: flex; flex-wrap: wrap; gap: .75rem;
-      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: .75rem;
+      margin-bottom: 1.25rem;
     }
-    .marca-chip {
-      padding: .5rem 1.1rem;
+    .brand-card {
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: .82rem; font-weight: 500;
-      color: var(--fg-muted);
-      background: var(--bg-alt);
+      border-radius: var(--radius);
+      height: 84px; padding: 1rem 1.25rem;
+    }
+    .brand-card img {
+      max-height: 40px; max-width: 82%;
+      width: auto; object-fit: contain;
+      filter: brightness(0); opacity: .48;
+      transition: opacity .25s;
+    }
+    .brand-card:hover img { opacity: .85; }
+    .brand-label { font-size: .82rem; font-weight: 600; color: var(--fg-muted); }
+    .brands-foot {
+      font-size: .85rem; color: var(--fg-muted);
+      margin-bottom: 2.5rem;
     }
     .depoimento-card {
       border-left: 3px solid var(--teal);
@@ -1032,14 +1045,28 @@
     <div class="wrap">
       <span class="eyebrow reveal">Credenciais</span>
       <h2 class="reveal">30 anos estruturando o comercial de marcas reconhecidas.</h2>
-      <p class="lead reveal">O histórico do Bruno no varejo e no digital é a base da metodologia que trazemos para PMEs.</p>
+      <p class="lead reveal">Projetos e atendimentos para marcas de diversos segmentos — moda, varejo, indústria, tecnologia e bens de consumo. É essa vivência que vira método para PMEs.</p>
       <div class="marcas-grid reveal">
-        <span class="marca-chip">Carmim</span>
-        <span class="marca-chip">Colcci</span>
-        <span class="marca-chip">Havan</span>
-        <span class="marca-chip">Tramontina</span>
-        <span class="marca-chip">Karsten</span>
+        <div class="brand-card" title="Carmim"><img src="/assets/logos/carmim.png" alt="Carmim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Carmim</span></div>
+        <div class="brand-card" title="Carmen Steffens"><img src="/assets/logos/carmen-steffens.png" alt="Carmen Steffens" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Carmen Steffens</span></div>
+        <div class="brand-card" title="Colcci"><img src="/assets/logos/colcci.png" alt="Colcci" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Colcci</span></div>
+        <div class="brand-card" title="Havan"><img src="/assets/logos/havan.png" alt="Havan" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Havan</span></div>
+        <div class="brand-card" title="Mormaii"><img src="/assets/logos/mormaii.png" alt="Mormaii" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Mormaii</span></div>
+        <div class="brand-card" title="Mueller"><img src="/assets/logos/mueller.png" alt="Mueller" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Mueller</span></div>
+        <div class="brand-card" title="Karsten"><img src="/assets/logos/karsten.svg" alt="Karsten" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Karsten</span></div>
+        <div class="brand-card" title="Vonder"><img src="/assets/logos/vonder.png" alt="Vonder" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Vonder</span></div>
+        <div class="brand-card" title="TUPER"><img src="/assets/logos/tuper.png" alt="TUPER" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">TUPER</span></div>
+        <div class="brand-card" title="Artefama"><img src="/assets/logos/artefama.png" alt="Artefama" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Artefama</span></div>
+        <div class="brand-card" title="Via Inox Tramontina"><img src="/assets/logos/via-inox-tramontina.png" alt="Via Inox Tramontina" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Via Inox Tramontina</span></div>
+        <div class="brand-card" title="King 55"><img src="/assets/logos/king-55.png" alt="King 55" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">King 55</span></div>
+        <div class="brand-card" title="Ferragens Negrão"><img src="/assets/logos/ferragens-negrao.png" alt="Ferragens Negrão" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Ferragens Negrão</span></div>
+        <div class="brand-card" title="Móveis Campo Largo"><img src="/assets/logos/moveis-campo-largo.png" alt="Móveis Campo Largo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Móveis Campo Largo</span></div>
+        <div class="brand-card" title="Casa do Marceneiro"><img src="/assets/logos/casa-do-marceneiro.png" alt="Casa do Marceneiro" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Casa do Marceneiro</span></div>
+        <div class="brand-card" title="Farma Sesi"><img src="/assets/logos/farma-sesi.png" alt="Farma Sesi" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Farma Sesi</span></div>
+        <div class="brand-card" title="Thais Rodrigues"><img src="/assets/logos/thais-rodrigues.png" alt="Thais Rodrigues" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Thais Rodrigues</span></div>
+        <div class="brand-card" title="Yahoo"><img src="/assets/logos/yahoo.png" alt="Yahoo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="brand-label" style="display:none">Yahoo</span></div>
       </div>
+      <p class="brands-foot reveal">e outras marcas em diferentes setores.</p>
       <div class="depoimento-card reveal">
         <blockquote>"Em poucos meses, a operação passou a funcionar sem eu precisar resolver tudo pessoalmente. Isso mudou o meu negócio."</blockquote>
         <span class="depoimento-autor">Denise — Clínica de saúde, Curitiba/PR</span>
