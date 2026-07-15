@@ -575,7 +575,7 @@
       padding: 2rem;
     }
     .socio-avatar {
-      width: 64px; height: 64px;
+      width: 72px; height: 72px;
       border-radius: 50%;
       background: var(--navy-soft);
       border: 2px solid var(--teal);
@@ -584,7 +584,9 @@
       font-family: 'DM Serif Display', serif;
       font-size: 1.4rem;
       color: var(--teal-light);
+      overflow: hidden;
     }
+    .socio-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .socio-card h3 {
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
@@ -1053,7 +1055,7 @@
       <h2 class="reveal">Dois sócios. Uma missão.</h2>
       <div class="socios-grid reveal">
         <div class="socio-card">
-          <div class="socio-avatar">BP</div>
+          <div class="socio-avatar"><img src="/assets/bruno.jpg" alt="Bruno Porto Seus" loading="lazy" /></div>
           <h3>Bruno Porto Seus</h3>
           <div class="socio-role">Sócio-Fundador</div>
           <p>30 anos em vertical comercial e digital. Atuou em grandes redes do varejo brasileiro estruturando e-commerce, CRM e times de vendas. Executa ao lado do cliente, não manda relatório de longe.</p>
