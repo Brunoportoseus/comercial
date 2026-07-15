@@ -76,7 +76,7 @@
   <footer class="blog-footer">
     <div class="wrap footer-inner">
       <span class="footer-brand">Porto & Feiges</span>
-      <span class="footer-right">Curitiba/PR</span>
+      <span class="footer-right"><a href="/privacidade/" style="color:inherit">Privacidade</a> · Curitiba/PR</span>
     </div>
   </footer>
 
@@ -139,5 +139,6 @@
       .then(d => { allPosts = d.posts || []; buildFilters(); render('all'); })
       .catch(() => { document.getElementById('postsGrid').innerHTML = '<div class="empty-state">Não foi possível carregar as matérias.</div>'; });
   </script>
+  <script src="/assets/cookies.js" defer></script>
 </body>
 </html>

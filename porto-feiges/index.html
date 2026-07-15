@@ -854,28 +854,6 @@
       font-size: .75rem;
     }
 
-    /* ── COOKIE LGPD ── */
-    #cookie-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-      background: var(--navy);
-      border-top: 1px solid var(--line-inv);
-      padding: 1rem 1.5rem;
-      display: flex; flex-wrap: wrap;
-      align-items: center; justify-content: space-between; gap: .75rem;
-      font-size: .8rem; color: rgba(255,255,255,.65);
-    }
-    #cookie-bar.hidden { display: none; }
-    #cookie-bar a { color: var(--teal-light); }
-    #cookie-accept {
-      background: var(--teal);
-      color: #fff;
-      border: none; cursor: pointer;
-      padding: .4rem 1rem;
-      border-radius: var(--radius);
-      font-size: .8rem; font-weight: 600;
-      white-space: nowrap;
-    }
-
     /* ── REVEAL ANIMATION ── */
     .reveal {
       opacity: 0;
@@ -1255,16 +1233,11 @@
         <a href="mailto:contato@portoefeiges.com.br">contato@portoefeiges.com.br</a>
         <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">WhatsApp</a>
         <a href="/blog/">Blog</a>
+        <a href="/privacidade/">Privacidade</a>
       </div>
       <span class="footer-right">Curitiba/PR · Mídia Like · CNPJ 00.000.000/0001-00</span>
     </div>
   </footer>
-
-  <!-- ─── COOKIE LGPD ─── -->
-  <div id="cookie-bar" role="alert" aria-live="polite">
-    <span>Usamos analytics para entender como o site é navegado. <a href="#" tabindex="0">Saiba mais</a>.</span>
-    <button id="cookie-accept">Entendi</button>
-  </div>
 
   <script>
     // ── Nav toggle ──
@@ -1344,21 +1317,21 @@
       });
     });
 
-    // ── Cookie bar ──
-    const cookieBar = document.getElementById('cookie-bar');
-    if (localStorage.getItem('cookie-ok')) cookieBar.classList.add('hidden');
-    document.getElementById('cookie-accept').addEventListener('click', () => {
-      localStorage.setItem('cookie-ok', '1');
-      cookieBar.classList.add('hidden');
-    });
-
     // ── Theme persistence (respects OS unless overridden) ──
     const saved = localStorage.getItem('theme');
     if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+    // ── Analytics só é ativado após consentimento (chamado por cookies.js) ──
+    window.pfEnableAnalytics = function () {
+      // GA4 — descomente e troque G-XXXXXXXXXX pelo ID real quando tiver:
+      // var s=document.createElement('script');s.async=true;
+      // s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';document.head.appendChild(s);
+      // window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+      // gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+    };
   </script>
 
-  <!-- GA4 — substituir G-XXXXXXXXXX pelo ID real -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+  <!-- Consentimento de cookies (LGPD) — presente em todas as páginas -->
+  <script src="/assets/cookies.js" defer></script>
 </body>
 </html>
