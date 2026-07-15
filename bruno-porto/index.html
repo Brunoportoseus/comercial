@@ -450,6 +450,45 @@
       font-size:.88rem;
     }
 
+    /* ── PARCEIROS / TECNOLOGIAS ── */
+    .partners{background:var(--bg);border-bottom:1px solid var(--line);}
+    .partners-intro{
+      display:flex;justify-content:space-between;align-items:flex-end;
+      gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem;
+    }
+    .partners-intro p{color:var(--muted);max-width:520px;font-size:1rem;}
+    .partner-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:1rem;
+    }
+    @media(max-width:980px){ .partner-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:600px){ .partner-grid{grid-template-columns:repeat(2,1fr);} }
+    .partner-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      aspect-ratio:1.7/1;
+      display:flex;align-items:center;justify-content:center;
+      padding:1.25rem 1.5rem;
+      transition:transform .25s,border-color .25s,box-shadow .25s;
+    }
+    .partner-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(124,92,255,.45);
+      box-shadow:0 12px 30px -12px rgba(0,0,0,.55);
+    }
+    .partner-card img{
+      max-width:82%;max-height:60%;
+      width:auto;object-fit:contain;
+      transition:transform .25s;
+    }
+    .partner-card:hover img{transform:scale(1.06);}
+    .partners-foot{
+      margin-top:2rem;text-align:center;color:var(--muted);
+      font-size:.88rem;
+    }
+
     /* ── CTA / CONTATO ── */
     .cta-section{
       position:relative;
@@ -557,6 +596,7 @@
         <a href="#servicos">Serviços</a>
         <a href="#experiencia">Experiência</a>
         <a href="#marcas">Marcas</a>
+        <a href="#parceiros">Parceiros</a>
         <a href="/blog/">Blog</a>
         <a href="#contato" class="nav-cta">Falar com Bruno</a>
       </div>
@@ -894,6 +934,44 @@
       </div>
 
       <p class="brands-foot reveal">e outras marcas em diferentes setores.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── PARCEIROS / TECNOLOGIAS ─────────── -->
+  <section id="parceiros" class="partners">
+    <div class="wrap">
+      <div class="partners-intro reveal">
+        <div>
+          <span class="eyebrow">Parcerias &amp; Tecnologias</span>
+          <h2 class="section-title">Plataformas e tecnologias que uso para fazer você vender mais.</h2>
+        </div>
+        <p>
+          Trabalho com as principais ferramentas de e-commerce, CRM, automação e inteligência artificial do mercado — a tecnologia certa para cada objetivo comercial.
+        </p>
+      </div>
+
+      <div class="partner-grid">
+        <div class="partner-card reveal" title="Salesforce">
+          <img src="assets/parceiros/parceiro-5.png" alt="Salesforce" loading="lazy" />
+        </div>
+        <div class="partner-card reveal" title="Shopify">
+          <img src="assets/parceiros/parceiro-3.png" alt="Shopify" loading="lazy" />
+        </div>
+        <div class="partner-card reveal" title="Kommo">
+          <img src="assets/parceiros/parceiro-6.webp" alt="Kommo" loading="lazy" />
+        </div>
+        <div class="partner-card reveal" title="ManyChat">
+          <img src="assets/parceiros/parceiro-4.png" alt="ManyChat" loading="lazy" />
+        </div>
+        <div class="partner-card reveal" title="Claude">
+          <img src="assets/parceiros/parceiro-1.png" alt="Claude" loading="lazy" />
+        </div>
+        <div class="partner-card reveal" title="Gemini">
+          <img src="assets/parceiros/parceiro-2.png" alt="Gemini" loading="lazy" />
+        </div>
+      </div>
+
+      <p class="partners-foot reveal">e outras plataformas de e-commerce, CRM, automação e IA.</p>
     </div>
   </section>
 
