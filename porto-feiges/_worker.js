@@ -341,18 +341,22 @@ ${FOOTER}
 
 /* ───────────────────────── Seed ───────────────────────── */
 
-// Insere as matérias iniciais se a tabela estiver vazia. Idempotente e sem auth.
-// Retorna quantas foram inseridas (0 se já havia conteúdo).
+// Garante que as matérias base existam. Insere apenas os slugs do SEED que
+// ainda não estão no banco (idempotente, sem auth). Não sobrescreve edições
+// feitas no admin. Retorna quantas foram inseridas.
 async function ensureSeeded(env) {
   if (!env.DB) return 0;
-  const count = await env.DB.prepare(`SELECT COUNT(*) AS n FROM posts`).first();
-  if (count && count.n > 0) return 0;
+  const { results } = await env.DB.prepare(`SELECT slug FROM posts`).all();
+  const existentes = new Set((results || []).map((r) => r.slug));
+  let inseridos = 0;
   for (const post of SEED) {
+    if (existentes.has(post.slug)) continue;
     await env.DB.prepare(
-      `INSERT INTO posts (slug, title, deck, tags, cover, content, published) VALUES (?, ?, ?, ?, ?, ?, 1)`
+      `INSERT OR IGNORE INTO posts (slug, title, deck, tags, cover, content, published) VALUES (?, ?, ?, ?, ?, ?, 1)`
     ).bind(post.slug, post.title, post.deck, post.tags, post.cover || "", post.content).run();
+    inseridos++;
   }
-  return SEED.length;
+  return inseridos;
 }
 
 async function seedPosts(env) {
@@ -442,6 +446,117 @@ const SEED = [
 <p>Um lead que pede orçamento às 10h e recebe retorno às 15h já esfriou. Antes de investir em tráfego, garanta atendimento em menos de 30 minutos no horário comercial.</p>
 <h2>Quando faz sentido ligar o tráfego</h2>
 <p>Quando você tem oferta testada, prova social básica, atendimento responsivo e capacidade de entregar. Aí tráfego é alavanca — você acelera algo que já funciona.</p>`,
+  },
+  {
+    slug: "5-numeros-pme-toda-semana",
+    title: "Os 5 números que todo dono de PME deveria olhar toda semana",
+    deck: "Você não precisa de um painel gigante. Precisa de cinco indicadores que cabem numa folha e dizem se a semana vai ser boa ou ruim.",
+    tags: "gestão,vendas",
+    cover: "/assets/blog/indicadores.svg",
+    content: `
+<p>Uma das primeiras coisas que percebemos em uma PME é que o dono decide muito no instinto. Instinto é valioso — mas sozinho não escala. O contrapeso é olhar poucos números, sempre os mesmos, toda semana.</p>
+<p>Não é sobre virar analista de dados. É sobre ter um painel mental simples que te avisa cedo quando algo desandou.</p>
+<h2>Os cinco números</h2>
+<h3>1. Leads que entraram</h3>
+<p>Quantas oportunidades novas chegaram na semana, por qualquer canal. Se esse número cai e você só percebe no fim do mês pela queda no caixa, já perdeu tempo de reação.</p>
+<h3>2. Taxa de conversão</h3>
+<p>De cada 10 oportunidades, quantas viraram venda? Esse número revela se o problema é de topo (pouco lead) ou de fundo (lead que não fecha).</p>
+<h3>3. Ticket médio</h3>
+<p>Quanto vale, em média, cada venda. Subir o ticket costuma ser mais barato que dobrar o volume — e a maioria das PMEs nunca trabalha isso de propósito.</p>
+<h3>4. Propostas em aberto</h3>
+<p>Quanto de receita está parada esperando um sim. É o dinheiro mais fácil de recuperar — e o mais esquecido, por falta de follow-up.</p>
+<h3>5. Caixa projetado das próximas semanas</h3>
+<p>Não o saldo de hoje: o que entra e sai nas próximas 4-6 semanas. É o número que tira o dono do sufoco de decisões de última hora.</p>
+<blockquote>Se você olha esses cinco toda segunda, para de ser surpreendido pelo próprio negócio.</blockquote>
+<h2>Como começar sem complicar</h2>
+<p>Não precisa de sistema no primeiro dia. Uma planilha e 15 minutos na segunda de manhã já mudam o jogo. A ferramenta vem depois, quando o hábito já existe e você sabe exatamente o que quer automatizar.</p>`,
+  },
+  {
+    slug: "tirar-operacao-da-cabeca-do-dono",
+    title: "Processos: como tirar a operação da cabeça do dono",
+    deck: "Documentar processo não é burocracia. É o que permite delegar sem perder qualidade — e sair de dentro da operação sem que tudo pare.",
+    tags: "processos,método",
+    cover: "/assets/blog/processos.svg",
+    content: `
+<p>O gargalo mais comum na PME que cresceu no improviso não é dinheiro nem gente. É que tudo passa pela cabeça de uma pessoa: o dono. Ele sabe o preço certo, a exceção que pode, o cliente que merece atenção especial. E enquanto isso mora só na cabeça dele, ninguém consegue assumir de verdade.</p>
+<h2>Por que "contratar alguém bom" não resolve sozinho</h2>
+<p>Você contrata um gerente competente e, três meses depois, ele ainda te pergunta tudo. Não é incompetência — é que não existe processo para ele seguir. Sem o mapa, cada decisão vira uma ida ao dono.</p>
+<blockquote>Delegar sem processo é terceirizar a dúvida, não a decisão.</blockquote>
+<h2>O que significa "documentar um processo"</h2>
+<p>Não é escrever um manual de 40 páginas que ninguém lê. É registrar, de forma curta e prática, três coisas:</p>
+<ul>
+<li><strong>O gatilho:</strong> quando esse processo começa (ex.: cliente pede orçamento).</li>
+<li><strong>Os passos:</strong> o que fazer, na ordem, incluindo as exceções mais comuns.</li>
+<li><strong>O resultado esperado:</strong> como saber que foi bem feito.</li>
+</ul>
+<h2>Comece pelos processos que mais se repetem</h2>
+<p>Não tente documentar tudo. Liste o que acontece toda semana e tem impacto no cliente ou no caixa: atendimento a um lead, fechamento de venda, pós-venda, cobrança. Documente esses primeiro. São 20% dos processos que resolvem 80% das idas ao dono.</p>
+<h2>O teste final</h2>
+<p>Um processo está bem documentado quando uma pessoa nova consegue executá-lo lendo o registro, sem te interromper. Quando você chega nesse ponto em cada processo-chave, a operação para de depender da sua presença — e você volta a ser dono, não operador.</p>`,
+  },
+  {
+    slug: "ia-no-atendimento-por-onde-comecar",
+    title: "Automação e IA no atendimento: por onde começar sem virar robô",
+    deck: "IA no atendimento não é substituir gente por bot. É tirar da equipe o trabalho repetitivo para ela cuidar do que realmente precisa de humano.",
+    tags: "automação,ia",
+    cover: "/assets/blog/automacao-ia.svg",
+    content: `
+<p>Toda semana surge uma ferramenta nova de IA prometendo revolucionar o atendimento. E toda semana algum dono de PME testa, se frustra e conclui que "não é para o meu negócio". O problema quase nunca é a tecnologia — é começar pelo lugar errado.</p>
+<h2>O erro: querer automatizar a conversa toda</h2>
+<p>Colocar um bot para "resolver tudo" costuma dar errado. O cliente sente que está falando com uma parede, e a equipe perde a confiança na ferramenta. Automação boa é invisível: ela tira o atrito, não adiciona.</p>
+<blockquote>Automatize a tarefa repetitiva, não o relacionamento.</blockquote>
+<h2>Por onde começar (nesta ordem)</h2>
+<h3>1. Respostas de primeira linha</h3>
+<p>Horário, endereço, formas de pagamento, status de pedido. Perguntas que se repetem o dia inteiro e não precisam de ninguém pensando. Automatizar isso já libera horas da equipe.</p>
+<h3>2. Triagem e roteamento</h3>
+<p>A IA entende o que o cliente quer e direciona para a pessoa certa, com o contexto já organizado. O vendedor recebe a conversa pronta para avançar, não do zero.</p>
+<h3>3. Follow-up que não deixa lead esfriar</h3>
+<p>Lembrar de retomar um orçamento parado, enviar a proposta prometida, checar se ficou alguma dúvida. É onde a PME mais perde venda — e onde a automação mais devolve dinheiro.</p>
+<h2>A regra de ouro</h2>
+<p>Sempre deixe um caminho fácil para falar com um humano. A IA cuida do volume e da velocidade; a pessoa cuida da relação e da exceção. Feito assim, o cliente é melhor atendido e a equipe trabalha menos apagando incêndio.</p>`,
+  },
+  {
+    slug: "ecommerce-pme-plataforma-nao-e-o-problema",
+    title: "E-commerce para PME: a plataforma quase nunca é o problema",
+    deck: "Trocar de plataforma raramente resolve uma loja que não vende. O que trava está na operação, na oferta e no pós-clique — não no software.",
+    tags: "e-commerce,vendas",
+    cover: "/assets/blog/ecommerce.svg",
+    content: `
+<p>"A gente vai trocar de plataforma para vender mais." Ouvimos isso com frequência — e quase sempre é a solução errada para o problema errado. A plataforma é a parte mais visível, então vira a culpada fácil. Mas o que impede a loja de vender costuma estar em outro lugar.</p>
+<h2>O que realmente trava uma loja de PME</h2>
+<ul>
+<li><strong>Operação:</strong> pedido que demora a ser separado, estoque desatualizado, frete mal configurado. O cliente até compra — a experiência depois é que queima.</li>
+<li><strong>Oferta:</strong> foto ruim, descrição genérica, nenhuma razão clara para comprar de você e não do concorrente com preço parecido.</li>
+<li><strong>Pós-clique:</strong> o visitante chega, mas não há prova social, não há atendimento rápido, o checkout tem fricção. A venda escorre no fim do funil.</li>
+</ul>
+<blockquote>Uma plataforma nova em cima de uma operação bagunçada é uma loja bonita que continua não vendendo.</blockquote>
+<h2>Quando trocar faz sentido de verdade</h2>
+<p>Existe hora certa para migrar: quando a plataforma atual não integra com seu estoque, não escala com o volume, ou cobra tanto que come a margem. Aí sim a troca é investimento. Fora disso, é fuga do problema real.</p>
+<h2>A ordem certa</h2>
+<p>Primeiro arrume a operação e a oferta. Depois otimize o pós-clique. Só então, se ainda fizer sentido, discuta plataforma. Nessa ordem, cada real investido tem retorno — e você não paga uma migração cara para descobrir que o problema continua.</p>`,
+  },
+  {
+    slug: "raio-x-de-performance-como-funciona",
+    title: "Raio-X de Performance: como funciona o nosso diagnóstico",
+    deck: "Antes de propor qualquer coisa, a gente escuta e mapeia. Uma hora estruturada que já entrega clareza — mesmo que você siga sozinho depois.",
+    tags: "método",
+    cover: "/assets/blog/raio-x.svg",
+    content: `
+<p>Desconfie de quem manda proposta antes de entender seu negócio. Toda empresa é diferente, e a mesma "solução" aplicada no escuro costuma resolver o sintoma errado. Por isso todo trabalho na Porto &amp; Feiges começa pelo mesmo lugar: o Raio-X de Performance.</p>
+<h2>O que é</h2>
+<p>Uma conversa estruturada de cerca de uma hora, sem powerpoint e sem enrolação. O objetivo não é te vender — é entender onde está o dinheiro represado na sua operação comercial e digital.</p>
+<h2>O que a gente mapeia</h2>
+<ul>
+<li><strong>Como entra a demanda</strong> — canais, volume, qualidade dos leads.</li>
+<li><strong>Como funciona a venda</strong> — funil, follow-up, conversão, ticket.</li>
+<li><strong>Onde a operação depende do dono</strong> — os gargalos que impedem escala.</li>
+<li><strong>O que já existe de digital</strong> — site, CRM, tráfego, automação — e o que gera retorno de fato.</li>
+</ul>
+<blockquote>No fim da conversa, você sai com um diagnóstico claro do que atacar primeiro — com ou sem a gente.</blockquote>
+<h2>Por que priorização importa</h2>
+<p>A maioria das empresas tem dez frentes para melhorar. Tentar tudo ao mesmo tempo é como não fazer nada. O Raio-X aponta as duas ou três alavancas que mais movem o resultado nos próximos 90 dias — e é por elas que a gente começa.</p>
+<h2>O que vem depois</h2>
+<p>Se fizer sentido seguir juntos, o diagnóstico vira um plano em sprints de 90 dias, com metas semanais e execução mão na massa. Se não fizer, você fica com a clareza mesmo assim. Diagnóstico bom não deixa ninguém no prejuízo.</p>`,
   },
 ];
 
