@@ -7,5 +7,13 @@
     "directory": "./",
     "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+  // Domínio próprio (soubrunoporto.com.br). A Cloudflare cria os registros
+  // DNS e o certificado SSL automaticamente ao publicar — desde que o domínio
+  // já esteja adicionado e ATIVO na mesma conta Cloudflare.
+  // O redirect de www -> apex é feito em _worker.js.
+  "routes": [
+    { "pattern": "soubrunoporto.com.br", "custom_domain": true },
+    { "pattern": "www.soubrunoporto.com.br", "custom_domain": true }
+  ]
 }
