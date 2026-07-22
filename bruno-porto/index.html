@@ -499,6 +499,109 @@
       font-size:.88rem;
     }
 
+    /* ── FAIXA DE POSICIONAMENTO ── */
+    .band{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.2rem 0;}
+    .band-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:center;}
+    @media(max-width:880px){ .band-inner{grid-template-columns:1fr;gap:1.4rem;} }
+    .band h2{font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.25;}
+    .band h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .band-list{display:flex;flex-wrap:wrap;gap:.6rem;}
+    .band-not{display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;color:var(--muted);
+      background:rgba(255,255,255,.03);border:1px solid var(--line);padding:.5rem .85rem;border-radius:999px;}
+    .band-not svg{width:15px;height:15px;color:#ff6b6b;flex-shrink:0;}
+
+    /* ── SEÇÃO DORES ── */
+    .pains{background:var(--bg);}
+    .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+    @media(max-width:900px){ .pain-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:560px){ .pain-grid{grid-template-columns:1fr;} }
+    .pain-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      padding:1.5rem;transition:transform .25s,border-color .25s;}
+    .pain-card:hover{transform:translateY(-4px);border-color:rgba(255,107,107,.35);}
+    .pain-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      margin-bottom:1rem;color:#ff8a8a;background:rgba(255,107,107,.1);}
+    .pain-card h3{font-size:1.05rem;margin-bottom:.4rem;}
+    .pain-card p{color:var(--muted);font-size:.92rem;margin:0;}
+    .pains-foot{margin-top:2.6rem;text-align:center;}
+    .pains-foot p{font-size:1.15rem;color:var(--ink);font-family:'Sora',sans-serif;font-weight:600;max-width:620px;margin:0 auto;}
+    .pains-foot .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+    /* ── SEÇÃO MÉTODO ── */
+    .method{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;position:relative;}
+    @media(max-width:820px){ .steps{grid-template-columns:1fr;} }
+    .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);
+      padding:1.9rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;}
+    .step:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.35);}
+    .step-num{font-family:'Sora',sans-serif;font-weight:800;font-size:2.6rem;line-height:1;
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.9;margin-bottom:.8rem;}
+    .step h3{font-size:1.2rem;margin-bottom:.5rem;}
+    .step p{color:var(--muted);font-size:.94rem;margin:0;}
+    .step-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+
+    /* ── SOLUÇÕES POR DESAFIO ── */
+    .solution{position:relative;background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius-lg);padding:1.7rem;overflow:hidden;transition:transform .3s,border-color .3s;}
+    .solution::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);
+      transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+    .solution:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.35);}
+    .solution:hover::after{transform:scaleX(1);}
+    .solution .want{display:inline-flex;align-items:center;gap:.5rem;font-family:'Sora',sans-serif;
+      font-weight:700;font-size:1.12rem;margin-bottom:.5rem;color:var(--ink);}
+    .solution .want svg{width:20px;height:20px;color:var(--brand);flex-shrink:0;}
+    .solution p{color:var(--muted);font-size:.92rem;margin-bottom:1rem;}
+    .solution-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .tag-mini{font-size:.72rem;font-weight:600;color:#cdd5ff;background:rgba(124,92,255,.1);
+      border:1px solid rgba(124,92,255,.22);padding:.28rem .6rem;border-radius:999px;}
+
+    /* ── PÚBLICO-ALVO ── */
+    .audience{background:var(--bg);}
+    .aud-chips{display:flex;flex-wrap:wrap;gap:.7rem;}
+    .aud-chip{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:500;color:var(--ink);
+      background:var(--card);border:1px solid var(--line);padding:.7rem 1.1rem;border-radius:999px;transition:border-color .25s,transform .25s;}
+    .aud-chip:hover{border-color:rgba(124,92,255,.4);transform:translateY(-2px);}
+    .aud-chip svg{width:17px;height:17px;color:var(--brand);}
+
+    /* ── CASES ── */
+    .cases{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    @media(max-width:960px){ .cases-grid{grid-template-columns:1fr;} }
+    .case-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);
+      padding:1.8rem;transition:transform .3s,border-color .3s;}
+    .case-card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.35);}
+    .case-seg{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--brand);
+      background:var(--grad-soft);border:1px solid rgba(124,92,255,.25);padding:.3rem .7rem;border-radius:999px;margin-bottom:1.1rem;}
+    .case-metric{font-family:'Sora',sans-serif;font-weight:800;font-size:2.6rem;line-height:1;
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:1.1rem;}
+    .case-metric small{display:block;font-size:.78rem;font-weight:600;letter-spacing:.02em;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-top:.35rem;}
+    .case-row{padding:.7rem 0;border-top:1px solid var(--line);}
+    .case-row:first-of-type{border-top:none;}
+    .case-row .lbl{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;}
+    .case-row .val{font-size:.95rem;color:var(--ink);}
+    .case-row.result .val{color:var(--accent);font-weight:600;}
+    .cases-note{margin-top:1.6rem;text-align:center;color:var(--muted);font-size:.85rem;}
+
+    /* ── DIFERENCIAIS ── */
+    .diffs{background:var(--bg);}
+    .diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+    @media(max-width:900px){ .diff-grid{grid-template-columns:1fr;} }
+    .diff-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;}
+    .diff-no{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.9rem;margin-bottom:.6rem;text-decoration:line-through;text-decoration-color:rgba(255,107,107,.6);}
+    .diff-yes{display:flex;align-items:flex-start;gap:.55rem;font-family:'Sora',sans-serif;font-weight:600;font-size:1.08rem;color:var(--ink);}
+    .diff-yes svg{width:20px;height:20px;color:var(--accent);flex-shrink:0;margin-top:2px;}
+
+    /* ── FORMULÁRIO ── */
+    .lead-form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.8rem;text-align:left;}
+    @media(max-width:620px){ .lead-form{grid-template-columns:1fr;} }
+    .lead-form .full{grid-column:1/-1;}
+    .lead-form label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:.35rem;}
+    .lead-form input,.lead-form select,.lead-form textarea{
+      width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
+      padding:.8rem .9rem;color:var(--ink);font:inherit;font-size:.95rem;transition:border-color .2s,background .2s;}
+    .lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:none;border-color:rgba(124,92,255,.55);background:rgba(255,255,255,.06);}
+    .lead-form textarea{resize:vertical;min-height:88px;}
+    .lead-form option{background:#11141c;}
+
     /* ── CTA / CONTATO ── */
     .cta-section{
       position:relative;
@@ -602,13 +705,12 @@
         </svg>
       </button>
       <div class="nav-links" id="navLinks">
+        <a href="#metodo">Método</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="#cases">Cases</a>
         <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#experiencia">Experiência</a>
-        <a href="#marcas">Marcas</a>
-        <a href="#parceiros">Parceiros</a>
         <a href="/blog/">Blog</a>
-        <a href="#contato" class="nav-cta">Falar com Bruno</a>
+        <a href="#contato" class="nav-cta">Agendar Diagnóstico</a>
       </div>
     </div>
   </nav>
@@ -619,25 +721,25 @@
       <div class="reveal">
         <div class="tag">
           <span class="tag-dot"></span>
-          Disponível para novos projetos
+          Consultoria estratégica · +30 anos de operação
         </div>
         <h1>
-          Vender mais com <span class="grad">estratégia comercial, inteligência artificial</span> e processos bem estruturados.
+          Sua empresa já vende. Eu faço ela vender <span class="grad">muito mais</span>.
         </h1>
         <p class="lead">
-          Sou Bruno Porto Seus e, há mais de 30 anos, ajudo empresas a venderem mais pela internet. Organizo marketing, atendimento, CRM e vendas e transformo tecnologia e IA em algo que você sente no caixa: mais clientes, mais recompra e uma operação que cresce de forma sustentável.
+          Sou Bruno Porto, consultor estratégico que entra na operação de indústrias, distribuidores, redes de lojas, B2B e e-commerces para integrar <strong>vendas, marketing, CRM, processos e IA</strong> — transformando gargalos em crescimento. Do diagnóstico à execução, com a mão na massa.
         </p>
         <div class="cta-row">
-          <a href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20quero%20conversar%20sobre%20consultoria%20digital." target="_blank" rel="noopener" class="btn btn-primary">
-            Falar no WhatsApp
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Zm3.62-4.96c-.2-.1-1.18-.58-1.36-.65-.18-.07-.31-.1-.45.1-.13.2-.5.65-.62.78-.11.13-.23.15-.43.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.1-1.36-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.34.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34h-.39c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.63 0 .96.71 1.89.81 2.02.1.13 1.4 2.14 3.39 3 .47.2.85.32 1.14.41.48.15.92.13 1.26.08.39-.06 1.18-.48 1.35-.95.17-.47.17-.86.12-.95-.05-.09-.18-.13-.38-.23Z"/></svg>
+          <a href="#contato" class="btn btn-primary">
+            Agendar Diagnóstico Estratégico
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
-          <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
+          <a href="#metodo" class="btn btn-ghost">Como funciona</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><strong>+30</strong><span>anos de experiência</span></div>
-          <div class="stat"><strong>3</strong><span>décadas em vendas e digital</span></div>
-          <div class="stat"><strong>100%</strong><span>foco em resultado</span></div>
+          <div class="stat"><strong>+30</strong><span>anos de operação comercial</span></div>
+          <div class="stat"><strong>+50</strong><span>marcas e projetos atendidos</span></div>
+          <div class="stat"><strong>5</strong><span>áreas integradas numa só estratégia</span></div>
         </div>
       </div>
 
@@ -674,15 +776,104 @@
     </div>
   </header>
 
+  <!-- ─────────── POSICIONAMENTO ─────────── -->
+  <section class="band">
+    <div class="wrap band-inner">
+      <h2 class="reveal">Bruno Porto não é agência, freelancer ou gestor de tráfego. É o <span class="grad">consultor estratégico que entra na operação e executa</span>.</h2>
+      <div class="band-list reveal">
+        <span class="band-not"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Não é agência</span>
+        <span class="band-not"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Não é freelancer</span>
+        <span class="band-not"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Não é só desenvolvedor</span>
+        <span class="band-not"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Não é gestor de tráfego</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── SEÇÃO 01 · DORES ─────────── -->
+  <section id="dores" class="pains">
+    <div class="wrap">
+      <span class="eyebrow reveal">O cenário</span>
+      <h2 class="section-title reveal">As empresas que crescem normalmente enfrentam estes problemas.</h2>
+      <p class="section-sub reveal">Se você reconhece a sua empresa em alguns destes pontos, não é falta de esforço — é falta de integração e de estratégia.</p>
+
+      <div class="pain-grid">
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 15-4-4-3 3-4-4"/></svg></div>
+          <h3>Vendas estagnadas</h3>
+          <p>Você vende, mas o faturamento parou de crescer — e ninguém sabe apontar exatamente o porquê.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
+          <h3>Marketing sem resultado</h3>
+          <p>Investe em anúncios e conteúdo, mas não vira venda nem retorno claro. Dinheiro saindo sem previsibilidade.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-1.5-1.5"/></svg></div>
+          <h3>CRM abandonado</h3>
+          <p>Comprou o sistema, mas ninguém usa de verdade. Leads e clientes se perdem no caminho todos os dias.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/></svg></div>
+          <h3>Setores que não conversam</h3>
+          <p>Marketing, comercial e atendimento trabalham separados, cada um puxando a operação para um lado.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg></div>
+          <h3>Decisão no achismo</h3>
+          <p>Faltam indicadores. Sem números, é impossível saber o que funciona e o que só custa dinheiro.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18"/><path d="M6 7v13"/><path d="M18 7v13"/><path d="M10 11h4"/><path d="M9 4l3-2 3 2"/></svg></div>
+          <h3>Crescimento desorganizado</h3>
+          <p>A empresa cresceu, mas a operação virou uma bagunça difícil de escalar e de manter sob controle.</p>
+        </div>
+      </div>
+
+      <div class="pains-foot reveal">
+        <p>Você não precisa de mais uma ferramenta. Precisa de <span class="grad">estratégia, integração e execução</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── SEÇÃO 02 · MÉTODO ─────────── -->
+  <section id="metodo" class="method">
+    <div class="wrap">
+      <span class="eyebrow reveal">Como funciona</span>
+      <h2 class="section-title reveal">Um método simples, em três etapas.</h2>
+      <p class="section-sub reveal">Sem projeto interminável e sem apresentação de gaveta. Foco em prioridade, clareza e resultado.</p>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <h3>Diagnóstico</h3>
+          <p>Entro na sua operação, escuto a equipe e analiso vendas, marketing, CRM, processos e números. Identifico gargalos e oportunidades reais.</p>
+          <div class="step-tags"><span class="tag-mini">Análise</span><span class="tag-mini">Dados</span><span class="tag-mini">Escuta ativa</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <h3>Plano estratégico</h3>
+          <p>Traduzo o diagnóstico num plano priorizado: o que fazer primeiro, o que gera mais resultado e como cada área passa a trabalhar integrada.</p>
+          <div class="step-tags"><span class="tag-mini">Prioridades</span><span class="tag-mini">Roadmap</span><span class="tag-mini">Metas</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <h3>Execução e acompanhamento</h3>
+          <p>Coloco em prática junto com o seu time: implanto processos e ferramentas e acompanho os indicadores até o resultado aparecer no caixa.</p>
+          <div class="step-tags"><span class="tag-mini">Implementação</span><span class="tag-mini">Indicadores</span><span class="tag-mini">Acompanhamento</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─────────── SOBRE ─────────── -->
   <section id="sobre" class="about">
     <div class="wrap">
       <div class="about-grid">
         <div class="reveal">
-          <span class="eyebrow">Sobre</span>
-          <h2 class="section-title">Seu negócio vendendo mais, com estratégia, tecnologia e execução no lugar certo.</h2>
+          <span class="eyebrow">Quem é Bruno Porto</span>
+          <h2 class="section-title">30 anos colocando a mão na operação de empresas que precisam vender mais.</h2>
           <p>
-            Há <strong>mais de 30 anos</strong> ajudo empresas a venderem mais e a modernizarem sua operação — não com teoria, mas com decisões que geram caixa. Se as vendas travaram, o marketing não converte ou os processos viraram bagunça, é aí que eu entro.
+            Não sou teórico. Há <strong>mais de 30 anos</strong> estou dentro da operação comercial de indústrias, distribuidores, redes de lojas e e-commerces — diagnosticando, priorizando e executando decisões que geram caixa. Se as vendas travaram, o marketing não converte ou os processos viraram bagunça, é aí que eu entro.
           </p>
           <p>
             Trabalho lado a lado com empresários e equipes que querem <strong>estruturar ou escalar sua operação digital</strong>: coloco a loja virtual para vender, uso IA e automação para ganhar produtividade e transformo tecnologia em vantagem real sobre a concorrência.
@@ -726,63 +917,133 @@
     </div>
   </section>
 
-  <!-- ─────────── SERVIÇOS ─────────── -->
-  <section id="servicos">
+  <!-- ─────────── SEÇÃO 03 · SOLUÇÕES POR DESAFIO ─────────── -->
+  <section id="solucoes">
     <div class="wrap">
-      <span class="eyebrow reveal">Serviços</span>
-      <h2 class="section-title reveal">Como eu ajudo sua empresa a vender mais</h2>
-      <p class="section-sub reveal">
-        Se você quer vender mais pela internet, colocar ordem no comercial e parar de perder cliente por falta de processo, escolha por onde começar. Cada frente abaixo existe para gerar um resultado claro no seu faturamento.
-      </p>
+      <span class="eyebrow reveal">Soluções</span>
+      <h2 class="section-title reveal">Não vendo serviços. Resolvo desafios.</h2>
+      <p class="section-sub reveal">Comece pelo que mais dói na sua operação hoje. Cada frente conecta estratégia, tecnologia e execução para um resultado claro no seu faturamento.</p>
 
       <div class="services-grid">
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Z"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
-          </div>
-          <h3>Diagnóstico Comercial e Digital</h3>
-          <p>Descubro exatamente o que está travando suas vendas e onde está o dinheiro parado — com um plano de ação claro do que fazer primeiro.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero vender mais</div>
+          <p>Estratégia comercial ponta a ponta: posicionamento, canais, funil e conversão para destravar o crescimento do faturamento.</p>
+          <div class="solution-tags"><span class="tag-mini">Estratégia Comercial</span><span class="tag-mini">Growth</span><span class="tag-mini">Conversão</span></div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-          </div>
-          <h3>Estratégia para E-commerce</h3>
-          <p>Coloco sua loja virtual para vender de verdade: mais visitantes virando clientes e um faturamento que cresce mês após mês.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero organizar meu comercial</div>
+          <p>Processos claros, rotina de vendas, metas e indicadores. O time deixa o improviso e passa a operar com previsibilidade.</p>
+          <div class="solution-tags"><span class="tag-mini">Processos</span><span class="tag-mini">Gestão</span><span class="tag-mini">Treinamento Comercial</span></div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>CRM e Automação Comercial</h3>
-          <p>Nenhum lead perdido e cada oportunidade acompanhada. Organizo seu CRM e automatizo o atendimento para o time vender mais sem trabalhar mais.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero estruturar meu CRM</div>
+          <p>CRM que a equipe realmente usa: funil organizado, automação de atendimento e nenhum lead ou cliente perdido no caminho.</p>
+          <div class="solution-tags"><span class="tag-mini">CRM</span><span class="tag-mini">Automação</span><span class="tag-mini">Atendimento</span></div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-          </div>
-          <h3>Inteligência Artificial Aplicada</h3>
-          <p>Uso IA para você atender mais rápido, responder na hora e produzir mais com o mesmo time — resultado no caixa, sem modismo.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero implantar IA</div>
+          <p>Inteligência artificial aplicada de forma prática ao comercial e ao marketing: mais produtividade e velocidade, sem modismo.</p>
+          <div class="solution-tags"><span class="tag-mini">IA Aplicada</span><span class="tag-mini">Produtividade</span><span class="tag-mini">Automação</span></div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3>Jornada de Compra e Atendimento</h3>
-          <p>Do primeiro clique ao pós-venda, faço o cliente comprar com facilidade e voltar a comprar — mais conversão e mais recompra.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero melhorar meu e-commerce</div>
+          <p>Loja virtual que vende de verdade: mais visitantes virando clientes, ticket maior e recompra. Da vitrine ao pós-venda.</p>
+          <div class="solution-tags"><span class="tag-mini">E-commerce</span><span class="tag-mini">SEO</span><span class="tag-mini">Conversão</span></div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6"/><path d="m4.22 4.22 4.24 4.24m7.08 7.08 4.24 4.24"/><path d="M1 12h6m10 0h6"/><path d="m4.22 19.78 4.24-4.24m7.08-7.08 4.24-4.24"/></svg>
-          </div>
-          <h3>Integração Marketing + Tech + Vendas</h3>
-          <p>Paro o desperdício de esforço entre as áreas: marketing, tecnologia e vendas trabalhando juntos e puxando na mesma direção — vender mais.</p>
+        <article class="solution reveal">
+          <div class="want"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Quero integrar minha operação</div>
+          <p>Marketing, vendas, CRM e dados na mesma direção. Indicadores em um só lugar para decidir com número, não com achismo.</p>
+          <div class="solution-tags"><span class="tag-mini">Integração</span><span class="tag-mini">Business Intelligence</span><span class="tag-mini">Indicadores</span></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── PÚBLICO-ALVO ─────────── -->
+  <section id="publico" class="audience">
+    <div class="wrap">
+      <span class="eyebrow reveal">Para quem eu trabalho</span>
+      <h2 class="section-title reveal">Empresas que já vendem — e sentem que poderiam vender muito mais.</h2>
+      <p class="section-sub reveal">Trabalho com quem já tem operação montada e quer transformar potencial em crescimento organizado.</p>
+      <div class="aud-chips">
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V8l6-4v16"/><path d="M10 20V9l8 4v7"/></svg> Indústrias</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg> Distribuidores</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18l-1.5 11H4.5z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg> Atacadistas</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> Redes de lojas</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> Empresas B2B</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg> Empresas B2C</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> E-commerce</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h6M9 11h6M9 15h6"/></svg> Empresas familiares</span>
+        <span class="aud-chip reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> PMEs em crescimento</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── SEÇÃO 04 · CASES ─────────── -->
+  <section id="cases" class="cases">
+    <div class="wrap">
+      <span class="eyebrow reveal">Cases</span>
+      <h2 class="section-title reveal">Não é sobre logos. É sobre transformação.</h2>
+      <p class="section-sub reveal">Empresas que já vendiam bem e passaram a vender muito mais depois de organizar estratégia, operação e execução.</p>
+
+      <div class="cases-grid">
+        <div class="case-card reveal">
+          <span class="case-seg">Via Inox Tramontina · Varejo</span>
+          <div class="case-metric">2×<small>de faturamento mensal</small></div>
+          <div class="case-row"><span class="lbl">Contexto</span><span class="val">Loja com e-commerce em operação, faturando em média R$ 500 mil por mês.</span></div>
+          <div class="case-row"><span class="lbl">Problema</span><span class="val">Crescimento estagnado: comercial, marketing e loja virtual trabalhando separados, sem processo claro de conversão.</span></div>
+          <div class="case-row"><span class="lbl">Estratégia</span><span class="val">Diagnóstico da operação, reestruturação do e-commerce, integração de CRM e marketing e foco em conversão e recompra.</span></div>
+          <div class="case-row result"><span class="lbl">Resultado</span><span class="val">De ~R$ 500 mil para ~R$ 1 milhão/mês — faturamento dobrado, com melhoria de todos os KPIs.</span></div>
+        </div>
+
+        <div class="case-card reveal">
+          <span class="case-seg">Balaroti · Varejo</span>
+          <div class="case-metric">+3×<small>de faturamento mensal</small></div>
+          <div class="case-row"><span class="lbl">Contexto</span><span class="val">Operação de varejo com loja virtual faturando em média R$ 300 mil por mês.</span></div>
+          <div class="case-row"><span class="lbl">Problema</span><span class="val">Potencial de vendas online muito acima do realizado, com canais e áreas desconectados.</span></div>
+          <div class="case-row"><span class="lbl">Estratégia</span><span class="val">Diagnóstico, reestruturação do e-commerce e do funil, integração de comercial, marketing e CRM e gestão por indicadores.</span></div>
+          <div class="case-row result"><span class="lbl">Resultado</span><span class="val">De ~R$ 300 mil para ~R$ 1 milhão/mês — faturamento mais que triplicado, com melhoria de todos os KPIs.</span></div>
+        </div>
+
+        <div class="case-card reveal">
+          <span class="case-seg">Thais Rodrigues · Varejo</span>
+          <div class="case-metric">4,6×<small>de faturamento mensal</small></div>
+          <div class="case-row"><span class="lbl">Contexto</span><span class="val">E-commerce faturando em média R$ 500 mil por mês.</span></div>
+          <div class="case-row"><span class="lbl">Problema</span><span class="val">Estrutura comercial e de marketing sem integração, limitando a escala do crescimento.</span></div>
+          <div class="case-row"><span class="lbl">Estratégia</span><span class="val">Diagnóstico completo, reestruturação de e-commerce, CRM, automação e marketing integrados, com foco em conversão, ticket e recompra.</span></div>
+          <div class="case-row result"><span class="lbl">Resultado</span><span class="val">De ~R$ 500 mil para ~R$ 2,3 milhões/mês — faturamento 4,6×, com melhoria de todos os KPIs.</span></div>
+        </div>
+      </div>
+
+      <p class="cases-note reveal">Médias de faturamento mensal antes e depois dos projetos, conduzidos junto aos clientes.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── SEÇÃO 06 · DIFERENCIAIS ─────────── -->
+  <section id="diferenciais" class="diffs">
+    <div class="wrap">
+      <span class="eyebrow reveal">Por que trabalhar comigo</span>
+      <h2 class="section-title reveal">O diferencial não é o que eu falo. É o que eu entrego.</h2>
+      <p class="section-sub reveal">Consultoria que não para na apresentação — vai até o resultado aparecer no caixa.</p>
+
+      <div class="diff-grid">
+        <div class="diff-card reveal">
+          <div class="diff-no">Apresentações e relatórios de gaveta</div>
+          <div class="diff-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Entrego implementação: coloco a mão na massa junto com o seu time.</div>
+        </div>
+        <div class="diff-card reveal">
+          <div class="diff-no">Vender ferramentas soltas</div>
+          <div class="diff-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Construo processos: a tecnologia entra a serviço da estratégia.</div>
+        </div>
+        <div class="diff-card reveal">
+          <div class="diff-no">Marketing isolado do comercial</div>
+          <div class="diff-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Integro toda a operação: vendas, marketing, CRM, processos e IA na mesma direção.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1087,14 +1348,49 @@
   <section id="contato" class="cta-section">
     <div class="wrap">
       <div class="cta-card reveal">
-        <h2>Vamos transformar sua operação digital?</h2>
+        <span class="eyebrow">Diagnóstico Estratégico</span>
+        <h2>Vamos descobrir onde está o seu próximo milhão?</h2>
         <p>
-          Conte sua situação atual e seus objetivos. Em uma conversa inicial identificamos prioridades, oportunidades e o caminho mais curto até o resultado.
+          Conte sua situação em 1 minuto. No Diagnóstico Estratégico eu analiso a sua operação e aponto prioridades e oportunidades reais — você sai com clareza, mesmo antes de contratar.
         </p>
-        <a href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20quero%20conversar%20sobre%20consultoria%20digital." target="_blank" rel="noopener" class="btn btn-primary">
-          Falar agora no WhatsApp
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
-        </a>
+
+        <form class="lead-form" id="leadForm">
+          <div>
+            <label for="f-nome">Seu nome</label>
+            <input id="f-nome" type="text" placeholder="Como posso te chamar?" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="f-wpp">WhatsApp</label>
+            <input id="f-wpp" type="tel" placeholder="(41) 9 9999-9999" autocomplete="tel" required />
+          </div>
+          <div>
+            <label for="f-emp">Empresa</label>
+            <input id="f-emp" type="text" placeholder="Nome da sua empresa" autocomplete="organization" />
+          </div>
+          <div>
+            <label for="f-seg">Segmento</label>
+            <select id="f-seg">
+              <option value="">Selecione…</option>
+              <option>Indústria</option>
+              <option>Distribuidor / Atacado</option>
+              <option>Rede de lojas / Varejo</option>
+              <option>E-commerce</option>
+              <option>Empresa B2B</option>
+              <option>Empresa B2C</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="f-msg">Qual é o seu maior desafio hoje?</label>
+            <textarea id="f-msg" placeholder="Ex.: minhas vendas estagnaram, meu CRM está abandonado, quero escalar meu e-commerce…"></textarea>
+          </div>
+          <div class="full">
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Agendar meu Diagnóstico Estratégico
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
+            </button>
+          </div>
+        </form>
 
         <div class="contact-grid">
           <a href="mailto:brunodpps@gmail.com" class="contact-item">
@@ -1178,6 +1474,27 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Formulário de Diagnóstico → WhatsApp
+    const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nome = document.getElementById('f-nome').value.trim();
+        const wpp  = document.getElementById('f-wpp').value.trim();
+        const emp  = document.getElementById('f-emp').value.trim();
+        const seg  = document.getElementById('f-seg').value;
+        const msg  = document.getElementById('f-msg').value.trim();
+        let texto = 'Olá Bruno! Quero agendar um Diagnóstico Estratégico.';
+        if (nome) texto += `\n\nNome: ${nome}`;
+        if (emp)  texto += `\nEmpresa: ${emp}`;
+        if (seg)  texto += `\nSegmento: ${seg}`;
+        if (wpp)  texto += `\nWhatsApp: ${wpp}`;
+        if (msg)  texto += `\n\nMaior desafio hoje: ${msg}`;
+        const url = `https://wa.me/5541998448989?text=${encodeURIComponent(texto)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+    }
   </script>
 
   <!-- Consentimento de cookies (LGPD) -->
