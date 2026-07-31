@@ -4,7 +4,15 @@
 (function(){
   "use strict";
   var C = window.CONTENT;
-  var lang = (localStorage.getItem("cananeia-lang") === "pt") ? "pt" : "en";
+  // Language priority: URL (#en/#pt or ?lang=) > saved choice > English default.
+  function readLang(){
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    var q = "";
+    try { q = (new URLSearchParams(location.search).get("lang") || "").toLowerCase(); } catch(e){}
+    var v = (h==="en"||h==="pt") ? h : ((q==="en"||q==="pt") ? q : localStorage.getItem("cananeia-lang"));
+    return v === "pt" ? "pt" : "en";
+  }
+  var lang = readLang();
 
   var el = function(id){ return document.getElementById(id); };
   var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){
@@ -80,7 +88,7 @@
         '<h3>'+esc(L(t.title))+'</h3>'+
         '<div class="tier__orig">'+esc(L(t.orig))+'</div>'+
         '<div class="tier__calc">'+esc(L(t.calc))+'</div>'+
-        '<div class="tier__pp"><div class="pp-label">Per person</div>'+
+        '<div class="tier__pp"><div class="pp-label">'+(lang==="pt"?"Por pessoa":"Per person")+'</div>'+
           '<div class="pp-value">'+esc(L(t.pp))+'</div>'+
           '<div class="pp-sub">'+esc(L(t.sub))+'</div></div></div>';
     }).join("");
@@ -188,17 +196,29 @@
   }
 
   /* ---- language toggle ---- */
+  function syncButtons(){
+    document.querySelectorAll(".lang__btn").forEach(function(b){
+      b.classList.toggle("is-active", b.getAttribute("data-lang")===lang); });
+  }
+  function setLang(next){
+    lang = (next==="pt") ? "pt" : "en";
+    try { localStorage.setItem("cananeia-lang", lang); } catch(e){}
+    // Reflect the language in the URL so it is shareable and reload-stable,
+    // without scrolling the page or adding a history entry.
+    if(history.replaceState){ history.replaceState(null, "", "#"+lang); }
+    else { location.hash = lang; }
+    syncButtons();
+    renderAll();
+  }
   document.querySelectorAll(".lang__btn").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      lang = btn.getAttribute("data-lang");
-      localStorage.setItem("cananeia-lang", lang);
-      document.querySelectorAll(".lang__btn").forEach(function(b){
-        b.classList.toggle("is-active", b.getAttribute("data-lang")===lang); });
-      renderAll();
-    });
+    btn.addEventListener("click", function(){ setLang(btn.getAttribute("data-lang")); });
   });
-  document.querySelectorAll(".lang__btn").forEach(function(b){
-    b.classList.toggle("is-active", b.getAttribute("data-lang")===lang); });
+  // Allow pasting a #en / #pt link to switch languages live.
+  window.addEventListener("hashchange", function(){
+    var v = readLang();
+    if(v !== lang){ lang = v; syncButtons(); renderAll(); }
+  });
 
+  syncButtons();
   renderAll();
 })();
