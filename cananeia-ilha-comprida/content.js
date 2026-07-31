@@ -301,7 +301,11 @@ window.CONTENT = {
       {id:"VZxyYOjwf28",short:false,
         topic:{en:"Cananéia · destination video",pt:"Cananéia · vídeo do destino"},
         title:{en:"Cananéia & Ilha Comprida",pt:"Cananéia e Ilha Comprida"},
-        desc:{en:"Views of the coast, islands and waters of the region.",pt:"Imagens do litoral, das ilhas e das águas da região."}}
+        desc:{en:"Views of the coast, islands and waters of the region.",pt:"Imagens do litoral, das ilhas e das águas da região."}},
+      {id:"68RdYNaAQvI",short:false,
+        topic:{en:"Cananéia · destination video",pt:"Cananéia · vídeo do destino"},
+        title:{en:"Exploring the region",pt:"Explorando a região"},
+        desc:{en:"More scenery and highlights around Cananéia.",pt:"Mais paisagens e destaques pela região de Cananéia."}}
     ]
   },
 
@@ -331,6 +335,9 @@ window.CONTENT = {
     title:{en:"Essential links & maps",pt:"Links essenciais & mapas"},
     lead:{en:"Open maps and searches to plan, compare and book. Prices and availability change over the holiday — always confirm.",
       pt:"Abra mapas e buscas para planejar, comparar e reservar. Preços e disponibilidade mudam no feriado — sempre confirme."},
+    mapTitle:{en:"Map of the region",pt:"Mapa da região"},
+    mapNote:{en:"Cananéia and, just across the water, Ilha Comprida and Ilha do Cardoso. Drag and zoom to explore; open in Google Maps for directions.",
+      pt:"Cananéia e, logo do outro lado da água, a Ilha Comprida e a Ilha do Cardoso. Arraste e dê zoom para explorar; abra no Google Maps para rotas."},
     items:[
       {cat:{en:"Discover",pt:"Descubra"},title:{en:"Cananéia on Google Maps",pt:"Cananéia no Google Maps"},
         desc:{en:"See the town, Historic Center, waterfront and surroundings.",pt:"Veja a cidade, o Centro Histórico, a orla e os arredores."},
