@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cananéia &amp; Ilha Comprida Travel Itinerary · Dec 30, 2026 – Jan 2, 2027</title>
+  <meta name="description" content="Bilingual travel guide (English / Português) for a group of 6 to Cananéia, Ilha Comprida and Ilha do Cardoso, southern coast of São Paulo, Brazil. Itinerary, tours, food, stays, per-person costs, videos and maps." />
+  <meta property="og:title" content="Cananéia & Ilha Comprida Travel Itinerary" />
+  <meta property="og:description" content="Nature, history, local food and Caiçara culture — a New Year's trip for 6 travelers." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar" id="top">
+    <div class="topbar__inner">
+      <a href="#top" class="brand">
+        <span class="brand__mark">🌊</span>
+        <span class="brand__text">Cananéia <span class="brand__amp">&amp;</span> Ilha Comprida</span>
+      </a>
+
+      <nav class="topnav" id="topnav" aria-label="Sections">
+        <a href="#why" data-i18n="nav.why">Why visit</a>
+        <a href="#history" data-i18n="nav.history">History</a>
+        <a href="#itinerary" data-i18n="nav.itinerary">Itinerary</a>
+        <a href="#tours" data-i18n="nav.tours">Tours</a>
+        <a href="#stay" data-i18n="nav.stay">Stay</a>
+        <a href="#food" data-i18n="nav.food">Food</a>
+        <a href="#budget" data-i18n="nav.budget">Budget</a>
+        <a href="#videos" data-i18n="nav.videos">Videos</a>
+        <a href="#tips" data-i18n="nav.tips">Tips</a>
+        <a href="#links" data-i18n="nav.links">Links</a>
+      </nav>
+
+      <div class="lang" role="group" aria-label="Language">
+        <button class="lang__btn is-active" data-lang="en" type="button">EN</button>
+        <button class="lang__btn" data-lang="pt" type="button">PT</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__sky"></div>
+    <svg class="hero__waves" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,120 C240,60 480,180 720,120 C960,60 1200,180 1440,120 L1440,220 L0,220 Z" opacity="0.55"></path>
+      <path d="M0,150 C240,100 480,200 720,150 C960,100 1200,200 1440,150 L1440,220 L0,220 Z" opacity="0.8"></path>
+    </svg>
+    <div class="hero__inner">
+      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Southern coast of São Paulo · Brazil</p>
+      <h1 class="hero__title" data-i18n="hero.title">Cananéia &amp; Ilha Comprida Travel Itinerary</h1>
+      <p class="hero__dates" data-i18n="hero.dates">December 30, 2026 → January 2, 2027</p>
+      <p class="hero__subtitle" data-i18n="hero.subtitle">Nature, history, local food, and Caiçara culture for a group of 6 travelers.</p>
+      <p class="hero__travelers"><span data-i18n="hero.travelersLabel">Travelers:</span> Renata · Alex · Bruno · Chris · Fer · Dani</p>
+      <div class="hero__badges">
+        <span class="badge">🚤 <span data-i18n="hero.badge.boat">Estuary boat tours</span></span>
+        <span class="badge">🐬 <span data-i18n="hero.badge.dolphin">Dolphin watching</span></span>
+        <span class="badge">⛴️ <span data-i18n="hero.badge.ferry">Ferry to Ilha Comprida</span></span>
+        <span class="badge">🎆 <span data-i18n="hero.badge.nye">New Year's Eve</span></span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===== WHY VISIT ===== -->
+    <section class="section" id="why">
+      <div class="wrap">
+        <span class="kicker" data-i18n="why.kicker">02 · Overview</span>
+        <h2 class="h2" data-i18n="why.title">Why visit Cananéia?</h2>
+        <p class="lead" data-i18n="why.lead"></p>
+        <div class="feature-grid" id="whyGrid"></div>
+        <div class="pull">
+          <span class="pull__quote">“</span>
+          <p data-i18n="why.positioning"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HISTORY ===== -->
+    <section class="section section--tint" id="history">
+      <div class="wrap">
+        <span class="kicker" data-i18n="history.kicker">03 · Heritage</span>
+        <h2 class="h2" data-i18n="history.title">History of Cananéia</h2>
+        <div class="history">
+          <div class="history__body" id="historyBody"></div>
+          <aside class="history__facts" id="historyFacts"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ITINERARY ===== -->
+    <section class="section" id="itinerary">
+      <div class="wrap">
+        <span class="kicker" data-i18n="itinerary.kicker">04 · Day by day</span>
+        <h2 class="h2" data-i18n="itinerary.title">Day-by-day itinerary</h2>
+        <p class="lead" data-i18n="itinerary.lead"></p>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ===== TOURS & ATTRACTIONS ===== -->
+    <section class="section section--tint" id="tours">
+      <div class="wrap">
+        <span class="kicker" data-i18n="tours.kicker">05 · What to do</span>
+        <h2 class="h2" data-i18n="tours.title">Main tours &amp; attractions</h2>
+        <div class="cards" id="toursGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== STAY ===== -->
+    <section class="section" id="stay">
+      <div class="wrap">
+        <span class="kicker" data-i18n="stay.kicker">06 · Sleep</span>
+        <h2 class="h2" data-i18n="stay.title">Where to stay</h2>
+        <p class="lead" data-i18n="stay.lead"></p>
+        <div class="tiers" id="stayTiers"></div>
+        <div class="maps" id="stayMaps"></div>
+        <ul class="notes" id="stayNotes"></ul>
+      </div>
+    </section>
+
+    <!-- ===== FOOD ===== -->
+    <section class="section section--tint" id="food">
+      <div class="wrap">
+        <span class="kicker" data-i18n="food.kicker">07 · Eat</span>
+        <h2 class="h2" data-i18n="food.title">What to eat &amp; where to go</h2>
+        <p class="lead" data-i18n="food.lead"></p>
+        <div class="foodwrap">
+          <div class="dishes">
+            <h3 class="h3" data-i18n="food.dishesTitle">Typical dishes</h3>
+            <div class="chiprow" id="foodDishes"></div>
+          </div>
+          <div class="pricegrid" id="foodPrices"></div>
+        </div>
+        <ul class="notes" id="foodNotes"></ul>
+      </div>
+    </section>
+
+    <!-- ===== BUDGET ===== -->
+    <section class="section" id="budget">
+      <div class="wrap">
+        <span class="kicker" data-i18n="budget.kicker">08 · Money</span>
+        <h2 class="h2" data-i18n="budget.title">Estimated cost per person</h2>
+        <p class="lead" data-i18n="budget.lead"></p>
+        <div class="tablewrap">
+          <table class="btable" id="budgetTable"></table>
+        </div>
+        <div class="scenarios" id="budgetScenarios"></div>
+        <p class="disclaimer" id="budgetNote"></p>
+      </div>
+    </section>
+
+    <!-- ===== VIDEOS ===== -->
+    <section class="section section--dark" id="videos">
+      <div class="wrap">
+        <span class="kicker kicker--light" data-i18n="videos.kicker">09 · Watch first</span>
+        <h2 class="h2 h2--light" data-i18n="videos.title">Video previews</h2>
+        <p class="lead lead--light" data-i18n="videos.lead"></p>
+        <div class="videos" id="videoGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== TIPS ===== -->
+    <section class="section" id="tips">
+      <div class="wrap">
+        <span class="kicker" data-i18n="tips.kicker">10 · Good to know</span>
+        <h2 class="h2" data-i18n="tips.title">Practical tips</h2>
+        <div class="tips" id="tipsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== LINKS ===== -->
+    <section class="section section--tint" id="links">
+      <div class="wrap">
+        <span class="kicker" data-i18n="links.kicker">11 · Plan &amp; book</span>
+        <h2 class="h2" data-i18n="links.title">Essential links &amp; maps</h2>
+        <p class="lead" data-i18n="links.lead"></p>
+        <div class="linkgrid" id="linkGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== CLOSING ===== -->
+    <section class="closing">
+      <div class="wrap">
+        <p class="closing__text" data-i18n="closing.text"></p>
+        <p class="closing__travelers">Renata · Alex · Bruno · Chris · Fer · Dani</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p data-i18n="foot.line1"></p>
+      <p class="foot__small" data-i18n="foot.line2"></p>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
