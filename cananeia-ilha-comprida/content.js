@@ -271,8 +271,8 @@ window.CONTENT = {
   videos:{
     kicker:{en:"09 · Watch first",pt:"09 · Assista antes"},
     title:{en:"Video previews",pt:"Prévias em vídeo"},
-    lead:{en:"Tap a thumbnail to play. Videos open from YouTube — the full title, channel and date load there. Two clips are vertical Shorts.",
-      pt:"Toque na miniatura para reproduzir. Os vídeos abrem do YouTube — título, canal e data completos carregam lá. Dois clipes são Shorts verticais."},
+    lead:{en:"Tap a thumbnail to play. Videos open from YouTube — the full title, channel and date load there. Some clips are vertical Shorts.",
+      pt:"Toque na miniatura para reproduzir. Os vídeos abrem do YouTube — título, canal e data completos carregam lá. Alguns clipes são Shorts verticais."},
     items:[
       {id:"tSNsqJ6f-8A",short:false,
         topic:{en:"Cananéia · destination video",pt:"Cananéia · vídeo do destino"},
@@ -289,7 +289,19 @@ window.CONTENT = {
       {id:"jWSqIUKFFS0",short:true,
         topic:{en:"Quick clip · Short",pt:"Clipe rápido · Short"},
         title:{en:"Cananéia in a Short",pt:"Cananéia em um Short"},
-        desc:{en:"A fast vertical clip of the destination.",pt:"Um clipe vertical rápido do destino."}}
+        desc:{en:"A fast vertical clip of the destination.",pt:"Um clipe vertical rápido do destino."}},
+      {id:"jFOH-hHqe-A",short:false,
+        topic:{en:"Cananéia · destination video",pt:"Cananéia · vídeo do destino"},
+        title:{en:"More of Cananéia & the region",pt:"Mais de Cananéia e da região"},
+        desc:{en:"Another look at the destination — scenery and atmosphere.",pt:"Mais uma visão do destino — paisagem e clima."}},
+      {id:"U3YBqyeQxzA",short:true,
+        topic:{en:"Quick clip · Short",pt:"Clipe rápido · Short"},
+        title:{en:"Cananéia in a Short",pt:"Cananéia em um Short"},
+        desc:{en:"A fast vertical clip of the destination.",pt:"Um clipe vertical rápido do destino."}},
+      {id:"VZxyYOjwf28",short:false,
+        topic:{en:"Cananéia · destination video",pt:"Cananéia · vídeo do destino"},
+        title:{en:"Cananéia & Ilha Comprida",pt:"Cananéia e Ilha Comprida"},
+        desc:{en:"Views of the coast, islands and waters of the region.",pt:"Imagens do litoral, das ilhas e das águas da região."}}
     ]
   },
 
