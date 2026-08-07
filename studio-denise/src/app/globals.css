@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Identidade visual PROVISÓRIA — neutra, sofisticada e feminina.
+  Troque os valores abaixo pelas cores oficiais do Studio Denise de Paula.
+  Cores em "R G B" (espaço) para funcionar com <alpha-value> do Tailwind.
+*/
+:root {
+  --color-primary: 120 86 90; /* rosé-mocha discreto */
+  --color-primary-soft: 176 141 134;
+  --color-secondary: 59 47 43; /* espresso */
+  --color-accent: 201 168 106; /* champanhe/dourado */
+  --color-background: 247 243 238; /* creme */
+  --color-surface: 255 255 255;
+  --color-surface-2: 239 232 224;
+  --color-text: 43 36 32;
+  --color-muted: 138 125 116;
+  --color-line: 230 221 211;
+  --color-success: 75 138 95;
+  --color-warning: 197 138 47;
+  --color-danger: 180 83 75;
+}
+
+* {
+  border-color: rgb(var(--color-line));
+}
+
+body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-text));
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Acessibilidade: foco visível e alvos generosos (público 40+). */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-primary));
+  outline-offset: 2px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition focus-visible:outline-2;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white shadow-soft hover:bg-secondary;
+  }
+  .btn-outline {
+    @apply btn border border-primary/40 bg-transparent text-primary hover:bg-primary/5;
+  }
+  .btn-ghost {
+    @apply btn bg-surface-2 text-text hover:bg-line;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-text;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-text placeholder:text-muted focus:border-primary focus:outline-none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+  .demo-badge {
+    @apply inline-flex items-center gap-1 rounded-full bg-warning/15 px-2.5 py-0.5 text-[11px] font-semibold text-warning;
+  }
+}
+
+.font-display {
+  letter-spacing: -0.01em;
+}
