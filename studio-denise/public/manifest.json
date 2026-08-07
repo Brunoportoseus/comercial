@@ -1,0 +1,12 @@
+{
+  "name": "Clube Studio Denise de Paula",
+  "short_name": "Clube Denise",
+  "description": "Clube de assinatura de micropigmentação e beleza em Curitiba.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ee",
+  "theme_color": "#78565a",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

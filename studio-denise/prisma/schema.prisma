@@ -1,0 +1,284 @@
+// Clube de Assinatura — Studio Denise de Paula
+// ------------------------------------------------------------------
+// Provider padrão: SQLite (roda sem provisionar banco, ideal p/ demo).
+// Produção: troque `provider` para "postgresql" e ajuste DATABASE_URL.
+// Regras de portabilidade adotadas para o schema funcionar nos dois:
+//   • Sem `enum` (SQLite não suporta) — usamos String + união de tipos no TS
+//     (ver src/lib/domain.ts). Valores válidos documentados em cada campo.
+//   • Dinheiro sempre em CENTAVOS (Int) — evita erros de ponto flutuante.
+//   • Créditos são unidades inteiras (Int). 1 crédito ≈ R$1 (configurável).
+//   • Campos "JSON" são armazenados como String (JSON serializado).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────── Usuários & acesso ───────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("CLIENT") // CLIENT | ADMIN | RECEPCAO | PROFISSIONAL | FINANCEIRO
+  cpf          String?
+  birthDate    DateTime?
+  phone        String?
+  whatsapp     String?
+  addressLine  String?
+  city         String?
+  state        String?
+  zip          String?
+
+  // Consentimentos (LGPD)
+  acceptedMarketing Boolean @default(false)
+  termsAcceptedAt   DateTime?
+  termsVersion      String?
+
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions      Subscription[]
+  payments           Payment[]
+  creditTransactions CreditTransaction[]
+  appointments       Appointment[]
+  notifications      Notification[]
+  auditLogs          AuditLog[]         @relation("actor")
+}
+
+// ─────────────────────────── Planos ───────────────────────────
+
+model Plan {
+  id                 String  @id @default(cuid())
+  slug               String  @unique
+  name               String
+  tagline            String?
+  description        String?
+  monthlyPriceCents  Int     @default(0)
+  creditsPerCycle    Int     @default(0) // créditos liberados a cada cobrança
+  recommended        Boolean @default(false)
+  active             Boolean @default(true)
+  isDemo             Boolean @default(true) // dado de EXEMPLO (não é oficial)
+
+  // Regras configuráveis (todas editáveis no admin)
+  minCommitmentMonths  Int @default(0)  // permanência mínima
+  gracePeriodDays      Int @default(0)  // carência p/ usar créditos
+  creditValidityDays   Int @default(365) // validade dos créditos
+  maxAccumulatedCredits Int @default(0) // 0 = ilimitado
+  discountPercent      Int @default(0)  // desconto em procedimentos adicionais
+
+  benefits    String @default("[]") // JSON: string[]
+  rulesText   String?               // resumo das regras principais
+  sortOrder   Int    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions       Subscription[]
+  eligibleProcedures  PlanProcedure[]
+}
+
+// ─────────────────────────── Procedimentos ───────────────────────────
+
+model Procedure {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+  name        String
+  category    String  @default("SOBRANCELHAS") // SOBRANCELHAS | LABIAL | OLHOS | CORRECAO | DESIGN | COMPLEMENTAR
+  description String?
+  // Como pode ser pago: FULL_CREDITS | PARTIAL_CREDITS | DISCOUNT_ONLY
+  paymentMode String  @default("FULL_CREDITS")
+  creditCost  Int     @default(0)  // créditos necessários
+  priceCents  Int     @default(0)  // preço avulso (referência p/ coparticipação/desconto)
+  requiresEvaluation Boolean @default(true)
+  active      Boolean @default(true)
+  isDemo      Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plans        PlanProcedure[]
+  appointments Appointment[]
+  creditTransactions CreditTransaction[]
+}
+
+// Elegibilidade procedimento↔plano (M:N)
+model PlanProcedure {
+  planId      String
+  procedureId String
+  plan        Plan      @relation(fields: [planId], references: [id], onDelete: Cascade)
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@id([planId, procedureId])
+}
+
+// ─────────────────────────── Assinaturas & pagamentos ───────────────────────────
+
+model Subscription {
+  id        String @id @default(cuid())
+  userId    String
+  planId    String
+  // PENDING | ACTIVE | PAST_DUE | PAUSED | CANCELED
+  status    String @default("PENDING")
+
+  gateway               String  @default("simulation") // simulation | mercadopago
+  gatewaySubscriptionId String?
+
+  startedAt        DateTime?
+  currentPeriodEnd DateTime?
+  nextBillingAt    DateTime?
+  canceledAt       DateTime?
+  cancelReason     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan               Plan                @relation(fields: [planId], references: [id])
+  payments           Payment[]
+  creditTransactions CreditTransaction[]
+}
+
+model Payment {
+  id             String  @id @default(cuid())
+  userId         String
+  subscriptionId String?
+  amountCents    Int
+  // APPROVED | PENDING | REFUSED | REFUNDED
+  status         String  @default("PENDING")
+  gateway        String  @default("simulation")
+  gatewayPaymentId String?
+  method         String  @default("CREDIT_CARD") // CREDIT_CARD | PIX
+  paidAt         DateTime?
+  raw            String? // JSON bruto do gateway (auditoria)
+
+  createdAt DateTime @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+}
+
+// ─────────────────────────── Carteira de créditos (ledger) ───────────────────────────
+
+model CreditTransaction {
+  id             String  @id @default(cuid())
+  userId         String
+  // EARN | SPEND | EXPIRE | ADJUST | REFUND
+  type           String
+  amount         Int     // positivo (crédito) ou negativo (débito)
+  balanceAfter   Int
+  reason         String
+  expiresAt      DateTime?
+  subscriptionId String?
+  procedureId    String?
+  createdById    String? // admin que lançou (ajuste manual)
+
+  createdAt DateTime @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  procedure    Procedure?    @relation(fields: [procedureId], references: [id])
+}
+
+// ─────────────────────────── Agendamentos (solicitações) ───────────────────────────
+
+model Appointment {
+  id          String @id @default(cuid())
+  userId      String
+  procedureId String
+  // REQUESTED | EVALUATION_REQUIRED | APPROVED | RESCHEDULE_SUGGESTED | CONFIRMED | DONE | NO_SHOW | CANCELED
+  status      String @default("REQUESTED")
+  preferredDates String @default("[]") // JSON: ISO string[]
+  scheduledAt DateTime?
+  clientNotes String?
+  adminNotes  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  procedure Procedure @relation(fields: [procedureId], references: [id])
+}
+
+// ─────────────────────────── Notificações ───────────────────────────
+
+model Notification {
+  id     String  @id @default(cuid())
+  userId String
+  type   String  @default("INFO")
+  title  String
+  body   String?
+  read   Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────── Conteúdo público (editável) ───────────────────────────
+
+model Faq {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+}
+
+model Testimonial {
+  id        String  @id @default(cuid())
+  author    String
+  city      String?
+  quote     String
+  rating    Int     @default(5)
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+}
+
+model LegalDocument {
+  slug        String   @id // termos | regulamento | privacidade | cancelamento | agendamento | lgpd
+  title       String
+  version     String   @default("1.0")
+  content     String
+  publishedAt DateTime @default(now())
+}
+
+model Coupon {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  discountPercent Int      @default(0)
+  active          Boolean  @default(true)
+  expiresAt       DateTime?
+  createdAt       DateTime @default(now())
+}
+
+// Configurações globais (chave/valor) — regras de crédito, dados do studio,
+// textos, config não-secreta do gateway. Tudo editável no admin.
+model Setting {
+  key       String   @id
+  value     String   // JSON serializado
+  label     String?
+  group     String   @default("geral")
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────── Auditoria ───────────────────────────
+
+model AuditLog {
+  id       String  @id @default(cuid())
+  actorId  String?
+  action   String
+  entity   String
+  entityId String?
+  meta     String? // JSON
+  createdAt DateTime @default(now())
+
+  actor User? @relation("actor", fields: [actorId], references: [id])
+}
