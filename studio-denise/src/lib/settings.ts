@@ -18,6 +18,9 @@ export const DEFAULT_SETTINGS = {
     whatsapp: "5541000000000", // formato internacional p/ link wa.me (exemplo)
     email: "contato@studiodenisedepaula.com.br",
     instagram: "https://instagram.com/",
+    // URLs de imagens (opcionais) — cole no painel admin.
+    heroImageUrl: "", // foto de destaque no topo da home
+    specialistPhotoUrl: "", // foto da Denise (seção "A especialista")
   },
   credits: {
     // 1 crédito equivale a R$ 1,00 por padrão (configurável).

@@ -7,6 +7,7 @@ import { SubmitButton } from "@/components/SubmitButton";
 type Studio = {
   name: string; specialist: string; tagline: string; city: string; state: string;
   address: string; phone: string; whatsapp: string; email: string; instagram: string;
+  heroImageUrl?: string; specialistPhotoUrl?: string;
 };
 type Credits = {
   creditValueCents: number; defaultValidityDays: number; defaultGracePeriodDays: number;
@@ -31,6 +32,8 @@ export function StudioSettingsForm({ studio }: { studio: Studio }) {
         <F label="WhatsApp (só números, com DDI)" name="whatsapp" v={studio.whatsapp} />
         <F label="E-mail" name="email" v={studio.email} />
         <F label="Instagram (URL)" name="instagram" v={studio.instagram} />
+        <F label="Foto da Denise (URL)" name="specialistPhotoUrl" v={studio.specialistPhotoUrl ?? ""} full />
+        <F label="Foto de destaque do topo (URL)" name="heroImageUrl" v={studio.heroImageUrl ?? ""} full />
       </div>
       <div className="mt-5">
         <SubmitButton className="btn-primary py-2.5 text-sm">Salvar dados do Studio</SubmitButton>

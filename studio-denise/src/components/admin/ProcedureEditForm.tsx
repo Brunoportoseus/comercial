@@ -16,6 +16,7 @@ export type ProcedureEdit = {
   requiresEvaluation: boolean;
   active: boolean;
   isDemo: boolean;
+  imageUrl: string | null;
 };
 
 export function ProcedureEditForm({ procedure }: { procedure: ProcedureEdit }) {
@@ -59,6 +60,12 @@ export function ProcedureEditForm({ procedure }: { procedure: ProcedureEdit }) {
         <div>
           <label className="label" htmlFor="price">Preço avulso (R$)</label>
           <input id="price" name="price" type="number" step="0.01" className="input" defaultValue={(procedure.priceCents / 100).toFixed(2)} />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="label" htmlFor="imageUrl">
+            URL da foto <span className="font-normal text-muted">(opcional — cole o endereço da imagem)</span>
+          </label>
+          <input id="imageUrl" name="imageUrl" type="url" className="input" defaultValue={procedure.imageUrl ?? ""} placeholder="https://..." />
         </div>
       </div>
 

@@ -106,6 +106,7 @@ model Procedure {
   active      Boolean @default(true)
   isDemo      Boolean @default(true)
   sortOrder   Int     @default(0)
+  imageUrl    String? // URL da foto do procedimento (opcional; configurável no admin)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

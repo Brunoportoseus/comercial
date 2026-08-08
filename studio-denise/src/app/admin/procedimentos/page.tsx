@@ -42,6 +42,7 @@ export default async function AdminProcedimentosPage() {
                 requiresEvaluation: p.requiresEvaluation,
                 active: p.active,
                 isDemo: p.isDemo,
+                imageUrl: p.imageUrl,
               }}
             />
           </details>

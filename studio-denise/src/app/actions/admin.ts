@@ -185,6 +185,7 @@ export async function saveProcedureAction(_prev: ActionState, formData: FormData
       requiresEvaluation: formData.get("requiresEvaluation") === "1",
       active: formData.get("active") === "1",
       isDemo: formData.get("isDemo") === "1",
+      imageUrl: String(formData.get("imageUrl") || "") || null,
     },
   });
 
@@ -232,6 +233,8 @@ export async function saveStudioSettingsAction(_prev: ActionState, formData: For
     whatsapp: String(formData.get("whatsapp") || ""),
     email: String(formData.get("email") || ""),
     instagram: String(formData.get("instagram") || ""),
+    heroImageUrl: String(formData.get("heroImageUrl") || ""),
+    specialistPhotoUrl: String(formData.get("specialistPhotoUrl") || ""),
   });
   await audit({ actorId: admin.id, action: "SETTINGS_UPDATED", entity: "Setting", entityId: "studio" });
   revalidatePath("/admin/configuracoes");
