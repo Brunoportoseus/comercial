@@ -10,14 +10,12 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Idempotente: se já houver planos, não repovoa (preserva edições do admin).
-  // Assim o seed pode rodar com segurança no build de deploy da Vercel.
-  const alreadySeeded = await prisma.plan.count();
-  if (alreadySeeded > 0) {
-    console.log("→ Banco já possui dados — seed ignorado.");
-    return;
-  }
-  console.log("→ Seeding (dados de exemplo)…");
+  // Comportamento: os PLANOS e PROCEDIMENTOS de exemplo (isDemo=true) são
+  // atualizados a cada deploy para refletir os valores deste arquivo. Assim que
+  // a administradora finaliza um item e desmarca "dado de exemplo" no painel
+  // (isDemo=false), ele deixa de ser sobrescrito. Usuários, assinatura demo,
+  // FAQ, depoimentos e textos legais só são criados se ainda não existirem.
+  console.log("→ Seeding / atualizando dados de exemplo…");
 
   // ── Usuários ────────────────────────────────────────────────
   const adminPass = await bcrypt.hash("admin123", 10);
@@ -122,12 +120,15 @@ async function main() {
 
   const procMap: Record<string, string> = {};
   for (const p of procedures) {
-    const rec = await prisma.procedure.upsert({
-      where: { slug: p.slug },
-      update: { ...p, isDemo: true },
-      create: { ...p, isDemo: true },
-    });
-    procMap[p.slug] = rec.id;
+    const existing = await prisma.procedure.findUnique({ where: { slug: p.slug } });
+    let rec = existing;
+    if (!existing) {
+      rec = await prisma.procedure.create({ data: { ...p, isDemo: true } });
+    } else if (existing.isDemo) {
+      // Só atualiza enquanto for "dado de exemplo".
+      rec = await prisma.procedure.update({ where: { slug: p.slug }, data: { ...p } });
+    }
+    procMap[p.slug] = rec!.id;
   }
 
   // ── Planos (exemplos) ───────────────────────────────────────
@@ -221,19 +222,25 @@ async function main() {
   const planMap: Record<string, string> = {};
   for (const pl of plans) {
     const { procedures: procSlugs, benefits, ...rest } = pl;
-    const rec = await prisma.plan.upsert({
-      where: { slug: pl.slug },
-      update: { ...rest, benefits: JSON.stringify(benefits), isDemo: true },
-      create: { ...rest, benefits: JSON.stringify(benefits), isDemo: true },
-    });
-    planMap[pl.slug] = rec.id;
+    const data = { ...rest, benefits: JSON.stringify(benefits) };
 
-    // Elegibilidade
-    await prisma.planProcedure.deleteMany({ where: { planId: rec.id } });
-    for (const slug of procSlugs) {
-      await prisma.planProcedure.create({
-        data: { planId: rec.id, procedureId: procMap[slug] },
-      });
+    const existing = await prisma.plan.findUnique({ where: { slug: pl.slug } });
+    let rec = existing;
+    if (!existing) {
+      rec = await prisma.plan.create({ data: { ...data, isDemo: true } });
+    } else if (existing.isDemo) {
+      rec = await prisma.plan.update({ where: { slug: pl.slug }, data });
+    }
+    planMap[pl.slug] = rec!.id;
+
+    // Elegibilidade — só (re)define enquanto for "dado de exemplo".
+    if (!existing || existing.isDemo) {
+      await prisma.planProcedure.deleteMany({ where: { planId: rec!.id } });
+      for (const slug of procSlugs) {
+        await prisma.planProcedure.create({
+          data: { planId: rec!.id, procedureId: procMap[slug] },
+        });
+      }
     }
   }
 
@@ -323,25 +330,28 @@ async function main() {
     ["O que acontece se eu faltar?", "A política de faltas e cancelamentos de agenda define eventuais consequências, informadas no regulamento do clube."],
     ["Como funciona a cobrança recorrente?", "A mensalidade é cobrada automaticamente pelo gateway de pagamento. Você pode atualizar o cartão ou cancelar pela área da cliente."],
   ];
-  await prisma.faq.deleteMany();
-  for (let i = 0; i < faqs.length; i++) {
-    await prisma.faq.create({
-      data: { question: faqs[i][0], answer: faqs[i][1], sortOrder: i },
-    });
+  // Só popula FAQ/depoimentos se ainda não houver (não sobrescreve edições).
+  if ((await prisma.faq.count()) === 0) {
+    for (let i = 0; i < faqs.length; i++) {
+      await prisma.faq.create({
+        data: { question: faqs[i][0], answer: faqs[i][1], sortOrder: i },
+      });
+    }
   }
 
   // ── Depoimentos (exemplos) ──────────────────────────────────
-  await prisma.testimonial.deleteMany();
   const testimonials = [
     ["Regina S.", "Curitiba/PR", "Resultado super natural e atendimento acolhedor. Adorei poder pagar aos poucos.", 5],
     ["Cláudia M.", "Curitiba/PR", "Me senti segura em cada etapa. A avaliação antes do procedimento fez toda a diferença.", 5],
     ["Sônia R.", "São José dos Pinhais/PR", "Sobrancelhas perfeitas e sem exageros. Recomendo de olhos fechados.", 5],
   ];
-  for (let i = 0; i < testimonials.length; i++) {
-    const [author, city, quote, rating] = testimonials[i];
-    await prisma.testimonial.create({
-      data: { author: author as string, city: city as string, quote: quote as string, rating: rating as number, sortOrder: i },
-    });
+  if ((await prisma.testimonial.count()) === 0) {
+    for (let i = 0; i < testimonials.length; i++) {
+      const [author, city, quote, rating] = testimonials[i];
+      await prisma.testimonial.create({
+        data: { author: author as string, city: city as string, quote: quote as string, rating: rating as number, sortOrder: i },
+      });
+    }
   }
 
   // ── Documentos legais (rascunhos de exemplo) ────────────────
