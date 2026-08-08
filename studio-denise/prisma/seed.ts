@@ -147,7 +147,7 @@ async function main() {
       discountPercent: 10,
       sortOrder: 1,
       benefits: [
-        "1 procedimento incluso por ano",
+        "2 procedimentos inclusos por ano (1 a cada 6 meses)",
         "6 retoques inclusos por ano",
         "1 design de sobrancelhas incluso",
         "Créditos mensais acumuláveis",
@@ -155,7 +155,7 @@ async function main() {
         "Benefício no mês do aniversário",
         "Acesso antecipado à agenda e campanhas",
       ],
-      rulesText: "Carência de 30 dias. Permanência mínima de 3 meses. Créditos válidos por 12 meses.",
+      rulesText: "Até 2 procedimentos por ano (1 a cada 6 meses). Carência de 30 dias. Permanência mínima de 3 meses. Créditos válidos por 12 meses.",
       procedures: ["design-sobrancelhas", "retoque-manutencao", "sobrancelhas-fio-a-fio"],
     },
     {
@@ -172,7 +172,7 @@ async function main() {
       discountPercent: 15,
       sortOrder: 2,
       benefits: [
-        "2 procedimentos inclusos por ano",
+        "3 procedimentos inclusos por ano (1 a cada 4 meses)",
         "6 retoques inclusos por ano",
         "3 designs de sobrancelhas inclusos",
         "Maior quantidade de créditos mensais",
@@ -181,7 +181,7 @@ async function main() {
         "Avaliação personalizada",
         "Benefício especial de aniversário",
       ],
-      rulesText: "Carência de 30 dias. Permanência mínima de 6 meses. Créditos válidos por 18 meses.",
+      rulesText: "Até 3 procedimentos por ano (1 a cada 4 meses). Carência de 30 dias. Permanência mínima de 6 meses. Créditos válidos por 18 meses.",
       procedures: [
         "design-sobrancelhas",
         "retoque-manutencao",
@@ -203,7 +203,7 @@ async function main() {
       discountPercent: 20,
       sortOrder: 3,
       benefits: [
-        "3 procedimentos inclusos por ano",
+        "Procedimentos sem limite (conforme avaliação profissional)",
         "6 retoques inclusos por ano",
         "6 designs de sobrancelhas inclusos",
         "Maior quantidade de créditos, sem teto de acúmulo",
@@ -214,7 +214,7 @@ async function main() {
         "Benefício exclusivo de aniversário",
         "Transferência de 1 benefício para convidada (mediante autorização)",
       ],
-      rulesText: "Carência de 15 dias. Permanência mínima de 6 meses. Créditos válidos por 24 meses.",
+      rulesText: "Procedimentos sem limite, conforme avaliação profissional. Carência de 15 dias. Permanência mínima de 6 meses. Créditos válidos por 24 meses.",
       procedures: Object.keys(procMap),
     },
   ];
