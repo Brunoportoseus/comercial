@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getActivePlans } from "@/lib/queries";
 import { PlanCard } from "@/components/PlanCard";
+import { PointsTable } from "@/components/PointsTable";
 
 export const metadata: Metadata = {
   title: "Planos",
@@ -51,9 +52,14 @@ export default async function PlanosPage() {
       </div>
 
       <p className="mt-8 text-center text-xs text-muted">
-        Crédito não é autorização automática de procedimento. Toda utilização depende de avaliação
+        Ponto não é autorização automática de procedimento. Toda utilização depende de avaliação
         profissional.
       </p>
+
+      {/* Tabela de resgate de pontos */}
+      <div className="mt-16">
+        <PointsTable />
+      </div>
     </div>
   );
 }
