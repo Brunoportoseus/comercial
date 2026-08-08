@@ -29,7 +29,12 @@ export default async function ProcedimentosPage() {
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {procedures.map((p) => (
-          <div key={p.id} className="card flex flex-col p-6">
+          <div key={p.id} className="card flex flex-col overflow-hidden p-0">
+            {p.imageUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={p.imageUrl} alt={p.name} className="h-44 w-full object-cover" />
+            )}
+            <div className="flex flex-1 flex-col p-6">
             <div className="flex items-center justify-between">
               <span className="chip bg-primary/10 text-primary">
                 {CATEGORY_LABELS[p.category as ProcedureCategory] ?? p.category}
@@ -53,6 +58,7 @@ export default async function ProcedimentosPage() {
               {p.requiresEvaluation && (
                 <p className="mt-1 text-xs text-warning">Depende de avaliação profissional</p>
               )}
+            </div>
             </div>
           </div>
         ))}

@@ -56,7 +56,16 @@ export default async function HomePage() {
           </div>
           <div className="relative">
             <div className="card overflow-hidden p-0">
-              <div className="aspect-[4/5] w-full bg-gradient-to-br from-primary-soft/40 via-surface-2 to-accent/20" />
+              {studio.heroImageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={studio.heroImageUrl}
+                  alt="Studio Denise de Paula"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              ) : (
+                <div className="aspect-[4/5] w-full bg-gradient-to-br from-primary-soft/40 via-surface-2 to-accent/20" />
+              )}
             </div>
             <div className="card absolute -bottom-5 -left-3 w-48 p-4 sm:-left-6">
               <p className="text-xs text-muted">Carteira de créditos</p>
@@ -135,7 +144,12 @@ export default async function HomePage() {
           <SectionHeading eyebrow="No clube" title="Serviços que participam" />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {procedures.map((p) => (
-              <div key={p.id} className="card p-5">
+              <div key={p.id} className="card overflow-hidden p-0">
+                {p.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={p.imageUrl} alt={p.name} className="h-40 w-full object-cover" />
+                )}
+                <div className="p-5">
                 <div className="flex items-center justify-between">
                   <span className="chip bg-primary/10 text-primary">
                     {CATEGORY_LABELS[p.category as ProcedureCategory] ?? p.category}
@@ -147,6 +161,7 @@ export default async function HomePage() {
                 <p className="mt-3 text-xs font-medium text-primary">
                   {PAYMENT_MODE_LABELS[p.paymentMode as ProcedurePaymentMode]}
                 </p>
+                </div>
               </div>
             ))}
           </div>
@@ -156,7 +171,16 @@ export default async function HomePage() {
       {/* ESPECIALISTA */}
       <section className="container-page py-16">
         <div className="grid items-center gap-10 md:grid-cols-2">
-          <div className="card aspect-square overflow-hidden bg-gradient-to-br from-secondary/10 via-surface-2 to-primary/10" />
+          <div className="card aspect-square overflow-hidden bg-gradient-to-br from-secondary/10 via-surface-2 to-primary/10">
+            {studio.specialistPhotoUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={studio.specialistPhotoUrl}
+                alt={studio.specialist}
+                className="h-full w-full object-cover"
+              />
+            )}
+          </div>
           <div>
             <p className="eyebrow">A especialista</p>
             <h2 className="mt-2 font-display text-3xl font-bold text-secondary">{studio.specialist}</h2>
