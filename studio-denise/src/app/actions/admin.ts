@@ -131,6 +131,12 @@ export async function savePlanAction(_prev: ActionState, formData: FormData): Pr
   const id = String(formData.get("id") || "");
   const num = (k: string) => parseInt(String(formData.get(k) || "0"), 10) || 0;
 
+  // Benefícios: uma linha = um item (com ✓ no cartão do plano).
+  const benefits = String(formData.get("benefits") || "")
+    .split("\n")
+    .map((b) => b.trim())
+    .filter(Boolean);
+
   await prisma.plan.update({
     where: { id },
     data: {
@@ -147,6 +153,7 @@ export async function savePlanAction(_prev: ActionState, formData: FormData): Pr
       active: formData.get("active") === "1",
       isDemo: formData.get("isDemo") === "1",
       rulesText: String(formData.get("rulesText") || "") || null,
+      benefits: JSON.stringify(benefits),
     },
   });
 

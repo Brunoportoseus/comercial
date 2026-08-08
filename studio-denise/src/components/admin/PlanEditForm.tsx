@@ -19,6 +19,7 @@ export type PlanEdit = {
   active: boolean;
   isDemo: boolean;
   rulesText: string | null;
+  benefits: string[];
 };
 
 export function PlanEditForm({ plan }: { plan: PlanEdit }) {
@@ -40,6 +41,19 @@ export function PlanEditForm({ plan }: { plan: PlanEdit }) {
         <Field label="Validade dos créditos (dias)" name="creditValidityDays" type="number" defaultValue={plan.creditValidityDays} />
         <Field label="Teto de acúmulo (0 = ilimitado)" name="maxAccumulatedCredits" type="number" defaultValue={plan.maxAccumulatedCredits} />
         <Field label="Desconto adicionais (%)" name="discountPercent" type="number" defaultValue={plan.discountPercent} />
+      </div>
+
+      <div>
+        <label className="label">
+          Benefícios <span className="font-normal text-muted">(um por linha — aparecem com ✓ no cartão)</span>
+        </label>
+        <textarea
+          name="benefits"
+          rows={7}
+          className="input font-mono text-sm"
+          defaultValue={plan.benefits.join("\n")}
+          placeholder={"1 procedimento incluso por ano\n6 retoques inclusos por ano\n..."}
+        />
       </div>
 
       <div>

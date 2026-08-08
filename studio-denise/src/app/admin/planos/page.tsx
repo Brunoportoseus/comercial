@@ -2,6 +2,15 @@ import { prisma } from "@/lib/prisma";
 import { formatBRL } from "@/lib/format";
 import { PlanEditForm } from "@/components/admin/PlanEditForm";
 
+function parseBenefits(json: string): string[] {
+  try {
+    const v = JSON.parse(json);
+    return Array.isArray(v) ? v.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+
 export default async function AdminPlanosPage() {
   const plans = await prisma.plan.findMany({ orderBy: { sortOrder: "asc" } });
 
@@ -47,6 +56,7 @@ export default async function AdminPlanosPage() {
                 active: p.active,
                 isDemo: p.isDemo,
                 rulesText: p.rulesText,
+                benefits: parseBenefits(p.benefits),
               }}
             />
           </details>
