@@ -11,10 +11,16 @@
 
 generator client {
   provider = "prisma-client-js"
+  // "native" cobre o dev local; "rhel-openssl-3.0.x" é o runtime da Vercel
+  // (Amazon Linux / AWS Lambda) — garante o query engine correto em produção.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  // Produção (Vercel + Neon/Supabase/Vercel Postgres): "postgresql".
+  // Para desenvolver 100% offline em SQLite, troque para "sqlite" e use
+  // DATABASE_URL="file:./dev.db" (o schema é compatível com os dois).
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

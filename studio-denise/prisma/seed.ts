@@ -10,6 +10,13 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
+  // Idempotente: se já houver planos, não repovoa (preserva edições do admin).
+  // Assim o seed pode rodar com segurança no build de deploy da Vercel.
+  const alreadySeeded = await prisma.plan.count();
+  if (alreadySeeded > 0) {
+    console.log("→ Banco já possui dados — seed ignorado.");
+    return;
+  }
   console.log("→ Seeding (dados de exemplo)…");
 
   // ── Usuários ────────────────────────────────────────────────
