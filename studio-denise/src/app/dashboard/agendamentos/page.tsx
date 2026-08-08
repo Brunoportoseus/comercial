@@ -10,20 +10,22 @@ export default async function AgendamentosPage() {
 
   const subscription = await prisma.subscription.findFirst({
     where: { userId: user.id, status: { in: ["ACTIVE", "PAST_DUE"] } },
-    include: { plan: { include: { eligibleProcedures: { include: { procedure: true } } } } },
+    include: { plan: true },
   });
 
-  const appointments = await prisma.appointment.findMany({
-    where: { userId: user.id },
-    orderBy: { createdAt: "desc" },
-    include: { procedure: true },
-  });
+  const [appointments, activeProcedures] = await Promise.all([
+    prisma.appointment.findMany({
+      where: { userId: user.id },
+      orderBy: { createdAt: "desc" },
+      include: { procedure: true },
+    }),
+    prisma.procedure.findMany({ where: { active: true }, orderBy: { sortOrder: "asc" } }),
+  ]);
 
-  const eligible =
-    subscription?.plan.eligibleProcedures
-      .map((pp) => pp.procedure)
-      .filter((p) => p.active)
-      .map((p) => ({ id: p.id, name: p.name, requiresEvaluation: p.requiresEvaluation })) ?? [];
+  // Resgate por pontos: todos os procedimentos ativos ficam disponíveis.
+  const eligible = subscription
+    ? activeProcedures.map((p) => ({ id: p.id, name: p.name, requiresEvaluation: p.requiresEvaluation }))
+    : [];
 
   return (
     <div className="space-y-6">

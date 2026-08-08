@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getActiveProcedures } from "@/lib/queries";
 import { formatBRL, formatCredits } from "@/lib/format";
+import { PointsTable } from "@/components/PointsTable";
 import {
   CATEGORY_LABELS,
   PAYMENT_MODE_LABELS,
@@ -22,9 +23,14 @@ export default async function ProcedimentosPage() {
         <p className="eyebrow">O que participa do clube</p>
         <h1 className="mt-2 font-display text-4xl font-bold text-secondary">Procedimentos</h1>
         <p className="mt-3 text-muted">
-          Cada procedimento indica se pode ser pago integralmente com créditos, parcialmente
-          (coparticipação) ou somente com desconto do plano. Valores de exemplo.
+          Acumule pontos com sua assinatura e resgate os procedimentos abaixo, sempre mediante
+          avaliação profissional. Valores de exemplo, ajustáveis pelo Studio.
         </p>
+      </div>
+
+      {/* Tabela de resgate de pontos */}
+      <div className="mt-12">
+        <PointsTable />
       </div>
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
