@@ -163,9 +163,9 @@ story += [
        "O contato é pelo WhatsApp (41) 97401-6961. Por ele você tira dúvidas, recebe orientações e agenda "
        "sua avaliação ou procedimento."),
     qa("Qual o horário de atendimento?",
-       "O atendimento é com hora marcada. Para verificar disponibilidade, chame no WhatsApp (41) 97401-6961."),
+       "O atendimento é de segunda a sexta, das 9h às 19h, e aos sábados, das 9h às 12h — sempre com hora "
+       "marcada. Para verificar disponibilidade e agendar, chame no WhatsApp (41) 97401-6961."),
 ]
-story.append(confirmar("Dias e horários de funcionamento:"))
 story += [
     qa("Vocês atendem clientes de fora de Curitiba?",
        "Sim. O studio recebe clientes de Curitiba, região metropolitana e de outras cidades. O ideal é "
@@ -232,9 +232,8 @@ story += [
        "Sim, anestésico tópico (em pomada/gel) de alta qualidade, aplicado na pele antes e durante o "
        "procedimento para o seu conforto."),
     qa("Quanto tempo dura o procedimento?",
-       "Varia conforme a área e a técnica, e inclui o tempo do mapeamento e do desenho antes da aplicação."),
+       "Em média 1 hora por procedimento, já incluindo o mapeamento e o desenho feitos antes da aplicação."),
 ]
-story.append(confirmar("Tempo médio de cada procedimento (sobrancelha / lábios / olhos):"))
 
 # ================= 6. CICATRIZAÇÃO E CUIDADOS =================
 story.append(section_header("6. Cicatrização e Cuidados (pós-procedimento)"))
@@ -297,21 +296,23 @@ story += [
        "Depende de cada caso. Condições como diabetes, alergias, problemas de pele na região ou uso de certos "
        "medicamentos precisam ser avaliadas antes. O ideal é relatar tudo na avaliação gratuita, para uma "
        "orientação segura e personalizada."),
+    qa("Existe alguma contraindicação?",
+       "As contraindicações são verificadas caso a caso, na avaliação presencial. Por isso é importante "
+       "informar o seu histórico de saúde (gestação, amamentação, diabetes, alergias, condições de pele e "
+       "medicamentos em uso) para uma orientação segura e personalizada."),
 ]
-story.append(confirmar("Lista oficial de contraindicações do studio (se houver protocolo próprio):"))
 
 # ================= 9. VALORES E PAGAMENTO =================
 story.append(section_header("9. Valores e Pagamento"))
 story.append(Spacer(1, 6))
 story += [
     qa("Quanto custa? Qual o valor da micropigmentação?",
-       "O valor varia conforme a técnica e a complexidade de cada caso. Por isso ele é apresentado na "
-       "avaliação presencial gratuita, sem surpresas, já com a técnica indicada para você. Para agendar, "
-       "chame no WhatsApp (41) 97401-6961."),
+       "Os valores são informados diretamente pelo nosso atendimento. Chame no WhatsApp (41) 97401-6961 que a "
+       "equipe passa os valores e as condições para você; a técnica ideal é confirmada na avaliação presencial "
+       "gratuita."),
     qa("Vocês parcelam? Quais as formas de pagamento?",
-       "As formas de pagamento e as condições de parcelamento são informadas na avaliação ou pelo WhatsApp."),
+       "As formas de pagamento e as condições são informadas pelo atendimento no WhatsApp (41) 97401-6961."),
 ]
-story.append(confirmar("Tabela de preços por serviço e formas de pagamento (Pix, cartão, parcelamento):"))
 
 # ================= ANEXO: DADOS A CONFIRMAR =================
 story.append(PageBreak())
@@ -323,13 +324,7 @@ story.append(Paragraph(
 story.append(Spacer(1, 8))
 faltam = [
     "Endereço completo (rua, número, complemento), ponto de referência e estacionamento.",
-    "Dias e horários de atendimento.",
-    "Tabela de preços por serviço (sobrancelha fio a fio, esfumado, híbrido, lábios, olhos, remoção).",
-    "Formas de pagamento e parcelamento (Pix, cartão, etc.).",
     "Política de retoque: retoque de finalização incluso? Em quantos dias? Valor do retoque anual.",
-    "Tempo médio de duração de cada procedimento.",
-    "Contraindicações oficiais do studio (protocolo próprio, se houver).",
-    "Política para grávidas/lactantes, diabéticos e uso de medicamentos.",
     "Existe blog com posts? Se sim, enviar títulos + textos para incluir na base.",
     "Redes sociais e link de agendamento online (se houver).",
 ]
