@@ -155,9 +155,9 @@ story.append(section_header("2. Localização, Contato e Horários"))
 story.append(Spacer(1, 6))
 story += [
     qa("Onde fica o studio? Qual o endereço?",
-       "O studio fica no bairro Batel, em Curitiba/PR. O endereço completo é informado no agendamento."),
+       "O studio fica na Rua Buenos Aires, 457, conjunto 102, no bairro Batel, em Curitiba/PR. Para agendar ou "
+       "tirar dúvidas de como chegar, chame no WhatsApp (41) 97401-6961."),
 ]
-story.append(confirmar("Endereço completo (rua, número), ponto de referência e estacionamento:"))
 story += [
     qa("Qual o WhatsApp / telefone para contato?",
        "O contato é pelo WhatsApp (41) 97401-6961. Por ele você tira dúvidas, recebe orientações e agenda "
@@ -274,9 +274,9 @@ story += [
        "retoque de finalização, feito algumas semanas após o primeiro procedimento, para ajustar cor e "
        "cobertura depois da cicatrização."),
     qa("O retoque está incluso no valor?",
-       "A política de retoque (retoque de finalização incluso e prazos) é informada na avaliação."),
+       "Depende do pacote de serviços contratado — em alguns pacotes o retoque já está incluso. O nosso "
+       "atendimento confirma o que está incluído no seu caso pelo WhatsApp (41) 97401-6961."),
 ]
-story.append(confirmar("Retoque de finalização incluso? Em quantos dias? Valor do retoque anual:"))
 
 # ================= 8. INDICAÇÕES E CONTRAINDICAÇÕES =================
 story.append(section_header("8. Indicações e Contraindicações"))
@@ -323,9 +323,10 @@ story.append(Paragraph(
     "precisão. Assim que você me passar, atualizo o PDF:", st_body))
 story.append(Spacer(1, 8))
 faltam = [
-    "Endereço completo (rua, número, complemento), ponto de referência e estacionamento.",
-    "Política de retoque: retoque de finalização incluso? Em quantos dias? Valor do retoque anual.",
-    "Existe blog com posts? Se sim, enviar títulos + textos para incluir na base.",
+    "Conteúdo do blog (micropigmentacaodenisedp.com.br/blog): não foi possível extrair os textos "
+    "automaticamente (página bloqueada para leitura e sem posts indexados na busca). Para incluir na "
+    "base, colar aqui o título + o texto de cada post.",
+    "Ponto de referência / estacionamento próximo ao studio (opcional, ajuda a cliente a chegar).",
     "Redes sociais e link de agendamento online (se houver).",
 ]
 for item in faltam:
@@ -337,8 +338,9 @@ story.append(HRFlowable(width="100%", thickness=0.6, color=LINE))
 story.append(Spacer(1, 6))
 story.append(Paragraph(
     "Documento gerado como base de conhecimento para atendimento automático (IA Kommo) do Studio Denise de "
-    "Paula. Conteúdo extraído do site oficial micropigmentacaodenisedp.com.br. Valores, horários e casos "
-    "clínicos devem ser sempre confirmados na avaliação gratuita ou pelo WhatsApp (41) 97401-6961.", st_foot))
+    "Paula &bull; Rua Buenos Aires, 457, Cj 102, Batel, Curitiba/PR &bull; WhatsApp (41) 97401-6961. "
+    "Conteúdo extraído do site oficial micropigmentacaodenisedp.com.br. Valores e casos clínicos são "
+    "sempre confirmados na avaliação gratuita ou pelo atendimento.", st_foot))
 
 
 def footer(canvas, doc):
