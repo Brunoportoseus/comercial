@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <script>
       document.documentElement.className += " js";
+      // Abre sempre no topo (evita restauração de posição de scroll no mobile).
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.addEventListener("load", function () {
+        if (!location.hash) window.scrollTo(0, 0);
+      });
     </script>
 
     <title>Consórcio de Imóveis | Conecta Consórcios</title>
@@ -158,6 +163,10 @@
                 >Falar com um consultor</a
               >
             </div>
+            <p class="sim-flash">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+              Receba imediatamente a sua simulação.
+            </p>
             <p class="hero-note">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
               A simulação é gratuita e não gera compromisso de contratação.
@@ -517,6 +526,10 @@
             <div class="form-intro reveal">
               <span class="eyebrow">Simulação personalizada</span>
               <h2>Vamos avaliar o que faz sentido para você</h2>
+              <p class="sim-flash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                Receba imediatamente a sua simulação.
+              </p>
               <p>
                 Conte o que pretende realizar e um consultor entrará em contato
                 para orientar você, de forma clara e sem compromisso.
@@ -735,6 +748,10 @@
           <div class="reveal">
             <h2>Vamos avaliar se o consórcio combina com o seu objetivo?</h2>
             <p>Conte o que você pretende realizar e receba uma orientação personalizada, sem compromisso.</p>
+            <p class="sim-flash">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+              Receba imediatamente a sua simulação.
+            </p>
             <div class="hero-cta">
               <a class="btn btn-navy" href="#simulacao" data-cta="final_simulacao">Solicitar minha simulação</a>
               <a class="btn btn-outline" data-whatsapp data-location="final_cta" href="#">Conversar pelo WhatsApp</a>
