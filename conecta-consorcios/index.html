@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <script>
       document.documentElement.className += " js";
-      // Abre sempre no topo (evita restauração de posição de scroll no mobile).
+      // Abre sempre no topo (evita restauração de posição de scroll no mobile,
+      // inclusive ao voltar pelo histórico / bfcache).
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-      window.addEventListener("load", function () {
-        if (!location.hash) window.scrollTo(0, 0);
-      });
+      (function () {
+        function toTop() {
+          if (!location.hash) window.scrollTo(0, 0);
+        }
+        toTop();
+        document.addEventListener("DOMContentLoaded", toTop);
+        window.addEventListener("load", toTop);
+        window.addEventListener("pageshow", function (e) {
+          if (e.persisted) toTop();
+        });
+      })();
     </script>
 
     <title>Consórcio de Imóveis | Conecta Consórcios</title>
