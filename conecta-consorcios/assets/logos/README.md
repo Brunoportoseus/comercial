@@ -11,22 +11,22 @@ o HTML.
 
 ## `conecta/` — Logo da Conecta Consórcios
 
-| Onde aparece | Nome do arquivo (use um destes) |
-|---|---|
-| Cabeçalho (fundo claro) | `conecta.svg` · `conecta.png` · `conecta.webp` |
-| Rodapé (fundo escuro) | `conecta-negativo.svg` · `conecta-negativo.png` · `conecta-branco.svg` · `conecta-branco.png` |
+Basta **um arquivo** (colorido, com fundo transparente de preferência):
 
-- Para o rodapé, use a versão **negativa/branca** (fundo azul-marinho).
-- Se você só tiver uma versão, coloque `conecta.svg` (ou `.png`) — ela será
-  usada no cabeçalho. Para o rodapé, ainda é recomendável a versão clara.
+| Nome do arquivo (use um destes) | Onde aparece |
+|---|---|
+| `conecta.svg` · `conecta.png` · `conecta.webp` | Cabeçalho **e** rodapé |
+
+- No rodapé (fundo escuro) o logo é exibido sobre um "chip" branco, então o
+  mesmo arquivo colorido fica legível — não é preciso versão branca.
 
 ## `servopa/` — Logo do Consórcio Servopa (opcional)
 
-| Onde aparece | Nome do arquivo (use um destes) |
+| Nome do arquivo (use um destes) | Onde aparece |
 |---|---|
-| Rodapé, em "Produtos administrados por" | `servopa.svg` · `servopa.png` · `servopa-negativo.svg` · `servopa-branco.svg` · `servopa-branco.png` |
+| `servopa.svg` · `servopa.png` · `servopa.webp` | Rodapé, em "Produtos administrados por" (sobre chip branco) |
 
-- Este slot fica **oculto** até o arquivo existir.
+- Este bloco fica **oculto** até o arquivo existir.
 - ⚠️ **Autorização de marca:** só publique o logo da Servopa se houver
   autorização de uso da marca. Isso está na lista de itens a confirmar antes da
   publicação.

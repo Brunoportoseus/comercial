@@ -471,6 +471,9 @@
         probe.onload = function () {
           img.src = url;
           img.hidden = false;
+          // revela o "chip" branco do rodapé, se houver (caso Servopa)
+          var chip = img.closest(".footer-logo-chip");
+          if (chip) chip.hidden = false;
         };
         probe.onerror = tryNext;
         probe.src = url;

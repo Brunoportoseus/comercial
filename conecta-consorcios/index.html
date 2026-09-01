@@ -741,31 +741,38 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <img
-              src="assets/logo-placeholder-negativo.svg"
-              data-official="assets/logos/conecta/conecta-negativo.svg,assets/logos/conecta/conecta-negativo.png,assets/logos/conecta/conecta-branco.svg,assets/logos/conecta/conecta-branco.png"
-              alt="Conecta Consórcios"
-              width="160"
-              height="40"
-            />
+            <!-- Chip branco: mantém o logo (colorido, texto cinza) legível
+                 sobre o fundo escuro. Coloque o arquivo em
+                 assets/logos/conecta/ (conecta.svg/.png) — troca automática. -->
+            <span class="footer-logo-chip">
+              <img
+                src="assets/logo-placeholder.svg"
+                data-official="assets/logos/conecta/conecta.svg,assets/logos/conecta/conecta.png,assets/logos/conecta/conecta.webp"
+                alt="Conecta Consórcios"
+                width="160"
+                height="40"
+              />
+            </span>
             <p>
               A Conecta Consórcios comercializa produtos do
               <strong>Consórcio Servopa</strong> e oferece atendimento
               consultivo para consórcio de imóveis. A Conecta não é a
               administradora dos grupos.
             </p>
-            <!-- Logo oficial do Consórcio Servopa (opcional): aparece só quando
+            <!-- Logo do Consórcio Servopa (opcional): o bloco aparece só quando
                  o arquivo existir em assets/logos/servopa/ E o uso da marca
                  estiver autorizado. Fica oculto até lá. -->
             <div class="footer-servopa">
               <span>Produtos administrados por</span>
-              <img
-                data-official="assets/logos/servopa/servopa.svg,assets/logos/servopa/servopa.png,assets/logos/servopa/servopa-negativo.svg,assets/logos/servopa/servopa-branco.svg,assets/logos/servopa/servopa-branco.png"
-                data-optional
-                alt="Consórcio Servopa"
-                height="34"
-                hidden
-              />
+              <span class="footer-logo-chip" hidden>
+                <img
+                  data-official="assets/logos/servopa/servopa.svg,assets/logos/servopa/servopa.png,assets/logos/servopa/servopa.webp"
+                  data-optional
+                  alt="Consórcio Servopa"
+                  height="32"
+                  hidden
+                />
+              </span>
             </div>
           </div>
 
