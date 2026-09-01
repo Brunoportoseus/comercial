@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Ícone temporário Conecta Consórcios">
+  <!-- Favicon temporário e neutro (marca oficial deve substituí-lo). -->
+  <rect width="64" height="64" rx="14" fill="#0a2540"/>
+  <path d="M18 40V26l14-9 14 9v14a2 2 0 0 1-2 2h-8V30h-8v12h-8a2 2 0 0 1-2-2z" fill="none" stroke="#12a5bd" stroke-width="3.2" stroke-linejoin="round"/>
+</svg>

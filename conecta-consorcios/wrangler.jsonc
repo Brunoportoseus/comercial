@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "conecta-consorcios",
+  "compatibility_date": "2026-06-09",
+  "main": "./_worker.js",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  // Domínio próprio (conectaconsorciosbrasil.com.br).
+  // A Cloudflare cria DNS + SSL automaticamente ao publicar, desde que o
+  // domínio já esteja adicionado e ATIVO na mesma conta Cloudflare.
+  // O redirect de www -> apex é feito em _worker.js.
+  // CONFIRMAR o domínio antes de habilitar as rotas abaixo.
+  "routes": [
+    { "pattern": "conectaconsorciosbrasil.com.br", "custom_domain": true },
+    { "pattern": "www.conectaconsorciosbrasil.com.br", "custom_domain": true }
+  ]
+  // Variáveis de ambiente / secrets do destino de leads (configurar no painel
+  // Cloudflare ou via `wrangler secret put`). NUNCA colocar valores aqui:
+  //   LEAD_WEBHOOK_URL   — URL genérica (POST JSON)
+  //   KOMMO_WEBHOOK_URL  — webhook de entrada do Kommo
+  //   LEAD_EMAIL_TO      — e-mail de destino (requer RESEND_API_KEY)
+  //   LEAD_EMAIL_FROM    — remetente verificado no Resend
+  //   RESEND_API_KEY     — secret da API Resend
+  //   TURNSTILE_SECRET   — secret do Cloudflare Turnstile (opcional)
+}

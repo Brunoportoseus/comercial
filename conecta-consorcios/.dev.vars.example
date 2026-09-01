@@ -1,0 +1,17 @@
+# Exemplo de variáveis para desenvolvimento local com Wrangler.
+# Copie para `.dev.vars` (ignorado pelo git) e preencha conforme o destino.
+# NUNCA comite valores reais.
+
+# Destino genérico (POST JSON):
+# LEAD_WEBHOOK_URL="https://exemplo.com/webhook/leads"
+
+# Kommo (webhook de entrada do fluxo):
+# KOMMO_WEBHOOK_URL="https://sua-conta.kommo.com/..."
+
+# E-mail via Resend:
+# LEAD_EMAIL_TO="comercial@conectaconsorciosbrasil.com.br"
+# LEAD_EMAIL_FROM="Conecta Consórcios <no-reply@conectaconsorciosbrasil.com.br>"
+# RESEND_API_KEY="re_xxx"
+
+# Proteção anti-bot (opcional) — Cloudflare Turnstile:
+# TURNSTILE_SECRET="0x..."
