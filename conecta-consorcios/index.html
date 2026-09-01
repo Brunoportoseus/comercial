@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      document.documentElement.className += " js";
+    </script>
+
+    <title>Consórcio de Imóveis | Conecta Consórcios</title>
+    <meta
+      name="description"
+      content="Planeje a compra, construção ou reforma do seu imóvel com uma simulação personalizada e atendimento consultivo da Conecta Consórcios."
+    />
+    <meta name="author" content="Conecta Consórcios" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a2540" />
+    <link rel="canonical" href="https://www.conectaconsorciosbrasil.com.br/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Conecta Consórcios" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Consórcio de Imóveis | Conecta Consórcios" />
+    <meta
+      property="og:description"
+      content="Planeje a compra, construção ou reforma do seu imóvel com uma simulação personalizada e atendimento consultivo."
+    />
+    <meta property="og:url" content="https://www.conectaconsorciosbrasil.com.br/" />
+    <!-- CONFIRMAR: substituir por imagem OG oficial 1200x630 em /assets/og-card.jpg -->
+    <meta property="og:image" content="https://www.conectaconsorciosbrasil.com.br/assets/og-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Conecta Consórcios — consórcio de imóveis com atendimento consultivo" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Consórcio de Imóveis | Conecta Consórcios" />
+    <meta
+      name="twitter:description"
+      content="Planeje a compra, construção ou reforma do seu imóvel com atendimento consultivo."
+    />
+    <meta name="twitter:image" content="https://www.conectaconsorciosbrasil.com.br/assets/og-card.jpg" />
+
+    <!-- Favicon (placeholder abstrato — substituir pelo oficial) -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Dados estruturados: Organization (sem avaliações — não há reviews reais) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Conecta Consórcios",
+        "url": "https://www.conectaconsorciosbrasil.com.br",
+        "description": "Comercialização de produtos do Consórcio Servopa e atendimento consultivo para consórcio de imóveis.",
+        "email": "conectaconsorciosbrasil@gmail.com",
+        "telephone": "+55-41-98472-0013",
+        "sameAs": ["https://www.instagram.com/conectaconsorcioservopa"]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- ============================ HEADER ============================ -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Conecta Consórcios — início">
+          <!-- Logotipo oficial deve substituir este placeholder. Não redesenhar a marca. -->
+          <img src="assets/logo-placeholder.svg" alt="Conecta Consórcios" width="150" height="38" />
+        </a>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#vantagens">Vantagens</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#sobre">Sobre nós</a>
+          <a href="#duvidas">Dúvidas</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            class="btn btn-primary header-cta"
+            href="#simulacao"
+            data-cta="header_simulacao"
+            >Solicitar simulação</a
+          >
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobile-nav">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a class="btn btn-primary btn-block" href="#simulacao" data-cta="menu_simulacao"
+          >Solicitar simulação</a
+        >
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <span id="top"></span>
+
+      <!-- ============================ HERO ============================ -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div>
+            <span class="hero-badge"
+              ><span class="dot" aria-hidden="true"></span> Produtos administrados pelo
+              Consórcio Servopa</span
+            >
+            <h1 id="hero-title">
+              Planeje a conquista do seu imóvel com mais estratégia
+            </h1>
+            <p class="lead">
+              Conheça uma alternativa para comprar, construir ou reformar seu
+              imóvel com planejamento e acompanhamento especializado.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#simulacao" data-cta="hero_simulacao"
+                >Quero uma simulação personalizada</a
+              >
+              <a
+                class="btn btn-ghost"
+                data-whatsapp
+                data-location="hero"
+                href="#"
+                >Falar com um consultor</a
+              >
+            </div>
+            <p class="hero-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              A simulação é gratuita e não gera compromisso de contratação.
+            </p>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card">
+              <h3>O que você recebe</h3>
+              <ul>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  Orientação consultiva sobre como o consórcio funciona
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  Ajuda para entender contemplação, lance e carta de crédito
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  Uma conversa alinhada ao seu objetivo, sem pressão comercial
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= TRUST BAR ========================= -->
+      <section class="trustbar" aria-label="Credibilidade">
+        <div class="container">
+          <div class="trust-grid">
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <strong>Consórcio Servopa</strong>
+                <span>Produtos administrados pela administradora</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+              <div>
+                <strong>Regulado pelo Banco Central</strong>
+                <span>Sistema de consórcios fiscalizado</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg>
+              <div>
+                <strong>Administradora e ABAC</strong>
+                <span>Setor associado à ABAC</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13A4 4 0 0119 7"/></svg>
+              <div>
+                <strong>Atendimento consultivo</strong>
+                <span>Acompanhamento em cada etapa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================= COMO FUNCIONA ======================= -->
+      <section id="como-funciona">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Como funciona</span>
+            <h2>Do objetivo à conquista, em etapas simples</h2>
+            <p>
+              O consórcio é uma forma de planejamento de compra em grupo. Veja
+              como acontece na prática.
+            </p>
+          </div>
+
+          <div class="steps reveal">
+            <div class="step">
+              <h3>Entendimento do objetivo</h3>
+              <p>
+                Conversamos para compreender o que você deseja realizar e em
+                qual momento.
+              </p>
+            </div>
+            <div class="step">
+              <h3>Escolha da carta e do grupo</h3>
+              <p>
+                Selecionamos uma carta de crédito e um grupo compatíveis com o
+                seu planejamento.
+              </p>
+            </div>
+            <div class="step">
+              <h3>Participação nas assembleias</h3>
+              <p>
+                A cada assembleia há possibilidade de contemplação por sorteio
+                ou por lance.
+              </p>
+            </div>
+            <div class="step">
+              <h3>Utilização da carta</h3>
+              <p>
+                Após a contemplação e o cumprimento das condições do contrato,
+                a carta é usada para adquirir o bem permitido.
+              </p>
+            </div>
+          </div>
+
+          <div class="note-box reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span
+              >A contemplação não tem data garantida e segue as regras do grupo
+              contratado.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= USE CASES ========================= -->
+      <section id="usos" class="bg-soft">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Possibilidades de utilização</span>
+            <h2>Para o que a carta de crédito pode servir</h2>
+            <p>
+              As utilizações abaixo dependem das regras do contrato e do grupo
+              escolhido.
+            </p>
+          </div>
+
+          <div class="grid cols-3 reveal">
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+              <h3>Comprar imóvel novo</h3>
+              <p>Apartamento, casa ou unidade na planta, conforme as regras do contrato.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+              <h3>Comprar imóvel usado</h3>
+              <p>Aquisição de imóveis já existentes, dentro das condições previstas.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 20h20M4 20V10l8-5 8 5v10M9 20v-5h6v5"/></svg></div>
+              <h3>Construir</h3>
+              <p>Erguer seu imóvel, quando essa finalidade estiver prevista no contrato.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 6l4 4M4 20l1-5 9-9 4 4-9 9-5 1z"/></svg></div>
+              <h3>Reformar</h3>
+              <p>Modernizar ou ampliar seu imóvel, conforme as regras aplicáveis.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6l9-3 9 3v12l-9 3-9-3z"/><path d="M3 6l9 3 9-3M12 9v12"/></svg></div>
+              <h3>Adquirir terreno</h3>
+              <p>Compra de terreno, quando permitido pelo contrato.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+              <h3>Quitar financiamento</h3>
+              <p>Quitar financiamento imobiliário próprio, se essa utilização estiver prevista nas regras aplicáveis.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= BENEFITS ========================= -->
+      <section id="vantagens">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Vantagens do planejamento</span>
+            <h2>Por que considerar o consórcio</h2>
+            <p>
+              Apresentamos as vantagens de forma equilibrada — sem promessas de
+              que o consórcio será sempre mais barato que o financiamento.
+            </p>
+          </div>
+
+          <div class="grid cols-3 reveal">
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+              <h3>Planejamento de médio e longo prazo</h3>
+              <p>Uma forma organizada de se preparar para conquistar o imóvel.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5a3 3 0 00-3-2c-1.7 0-3 1-3 2.3 0 3 6 1.7 6 4.7 0 1.3-1.3 2.5-3 2.5a3 3 0 01-3-2M12 6v1.5M12 16.5V18"/></svg></div>
+              <h3>Sem juros de financiamento</h3>
+              <p>Não há juros de financiamento — existem taxa de administração e outros encargos previstos em contrato.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg></div>
+              <h3>Poder de negociação</h3>
+              <p>Após a contemplação, a carta de crédito favorece a negociação, como um comprador à vista.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+              <h3>Possibilidade de lances</h3>
+              <p>Você pode ofertar lances para concorrer à contemplação — sem que isso garanta ser contemplado.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
+              <h3>Flexibilidade de utilização</h3>
+              <p>Diferentes finalidades para o imóvel, sempre dentro das regras do contrato.</p>
+            </article>
+            <article class="card">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
+              <h3>Acompanhamento consultivo</h3>
+              <p>A Conecta orienta você em cada etapa, com clareza e transparência.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================= COMPARISON ========================= -->
+      <section id="comparacao" class="bg-soft">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Consórcio ou financiamento?</span>
+            <h2>Uma comparação conceitual</h2>
+            <p>
+              Sem valores, taxas ou promessas — apenas as características de cada
+              caminho para ajudar você a refletir.
+            </p>
+          </div>
+
+          <div class="compare reveal">
+            <div class="compare-col consorcio">
+              <span class="tag">Consórcio</span>
+              <h3>Planejamento em grupo</h3>
+              <ul>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Indicado principalmente para quem pode planejar</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Contemplação por sorteio ou lance</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Taxa de administração e possíveis encargos contratuais</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Sem juros de financiamento</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Prazo de acesso ao crédito não garantido</li>
+              </ul>
+            </div>
+            <div class="compare-col">
+              <span class="tag">Financiamento</span>
+              <h3>Crédito bancário</h3>
+              <ul>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> Acesso ao bem normalmente mais imediato, após aprovação</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> Cobrança de juros</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> Análise de crédito</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> Custo condicionado à taxa, prazo e entrada</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="compare-final reveal">
+            A melhor alternativa depende da sua urgência, orçamento e objetivo.
+            Nossa equipe pode ajudar você a comparar os cenários.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================= SECURITY ========================= -->
+      <section id="seguranca" class="security">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Segurança do sistema</span>
+            <h2>Um sistema regulamentado</h2>
+            <p>
+              O consórcio no Brasil segue regras específicas e é acompanhado por
+              órgãos oficiais.
+            </p>
+          </div>
+
+          <div class="security-grid reveal">
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <h3>Supervisão do Banco Central</h3>
+              <p>O sistema de consórcios é fiscalizado pelo Banco Central do Brasil.</p>
+            </div>
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5M9 13h6M9 17h6"/></svg>
+              <h3>Lei nº 11.795/2008</h3>
+              <p>A atividade é regida pela lei que disciplina o sistema de consórcios.</p>
+            </div>
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg>
+              <h3>Patrimônio separado</h3>
+              <p>O patrimônio do grupo é separado do patrimônio da administradora.</p>
+            </div>
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M9 12h6M9 16h6M9 8h2"/></svg>
+              <h3>Regras em contrato</h3>
+              <p>Direitos, deveres e condições ficam estabelecidos no contrato.</p>
+            </div>
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+              <h3>Assembleias e contemplação</h3>
+              <p>As contemplações ocorrem em assembleias, por sorteio ou lance.</p>
+            </div>
+            <div class="pillar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg>
+              <h3>Administradora autorizada</h3>
+              <p>A administração é realizada por administradora autorizada a operar.</p>
+            </div>
+          </div>
+
+          <div class="security-links reveal">
+            <a href="https://www.bcb.gov.br/estabilidadefinanceira/consorcio" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>
+              Banco Central — Consórcios
+            </a>
+            <a href="https://abac.org.br" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>
+              ABAC — Associação das administradoras
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== ABOUT =========================== -->
+      <section id="sobre">
+        <div class="container">
+          <div class="about-grid">
+            <div class="reveal">
+              <span class="eyebrow">Sobre a Conecta Consórcios</span>
+              <h2>Atendimento próximo e transparente</h2>
+              <p style="margin-top: 14px; color: var(--ink-2); font-size: 1.05rem">
+                A Conecta Consórcios comercializa produtos do Consórcio Servopa e
+                oferece atendimento consultivo para ajudar cada cliente a
+                compreender as opções disponíveis e escolher uma solução
+                compatível com seus objetivos.
+              </p>
+              <ul class="about-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Atendimento próximo, do primeiro contato ao acompanhamento</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Análise das suas necessidades antes de qualquer indicação</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Explicação clara das condições, sem letras miúdas</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Suporte durante toda a jornada</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Compromisso com a transparência</li>
+              </ul>
+            </div>
+            <div class="about-visual reveal" aria-hidden="true">
+              <!-- Espaço para foto institucional / atendimento (imagem oficial ou banco licenciado). -->
+              <div>
+                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--turq-2); margin: 0 auto 10px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <p>Espaço reservado para imagem institucional<br />(inserir foto oficial ou de banco com licença adequada)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================== LEAD FORM ========================= -->
+      <section id="simulacao" class="form-section">
+        <div class="container">
+          <div class="form-wrap">
+            <div class="form-intro reveal">
+              <span class="eyebrow">Simulação personalizada</span>
+              <h2>Vamos avaliar o que faz sentido para você</h2>
+              <p>
+                Conte o que pretende realizar e um consultor entrará em contato
+                para orientar você, de forma clara e sem compromisso.
+              </p>
+              <ul class="form-benefits">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Sem compromisso de contratação</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Atendimento humano e consultivo</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Explicação transparente sobre custos e regras</li>
+              </ul>
+            </div>
+
+            <div class="lead-card reveal">
+              <form id="leadForm" novalidate>
+                <div class="form-status" id="form-status" aria-live="polite">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  <span class="msg"></span>
+                  <a class="wa-fallback" href="#" target="_blank" rel="noopener noreferrer" hidden style="text-decoration: underline; font-weight: 600">Falar no WhatsApp</a>
+                </div>
+
+                <!-- Honeypot anti-spam (não preencher) -->
+                <div class="hp-field" aria-hidden="true">
+                  <label for="f-website">Não preencha este campo</label>
+                  <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="field">
+                  <label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label>
+                  <input id="f-nome" name="nome" type="text" autocomplete="name" required aria-required="true" placeholder="Seu nome completo" />
+                  <span class="error-msg">Informe seu nome.</span>
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="f-whats">WhatsApp com DDD <span class="req" aria-hidden="true">*</span></label>
+                    <input id="f-whats" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" required aria-required="true" placeholder="(41) 90000-0000" />
+                    <span class="error-msg">Informe um WhatsApp válido com DDD.</span>
+                  </div>
+                  <div class="field">
+                    <label for="f-email">E-mail <span style="color: var(--muted); font-weight: 400">(opcional)</span></label>
+                    <input id="f-email" name="email" type="email" autocomplete="email" placeholder="voce@email.com" />
+                    <span class="error-msg">E-mail inválido.</span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="f-objetivo">Qual é o seu objetivo? <span class="req" aria-hidden="true">*</span></label>
+                  <select id="f-objetivo" name="objetivo" required aria-required="true">
+                    <option value="">Selecione…</option>
+                    <option value="comprar">Comprar um imóvel</option>
+                    <option value="construir">Construir</option>
+                    <option value="reformar">Reformar</option>
+                    <option value="terreno">Adquirir terreno</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                  <span class="error-msg">Selecione uma opção.</span>
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="f-faixa">Faixa aproximada do crédito</label>
+                    <select id="f-faixa" name="faixa">
+                      <option value="">Prefiro não informar agora</option>
+                      <option value="ate-150k">Até uma faixa inicial</option>
+                      <option value="150k-300k">Faixa intermediária</option>
+                      <option value="300k-500k">Faixa mais alta</option>
+                      <option value="acima-500k">Acima disso</option>
+                      <option value="nao-sei">Ainda não sei</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="f-prazo">Quando pretende realizar?</label>
+                    <select id="f-prazo" name="prazo">
+                      <option value="">Selecione…</option>
+                      <option value="ate-1-ano">Até 1 ano</option>
+                      <option value="1-3-anos">De 1 a 3 anos</option>
+                      <option value="acima-3-anos">Acima de 3 anos</option>
+                      <option value="avaliando">Ainda estou avaliando</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="f-periodo">Melhor período para contato</label>
+                  <select id="f-periodo" name="periodo">
+                    <option value="">Sem preferência</option>
+                    <option value="manha">Manhã</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="noite">Noite</option>
+                  </select>
+                </div>
+
+                <div class="consent">
+                  <input id="f-consent" name="consent" type="checkbox" required aria-required="true" />
+                  <label for="f-consent">
+                    Li e concordo com a
+                    <a href="privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
+                    e autorizo o contato para atendimento da minha solicitação.
+                    <span class="req" aria-hidden="true">*</span>
+                    <span class="error-msg">É necessário concordar para continuar.</span>
+                  </label>
+                </div>
+
+                <button class="btn btn-primary btn-block" type="submit" data-cta="form_submit">
+                  <span class="btn-label">Receber uma simulação personalizada</span>
+                </button>
+
+                <p class="form-hint">
+                  Seus dados serão utilizados somente para atendimento da sua
+                  solicitação, conforme nossa Política de Privacidade.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================= TESTIMONIALS ======================== -->
+      <!--
+        Estrutura pronta para depoimentos REAIS. Os cartões abaixo estão
+        claramente marcados como placeholder. NÃO publicar com dados fictícios:
+        substituir por depoimentos autorizados ou remover a seção inteira.
+      -->
+      <section id="depoimentos">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="placeholder-tag">Placeholder — substituir por depoimentos reais antes de publicar</span>
+            <h2>O que dizem nossos clientes</h2>
+            <p>Espaço reservado para depoimentos autorizados de clientes atendidos.</p>
+          </div>
+          <div class="tst-grid reveal">
+            <figure class="tst">
+              <blockquote class="quote">"[Depoimento a ser fornecido pelo cliente e autorizado por escrito.]"</blockquote>
+              <figcaption class="who">
+                <span class="avatar" aria-hidden="true"></span>
+                <span><strong>[Nome a confirmar]</strong><br /><span>[Cidade / contexto]</span></span>
+              </figcaption>
+            </figure>
+            <figure class="tst">
+              <blockquote class="quote">"[Depoimento a ser fornecido pelo cliente e autorizado por escrito.]"</blockquote>
+              <figcaption class="who">
+                <span class="avatar" aria-hidden="true"></span>
+                <span><strong>[Nome a confirmar]</strong><br /><span>[Cidade / contexto]</span></span>
+              </figcaption>
+            </figure>
+            <figure class="tst">
+              <blockquote class="quote">"[Depoimento a ser fornecido pelo cliente e autorizado por escrito.]"</blockquote>
+              <figcaption class="who">
+                <span class="avatar" aria-hidden="true"></span>
+                <span><strong>[Nome a confirmar]</strong><br /><span>[Cidade / contexto]</span></span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ FAQ ============================ -->
+      <section id="duvidas" class="bg-soft">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Perguntas frequentes</span>
+            <h2>Tire suas dúvidas sobre consórcio</h2>
+          </div>
+
+          <div class="faq reveal">
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq1" aria-controls="faq1a"><span>O que é um consórcio?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq1a" role="region" aria-labelledby="faq1"><p>É uma forma de compra planejada em grupo. Os participantes contribuem mensalmente e, a cada assembleia, um ou mais são contemplados com a carta de crédito, por sorteio ou lance. As condições exatas dependem do contrato e do grupo.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq2" aria-controls="faq2a"><span>O consórcio cobra juros?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq2a" role="region" aria-labelledby="faq2"><p>Não há juros de financiamento. Existem, porém, taxa de administração e outros encargos previstos em contrato, que devem ser considerados no planejamento.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq3" aria-controls="faq3a"><span>Quais custos podem existir?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq3a" role="region" aria-labelledby="faq3"><p>Além das parcelas, o contrato pode prever taxa de administração, fundo de reserva e outros encargos. Os valores exatos são apresentados individualmente por um consultor, conforme o grupo e a carta escolhidos.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq4" aria-controls="faq4a"><span>Como acontece a contemplação?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq4a" role="region" aria-labelledby="faq4"><p>Nas assembleias do grupo, por sorteio ou por lance. Ofertar um lance aumenta as chances naquela assembleia, mas não garante a contemplação.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq5" aria-controls="faq5a"><span>É possível antecipar a contemplação?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq5a" role="region" aria-labelledby="faq5"><p>É possível concorrer por meio de lances, conforme as regras do grupo. Ainda assim, lances não garantem contemplação nem definem uma data.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq6" aria-controls="faq6a"><span>Posso escolher qualquer imóvel?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq6a" role="region" aria-labelledby="faq6"><p>A carta de crédito pode ser usada para as finalidades previstas no contrato (comprar, construir, reformar, entre outras), respeitando as regras aplicáveis e a análise da administradora.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq7" aria-controls="faq7a"><span>A carta de crédito pode sofrer reajustes?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq7a" role="region" aria-labelledby="faq7"><p>Sim. A carta e as parcelas podem ser reajustadas conforme o índice previsto em contrato, para manter o poder de compra ao longo do tempo.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq8" aria-controls="faq8a"><span>Existe garantia de quando serei contemplado?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq8a" role="region" aria-labelledby="faq8"><p>Não. Não há data garantida de contemplação. Ela ocorre por sorteio ou lance, de acordo com as regras do grupo.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq9" aria-controls="faq9a"><span>Qual é o papel da Conecta Consórcios?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq9a" role="region" aria-labelledby="faq9"><p>A Conecta comercializa produtos do Consórcio Servopa e oferece atendimento consultivo. Ela não administra os grupos — a administração é do Consórcio Servopa.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq10" aria-controls="faq10a"><span>Quem administra o grupo?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq10a" role="region" aria-labelledby="faq10"><p>A administração é feita pelo Consórcio Servopa, administradora autorizada a operar no sistema de consórcios.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false" id="faq11" aria-controls="faq11a"><span>Como recebo uma simulação?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="faq-a" id="faq11a" role="region" aria-labelledby="faq11"><p>Basta preencher o formulário nesta página ou falar com um consultor pelo WhatsApp. O atendimento é gratuito e sem compromisso de contratação.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= FINAL CTA ========================= -->
+      <section class="final-cta">
+        <div class="container">
+          <div class="reveal">
+            <h2>Vamos avaliar se o consórcio combina com o seu objetivo?</h2>
+            <p>Conte o que você pretende realizar e receba uma orientação personalizada, sem compromisso.</p>
+            <div class="hero-cta">
+              <a class="btn btn-navy" href="#simulacao" data-cta="final_simulacao">Solicitar minha simulação</a>
+              <a class="btn btn-outline" data-whatsapp data-location="final_cta" href="#">Conversar pelo WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================== FOOTER =========================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="assets/logo-placeholder-negativo.svg" alt="Conecta Consórcios" width="160" height="40" />
+            <p>
+              A Conecta Consórcios comercializa produtos do
+              <strong>Consórcio Servopa</strong> e oferece atendimento
+              consultivo para consórcio de imóveis. A Conecta não é a
+              administradora dos grupos.
+            </p>
+          </div>
+
+          <div>
+            <h4>Navegação</h4>
+            <ul class="footer-links">
+              <li><a href="#como-funciona">Como funciona</a></li>
+              <li><a href="#vantagens">Vantagens</a></li>
+              <li><a href="#seguranca">Segurança</a></li>
+              <li><a href="#sobre">Sobre nós</a></li>
+              <li><a href="#duvidas">Dúvidas</a></li>
+              <li><a href="#simulacao">Solicitar simulação</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Contato</h4>
+            <div class="footer-contact">
+              <a data-whatsapp data-location="footer" href="#">WhatsApp: (41) 98472-0013</a>
+              <a href="mailto:conectaconsorciosbrasil@gmail.com">conectaconsorciosbrasil@gmail.com</a>
+              <a href="https://www.conectaconsorciosbrasil.com.br" target="_blank" rel="noopener">www.conectaconsorciosbrasil.com.br</a>
+              <a href="https://www.instagram.com/conectaconsorcioservopa" target="_blank" rel="noopener">Instagram: @conectaconsorcioservopa</a>
+            </div>
+            <h4 style="margin-top: 20px">Legal</h4>
+            <ul class="footer-links">
+              <li><a href="privacidade/">Política de Privacidade</a></li>
+              <li><a href="termos/">Termos de Uso</a></li>
+              <li><a href="#" data-manage-cookies>Gerenciar cookies</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <div class="confirm-tag">
+            <strong>Dados a confirmar antes da publicação:</strong> razão social,
+            CNPJ, endereço completo, autorizações e registros oficiais. Não
+            publicar sem validação.
+          </div>
+          <p>
+            As condições estão sujeitas às regras do grupo e do contrato. A
+            contemplação ocorre por sorteio ou lance, sem garantia de data.
+            Consórcio não é investimento financeiro. Consulte o contrato para
+            todas as condições, taxas e encargos.
+          </p>
+          <p>© <span id="year">2026</span> Conecta Consórcios. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a class="wa-float" data-whatsapp data-location="float" href="#" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.4.25-.7.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.02a9.5 9.5 0 01-4.83-1.32l-.35-.2-3.59.94.96-3.5-.23-.36a9.46 9.46 0 01-1.45-5.04c0-5.23 4.27-9.5 9.52-9.5 2.54 0 4.93.99 6.73 2.79a9.44 9.44 0 012.78 6.72c0 5.23-4.27 9.5-9.52 9.5zm8.1-17.6A11.42 11.42 0 0012.05.5C5.7.5.55 5.65.55 12c0 2.02.53 3.99 1.53 5.73L.5 23.5l5.93-1.55a11.44 11.44 0 005.62 1.43h.01c6.34 0 11.49-5.15 11.49-11.5 0-3.07-1.2-5.95-3.37-8.13z"/></svg>
+    </a>
+
+    <!-- Banner de cookies (LGPD) -->
+    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+      <p>
+        Usamos cookies essenciais para o funcionamento do site. Cookies de
+        medição (analytics) só são ativados com o seu consentimento. Saiba mais
+        na <a href="privacidade/">Política de Privacidade</a>.
+      </p>
+      <div class="cookie-actions">
+        <button class="btn btn-outline" id="cookie-reject" type="button">Somente essenciais</button>
+        <button class="btn btn-primary" id="cookie-accept" type="button">Aceitar cookies</button>
+      </div>
+    </div>
+
+    <!-- FAQPage structured data (sem avaliações) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "O que é um consórcio?", "acceptedAnswer": { "@type": "Answer", "text": "É uma forma de compra planejada em grupo. Os participantes contribuem mensalmente e, a cada assembleia, um ou mais são contemplados com a carta de crédito, por sorteio ou lance. As condições dependem do contrato e do grupo." } },
+          { "@type": "Question", "name": "O consórcio cobra juros?", "acceptedAnswer": { "@type": "Answer", "text": "Não há juros de financiamento. Existem taxa de administração e outros encargos previstos em contrato." } },
+          { "@type": "Question", "name": "Como acontece a contemplação?", "acceptedAnswer": { "@type": "Answer", "text": "Nas assembleias do grupo, por sorteio ou por lance. Lances aumentam as chances, mas não garantem a contemplação." } },
+          { "@type": "Question", "name": "Existe garantia de quando serei contemplado?", "acceptedAnswer": { "@type": "Answer", "text": "Não há data garantida de contemplação. Ela ocorre por sorteio ou lance, de acordo com as regras do grupo." } },
+          { "@type": "Question", "name": "Quem administra o grupo?", "acceptedAnswer": { "@type": "Answer", "text": "A administração é feita pelo Consórcio Servopa, administradora autorizada. A Conecta atua na comercialização e no atendimento consultivo." } }
+        ]
+      }
+    </script>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
