@@ -1126,6 +1126,7 @@ section {
   margin-top: 18px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
 }
 .footer-servopa span {
