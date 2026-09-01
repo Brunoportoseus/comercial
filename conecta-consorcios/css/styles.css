@@ -447,6 +447,29 @@ section {
 .hero-visual {
   position: relative;
 }
+.hero-servopa {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.hero-servopa-label {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.hero-servopa img {
+  height: 60px;
+  width: auto;
+  margin: 0 auto;
+}
 .hero-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
