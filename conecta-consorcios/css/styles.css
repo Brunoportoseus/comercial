@@ -444,6 +444,34 @@ section {
   flex: none;
   color: var(--turq);
 }
+
+/* Destaque "Receba imediatamente a sua simulação" perto dos CTAs */
+.sim-flash {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--red);
+  background: rgba(168, 30, 51, 0.08);
+  border: 1px solid rgba(168, 30, 51, 0.2);
+  padding: 9px 16px;
+  border-radius: 999px;
+  margin-top: 18px;
+}
+.sim-flash svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+/* Sobre fundos escuros (hero e chamada final) */
+.hero .sim-flash,
+.final-cta .sim-flash {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+}
 .hero-visual {
   position: relative;
 }
