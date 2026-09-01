@@ -283,7 +283,7 @@ section {
   text-decoration: none;
 }
 .brand img {
-  height: 38px;
+  height: 48px;
   width: auto;
 }
 .nav {
@@ -1150,11 +1150,11 @@ section {
   box-shadow: var(--shadow-sm);
 }
 .footer-logo-chip img {
-  height: 40px;
+  height: 54px;
   width: auto;
 }
 .footer-servopa .footer-logo-chip img {
-  height: 32px;
+  height: 46px;
 }
 .footer-contact {
   display: grid;
