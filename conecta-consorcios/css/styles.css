@@ -77,6 +77,12 @@ img {
   display: block;
 }
 
+/* Garante que o atributo `hidden` oculte mesmo com a regra img{display:block}
+   acima (estilo de autor vence o [hidden] do navegador). */
+[hidden] {
+  display: none !important;
+}
+
 a {
   color: var(--turq-2);
   text-decoration: none;
@@ -1111,6 +1117,23 @@ section {
 }
 .footer-brand img {
   height: 40px;
+  width: auto;
+}
+.footer-servopa {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-servopa span {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #93a8ba;
+}
+.footer-servopa img {
+  height: 34px;
+  width: auto;
 }
 .footer-contact {
   display: grid;

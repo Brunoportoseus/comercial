@@ -10,7 +10,7 @@ window.CONECTA_CONFIG = {
    * Número no formato internacional, só dígitos: 55 (Brasil) + DDD + número.
    * Fonte: apresentação comercial — CONFIRMAR antes de publicar. */
   whatsapp: {
-    number: "5541984720013", // (41) 98472-0013
+    number: "5541988520906", // (41) 98852-0906
     message:
       "Olá! Visitei o site da Conecta Consórcios e gostaria de entender as opções de consórcio para imóveis.",
   },
@@ -38,6 +38,6 @@ window.CONECTA_CONFIG = {
     site: "https://www.conectaconsorciosbrasil.com.br",
     instagram: "conectaconsorcioservopa",
     instagramUrl: "https://www.instagram.com/conectaconsorcioservopa",
-    telefoneExibicao: "(41) 98472-0013",
+    telefoneExibicao: "(41) 98852-0906",
   },
 };
