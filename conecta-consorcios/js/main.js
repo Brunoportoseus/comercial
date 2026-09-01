@@ -449,8 +449,38 @@
     });
   }
 
+  /* ---------------------------------------------------------------- *
+   * Logos oficiais — troca automática quando o arquivo existir.
+   * Cada <img data-official="a.svg,a.png,..."> tenta cada candidato;
+   * o primeiro que carregar vira o src. Enquanto nenhum existir,
+   * mantém o placeholder (ou fica oculto, se data-optional).
+   * ---------------------------------------------------------------- */
+  function initLogos() {
+    document.querySelectorAll("img[data-official]").forEach(function (img) {
+      var cands = (img.getAttribute("data-official") || "")
+        .split(",")
+        .map(function (s) { return s.trim(); })
+        .filter(Boolean);
+      var optional = img.hasAttribute("data-optional");
+      if (optional) img.hidden = true;
+      var i = 0;
+      (function tryNext() {
+        if (i >= cands.length) return; // nenhum oficial encontrado
+        var url = cands[i++];
+        var probe = new Image();
+        probe.onload = function () {
+          img.src = url;
+          img.hidden = false;
+        };
+        probe.onerror = tryNext;
+        probe.src = url;
+      })();
+    });
+  }
+
   /* ---------------------------------------------------------------- */
   function init() {
+    initLogos();
     initWhatsApp();
     initNav();
     initForm();

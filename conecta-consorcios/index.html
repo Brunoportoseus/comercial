@@ -14,7 +14,7 @@
     />
     <meta name="author" content="Conecta Consórcios" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0a2540" />
+    <meta name="theme-color" content="#0b2e3d" />
     <link rel="canonical" href="https://www.conectaconsorciosbrasil.com.br/" />
 
     <!-- Open Graph -->
@@ -65,7 +65,7 @@
         "url": "https://www.conectaconsorciosbrasil.com.br",
         "description": "Comercialização de produtos do Consórcio Servopa e atendimento consultivo para consórcio de imóveis.",
         "email": "conectaconsorciosbrasil@gmail.com",
-        "telephone": "+55-41-98472-0013",
+        "telephone": "+55-41-98852-0906",
         "sameAs": ["https://www.instagram.com/conectaconsorcioservopa"]
       }
     </script>
@@ -77,8 +77,16 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Conecta Consórcios — início">
-          <!-- Logotipo oficial deve substituir este placeholder. Não redesenhar a marca. -->
-          <img src="assets/logo-placeholder.svg" alt="Conecta Consórcios" width="150" height="38" />
+          <!-- Coloque o logo oficial em assets/logos/conecta/ (ver README de lá).
+               Enquanto não existir, mostra o placeholder; ao adicionar o arquivo
+               com um dos nomes esperados, a troca é automática. -->
+          <img
+            src="assets/logo-placeholder.svg"
+            data-official="assets/logos/conecta/conecta.svg,assets/logos/conecta/conecta.png,assets/logos/conecta/conecta.webp"
+            alt="Conecta Consórcios"
+            width="150"
+            height="38"
+          />
         </a>
 
         <nav class="nav" aria-label="Navegação principal">
@@ -733,13 +741,32 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <img src="assets/logo-placeholder-negativo.svg" alt="Conecta Consórcios" width="160" height="40" />
+            <img
+              src="assets/logo-placeholder-negativo.svg"
+              data-official="assets/logos/conecta/conecta-negativo.svg,assets/logos/conecta/conecta-negativo.png,assets/logos/conecta/conecta-branco.svg,assets/logos/conecta/conecta-branco.png"
+              alt="Conecta Consórcios"
+              width="160"
+              height="40"
+            />
             <p>
               A Conecta Consórcios comercializa produtos do
               <strong>Consórcio Servopa</strong> e oferece atendimento
               consultivo para consórcio de imóveis. A Conecta não é a
               administradora dos grupos.
             </p>
+            <!-- Logo oficial do Consórcio Servopa (opcional): aparece só quando
+                 o arquivo existir em assets/logos/servopa/ E o uso da marca
+                 estiver autorizado. Fica oculto até lá. -->
+            <div class="footer-servopa">
+              <span>Produtos administrados por</span>
+              <img
+                data-official="assets/logos/servopa/servopa.svg,assets/logos/servopa/servopa.png,assets/logos/servopa/servopa-negativo.svg,assets/logos/servopa/servopa-branco.svg,assets/logos/servopa/servopa-branco.png"
+                data-optional
+                alt="Consórcio Servopa"
+                height="34"
+                hidden
+              />
+            </div>
           </div>
 
           <div>
@@ -757,11 +784,16 @@
           <div>
             <h4>Contato</h4>
             <div class="footer-contact">
-              <a data-whatsapp data-location="footer" href="#">WhatsApp: (41) 98472-0013</a>
+              <a data-whatsapp data-location="footer" href="#">WhatsApp: (41) 98852-0906</a>
               <a href="mailto:conectaconsorciosbrasil@gmail.com">conectaconsorciosbrasil@gmail.com</a>
               <a href="https://www.conectaconsorciosbrasil.com.br" target="_blank" rel="noopener">www.conectaconsorciosbrasil.com.br</a>
               <a href="https://www.instagram.com/conectaconsorcioservopa" target="_blank" rel="noopener">Instagram: @conectaconsorcioservopa</a>
             </div>
+            <h4 style="margin-top: 20px">Endereço</h4>
+            <address style="font-style: normal">
+              Rua João Bettega, 107<br />
+              <span style="color: #93a8ba">Complemento, cidade/UF e CEP a confirmar</span>
+            </address>
             <h4 style="margin-top: 20px">Legal</h4>
             <ul class="footer-links">
               <li><a href="privacidade/">Política de Privacidade</a></li>
@@ -774,8 +806,8 @@
         <div class="footer-note">
           <div class="confirm-tag">
             <strong>Dados a confirmar antes da publicação:</strong> razão social,
-            CNPJ, endereço completo, autorizações e registros oficiais. Não
-            publicar sem validação.
+            CNPJ, complemento do endereço (cidade/UF/CEP), autorizações e
+            registros oficiais. Não publicar sem validação.
           </div>
           <p>
             As condições estão sujeitas às regras do grupo e do contrato. A
