@@ -13,12 +13,12 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Vídeo: clica na capa -> carrega o player do YouTube e dá play (roda dentro da página)
-const videoBox = document.querySelector('.video-box');
-if (videoBox) {
-  const facade = videoBox.querySelector('.video-box__facade');
+// Vídeos: clica na capa -> carrega o player do YouTube e dá play (roda dentro da página)
+document.querySelectorAll('.video-box[data-yt]').forEach((box) => {
+  const facade = box.querySelector('.video-box__facade');
+  if (!facade) return;
   facade.addEventListener('click', () => {
-    const id = videoBox.dataset.yt;
+    const id = box.dataset.yt;
     const iframe = document.createElement('iframe');
     iframe.className = 'video-box__player';
     iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
@@ -28,4 +28,4 @@ if (videoBox) {
     iframe.setAttribute('frameborder', '0');
     facade.replaceWith(iframe);
   });
-}
+});
