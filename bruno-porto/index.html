@@ -3,6 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <script>
+    // Abre sempre no topo no mobile. O navegador restaura a posição de scroll
+    // (reload / voltar / bfcache) DEPOIS que fontes e imagens carregam e a página
+    // faz reflow — o que vence um scrollTo(0,0) feito cedo demais. Por isso o topo
+    // é reforçado após o load com pequenos atrasos; o reforço é cancelado assim que
+    // o usuário toca/rola, para nunca atrapalhar a leitura. Âncoras (#hash) são preservadas.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    (function () {
+      var userMoved = false;
+      function mark() { userMoved = true; }
+      ["touchstart", "wheel", "keydown", "pointerdown"].forEach(function (ev) {
+        window.addEventListener(ev, mark, { passive: true, once: true });
+      });
+      function toTop() {
+        if (userMoved || location.hash) return;
+        if (window.scrollY !== 0) window.scrollTo(0, 0);
+      }
+      toTop();
+      document.addEventListener("DOMContentLoaded", toTop);
+      window.addEventListener("pageshow", function (e) { if (e.persisted) toTop(); });
+      // Após o load, corrige o topo a cada frame por ~1s (vence a restauração
+      // tardia que ocorre após o reflow de fontes/imagens). Para no 1º gesto.
+      window.addEventListener("load", function () {
+        var start = Date.now();
+        (function guard() {
+          toTop();
+          if (!userMoved && Date.now() - start < 1000) requestAnimationFrame(guard);
+        })();
+      });
+    })();
+  </script>
   <title>Bruno Porto — Consultoria em E-commerce, IA e Estratégia Comercial Digital</title>
   <meta name="description" content="Consultoria sênior em E-commerce, Inteligência Artificial, CRM, automação comercial e transformação digital. Mais de 30 anos ajudando empresas a vender mais pela internet." />
   <meta name="author" content="Bruno Porto Seus" />
