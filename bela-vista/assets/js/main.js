@@ -13,14 +13,19 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Vídeo: clica na capa -> mostra o player e dá play (roda dentro da página)
+// Vídeo: clica na capa -> carrega o player do YouTube e dá play (roda dentro da página)
 const videoBox = document.querySelector('.video-box');
 if (videoBox) {
   const facade = videoBox.querySelector('.video-box__facade');
-  const player = videoBox.querySelector('.video-box__player');
   facade.addEventListener('click', () => {
-    facade.hidden = true;
-    player.hidden = false;
-    player.play().catch(() => {});
+    const id = videoBox.dataset.yt;
+    const iframe = document.createElement('iframe');
+    iframe.className = 'video-box__player';
+    iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+    iframe.title = 'Vídeo do empreendimento';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('frameborder', '0');
+    facade.replaceWith(iframe);
   });
 }
