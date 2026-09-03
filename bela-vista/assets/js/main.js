@@ -29,3 +29,70 @@ document.querySelectorAll('.video-box[data-yt]').forEach((box) => {
     facade.replaceWith(iframe);
   });
 });
+
+// Modal de download com captura de nome + telefone
+(function () {
+  const modal = document.getElementById('downloadModal');
+  if (!modal) return;
+  const form = document.getElementById('downloadForm');
+  const stepForm = modal.querySelector('[data-step="form"]');
+  const stepDone = modal.querySelector('[data-step="done"]');
+  const errEl = modal.querySelector('[data-err]');
+  const nameOut = modal.querySelector('[data-name]');
+  const leadWhats = document.getElementById('leadWhats');
+  let lastFocus = null;
+
+  const open = () => {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const first = modal.querySelector('input');
+    if (first) setTimeout(() => first.focus(), 50);
+  };
+  const close = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  };
+
+  document.querySelectorAll('[data-open-download]').forEach((b) =>
+    b.addEventListener('click', open)
+  );
+  modal.querySelectorAll('[data-close-download]').forEach((b) =>
+    b.addEventListener('click', close)
+  );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+
+  const digits = (s) => (s || '').replace(/\D/g, '');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nome = form.nome.value.trim();
+    const tel = form.telefone.value.trim();
+    if (nome.length < 2 || digits(tel).length < 10) {
+      errEl.hidden = false;
+      return;
+    }
+    errEl.hidden = true;
+
+    // Guarda o lead localmente
+    try {
+      localStorage.setItem(
+        'bv_lead',
+        JSON.stringify({ nome, tel, data: new Date().toISOString() })
+      );
+    } catch (_) {}
+
+    // Prepara o envio do lead ao corretor via WhatsApp
+    const msg =
+      'Olá! Sou ' + nome + ' (' + tel + ').%0A' +
+      'Baixei a apresentação e a planta do Condomínio Bela Vista (Almirante) e gostaria de mais informações.';
+    leadWhats.href = 'https://wa.me/5541998448989?text=' + msg;
+
+    nameOut.textContent = nome.split(' ')[0];
+    stepForm.hidden = true;
+    stepDone.hidden = false;
+  });
+})();
