@@ -228,8 +228,7 @@ h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.15;color:var(--ink);marg
 .video-box__play svg{width:38px;height:38px;fill:#fff;margin-left:3px}
 .video-box__label{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-weight:600;color:#fff;
   font-size:1.05rem;text-shadow:0 2px 10px rgba(0,0,0,.5);padding:0 16px;text-align:center}
-.video-box__player{width:100%;height:100%;display:block;object-fit:cover;background:#000}
-.video-box__player[hidden]{display:none}
+.video-box__player{width:100%;height:100%;display:block;border:0;object-fit:cover;background:#000}
 
 /* ===== Footer tag ===== */
 .footer__tag{display:inline-block;font-family:'Poppins',sans-serif;font-weight:600;font-size:.43rem;
