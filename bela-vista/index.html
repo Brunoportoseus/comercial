@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  // Abre sempre no topo (evita restauração de posição de scroll no mobile,
+  // inclusive ao voltar pelo histórico / bfcache).
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  (function () {
+    function toTop() { if (!location.hash) window.scrollTo(0, 0); }
+    toTop();
+    document.addEventListener("DOMContentLoaded", toTop);
+    window.addEventListener("load", toTop);
+    window.addEventListener("pageshow", function (e) { if (e.persisted) toTop(); });
+  })();
+</script>
 <title>Terrenos em Almirante | Condomínio fechado na Região Norte de Curitiba</title>
 <meta name="description" content="Terrenos em Almirante: condomínio fechado pronto para construir, na Região Norte, a 10 minutos do Parque Tanguá. Lotes de 140 m², entrada de R$ 8.760 e parcelas a partir de R$ 2.015/mês.">
 <meta name="theme-color" content="#16202e">
