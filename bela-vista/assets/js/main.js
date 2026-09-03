@@ -85,11 +85,16 @@ document.querySelectorAll('.video-box[data-yt]').forEach((box) => {
       );
     } catch (_) {}
 
-    // Prepara o envio do lead ao corretor via WhatsApp
+    // Monta a mensagem do lead para o corretor (nome + telefone)
     const msg =
       'Olá! Sou ' + nome + ' (' + tel + ').%0A' +
-      'Baixei a apresentação e a planta do Condomínio Bela Vista (Almirante) e gostaria de mais informações.';
-    leadWhats.href = 'https://wa.me/5541998448989?text=' + msg;
+      'Quero a apresentação e a planta do Condomínio Bela Vista (Almirante) e mais informações.';
+    const waUrl = 'https://wa.me/5541998448989?text=' + msg;
+    leadWhats.href = waUrl;
+
+    // Abre o WhatsApp já com os dados (o cliente conclui o envio) — o lead
+    // chega ao corretor. Roda dentro do gesto de clique (evita bloqueio de pop-up).
+    window.open(waUrl, '_blank');
 
     nameOut.textContent = nome.split(' ')[0];
     stepForm.hidden = true;
