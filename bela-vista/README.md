@@ -1,6 +1,6 @@
-# Condomínio Bela Vista — Landing Page
+# Terrenos em Almirante — Landing Page
 
-Landing page de captação para o **Condomínio de Terrenos Bela Vista** (EVEX Imóveis),
+Landing page de captação para o condomínio **Terrenos em Almirante** (EVEX Imóveis),
 na Região Norte de Curitiba.
 
 ## Estrutura
