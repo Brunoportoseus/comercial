@@ -4,15 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-  // Abre sempre no topo (evita restauração de posição de scroll no mobile,
-  // inclusive ao voltar pelo histórico / bfcache).
+  // Abre sempre no topo no mobile. O navegador restaura a posição de scroll
+  // (reload / voltar / bfcache) DEPOIS que fontes e imagens carregam e a página
+  // faz reflow — o que vence um scrollTo(0,0) feito cedo demais. Por isso o topo
+  // é reforçado após o load com pequenos atrasos; o reforço é cancelado assim que
+  // o usuário toca/rola, para nunca atrapalhar a leitura.
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   (function () {
-    function toTop() { if (!location.hash) window.scrollTo(0, 0); }
+    var userMoved = false;
+    function mark() { userMoved = true; }
+    ["touchstart", "wheel", "keydown", "pointerdown"].forEach(function (ev) {
+      window.addEventListener(ev, mark, { passive: true, once: true });
+    });
+    function toTop() {
+      if (userMoved || location.hash) return;
+      if (window.scrollY !== 0) window.scrollTo(0, 0);
+    }
     toTop();
     document.addEventListener("DOMContentLoaded", toTop);
-    window.addEventListener("load", toTop);
     window.addEventListener("pageshow", function (e) { if (e.persisted) toTop(); });
+    // Após o load, corrige o topo a cada frame por ~1s (vence a restauração
+    // tardia que ocorre após o reflow de fontes/imagens). Para no 1º gesto.
+    window.addEventListener("load", function () {
+      var start = Date.now();
+      (function guard() {
+        toTop();
+        if (!userMoved && Date.now() - start < 1000) requestAnimationFrame(guard);
+      })();
+    });
   })();
 </script>
 <title>Terrenos em Almirante | Condomínio fechado na Região Norte de Curitiba</title>
