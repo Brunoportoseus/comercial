@@ -147,13 +147,20 @@
       </div>
     </div>
 
-    <!-- Espaço reservado para vídeo -->
-    <div class="video-slot" id="video">
-      <div class="video-slot__inner">
-        <span class="video-slot__play">▶</span>
-        <p>Vídeo do empreendimento em breve</p>
-        <small>Espaço reservado — insira aqui o link do YouTube/Vimeo ou o vídeo do lote.</small>
-      </div>
+    <!-- Vídeo do empreendimento -->
+    <div class="video-box" id="video">
+      <button class="video-box__facade" type="button" aria-label="Reproduzir vídeo do empreendimento"
+        style="background-image:url('assets/img/video-poster.jpg')">
+        <span class="video-box__play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="video-box__label">Assista ao vídeo do empreendimento</span>
+      </button>
+      <video class="video-box__player" controls playsinline preload="none"
+        poster="assets/img/video-poster.jpg" hidden>
+        <source src="assets/video/tour.mp4" type="video/mp4">
+        Seu navegador não suporta a reprodução de vídeo.
+      </video>
     </div>
   </div>
 </section>
@@ -216,17 +223,23 @@
     <div class="section-head">
       <span class="eyebrow">Condições de pagamento</span>
       <h2>Parcelas que cabem no seu planejamento.</h2>
-      <p class="section-head__lead">Financiamento direto com a incorporadora, sem burocracia de banco.</p>
+      <p class="section-head__lead"><strong>Financiamento direto com a incorporadora</strong> — sem banco, sem burocracia e com agilidade na aprovação.</p>
     </div>
 
     <div class="pricing">
       <div class="pricing__headline pricing__headline--single">
         <div class="price-box price-box--accent">
-          <span class="price-box__label">Entrada (sinal) — apenas 4%</span>
+          <span class="price-box__label">Entrada (sinal)</span>
           <strong class="price-box__value">R$ 8.760</strong>
           <span class="price-box__note">Restante financiado direto com a incorporadora</span>
         </div>
       </div>
+
+      <ul class="finance-badges">
+        <li>🤝 Direto com a incorporadora</li>
+        <li>✅ Sem burocracia de banco</li>
+        <li>⚡ Aprovação ágil</li>
+      </ul>
 
       <p class="plans__title">Escolha o número de parcelas:</p>
 

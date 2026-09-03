@@ -12,3 +12,15 @@ const onScroll = () => {
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
+
+// Vídeo: clica na capa -> mostra o player e dá play (roda dentro da página)
+const videoBox = document.querySelector('.video-box');
+if (videoBox) {
+  const facade = videoBox.querySelector('.video-box__facade');
+  const player = videoBox.querySelector('.video-box__player');
+  facade.addEventListener('click', () => {
+    facade.hidden = true;
+    player.hidden = false;
+    player.play().catch(() => {});
+  });
+}
