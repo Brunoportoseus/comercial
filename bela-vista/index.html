@@ -18,6 +18,13 @@
 <body>
 
 <!-- ============ TOPBAR ============ -->
+<!-- Faixa de download no topo -->
+<div class="promo-bar">
+  <button type="button" class="promo-bar__btn" data-open-download>
+    📥 Baixe a apresentação e a planta do condomínio
+  </button>
+</div>
+
 <header class="topbar" id="top">
   <div class="wrap topbar__inner">
     <a href="#top" class="brand-evex" aria-label="EVEX Imóveis — Parceiro Autorizado">
@@ -316,6 +323,44 @@
 <a class="wa-float" href="https://wa.me/5541998448989?text=Ol%C3%A1!%20Tenho%20interesse%20no%20condom%C3%ADnio%20Terrenos%20em%20Almirante." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.4.7 4.6 1.9 6.5L4 29l7-1.8c1.8 1 3.9 1.5 6 1.5 6.6 0 12-5.3 12-11.9C29 8.3 22.6 3 16 3zm0 21.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4a9.6 9.6 0 01-1.5-5.3C5 9.5 9.9 4.9 16 4.9S27 9.5 27 14.9 22.1 24.7 16 24.7zm5.4-7.2c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.5 3.5 0 00-1.1 2.6c0 1.5 1.1 3 1.3 3.2.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.1.9 3.7.8.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg>
 </a>
+
+<!-- Modal: captura de lead para download -->
+<div class="modal" id="downloadModal" hidden>
+  <div class="modal__backdrop" data-close-download></div>
+  <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
+    <button class="modal__x" type="button" data-close-download aria-label="Fechar">×</button>
+
+    <div class="modal__step" data-step="form">
+      <span class="modal__eyebrow">Material exclusivo</span>
+      <h3 id="dlTitle">Baixe a apresentação e a planta do condomínio</h3>
+      <p class="modal__lead">Preencha seus dados e libere o download na hora. Um corretor pode te ajudar com o que precisar.</p>
+      <form id="downloadForm" novalidate>
+        <label>Nome
+          <input type="text" name="nome" autocomplete="name" placeholder="Seu nome completo" required>
+        </label>
+        <label>WhatsApp
+          <input type="tel" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-9999" required>
+        </label>
+        <p class="modal__err" data-err hidden>Por favor, preencha nome e um telefone válido.</p>
+        <button type="submit" class="btn btn--wa btn--lg modal__submit">Liberar download</button>
+        <small class="modal__note">Seus dados são usados apenas para contato sobre o condomínio.</small>
+      </form>
+    </div>
+
+    <div class="modal__step" data-step="done" hidden>
+      <span class="modal__check">✅</span>
+      <h3>Pronto, <span data-name>tudo certo</span>!</h3>
+      <p class="modal__lead">Sua apresentação e a planta do condomínio estão liberadas.</p>
+      <a class="btn btn--gold btn--lg" id="downloadLink"
+        href="https://drive.google.com/drive/folders/1-RRz27gxqSDTseNQR95hiFtM_DZsjEYw?usp=sharing"
+        target="_blank" rel="noopener">📥 Baixar apresentação e planta</a>
+      <a class="btn btn--wa" id="leadWhats" href="#" target="_blank" rel="noopener">
+        <svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.4.7 4.6 1.9 6.5L4 29l7-1.8c1.8 1 3.9 1.5 6 1.5 6.6 0 12-5.3 12-11.9C29 8.3 22.6 3 16 3zm0 21.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4a9.6 9.6 0 01-1.5-5.3C5 9.5 9.9 4.9 16 4.9S27 9.5 27 14.9 22.1 24.7 16 24.7zm5.4-7.2c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.5 3.5 0 00-1.1 2.6c0 1.5 1.1 3 1.3 3.2.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.1.9 3.7.8.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg>
+        Falar com um corretor
+      </a>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js" defer></script>
 </body>
