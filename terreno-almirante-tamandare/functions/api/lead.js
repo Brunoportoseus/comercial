@@ -30,6 +30,41 @@ const CORS = {
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", ...CORS } });
 
+// Esquema da tabela de leads. A função cria a tabela sozinha na primeira
+// gravação, então no painel basta criar o banco D1 e adicionar o binding "DB".
+const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  criado_em TEXT, nome TEXT, telefone TEXT, email TEXT, cidade TEXT,
+  objetivo TEXT, faixa_investimento TEXT, forma_pagamento TEXT, prazo TEXT,
+  regiao TEXT, observacoes TEXT, empreendimento_interesse TEXT,
+  pagina_origem TEXT, referrer TEXT,
+  utm_source TEXT, utm_medium TEXT, utm_campaign TEXT, utm_content TEXT, utm_term TEXT,
+  ip TEXT, user_agent TEXT, raw TEXT
+)`;
+
+async function ensureLeadsTable(db) {
+  await db.prepare(LEADS_SCHEMA).run();
+}
+
+function insertLead(db, lead, body) {
+  return db
+    .prepare(
+      `INSERT INTO leads
+       (criado_em,nome,telefone,email,cidade,objetivo,faixa_investimento,forma_pagamento,prazo,
+        regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
+        utm_source,utm_medium,utm_campaign,utm_content,utm_term,ip,user_agent,raw)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+    )
+    .bind(
+      lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
+      lead.faixa_investimento, lead.forma_pagamento, lead.prazo, lead.regiao, lead.observacoes,
+      lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
+      lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
+      lead.ip, lead.user_agent, JSON.stringify(body)
+    )
+    .run();
+}
+
 export async function onRequestOptions() {
   return new Response(null, { status: 204, headers: CORS });
 }
@@ -88,25 +123,23 @@ export async function onRequestPost(context) {
   let persisted = false;
   const errors = [];
 
-  // 1) D1
+  // 1) D1 — cria a tabela automaticamente se ainda não existir
   if (env.DB) {
     try {
-      await env.DB.prepare(
-        `INSERT INTO leads
-         (criado_em,nome,telefone,email,cidade,objetivo,faixa_investimento,forma_pagamento,prazo,
-          regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
-          utm_source,utm_medium,utm_campaign,utm_content,utm_term,ip,user_agent,raw)
-         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
-      ).bind(
-        lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
-        lead.faixa_investimento, lead.forma_pagamento, lead.prazo, lead.regiao, lead.observacoes,
-        lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
-        lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
-        lead.ip, lead.user_agent, JSON.stringify(body)
-      ).run();
+      await insertLead(env.DB, lead, body);
       persisted = true;
     } catch (e) {
-      errors.push("d1:" + (e && e.message));
+      if (/no such table/i.test(String(e && e.message))) {
+        try {
+          await ensureLeadsTable(env.DB);
+          await insertLead(env.DB, lead, body);
+          persisted = true;
+        } catch (e2) {
+          errors.push("d1:" + (e2 && e2.message));
+        }
+      } else {
+        errors.push("d1:" + (e && e.message));
+      }
     }
   }
 

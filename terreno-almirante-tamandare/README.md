@@ -76,22 +76,23 @@ recebe a confirmação + botão de WhatsApp (nunca se perde a conversa).
 1. No painel do Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**
    (ou upload direto). Defina o **diretório raiz** como `terreno-almirante-tamandare`.
    Não há etapa de build (site estático): _Build command_ vazio, _Output directory_ = `/`.
-2. **Criar o banco D1** e a tabela:
-   ```bash
-   npx wrangler d1 create leads-tat
-   npx wrangler d1 execute leads-tat --command "CREATE TABLE IF NOT EXISTS leads (
-     id INTEGER PRIMARY KEY AUTOINCREMENT, criado_em TEXT, nome TEXT, telefone TEXT,
-     email TEXT, cidade TEXT, objetivo TEXT, faixa_investimento TEXT, forma_pagamento TEXT,
-     prazo TEXT, regiao TEXT, observacoes TEXT, empreendimento_interesse TEXT,
-     pagina_origem TEXT, referrer TEXT, utm_source TEXT, utm_medium TEXT, utm_campaign TEXT,
-     utm_content TEXT, utm_term TEXT, ip TEXT, user_agent TEXT, raw TEXT);"
-   ```
+2. **Criar o banco D1** (painel: **Storage & databases → D1 → Create** com o nome
+   `leads-tat`; ou `npx wrangler d1 create leads-tat`).
+   A tabela `leads` é **criada automaticamente** pela função na primeira gravação —
+   não precisa rodar SQL. Se preferir criar/atualizar manualmente, use o `schema.sql`
+   deste diretório (`npx wrangler d1 execute leads-tat --file=./schema.sql`, ou cole no
+   Console do banco).
 3. Em **Settings → Functions → D1 database bindings**, adicione o binding
-   **Variable name = `DB`** apontando para `leads-tat`.
-4. (Opcional) Em **Settings → Environment variables**, defina `LEAD_WEBHOOK` com a URL do
-   seu CRM/automação.
-5. **Exportar leads:** `npx wrangler d1 execute leads-tat --command "SELECT * FROM leads ORDER BY id DESC;"`
-   ou conecte o webhook diretamente ao seu CRM.
+   **Variable name = `DB`** apontando para `leads-tat` e faça **Retry deployment**.
+4. (Opcional) Em **Settings → Environment variables**:
+   - `LEAD_WEBHOOK` — URL do seu CRM/automação (Kommo, Make, n8n) para receber cada lead;
+   - `LEADS_TOKEN` — senha para exportar os leads pelo endpoint (veja abaixo).
+5. **Exportar leads** (com `LEADS_TOKEN` definido):
+   - CSV (abre no Excel/Sheets): `https://SEU-SITE/api/leads-export?token=SEU_TOKEN`
+   - JSON: `…/api/leads-export?token=SEU_TOKEN&format=json`
+   - Também: `npx wrangler d1 execute leads-tat --command "SELECT * FROM leads ORDER BY id DESC;"`
+   > `/api/leads-export` fica desativado enquanto `LEADS_TOKEN` não for definido (retorna 403).
+   > Está fora dos buscadores (robots.txt bloqueia `/api/`).
 
 > Também funciona como site estático em qualquer hospedagem, mas aí o `/api/lead` não roda:
 > os leads dependeriam do webhook/WhatsApp. Cloudflare Pages é o caminho indicado.
