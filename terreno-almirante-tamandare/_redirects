@@ -1,0 +1,4 @@
+# Redireciona variações para as URLs canônicas
+/inicio                 /                         301
+/empreendimentos/bela-vista.html   /empreendimentos/bela-vista/   301
+/index.html             /                         301

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /obrigado/
+
+Sitemap: https://terrenoalmirantetamandare.com.br/sitemap.xml
