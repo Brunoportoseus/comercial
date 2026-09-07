@@ -7,13 +7,18 @@
     "directory": "./",
     "binding": "ASSETS",
     "not_found_handling": "404-page"
-  },
-  // Domínio próprio (auditoriatrafegopago.com.br). A Cloudflare cria os registros
-  // DNS e o certificado SSL automaticamente ao publicar — desde que o domínio
-  // já esteja adicionado e ATIVO na mesma conta Cloudflare.
-  // O redirect de www -> apex é feito em _worker.js.
-  "routes": [
-    { "pattern": "auditoriatrafegopago.com.br", "custom_domain": true },
-    { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true }
-  ]
+  }
+  // Domínio próprio (auditoriatrafegopago.com.br) TEMPORARIAMENTE desativado
+  // para o primeiro deploy limpo em *.workers.dev. O `wrangler deploy` falha ao
+  // criar o custom domain enquanto a zona não estiver ATIVA na conta Cloudflare.
+  //
+  // COMO REATIVAR: quando a zona auditoriatrafegopago.com.br estiver ATIVA na
+  // Cloudflare, remova o comentário do bloco "routes" abaixo (inclua a vírgula
+  // após o objeto "assets") e faça um novo deploy. O redirect www -> apex já
+  // está no _worker.js.
+  //
+  // "routes": [
+  //   { "pattern": "auditoriatrafegopago.com.br", "custom_domain": true },
+  //   { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true }
+  // ]
 }
