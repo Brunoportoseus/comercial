@@ -607,6 +607,25 @@
     .about-sign .n{font-family:'Sora';font-weight:700;color:var(--ink);}
     .about-sign .r{font-size:.85rem;color:var(--muted);}
 
+    /* ===================== MARCAS / PORTFÓLIO ===================== */
+    .brands{background:var(--navy);color:var(--ink-d);}
+    .brands .eyebrow{color:var(--copper);}
+    .brands .s-title{color:#fff;}
+    .brands-lead{color:var(--muted-d);font-size:1.02rem;max-width:60ch;margin:0 0 2.4rem;}
+    .brand-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem;}
+    @media(max-width:900px){ .brand-grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+    @media(max-width:600px){ .brand-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+    @media(max-width:420px){ .brand-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+    .brand-card{background:var(--petrol);border:1px solid var(--line-d);border-radius:12px;aspect-ratio:1.7/1;
+      display:flex;align-items:center;justify-content:center;padding:1rem;position:relative;overflow:hidden;
+      transition:transform .25s,border-color .25s;}
+    .brand-card:hover{transform:translateY(-3px);border-color:var(--copper);}
+    .brand-card img{max-width:82%;max-height:58%;object-fit:contain;filter:brightness(0) invert(1);opacity:.72;
+      transition:opacity .25s,transform .25s;}
+    .brand-card:hover img{opacity:1;transform:scale(1.05);}
+    .brand-label{font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;color:var(--muted-d);text-align:center;}
+    .brands-foot{margin-top:1.6rem;font-size:.82rem;color:var(--muted-d);max-width:70ch;}
+
     /* ===================== PARA QUEM ===================== */
     .fit{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
     .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
@@ -1441,6 +1460,91 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== MARCAS / PORTFÓLIO ==================== -->
+  <section class="brands" id="marcas">
+    <div class="wrap">
+      <span class="eyebrow reveal">Marcas atendidas</span>
+      <h2 class="s-title reveal">Mais de 30 anos ao lado de marcas de diversos segmentos.</h2>
+      <p class="brands-lead reveal">Ao longo da carreira, Bruno Porto participou diretamente do atendimento a marcas nacionais reconhecidas de moda, varejo, indústria, tecnologia e bens de consumo — em projetos digitais, e-commerce, marketing e estratégia comercial, por meio da empresa da qual foi sócio.</p>
+      <div class="brand-grid">
+        <div class="brand-card reveal" title="Havan">
+          <img src="/assets/logos/havan.png" alt="Havan" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Havan</span>
+        </div>
+        <div class="brand-card reveal" title="Yahoo">
+          <img src="/assets/logos/yahoo.png" alt="Yahoo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Yahoo</span>
+        </div>
+        <div class="brand-card reveal" title="Carmen Steffens">
+          <img src="/assets/logos/carmen-steffens.png" alt="Carmen Steffens" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Carmen Steffens</span>
+        </div>
+        <div class="brand-card reveal" title="Colcci">
+          <img src="/assets/logos/colcci.png" alt="Colcci" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Colcci</span>
+        </div>
+        <div class="brand-card reveal" title="Mormaii">
+          <img src="/assets/logos/mormaii.png" alt="Mormaii" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Mormaii</span>
+        </div>
+        <div class="brand-card reveal" title="Mueller">
+          <img src="/assets/logos/mueller.png" alt="Mueller" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Mueller</span>
+        </div>
+        <div class="brand-card reveal" title="Karsten">
+          <img src="/assets/logos/karsten.svg" alt="Karsten" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Karsten</span>
+        </div>
+        <div class="brand-card reveal" title="TUPER">
+          <img src="/assets/logos/tuper.png" alt="TUPER" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">TUPER</span>
+        </div>
+        <div class="brand-card reveal" title="Carmim">
+          <img src="/assets/logos/carmim.png" alt="Carmim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Carmim</span>
+        </div>
+        <div class="brand-card reveal" title="Artefama">
+          <img src="/assets/logos/artefama.png" alt="Artefama" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Artefama</span>
+        </div>
+        <div class="brand-card reveal" title="Vonder">
+          <img src="/assets/logos/vonder.png" alt="Vonder" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Vonder</span>
+        </div>
+        <div class="brand-card reveal" title="Ferragens Negrão">
+          <img src="/assets/logos/ferragens-negrao.png" alt="Ferragens Negrão" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Ferragens Negrão</span>
+        </div>
+        <div class="brand-card reveal" title="Móveis Campo Largo">
+          <img src="/assets/logos/moveis-campo-largo.png" alt="Móveis Campo Largo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Móveis Campo Largo</span>
+        </div>
+        <div class="brand-card reveal" title="Farma Sesi">
+          <img src="/assets/logos/farma-sesi.png" alt="Farma Sesi" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Farma Sesi</span>
+        </div>
+        <div class="brand-card reveal" title="Via Inox Tramontina">
+          <img src="/assets/logos/via-inox-tramontina.png" alt="Via Inox Tramontina" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Via Inox Tramontina</span>
+        </div>
+        <div class="brand-card reveal" title="King 55">
+          <img src="/assets/logos/king-55.png" alt="King 55" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">King 55</span>
+        </div>
+        <div class="brand-card reveal" title="Thais Rodrigues">
+          <img src="/assets/logos/thais-rodrigues.png" alt="Thais Rodrigues" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Thais Rodrigues</span>
+        </div>
+        <div class="brand-card reveal" title="Casa do Marceneiro">
+          <img src="/assets/logos/casa-do-marceneiro.png" alt="Casa do Marceneiro" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="brand-label" style="display:none">Casa do Marceneiro</span>
+        </div>
+      </div>
+      <p class="brands-foot reveal">Experiência de negócios que sustenta a auditoria: a mesma vivência comercial aplicada, aqui, de forma independente e sem vínculo com agências.</p>
     </div>
   </section>
 
