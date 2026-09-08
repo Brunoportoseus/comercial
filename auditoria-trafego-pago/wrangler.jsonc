@@ -8,11 +8,11 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
-  // Domínio próprio. O apex (auditoriatrafegopago.com.br) é o canônico para SEO;
-  // o www é anexado para captar quem digita com "www" e o _worker.js faz o
-  // redirect 301 www -> apex. Requer a zona auditoriatrafegopago.com.br ATIVA
-  // na conta Cloudflare — se o `wrangler deploy` falhar ao criar o custom
-  // domain, adicione os domínios pelo painel (Workers > Settings > Domains).
+  // Domínio próprio. O www (www.auditoriatrafegopago.com.br) é o canônico para
+  // SEO; o apex é anexado para resolver e o _worker.js faz o redirect 301
+  // apex -> www. Requer a zona auditoriatrafegopago.com.br ATIVA na conta
+  // Cloudflare — se o `wrangler deploy` falhar ao criar o custom domain,
+  // adicione os domínios pelo painel (Workers > Settings > Domains).
   "routes": [
     { "pattern": "auditoriatrafegopago.com.br", "custom_domain": true },
     { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true }
