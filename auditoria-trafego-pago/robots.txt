@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://auditoriatrafegopago.com.br/sitemap.xml
+Sitemap: https://www.auditoriatrafegopago.com.br/sitemap.xml
