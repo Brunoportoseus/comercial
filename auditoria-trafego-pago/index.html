@@ -84,6 +84,7 @@
       --navy:#0B172A;         /* navy-900 — autoridade, header sólido, CTA final */
       --navy-2:#07111F;       /* navy-950 — footer, pacotes, contraste máximo */
       --petrol:#14243A;       /* navy-800 — cards em fundo escuro */
+      --navy-700:#21344D;     /* bordas e superfícies elevadas no modo escuro */
       --paper:#FAFAF8;        /* fundo principal claro */
       --off:#F6F3EE;          /* sand-50 — alternância de seções claras */
       --white:#FFFFFF;        /* cards e superfícies principais */
@@ -464,10 +465,11 @@
     .pricing .s-sub{color:var(--muted-d);}
     .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;align-items:stretch;}
     @media(max-width:940px){ .price-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto;} }
-    .plan{background:var(--petrol);border:1px solid var(--line-d);border-radius:var(--r-card);
-      padding:1.7rem;display:flex;flex-direction:column;position:relative;}
-    .plan.feat{background:var(--navy-800,#14243A);border:2px solid var(--copper);
-      box-shadow:0 20px 60px -30px rgba(164,69,27,.6);}
+    .plan{background:var(--petrol);border:1px solid var(--navy-700);border-radius:var(--r-card);
+      padding:1.7rem;display:flex;flex-direction:column;position:relative;
+      box-shadow:0 14px 40px -24px rgba(0,0,0,.7);}
+    .plan.feat{background:#1E3251;border:2px solid var(--copper);
+      box-shadow:0 24px 64px -26px rgba(164,69,27,.55);}
     /* checkmarks: cobre só no plano recomendado; demais em tom suave */
     .plan:not(.feat) ul li svg{color:var(--muted-d);}
     .plan.feat ul li svg{color:var(--copper);}
