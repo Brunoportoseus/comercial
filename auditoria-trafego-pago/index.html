@@ -181,85 +181,136 @@
     @media (prefers-reduced-motion:reduce){ .btn:hover{transform:none;} }
 
     /* ============================ HEADER ============================ */
-    .hdr{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .3s,box-shadow .3s,border-color .3s;
-      border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top);}
-    .hdr.solid{background:rgba(11,23,42,.92);backdrop-filter:saturate(160%) blur(12px);
-      -webkit-backdrop-filter:saturate(160%) blur(12px);border-bottom-color:var(--line-d);box-shadow:0 8px 30px -18px rgba(0,0,0,.6);}
-    .hdr-in{display:flex;align-items:center;justify-content:space-between;height:72px;transition:height .3s;}
-    .hdr.solid .hdr-in{height:64px;}
-    .brand{display:flex;align-items:center;gap:.65rem;}
-    .brand-mark{width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;
+    .hdr{position:fixed;inset:0 0 auto 0;z-index:100;padding-top:calc(14px + env(safe-area-inset-top));transition:padding .3s;}
+    .hdr-in{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+      padding:.5rem .6rem .5rem 1rem;background:rgba(255,255,255,.9);border:1px solid rgba(12,23,40,.08);
+      border-radius:16px;box-shadow:0 10px 35px rgba(24,34,49,.08);
+      backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);transition:box-shadow .3s;}
+    .hdr.solid .hdr-in{box-shadow:0 14px 42px rgba(24,34,49,.16);}
+    .brand{display:flex;align-items:center;gap:.6rem;}
+    .brand-mark{width:34px;height:34px;border-radius:9px;overflow:hidden;flex-shrink:0;
       display:flex;align-items:center;justify-content:center;}
     .brand-mark img{width:100%;height:100%;object-fit:contain;}
-    .brand-txt{font-family:'Sora';font-weight:700;color:#fff;font-size:1.02rem;line-height:1.1;}
-    .brand-txt span{display:block;font-family:'Inter';font-weight:400;font-size:.72rem;color:var(--muted-d);
-      letter-spacing:.02em;margin-top:2px;}
-    .nav{display:flex;align-items:center;gap:2rem;}
-    .nav a{color:var(--muted-d);font-size:.94rem;font-weight:500;transition:color .18s;}
-    .nav a:hover{color:#fff;}
-    .nav .btn{padding:.7rem 1.15rem;font-size:.92rem;}
-    .burger{display:none;background:none;border:1px solid var(--line-d);width:44px;height:44px;
-      border-radius:10px;color:#fff;cursor:pointer;align-items:center;justify-content:center;}
+    .brand-txt{font-family:'Sora',sans-serif;font-weight:700;color:var(--ink);font-size:1rem;line-height:1.1;letter-spacing:-.02em;}
+    .brand-txt span{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:.7rem;color:var(--muted);
+      letter-spacing:.01em;margin-top:2px;}
+    .nav{display:flex;align-items:center;gap:1.7rem;}
+    .nav a:not(.btn){color:var(--muted);font-size:.92rem;font-weight:600;transition:color .18s;}
+    .nav a:not(.btn):hover{color:var(--copper-btn);}
+    .nav .btn{padding:.7rem 1.2rem;font-size:.9rem;}
+    .btn-dark{background:var(--ink);color:#fff;border:1px solid var(--ink);}
+    .btn-dark:hover{background:var(--copper-btn-h);border-color:var(--copper-btn-h);}
+    .btn-light{background:var(--white);color:var(--ink);border:1px solid var(--line-strong);}
+    .btn-light:hover{border-color:var(--copper);color:var(--copper-btn);}
+    .burger{display:none;background:transparent;border:1px solid var(--line);width:44px;height:44px;
+      border-radius:10px;color:var(--ink);cursor:pointer;align-items:center;justify-content:center;}
     .burger svg line{transition:transform .3s,opacity .2s;transform-origin:center;}
     .burger[aria-expanded="true"] svg line:nth-child(1){transform:translateY(6px) rotate(45deg);}
     .burger[aria-expanded="true"] svg line:nth-child(2){opacity:0;}
     .burger[aria-expanded="true"] svg line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
     @media(max-width:940px){
-      .hdr{background:rgba(11,23,42,.96);}
       .burger{display:flex;}
-      .nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
-        background:var(--navy);border-bottom:1px solid var(--line-d);padding:.5rem var(--pad) 1.5rem;
-        transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;}
+      .nav{position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+        background:var(--white);border:1px solid var(--line);border-radius:14px;padding:.4rem 1.1rem 1.1rem;
+        box-shadow:0 24px 50px -20px rgba(12,23,40,.35);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;}
       .nav.open{opacity:1;transform:none;pointer-events:auto;}
-      .nav a{padding:1rem 0;font-size:1.05rem;color:#fff;border-bottom:1px solid var(--line-d);}
-      .nav .btn{margin-top:1rem;}
+      .nav a:not(.btn){padding:.9rem .2rem;font-size:1.05rem;color:var(--ink);border-bottom:1px solid var(--line);}
+      .nav .btn{margin-top:.9rem;}
     }
 
     /* ============================ HERO ============================ */
-    .hero{background:
-        radial-gradient(ellipse 55% 45% at 82% 8%,rgba(201,111,59,.14),transparent 60%),
-        radial-gradient(ellipse 50% 50% at 8% 90%,rgba(18,59,74,.55),transparent 60%),
-        var(--navy);
-      color:var(--ink-d);padding-top:clamp(7rem,12vw,10rem);overflow:hidden;}
-    .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-      background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-      background-size:56px 56px;mask-image:radial-gradient(ellipse 75% 65% at 60% 25%,#000,transparent 82%);}
-    .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;}
-    @media(max-width:960px){ .hero-grid{grid-template-columns:1fr;gap:3rem;} }
-    .hero h1{color:#fff;font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.04;margin-bottom:1.3rem;max-width:16ch;}
-    .hero h1 em{font-style:normal;color:var(--copper);}
-    .hero .lead{color:var(--muted-d);font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:52ch;margin-bottom:2rem;}
-    .hero .lead strong{color:#fff;font-weight:600;}
-    .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:2rem;}
-    .trust-line{display:flex;flex-wrap:wrap;gap:.5rem .75rem;}
-    .trust-line span{display:inline-flex;align-items:center;gap:.45rem;font-size:.85rem;color:var(--muted-d);}
-    .trust-line svg{width:16px;height:16px;color:var(--copper);flex-shrink:0;}
+    .hero{position:relative;background:var(--off);color:var(--ink);
+      padding:clamp(6.5rem,11vw,8.5rem) 0 0;overflow:hidden;isolation:isolate;}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;opacity:.6;
+      background-image:linear-gradient(rgba(12,23,40,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(12,23,40,.04) 1px,transparent 1px);
+      background-size:48px 48px;mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 70%,transparent 96%);
+      -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 70%,transparent 96%);}
+    .hero-copy{position:relative;z-index:5;max-width:800px;margin:0 auto;padding:0 20px;text-align:center;}
+    .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 12px;color:#2560c9;
+      background:#e7f0ff;border:1px solid #c9ddff;border-radius:8px;font-size:.8rem;font-weight:700;letter-spacing:.01em;}
+    .eyebrow-pill .dot{width:7px;height:7px;background:#2674e8;border-radius:50%;box-shadow:0 0 0 5px rgba(38,116,232,.12);}
+    .hero h1{color:var(--ink);font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(2.4rem,5.4vw,4.3rem);
+      line-height:1.02;letter-spacing:-.03em;max-width:16ch;margin:1.6rem auto 1rem;text-wrap:balance;}
+    .hero h1 em{font-style:normal;color:var(--copper-btn);}
+    .hero .lead{color:var(--graphite-2);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.55;max-width:62ch;margin:0 auto;}
+    .hero-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem;}
+    .trust-line{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem 1.5rem;margin-top:1.6rem;color:var(--muted);font-size:.82rem;}
+    .trust-line span{display:inline-flex;align-items:center;gap:.45rem;}
+    .trust-line svg{width:15px;height:15px;color:var(--pos);flex-shrink:0;}
 
-    /* coluna visual: convergência de fontes -> decisão */
-    .converge{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
-      border:1px solid var(--line-d);border-radius:22px;padding:clamp(1.3rem,2.5vw,2rem);box-shadow:var(--sh-lg);}
-    .converge .photo{width:100%;aspect-ratio:16/10;border-radius:14px;object-fit:cover;object-position:center 22%;
-      margin-bottom:1.2rem;border:1px solid var(--line-d);background:var(--petrol);}
-    .cv-cap{font-size:.78rem;color:var(--muted-d);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;}
-    .cv-cap b{color:#fff;font-weight:600;font-family:'Sora';}
-    .cv-flow{display:grid;gap:.55rem;}
-    .cv-src{display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.04);border:1px solid var(--line-d);
-      border-radius:12px;padding:.7rem .85rem;}
-    .cv-src .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-    .cv-src .dot.a{background:var(--info);}
-    .cv-src .dot.b{background:var(--attn);}
-    .cv-src .dot.c{background:var(--pos);}
-    .cv-src .t{font-size:.86rem;color:var(--ink-d);font-weight:500;}
-    .cv-src .t span{display:block;font-size:.74rem;color:var(--muted-d);font-weight:400;}
-    .cv-arrow{display:flex;justify-content:center;color:var(--copper);}
-    .cv-arrow svg{width:20px;height:20px;}
-    .cv-out{display:flex;align-items:center;gap:.8rem;background:var(--copper-soft);border-radius:12px;padding:.85rem 1rem;color:var(--navy);}
-    .cv-out .ico{width:34px;height:34px;border-radius:9px;background:var(--copper-btn);color:#fff;display:flex;
-      align-items:center;justify-content:center;flex-shrink:0;}
-    .cv-out b{font-family:'Sora';font-size:1rem;display:block;color:var(--navy);}
-    .cv-out span{font-size:.78rem;color:var(--graphite-2);}
+    /* nuvens de sinal (decorativas) */
+    .signal{position:absolute;z-index:1;top:150px;width:min(30vw,420px);min-height:320px;pointer-events:none;}
+    .signal-left{left:-55px;transform:rotate(-7deg);}
+    .signal-right{right:-50px;transform:rotate(7deg);}
+    .signal-cloud{position:absolute;inset:0;opacity:.8;background-size:16px 16px;
+      mask-image:radial-gradient(ellipse at center,#000 0 38%,rgba(0,0,0,.75) 49%,transparent 74%);
+      -webkit-mask-image:radial-gradient(ellipse at center,#000 0 38%,rgba(0,0,0,.75) 49%,transparent 74%);}
+    .signal-left .signal-cloud{background-image:radial-gradient(circle,rgba(169,83,40,.6) 0 1.8px,transparent 2.2px);}
+    .signal-right .signal-cloud{background-image:radial-gradient(circle,rgba(18,59,74,.5) 0 1.55px,transparent 2px);}
+    .signal-label{position:absolute;top:46%;padding:8px 11px;background:rgba(255,255,255,.95);border:1px solid var(--line);
+      border-radius:9px;box-shadow:0 10px 30px rgba(12,23,40,.08);font-size:.78rem;font-weight:700;white-space:nowrap;}
+    .signal-left .signal-label{right:16%;} .signal-right .signal-label{left:16%;}
+    .signal-tags{position:absolute;inset:0;}
+    .signal-tags span{position:absolute;padding:6px 8px;color:var(--muted);background:rgba(255,255,255,.9);
+      border:1px solid rgba(12,23,40,.09);border-radius:8px;font-size:.68rem;box-shadow:0 8px 24px rgba(12,23,40,.05);}
+    .signal-tags span:nth-child(1){top:26%;left:22%;} .signal-tags span:nth-child(2){top:64%;left:35%;} .signal-tags span:nth-child(3){top:39%;left:62%;}
+
+    /* ponte */
+    .bridge{position:relative;z-index:5;width:min(620px,calc(100% - 40px));display:grid;grid-template-columns:1fr auto 1fr;
+      align-items:center;gap:16px;margin:2.8rem auto 1.6rem;color:var(--muted);font-size:.72rem;font-weight:700;
+      letter-spacing:.04em;text-transform:uppercase;}
+    .bridge-line{height:1px;background:linear-gradient(90deg,transparent,#c9c2b3);}
+    .bridge-line:last-child{transform:scaleX(-1);}
+
+    /* janela de auditoria (conceitual) */
+    .audit-window{position:relative;z-index:8;width:min(920px,calc(100% - 40px));margin:0 auto;background:var(--white);
+      border:1px solid var(--line-strong);border-radius:20px 20px 0 0;box-shadow:var(--sh-lg);overflow:hidden;}
+    .window-bar{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#faf8f4;border-bottom:1px solid var(--line);}
+    .window-dots{display:flex;gap:7px;} .window-dots i{width:8px;height:8px;display:block;border-radius:50%;background:#cfc7b8;}
+    .window-title{color:var(--muted);font-size:.72rem;font-weight:700;}
+    .audit-layout{display:grid;grid-template-columns:185px 1fr;min-height:380px;}
+    .audit-nav{padding:22px 14px;background:#fbfaf7;border-right:1px solid var(--line);}
+    .audit-nav strong{display:block;margin:0 8px 16px;font-family:'Sora',sans-serif;font-size:.8rem;color:var(--ink);}
+    .audit-nav span{display:block;padding:9px;color:var(--muted);border-radius:8px;font-size:.75rem;}
+    .audit-nav .active{color:var(--ink);background:var(--copper-soft);font-weight:700;}
+    .audit-content{padding:24px;}
+    .audit-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px;}
+    .audit-heading small{display:block;margin-bottom:6px;color:var(--muted);font-size:.72rem;}
+    .audit-heading h2{margin:0;font-family:'Sora',sans-serif;font-weight:700;font-size:1.35rem;letter-spacing:-.02em;color:var(--ink);}
+    .audit-window .status{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;color:var(--pos);background:#e8f4f0;border-radius:8px;font-size:.68rem;font-weight:800;white-space:nowrap;}
+    .audit-window .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+    .audit-window .metric{padding:14px;background:#faf9f6;border:1px solid var(--line);border-radius:12px;}
+    .audit-window .metric span{color:var(--muted);font-size:.68rem;}
+    .audit-window .metric strong{display:block;margin-top:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:1.15rem;color:var(--ink);}
+    .audit-window .metric em{color:var(--muted);font-size:.62rem;font-style:normal;}
+    .hw-funnel-card{padding:18px;border:1px solid var(--line);border-radius:14px;}
+    .hw-funnel-head{display:flex;justify-content:space-between;gap:16px;margin-bottom:16px;}
+    .hw-funnel-head h3{margin:0;font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink);}
+    .hw-funnel-head small{color:var(--muted);font-size:.72rem;}
+    .hw-funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:end;}
+    .hw-step{text-align:center;}
+    .hw-bar{width:100%;min-height:42px;background:#eef1f6;border-radius:8px 8px 3px 3px;}
+    .hw-step:nth-child(1) .hw-bar{height:92px;background:#dbe8fb;}
+    .hw-step:nth-child(2) .hw-bar{height:78px;background:#c5daf8;}
+    .hw-step:nth-child(3) .hw-bar{height:62px;background:#f2d8c8;}
+    .hw-step:nth-child(4) .hw-bar{height:50px;background:#e7bd9f;}
+    .hw-step:nth-child(5) .hw-bar{height:42px;background:var(--copper);}
+    .hw-step span{display:block;margin-top:8px;color:var(--muted);font-size:.6rem;line-height:1.2;}
+    .hw-note{margin-top:14px;padding:10px 12px;color:var(--graphite-2);background:#faf8f4;border-left:3px solid var(--copper);font-size:.72rem;line-height:1.45;}
+
+    @media(max-width:960px){ .signal{top:230px;width:40vw;opacity:.55;} .audit-window .score-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:680px){
+      .signal{top:250px;width:64vw;min-height:240px;opacity:.22;}
+      .signal-left{left:-42vw;} .signal-right{right:-42vw;}
+      .signal-label,.signal-tags{display:none;}
+      .hero-actions{flex-direction:column;} .hero-actions .btn{width:100%;}
+      .trust-line{flex-direction:column;gap:.5rem;}
+      .audit-layout{display:block;} .audit-nav{display:none;} .audit-content{padding:16px 14px;}
+      .audit-heading{flex-direction:column;align-items:flex-start;}
+      .audit-window{width:calc(100% - 24px);border-radius:16px 16px 0 0;}
+      .hw-step span{font-size:.55rem;}
+    }
 
     /* ==================== FAIXA DE CREDIBILIDADE ==================== */
     .creds{background:var(--petrol);color:var(--ink-d);padding:1.5rem 0;border-top:1px solid var(--line-d);}
@@ -694,7 +745,7 @@
         <a href="#metodo">Método</a>
         <a href="#pacotes">Pacotes</a>
         <a href="#sobre">Sobre</a>
-        <a href="#form" class="btn btn-primary" data-ev="cta_header">Solicitar avaliação</a>
+        <a href="#form" class="btn btn-dark" data-ev="cta_header">Solicitar avaliação</a>
       </nav>
     </div>
   </header>
@@ -702,44 +753,83 @@
   <main id="conteudo">
   <!-- ============================ HERO ============================ -->
   <section class="hero" id="topo">
-    <div class="wrap hero-grid">
-      <div class="reveal">
-        <span class="eyebrow on-dark">Auditoria independente de tráfego e conversão</span>
-        <h1>Seu tráfego pago está gerando vendas ou apenas <em>leads frios</em>?</h1>
-        <p class="lead">
-          Auditoria independente conduzida por <strong>Bruno Porto</strong>, combinando mais de 30 anos de experiência em marketing, vendas e gestão com análise de dados e inteligência artificial. Analisamos campanhas, rastreamento, qualidade dos leads, atendimento e conversão.
-        </p>
-        <div class="hero-cta">
-          <a href="#form" class="btn btn-primary" data-ev="cta_hero">
-            Solicitar avaliação inicial
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="#pacotes" class="btn btn-outline on-dark" data-ev="ver_pacotes">Conhecer os pacotes</a>
-        </div>
-        <div class="trust-line">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sem comissão sobre mídia</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sem vínculo com agências</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Diagnóstico sob responsabilidade de Bruno Porto</span>
-        </div>
-      </div>
+    <div class="signal signal-left" aria-hidden="true">
+      <div class="signal-cloud"></div>
+      <div class="signal-tags"><span>CTR</span><span>CPL</span><span>Conversões</span></div>
+      <div class="signal-label">Dados + inteligência artificial</div>
+    </div>
+    <div class="signal signal-right" aria-hidden="true">
+      <div class="signal-cloud"></div>
+      <div class="signal-tags"><span>Contexto</span><span>Vendas</span><span>Julgamento</span></div>
+      <div class="signal-label">Experiência humana</div>
+    </div>
 
-      <aside class="converge reveal" aria-label="Como a auditoria cruza diferentes fontes de dados">
-        <!-- PLACEHOLDER: substituir por foto profissional dedicada de Bruno Porto (meio corpo, ambiente contemporâneo). -->
-        <img class="photo" src="/assets/bruno.jpg" alt="Bruno Porto, auditor independente de tráfego pago" loading="eager" width="640" height="400" />
-        <p class="cv-cap"><b>A auditoria cruza fontes que normalmente ficam separadas</b></p>
-        <div class="cv-flow">
-          <div class="cv-src"><span class="dot a"></span><span class="t">Plataformas de anúncios<span>Meta Ads · Google Ads</span></span></div>
-          <div class="cv-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
-          <div class="cv-src"><span class="dot b"></span><span class="t">CRM e atendimento<span>qualidade e resposta aos leads</span></span></div>
-          <div class="cv-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
-          <div class="cv-src"><span class="dot c"></span><span class="t">Oportunidades e vendas<span>o que virou receita</span></span></div>
-          <div class="cv-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
-          <div class="cv-out">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-            <span><b>Decisão</b><span>o que corrigir e priorizar antes de investir mais</span></span>
+    <div class="hero-copy">
+      <span class="eyebrow-pill"><span class="dot"></span> Auditoria independente de tráfego e conversão</span>
+      <h1>Seu tráfego pago está gerando vendas ou apenas <em>leads frios</em>?</h1>
+      <p class="lead">Cruzamos campanhas, rastreamento, qualidade dos leads, atendimento e vendas para mostrar o que funciona, onde estão os gargalos e o que corrigir primeiro — sob responsabilidade de Bruno Porto.</p>
+      <div class="hero-actions">
+        <a href="#form" class="btn btn-dark" data-ev="cta_hero">Solicitar avaliação inicial
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#metodo" class="btn btn-light" data-ev="ver_metodo">Entender como funciona</a>
+      </div>
+      <div class="trust-line" aria-label="Compromissos da auditoria">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sem comissão sobre mídia</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sem vínculo com agências</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Diagnóstico sob responsabilidade de Bruno Porto</span>
+      </div>
+    </div>
+
+    <div class="bridge" aria-hidden="true">
+      <span class="bridge-line"></span>
+      <span>evidências organizadas para decidir</span>
+      <span class="bridge-line"></span>
+    </div>
+
+    <div class="audit-window" role="img" aria-label="Exemplo conceitual do painel da auditoria: do volume de leads à venda">
+      <div class="window-bar">
+        <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="window-title">Painel Independente de Auditoria</div>
+        <div></div>
+      </div>
+      <div class="audit-layout">
+        <aside class="audit-nav" aria-hidden="true">
+          <strong>Visão da operação</strong>
+          <span class="active">Resumo executivo</span>
+          <span>Campanhas</span>
+          <span>Rastreamento</span>
+          <span>Leads</span>
+          <span>Atendimento</span>
+          <span>Vendas</span>
+        </aside>
+        <div class="audit-content">
+          <div class="audit-heading">
+            <div>
+              <small>Exemplo ilustrativo — sem dados reais de clientes</small>
+              <h2>Do volume de leads à venda</h2>
+            </div>
+            <div class="status">● Análise independente</div>
+          </div>
+          <div class="score-grid">
+            <div class="metric"><span>Leads gerados</span><strong>Volume</strong><em>primeiro indicador</em></div>
+            <div class="metric"><span>Leads válidos</span><strong>Contato real</strong><em>sem duplicidades</em></div>
+            <div class="metric"><span>Leads qualificados</span><strong>Perfil</strong><em>potencial comercial</em></div>
+            <div class="metric"><span>Vendas</span><strong>Resultado</strong><em>impacto no negócio</em></div>
+          </div>
+          <div class="hw-funnel-card">
+            <div class="hw-funnel-head"><h3>Funil de qualidade e conversão</h3><small>critérios definidos com a empresa</small></div>
+            <div class="hw-funnel" aria-hidden="true">
+              <div class="hw-step"><div class="hw-bar"></div><span>Leads<br>gerados</span></div>
+              <div class="hw-step"><div class="hw-bar"></div><span>Leads<br>válidos</span></div>
+              <div class="hw-step"><div class="hw-bar"></div><span>Leads<br>qualificados</span></div>
+              <div class="hw-step"><div class="hw-bar"></div><span>Oportunidades</span></div>
+              <div class="hw-step"><div class="hw-bar"></div><span>Vendas</span></div>
+            </div>
+            <div class="hw-note">O menor custo por lead nem sempre representa a melhor campanha. A auditoria investiga qualidade, avanço comercial e custo por oportunidade.</div>
           </div>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 
