@@ -239,22 +239,6 @@
     .trust-line span{display:inline-flex;align-items:center;gap:.45rem;}
     .trust-line svg{width:15px;height:15px;color:var(--pos);flex-shrink:0;}
 
-    /* nuvens de sinal (decorativas) */
-    .signal{position:absolute;z-index:1;top:150px;width:min(30vw,420px);min-height:320px;pointer-events:none;}
-    .signal-left{left:-55px;transform:rotate(-7deg);}
-    .signal-right{right:-50px;transform:rotate(7deg);}
-    .signal-cloud{position:absolute;inset:0;opacity:.8;background-size:16px 16px;
-      mask-image:radial-gradient(ellipse at center,#000 0 38%,rgba(0,0,0,.75) 49%,transparent 74%);
-      -webkit-mask-image:radial-gradient(ellipse at center,#000 0 38%,rgba(0,0,0,.75) 49%,transparent 74%);}
-    .signal-left .signal-cloud{background-image:radial-gradient(circle,rgba(169,83,40,.6) 0 1.8px,transparent 2.2px);}
-    .signal-right .signal-cloud{background-image:radial-gradient(circle,rgba(18,59,74,.5) 0 1.55px,transparent 2px);}
-    .signal-label{position:absolute;top:46%;padding:8px 11px;background:rgba(255,255,255,.95);border:1px solid var(--line);
-      border-radius:9px;box-shadow:0 10px 30px rgba(12,23,40,.08);font-size:.78rem;font-weight:700;white-space:nowrap;}
-    .signal-left .signal-label{right:16%;} .signal-right .signal-label{left:16%;}
-    .signal-tags{position:absolute;inset:0;}
-    .signal-tags span{position:absolute;padding:6px 8px;color:var(--muted);background:rgba(255,255,255,.9);
-      border:1px solid rgba(12,23,40,.09);border-radius:8px;font-size:.68rem;box-shadow:0 8px 24px rgba(12,23,40,.05);}
-    .signal-tags span:nth-child(1){top:26%;left:22%;} .signal-tags span:nth-child(2){top:64%;left:35%;} .signal-tags span:nth-child(3){top:39%;left:62%;}
 
     /* ponte */
     .bridge{position:relative;z-index:5;width:min(620px,calc(100% - 40px));display:grid;grid-template-columns:1fr auto 1fr;
@@ -299,11 +283,8 @@
     .hw-step span{display:block;margin-top:8px;color:var(--muted);font-size:.6rem;line-height:1.2;}
     .hw-note{margin-top:14px;padding:10px 12px;color:var(--graphite-2);background:#faf8f4;border-left:3px solid var(--copper);font-size:.72rem;line-height:1.45;}
 
-    @media(max-width:960px){ .signal{top:230px;width:40vw;opacity:.55;} .audit-window .score-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:960px){ .audit-window .score-grid{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:680px){
-      .signal{top:250px;width:64vw;min-height:240px;opacity:.22;}
-      .signal-left{left:-42vw;} .signal-right{right:-42vw;}
-      .signal-label,.signal-tags{display:none;}
       .hero-actions{flex-direction:column;} .hero-actions .btn{width:100%;}
       .trust-line{flex-direction:column;gap:.5rem;}
       .audit-layout{display:block;} .audit-nav{display:none;} .audit-content{padding:16px 14px;}
@@ -753,17 +734,6 @@
   <main id="conteudo">
   <!-- ============================ HERO ============================ -->
   <section class="hero" id="topo">
-    <div class="signal signal-left" aria-hidden="true">
-      <div class="signal-cloud"></div>
-      <div class="signal-tags"><span>CTR</span><span>CPL</span><span>Conversões</span></div>
-      <div class="signal-label">Dados + inteligência artificial</div>
-    </div>
-    <div class="signal signal-right" aria-hidden="true">
-      <div class="signal-cloud"></div>
-      <div class="signal-tags"><span>Contexto</span><span>Vendas</span><span>Julgamento</span></div>
-      <div class="signal-label">Experiência humana</div>
-    </div>
-
     <div class="hero-copy">
       <span class="eyebrow-pill"><span class="dot"></span> Auditoria independente de tráfego e conversão</span>
       <h1>Seu tráfego pago está gerando vendas ou apenas <em>leads frios</em>?</h1>
