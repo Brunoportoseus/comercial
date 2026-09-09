@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Auditoria de Tráfego Pago">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Diagnóstico de Tráfego Pago">
   <rect width="64" height="64" rx="14" fill="#0B172A"/>
   <circle cx="27" cy="27" r="15" fill="none" stroke="#C96F3B" stroke-width="6"/>
   <path d="M20 28 l5 5 l10 -12" fill="none" stroke="#C96F3B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
