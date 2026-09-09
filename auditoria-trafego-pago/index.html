@@ -1997,20 +1997,13 @@
         origem: "www.diagnosticotrafegopago.com.br"
       };
     }
+    // Mensagem simples/curta para o WhatsApp. Os dados completos ficam
+    // gravados no painel /admin — aqui vai só um aviso enxuto.
     function waMessage(d){
-      var t = "Olá Bruno! Quero solicitar uma avaliação inicial para diagnóstico independente de performance em tráfego pago.";
-      t += "\n\nNome: " + d.nome;
-      t += "\nEmpresa: " + d.empresa;
-      if(d.site) t += "\nSite: " + d.site;
-      t += "\nWhatsApp: " + d.whatsapp;
-      t += "\nE-mail: " + d.email;
-      if(d.segmento) t += "\nSegmento: " + d.segmento;
-      if(d.investimento) t += "\nInvestimento/mês: " + d.investimento;
-      if(d.plataformas) t += "\nPlataformas: " + d.plataformas;
-      if(d.quem) t += "\nQuem administra: " + d.quem;
-      if(d.crm) t += "\nCRM: " + d.crm;
-      if(d.pacote) t += "\nPacote de interesse: " + d.pacote;
-      if(d.dificuldade) t += "\n\nPrincipal dificuldade: " + d.dificuldade;
+      var t = "Olá Bruno! Acabei de solicitar uma avaliação no site Diagnóstico de Tráfego Pago.";
+      t += "\nNome: " + d.nome;
+      if(d.empresa) t += "\nEmpresa: " + d.empresa;
+      if(d.whatsapp) t += "\nWhatsApp: " + d.whatsapp;
       return t;
     }
     function showStatus(type, msg){
@@ -2049,7 +2042,11 @@
         : Promise.reject({fallback:true});
 
       flow.then(function(){
-        showStatus("ok","Recebemos sua solicitação. Em breve entraremos em contato para agendar a conversa inicial.");
+        // Lead já gravado no banco. Abre o WhatsApp com a mensagem simples
+        // para o contato chegar direto ao Bruno.
+        var url = "https://wa.me/" + WPP + "?text=" + encodeURIComponent(waMessage(data));
+        window.open(url, "_blank", "noopener,noreferrer");
+        showStatus("ok","Recebemos sua solicitação! Abrimos o WhatsApp para você finalizar o contato. Se não abrir, chame em wa.me/" + WPP + ".");
         setLoading(false);
       }).catch(function(err){
         // fallback WhatsApp — NÃO limpa o formulário em caso de falha de backend.
