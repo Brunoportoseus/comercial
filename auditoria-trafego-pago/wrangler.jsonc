@@ -6,7 +6,8 @@
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": true
   },
   // Domínios próprios. Canônico: www.diagnosticotrafegopago.com.br.
   // O apex do novo domínio e o domínio antigo (auditoria*) redirecionam 301
