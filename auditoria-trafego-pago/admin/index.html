@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads — Diagnóstico de Tráfego Pago</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <style>
+    :root{
+      --bg:#0b172a; --panel:#0f1e38; --card:#ffffff; --ink:#152033; --ink-soft:#41506a;
+      --muted:#667386; --line:#dde2e8; --brand:#2f6bff; --brand-ink:#1e40af;
+      --ok:#1f7a4d; --danger:#983b3b; --radius:14px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    [hidden]{display:none!important;}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,sans-serif;
+      background:#eef1f6;color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;}
+    a{color:var(--brand);}
+    button{font:inherit;cursor:pointer;border:none;border-radius:10px;}
+    input{font:inherit;}
+
+    /* Topbar */
+    .top{background:var(--bg);color:#fff;padding:.9rem 1.2rem;display:flex;align-items:center;
+      justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .top h1{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;}
+    .top .sub{color:#9fb0c9;font-size:.78rem;font-weight:500;}
+    .top-actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;}
+    .btn{padding:.55rem .95rem;font-size:.86rem;font-weight:600;background:var(--brand);color:#fff;}
+    .btn:hover{background:var(--brand-ink);}
+    .btn-ghost{background:rgba(255,255,255,.12);color:#fff;}
+    .btn-ghost:hover{background:rgba(255,255,255,.2);}
+
+    .wrap{max-width:1200px;margin:0 auto;padding:1.4rem 1.2rem 3rem;}
+
+    /* Login */
+    .login{min-height:70vh;display:grid;place-items:center;padding:2rem 1rem;}
+    .login-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      padding:2rem;width:100%;max-width:380px;box-shadow:0 12px 40px rgba(11,23,42,.12);}
+    .login-card h2{font-size:1.3rem;margin-bottom:.3rem;}
+    .login-card p{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem;}
+    .login-card label{display:block;font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-bottom:.35rem;}
+    .login-card input{width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:10px;
+      font-size:1rem;margin-bottom:1rem;}
+    .login-card input:focus{outline:none;border-color:var(--brand);}
+    .login-card .btn{width:100%;justify-content:center;padding:.8rem;}
+    .msg{font-size:.85rem;margin-top:.9rem;min-height:1.2em;}
+    .msg.err{color:var(--danger);}
+    .msg.ok{color:var(--ok);}
+
+    /* Stats + table */
+    .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .count{font-size:.9rem;color:var(--muted);}
+    .count strong{color:var(--ink);font-size:1.1rem;}
+    .search{padding:.55rem .8rem;border:1px solid var(--line);border-radius:10px;font-size:.9rem;min-width:220px;background:#fff;}
+    .table-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+    .table-scroll{overflow-x:auto;}
+    table{border-collapse:collapse;width:100%;font-size:.85rem;white-space:nowrap;}
+    th,td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+    th{background:#f6f8fb;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);
+      position:sticky;top:0;}
+    tr:hover td{background:#f9fbfe;}
+    td.wrap-cell{white-space:normal;min-width:240px;max-width:360px;}
+    .badge{display:inline-block;background:#eaf0ff;color:var(--brand-ink);border-radius:999px;
+      padding:.15rem .55rem;font-size:.74rem;font-weight:600;}
+    .empty{padding:3rem 1rem;text-align:center;color:var(--muted);}
+    .wa-link{color:var(--ok);font-weight:600;}
+    @media(max-width:640px){ .top h1{font-size:.95rem;} }
+  </style>
+</head>
+<body>
+
+  <!-- Tela de login -->
+  <section class="login" id="loginView" hidden>
+    <form class="login-card" id="loginForm">
+      <h2>Leads</h2>
+      <p>Painel de interessados — Diagnóstico de Tráfego Pago.</p>
+      <label for="pass">Senha de acesso</label>
+      <input id="pass" type="password" autocomplete="current-password" placeholder="••••••••" required />
+      <button class="btn" type="submit">Entrar</button>
+      <div class="msg" id="loginMsg"></div>
+    </form>
+  </section>
+
+  <!-- Painel -->
+  <div id="panelView" hidden>
+    <div class="top">
+      <div>
+        <h1>Leads · Diagnóstico de Tráfego Pago</h1>
+        <div class="sub">Formulário de interesse — www.diagnosticotrafegopago.com.br</div>
+      </div>
+      <div class="top-actions">
+        <a class="btn" id="csvBtn" href="/api/leads.csv">Exportar CSV</a>
+        <button class="btn-ghost btn" id="reloadBtn" type="button">Atualizar</button>
+        <button class="btn-ghost btn" id="logoutBtn" type="button">Sair</button>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="bar">
+        <div class="count">Total: <strong id="count">0</strong> leads</div>
+        <input class="search" id="search" type="search" placeholder="Filtrar por nome, empresa, e-mail…" />
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table id="table">
+            <thead>
+              <tr>
+                <th>Data</th><th>Nome</th><th>Empresa</th><th>WhatsApp</th><th>E-mail</th>
+                <th>Site</th><th>Segmento</th><th>Investimento</th><th>Plataformas</th>
+                <th>Quem administra</th><th>CRM</th><th>Pacote</th><th>Dificuldade</th><th>Origem</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>Nenhum lead ainda. Assim que alguém enviar o formulário, aparece aqui.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var loginView = document.getElementById('loginView');
+    var panelView = document.getElementById('panelView');
+    var loginForm = document.getElementById('loginForm');
+    var loginMsg  = document.getElementById('loginMsg');
+    var tbody = document.getElementById('tbody');
+    var countEl = document.getElementById('count');
+    var emptyEl = document.getElementById('empty');
+    var searchEl = document.getElementById('search');
+    var allLeads = [];
+
+    function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+    function fmtDate(s){
+      if(!s) return '';
+      // "2026-09-09 12:34:56" (UTC) -> data/hora local pt-BR
+      var d = new Date(String(s).replace(' ','T') + 'Z');
+      if(isNaN(d)) return esc(s);
+      return d.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'2-digit', hour:'2-digit', minute:'2-digit' });
+    }
+
+    function waDigits(w){ return (w||'').replace(/\D/g,''); }
+
+    function render(list){
+      tbody.innerHTML = '';
+      if(!list.length){ emptyEl.hidden = false; return; }
+      emptyEl.hidden = true;
+      var html = list.map(function(l){
+        var wa = waDigits(l.whatsapp);
+        var waCell = l.whatsapp
+          ? '<a class="wa-link" target="_blank" rel="noopener" href="https://wa.me/55'+esc(wa)+'">'+esc(l.whatsapp)+'</a>'
+          : '';
+        var mail = l.email ? '<a href="mailto:'+esc(l.email)+'">'+esc(l.email)+'</a>' : '';
+        var pacote = l.pacote ? '<span class="badge">'+esc(l.pacote)+'</span>' : '';
+        return '<tr>'+
+          '<td>'+fmtDate(l.created_at)+'</td>'+
+          '<td>'+esc(l.nome)+'</td>'+
+          '<td>'+esc(l.empresa)+'</td>'+
+          '<td>'+waCell+'</td>'+
+          '<td>'+mail+'</td>'+
+          '<td>'+esc(l.site)+'</td>'+
+          '<td>'+esc(l.segmento)+'</td>'+
+          '<td>'+esc(l.investimento)+'</td>'+
+          '<td>'+esc(l.plataformas)+'</td>'+
+          '<td>'+esc(l.quem)+'</td>'+
+          '<td>'+esc(l.crm)+'</td>'+
+          '<td>'+pacote+'</td>'+
+          '<td class="wrap-cell">'+esc(l.dificuldade)+'</td>'+
+          '<td>'+esc(l.origem)+'</td>'+
+        '</tr>';
+      }).join('');
+      tbody.innerHTML = html;
+    }
+
+    function applyFilter(){
+      var q = searchEl.value.trim().toLowerCase();
+      if(!q){ render(allLeads); return; }
+      render(allLeads.filter(function(l){
+        return [l.nome,l.empresa,l.email,l.whatsapp,l.segmento,l.plataformas,l.pacote,l.origem]
+          .join(' ').toLowerCase().indexOf(q) !== -1;
+      }));
+    }
+
+    function showPanel(){ loginView.hidden = true; panelView.hidden = false; }
+    function showLogin(){ panelView.hidden = true; loginView.hidden = false; }
+
+    async function loadLeads(){
+      var r = await fetch('/api/leads', { headers:{ 'Accept':'application/json' } });
+      if(r.status === 401){ showLogin(); return; }
+      var j = await r.json().catch(function(){ return {}; });
+      allLeads = (j.leads || []);
+      countEl.textContent = allLeads.length;
+      applyFilter();
+      showPanel();
+    }
+
+    async function init(){
+      var r = await fetch('/api/me').then(function(x){ return x.json(); }).catch(function(){ return {}; });
+      if(r && r.authed){ loadLeads(); } else { showLogin(); }
+    }
+
+    loginForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      loginMsg.className = 'msg';
+      loginMsg.textContent = 'Entrando…';
+      var pass = document.getElementById('pass').value;
+      var r = await fetch('/api/login', {
+        method:'POST', headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ password: pass })
+      });
+      if(r.ok){ loginMsg.textContent=''; document.getElementById('pass').value=''; loadLeads(); }
+      else {
+        var j = await r.json().catch(function(){ return {}; });
+        loginMsg.className = 'msg err';
+        loginMsg.textContent = j.error === 'admin_password_nao_configurada'
+          ? 'Senha de admin ainda não configurada no servidor (ADMIN_PASSWORD).'
+          : 'Senha incorreta.';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async function(){
+      await fetch('/api/logout', { method:'POST' });
+      showLogin();
+    });
+    document.getElementById('reloadBtn').addEventListener('click', loadLeads);
+    searchEl.addEventListener('input', applyFilter);
+
+    init();
+  </script>
+</body>
+</html>

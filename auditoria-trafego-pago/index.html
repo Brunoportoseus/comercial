@@ -2063,6 +2063,25 @@
   })();
   </script>
 
+  <script>
+  // Integração do formulário com o backend: grava o lead no banco (D1) via
+  // POST /api/lead. Resolve apenas quando o lead é efetivamente gravado; caso
+  // contrário rejeita, e o formulário cai no fallback do WhatsApp — assim
+  // nenhum lead é perdido mesmo se o banco ainda não estiver configurado.
+  window.bpSubmitLead = function (data) {
+    return fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) {
+        if (j && j.saved) return j;
+        return Promise.reject({ fallback: true });
+      });
+  };
+  </script>
+
   <script src="/assets/cookies.js" defer></script>
 </body>
 </html>
