@@ -46,6 +46,7 @@ export default {
       if (p === "/api/me" && request.method === "GET") return json({ authed: await isAuthed(request, env) });
       if (p === "/api/leads" && request.method === "GET") return listLeads(request, env);
       if (p === "/api/leads.csv" && request.method === "GET") return exportLeads(request, env);
+      if (p === "/api/health" && request.method === "GET") return health(env);
     } catch (err) {
       return json({ error: "internal", detail: String((err && err.message) || err) }, 500);
     }
@@ -138,6 +139,23 @@ async function exportLeads(request, env) {
       "Content-Disposition": `attachment; filename="leads-diagnosticotrafegopago.csv"`,
     },
   });
+}
+
+/* ─────────────────── Diagnóstico (temporário) ─────────────────── */
+// GET /api/health — verifica se o banco está conectado e a tabela existe.
+// Não expõe dados dos leads (apenas contagem). Pode ser removido depois.
+async function health(env) {
+  const out = { db_bound: !!env.DB, table_ok: false, total_leads: null, error: null };
+  if (env.DB) {
+    try {
+      const r = await env.DB.prepare("SELECT COUNT(*) AS n FROM leads").first();
+      out.table_ok = true;
+      out.total_leads = r ? r.n : 0;
+    } catch (e) {
+      out.error = String((e && e.message) || e);
+    }
+  }
+  return json(out);
 }
 
 /* ───────────────────────── Auth ───────────────────────── */
