@@ -1,3 +1,5 @@
 _worker.js
 wrangler.jsonc
 .assetsignore
+schema.sql
+SETUP-LEADS.md

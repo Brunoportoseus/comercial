@@ -20,4 +20,22 @@
     { "pattern": "auditoriatrafegopago.com.br", "custom_domain": true },
     { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true }
   ]
+
+  // ── Banco de leads (D1) — ver SETUP-LEADS.md ────────────────────────────
+  // Enquanto este bloco estiver comentado o site funciona normalmente e o
+  // formulário cai no WhatsApp. Para ATIVAR a gravação de leads:
+  //   1) wrangler d1 create diagnostico-trafego-leads
+  //   2) cole o database_id abaixo e descomente o bloco
+  //   3) wrangler d1 execute diagnostico-trafego-leads --file=./schema.sql --remote
+  //   4) defina os segredos do painel /admin:
+  //        wrangler secret put ADMIN_PASSWORD
+  //        wrangler secret put AUTH_SECRET
+  //
+  // ,"d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "diagnostico-trafego-leads",
+  //     "database_id": "COLE_AQUI_O_DATABASE_ID"
+  //   }
+  // ]
 }
