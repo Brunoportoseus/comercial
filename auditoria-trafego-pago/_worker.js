@@ -622,20 +622,20 @@ async function insertPost(env, s) {
   ).bind(s.slug, p.title, p.subtitle, p.category, p.tags, p.excerpt, p.content, p.seo_title, p.seo_description, p.cover, p.cover_alt, p.author, p.reading_time, p.pillar, p.related, p.cta_type, p.featured, p.noindex, p.published, new Date().toISOString()).run();
 }
 
-// Carga automática dos artigos-semente na primeira vez que o blog é aberto
-// (só quando a tabela está vazia). Evita depender de POST manual.
+// Carga automática dos artigos-semente: uma vez por isolate, insere os que
+// ainda não existem. Assim, cada novo lote publicado aparece sozinho no
+// próximo deploy. Não sobrescreve edições feitas pelo painel (só insere o que
+// falta). Observação: um artigo-semente apagado reaparece no próximo deploy —
+// quando o CMS do /admin estiver pronto, a semeadura é encerrada.
 let _seedChecked = false;
 async function maybeSeed(env) {
   if (_seedChecked || !env.DB) return;
   _seedChecked = true;
   try {
     await ensurePostsTable(env);
-    const r = await env.DB.prepare("SELECT COUNT(*) AS c FROM posts").first();
-    if (r && Number(r.c) === 0) {
-      for (const s of SEED_POSTS) {
-        const exists = await env.DB.prepare("SELECT 1 FROM posts WHERE slug=?").bind(s.slug).first();
-        if (!exists) await insertPost(env, s);
-      }
+    for (const s of SEED_POSTS) {
+      const exists = await env.DB.prepare("SELECT 1 FROM posts WHERE slug=?").bind(s.slug).first();
+      if (!exists) await insertPost(env, s);
     }
   } catch (e) {}
 }
@@ -783,5 +783,184 @@ const SEED_POSTS = [
 <details><summary>Como ligar o clique à venda?</summary><div class="fa">Com rastreamento correto e integração ao CRM, registrando a origem de cada lead e o desfecho comercial. Assim é possível atribuir vendas e margem a cada campanha.</div></details>
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>Cliques medem interesse; vendas medem resultado. Avalie o tráfego pago pela jornada completa — lead, oportunidade, venda e margem — e decida pelas métricas de negócio, não pelas de mídia isoladas.</p></div>`,
+  },
+  {
+    slug: "por-que-minhas-campanhas-geram-leads-desqualificados",
+    title: "Por que minhas campanhas geram leads desqualificados?",
+    subtitle: "Lead desqualificado quase nunca é azar: é resultado de escolhas de segmentação, promessa e qualificação. Veja como identificar e corrigir a origem.",
+    category: "leads-e-conversao",
+    tags: "leads,qualificação,segmentação",
+    excerpt: "Leads sem perfil de compra costumam ter causa clara: público amplo demais, promessa exagerada ou ausência de qualificação. Entenda cada origem.",
+    seo_title: "Por que minhas campanhas geram leads desqualificados?",
+    seo_description: "Campanhas gerando leads ruins? Veja as causas mais comuns — segmentação, promessa e falta de qualificação — e como corrigir cada uma.",
+    cta_type: "leads",
+    featured: 0,
+    related: "muitos-leads-e-poucas-vendas-onde-esta-o-problema,como-saber-se-o-trafego-pago-esta-funcionando",
+    content: `<p>Receber leads desqualificados — contatos sem perfil, sem verba ou fora da sua região — costuma parecer aleatório, mas raramente é. Na maioria dos casos, existe uma <strong>causa identificável</strong> na forma como a campanha foi montada e como o lead é filtrado.</p>
+<p>De forma direta: os leads ruins geralmente vêm de três origens — <strong>segmentação ampla demais</strong>, <strong>promessa do anúncio desalinhada</strong> e <strong>ausência de qualificação</strong>. A boa notícia é que as três têm correção.</p>
+<h2>As origens mais comuns</h2>
+<h3>Segmentação sem foco</h3>
+<p>Público amplo, localização mal definida ou otimização por conversões erradas fazem a plataforma buscar volume, não qualidade. O resultado é muito contato que nunca teve intenção real de compra.</p>
+<h3>Promessa que atrai o público errado</h3>
+<p>Anúncios centrados em "grátis", "desconto" ou "sem compromisso" enchem o funil de curiosos. A mensagem do anúncio funciona como um filtro: ela define <em>quem</em> se sente convidado a clicar.</p>
+<h3>Falta de qualificação</h3>
+<p>Formulários instantâneos com uma pergunta só, ou botões diretos para o WhatsApp sem nenhuma triagem, entregam contatos sem informação. Sem perguntas de qualificação, o time comercial recebe tudo misturado.</p>
+<div class="box alert"><div class="box-t">⚠️ Sinal de alerta</div><p>Se o volume de leads subiu logo depois de ampliar público ou baixar o custo por lead, desconfie: muitas vezes o "barateamento" veio justamente da queda de qualidade.</p></div>
+<h2>Como identificar a causa no seu caso</h2>
+<table><thead><tr><th>O que você observa</th><th>Origem provável</th></tr></thead><tbody><tr><td>Contatos fora da região atendida</td><td>Segmentação geográfica</td></tr><tr><td>Leads perguntam preço e somem</td><td>Promessa / posicionamento</td></tr><tr><td>Contatos com dados incompletos ou falsos</td><td>Formulário sem qualificação</td></tr><tr><td>Muitos "só pesquisando"</td><td>Público amplo / intenção baixa</td></tr></tbody></table>
+<p>O ideal é avaliar a qualidade <strong>por campanha e por anúncio</strong>, cruzando com o resultado no CRM. Assim você vê onde nasce o lead ruim — e para de tratar o sintoma no lugar da causa.</p>
+<h2>O que costuma corrigir</h2>
+<ul><li>Refinar segmentação e localização;</li><li>Ajustar a mensagem para atrair quem tem perfil;</li><li>Incluir perguntas de qualificação no formulário;</li><li>Enviar dados de vendas de volta às plataformas, para otimizarem por clientes — e não por contatos.</li></ul>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você já tentou ajustes e os leads ruins continuam, um diagnóstico independente cruza segmentação, criativos, formulário e qualidade real dos contatos para apontar a origem exata.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Formulário mais longo melhora a qualidade?</summary><div class="fa">Costuma melhorar, porque filtra quem não tem interesse real. Mas pode reduzir o volume — o equilíbrio depende do seu ciclo de venda e do valor do cliente.</div></details>
+<details><summary>A culpa é do gestor de tráfego?</summary><div class="fa">Nem sempre. A segmentação e a promessa influenciam muito, mas oferta, formulário e atendimento também. Por isso a análise precisa olhar a jornada completa.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Lead desqualificado tem causa: segmentação ampla, promessa desalinhada ou falta de qualificação. Meça a qualidade por campanha e anúncio, corrija a origem e envie dados de venda de volta às plataformas para elas buscarem clientes, não só contatos.</p></div>`,
+  },
+  {
+    slug: "dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico",
+    title: "Dez sinais de que suas campanhas precisam de um diagnóstico",
+    subtitle: "Nem sempre é preciso trocar de agência ou aumentar a verba. Às vezes falta enxergar onde o investimento perde eficiência. Veja os sinais.",
+    category: "diagnostico-de-trafego-pago",
+    tags: "diagnóstico,sinais,auditoria",
+    excerpt: "Dez sintomas comuns de que suas campanhas de tráfego pago merecem uma análise independente antes da próxima decisão de orçamento.",
+    seo_title: "Dez sinais de que suas campanhas precisam de um diagnóstico",
+    seo_description: "Conheça dez sinais de que suas campanhas de tráfego pago precisam de um diagnóstico independente — de leads ruins a relatórios que não mostram vendas.",
+    cta_type: "default",
+    featured: 0,
+    related: "o-que-e-um-diagnostico-de-trafego-pago,muitos-leads-e-poucas-vendas-onde-esta-o-problema",
+    content: `<p>Um diagnóstico não serve para "achar culpado". Ele serve para responder, com dados, onde a sua empresa perde eficiência entre o anúncio e a venda. Se você reconhece vários dos sinais abaixo, provavelmente é hora de olhar a operação de perto.</p>
+<h2>Os dez sinais</h2>
+<ol>
+<li><strong>Muitos leads, poucas vendas.</strong> O volume cresce, o faturamento não acompanha.</li>
+<li><strong>Você não sabe quais campanhas geram clientes</strong> — apenas quais geram contatos.</li>
+<li><strong>O relatório mostra bons números, mas o caixa não sente.</strong> Cliques e conversões sobem; a venda, não.</li>
+<li><strong>O custo por lead ou por aquisição aumentou</strong> sem explicação clara.</li>
+<li><strong>Leads fora da região, sem perfil ou com dados falsos</strong> aparecem com frequência.</li>
+<li><strong>Marketing e vendas culpam um ao outro.</strong> Falta um dado comum que encerre a discussão.</li>
+<li><strong>Você não confia na medição.</strong> Google Ads, Meta e Analytics mostram números diferentes.</li>
+<li><strong>Vai aumentar o orçamento no escuro</strong>, sem saber se a base está saudável.</li>
+<li><strong>A agência não dá acesso total</strong> às contas ou não explica as decisões.</li>
+<li><strong>Faz meses sem revisar rastreamento, conversões e integração com o CRM.</strong></li>
+</ol>
+<div class="box info"><div class="box-t">ℹ️ Um sinal não é sentença</div><p>Um item isolado pode ser normal. O que acende o alerta é o conjunto — vários sinais juntos indicam que decisões estão sendo tomadas sem base confiável.</p></div>
+<h2>Por que isso importa financeiramente</h2>
+<p>Cada um desses sinais representa dinheiro que pode estar sendo gasto com o público errado, tempo comercial desperdiçado ou decisões de orçamento baseadas em números que não refletem a venda. Quanto mais tempo sem enxergar, maior o custo acumulado.</p>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você marcou três ou mais sinais, um diagnóstico independente ajuda a validar os dados, encontrar o gargalo real e transformar o achado em um plano de ação — antes da próxima decisão de verba.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Preciso trocar de agência para fazer um diagnóstico?</summary><div class="fa">Não. O diagnóstico é independente e pode, inclusive, ajudar a agência atual a melhorar, indicando onde focar. Não é sobre substituir ninguém.</div></details>
+<details><summary>O diagnóstico garante que vou encontrar erros?</summary><div class="fa">Não. Ele identifica problemas, riscos e oportunidades quando existem, e também confirma o que está saudável. O objetivo é clareza, não encontrar culpados.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Leads ruins, relatórios que não mostram venda, medição inconsistente e decisões de orçamento no escuro são sinais de que suas campanhas merecem um diagnóstico. Três ou mais sinais juntos já justificam uma análise independente antes de gastar mais.</p></div>`,
+  },
+  {
+    slug: "como-calcular-o-retorno-do-trafego-pago",
+    title: "Como calcular o retorno do tráfego pago",
+    subtitle: "ROAS não é lucro. Veja como calcular o retorno real das suas campanhas incluindo margem, impostos e custos — e decidir com números confiáveis.",
+    category: "metricas-e-rentabilidade",
+    tags: "roi,roas,cac,rentabilidade",
+    excerpt: "Calcular o retorno do tráfego pago vai além do ROAS da plataforma. Aprenda a incluir margem, impostos e custos para saber se há lucro de verdade.",
+    seo_title: "Como calcular o retorno do tráfego pago",
+    seo_description: "Aprenda a calcular o retorno do tráfego pago de forma real: ROI, ROAS, CAC e como incluir margem, impostos e custos para saber se a campanha dá lucro.",
+    cta_type: "rentabilidade",
+    featured: 0,
+    related: "como-saber-se-o-trafego-pago-esta-funcionando,cliques-nao-sao-vendas-como-avaliar-o-resultado-real",
+    content: `<p>Calcular o retorno do tráfego pago parece simples — receita dividida por investimento — mas é aí que muita empresa se engana. O número que a plataforma mostra (o <strong>ROAS</strong>) considera a receita e o gasto em mídia, mas ignora o que sobra depois de <strong>margem, impostos e custos</strong>.</p>
+<p>Direto ao ponto: para saber se a campanha dá lucro, você precisa sair do ROAS e chegar ao <strong>retorno sobre a margem</strong>. Uma campanha pode ter ROAS alto e, ainda assim, dar prejuízo.</p>
+<h2>ROI e ROAS: não são a mesma coisa</h2>
+<ul><li><strong>ROAS</strong> = receita gerada ÷ investimento em mídia. Mede a eficiência do anúncio.</li><li><strong>ROI</strong> = (retorno − custo total) ÷ custo total. Mede o lucro, considerando todos os custos.</li></ul>
+<p>O ROAS é útil para operar a campanha. O ROI é o que responde se o negócio ganha dinheiro.</p>
+<h2>O que precisa entrar na conta</h2>
+<p>Para um retorno realista, desconte da receita:</p>
+<ul><li>Custo do produto ou do serviço;</li><li>Impostos sobre a venda;</li><li>Taxas de meio de pagamento e, no e-commerce, frete e devoluções;</li><li>O próprio investimento em mídia;</li><li>Custos operacionais ligados àquela venda.</li></ul>
+<div class="box tip"><div class="box-t">✓ Exemplo ilustrativo (hipotético)</div><p>Uma campanha gera R$ 10.000 de receita com R$ 2.000 de mídia — ROAS de 5. Mas se a margem do produto é 30%, sobram R$ 3.000 de margem bruta; tirando os R$ 2.000 de mídia, o retorno real é R$ 1.000. O mesmo ROAS "5" seria prejuízo se a margem fosse 15%. <em>(números apenas para ilustrar o raciocínio.)</em></p></div>
+<h2>ROAS de equilíbrio: o número que todo negócio deveria saber</h2>
+<p>É o ROAS mínimo para não ter prejuízo, e ele depende da sua margem. Quanto menor a margem, maior o ROAS necessário para empatar. Sem esse parâmetro, "ROAS bom" vira achismo.</p>
+<h2>E quando a venda não acontece no site?</h2>
+<p>Se a conversão ocorre no WhatsApp, por telefone ou dias depois, o retorno só fica visível com rastreamento e CRM integrados — registrando qual campanha originou cada venda. Sem isso, parte do retorno fica invisível.</p>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você não tem o ROAS de equilíbrio calculado, ou não consegue ligar vendas às campanhas, um diagnóstico independente organiza esses números e mostra o retorno real por campanha.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Um ROAS de 5 é bom?</summary><div class="fa">Depende da sua margem. Para um negócio de margem alta, pode ser ótimo; para um de margem baixa, pode ser prejuízo. O "bom" é relativo ao seu ROAS de equilíbrio.</div></details>
+<details><summary>Faturamento e lucro são a mesma coisa?</summary><div class="fa">Não. Faturamento é o total vendido; lucro é o que sobra depois de todos os custos. Campanhas podem aumentar o faturamento e reduzir o lucro se venderem itens sem margem.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>O retorno real do tráfego pago não é o ROAS da plataforma: é o que sobra depois de margem, impostos e custos. Calcule seu ROAS de equilíbrio, ligue vendas às campanhas e decida pelo lucro — não pelo número da tela.</p></div>`,
+  },
+  {
+    slug: "o-que-e-um-diagnostico-de-trafego-pago",
+    title: "O que é um diagnóstico de tráfego pago?",
+    subtitle: "Uma análise independente que olha toda a jornada — da campanha à venda — para mostrar onde o investimento perde eficiência. Entenda como funciona.",
+    category: "diagnostico-de-trafego-pago",
+    tags: "diagnóstico,auditoria,independente",
+    excerpt: "Diagnóstico de tráfego pago é uma análise independente que avalia campanhas, rastreamento, qualidade dos leads e processo comercial para apontar o gargalo real.",
+    seo_title: "O que é um diagnóstico de tráfego pago?",
+    seo_description: "Entenda o que é um diagnóstico de tráfego pago: uma análise independente que avalia campanhas, dados, leads e vendas para mostrar onde o investimento se perde.",
+    cta_type: "default",
+    featured: 0,
+    related: "dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico,como-saber-se-o-trafego-pago-esta-funcionando",
+    content: `<p>Um diagnóstico de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão. Em vez de operar campanhas no dia a dia, ele examina o conjunto — do anúncio até a venda — para responder uma pergunta central: <strong>onde sua empresa perde dinheiro entre o clique e o cliente?</strong></p>
+<p>Direto ao ponto: é um trabalho de leitura e interpretação de dados, feito por quem não está envolvido na operação diária e, por isso, não precisa defender decisões anteriores.</p>
+<h2>O que um diagnóstico analisa</h2>
+<p>A força do diagnóstico está em olhar a jornada inteira, e não uma peça isolada:</p>
+<ul>
+<li><strong>Campanhas</strong> — estrutura, segmentação, palavras-chave, criativos e orçamento;</li>
+<li><strong>Rastreamento e dados</strong> — se as conversões e as integrações medem o que importa;</li>
+<li><strong>Qualidade dos leads</strong> — se os contatos têm perfil real de compra;</li>
+<li><strong>Página e formulário</strong> — se o que vem depois do clique converte;</li>
+<li><strong>Atendimento e vendas</strong> — velocidade de resposta, cadência e fechamento;</li>
+<li><strong>Rentabilidade</strong> — se as campanhas geram lucro, não só faturamento.</li>
+</ul>
+<h2>O que a empresa recebe</h2>
+<p>Em geral, um diagnóstico entrega o que está funcionando, o que representa risco ou desperdício, e uma lista de prioridades — de preferência transformável em plano de ação. O objetivo é <strong>clareza para decidir</strong>, não uma pilha de gráficos.</p>
+<div class="box info"><div class="box-t">ℹ️ Diagnóstico não é gestão</div><p>A gestão opera as campanhas todos os dias. O diagnóstico é pontual e independente: avalia, aponta prioridades e recomenda — sem assumir a operação. Os dois se complementam.</p></div>
+<h2>Independência: por que importa</h2>
+<p>Como não vende mídia e não gerencia as campanhas avaliadas, o diagnóstico independente não tem incentivo para esconder problemas nem para inflar resultados. Isso muda a qualidade da conversa entre empresa, agência e time comercial.</p>
+<h2>Quando faz sentido</h2>
+<p>Faz sentido antes de aumentar o orçamento, quando há muitos leads e poucas vendas, quando os relatórios não mostram resultado comercial, ou simplesmente como revisão periódica de uma conta que roda há tempos sem uma segunda opinião.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>O diagnóstico substitui a agência?</summary><div class="fa">Não. Ele avalia a operação e orienta a empresa. As recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
+<details><summary>Quais acessos são necessários?</summary><div class="fa">Dependendo do escopo, acessos apenas de leitura às plataformas de anúncios, Analytics, Tag Manager, CRM e relatórios comerciais.</div></details>
+<details><summary>O diagnóstico garante aumento de vendas?</summary><div class="fa">Não. Ele identifica problemas e recomenda ações; os resultados dependem da execução, da oferta e do mercado.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Diagnóstico de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas — para mostrar onde o investimento perde eficiência e priorizar o que corrigir. Avalia e orienta; não assume a operação.</p></div>`,
+  },
+  {
+    slug: "google-ads-caro-quais-podem-ser-as-causas",
+    title: "Google Ads caro: quais podem ser as causas?",
+    subtitle: "Quando o custo por clique ou por lead sobe, o motivo raramente é um só. Veja as causas mais comuns e como identificar a que afeta a sua conta.",
+    category: "google-ads",
+    tags: "google ads,cpc,custo,índice de qualidade",
+    excerpt: "Google Ads ficando caro? As causas vão de concorrência e índice de qualidade a palavras amplas e falta de negativas. Veja como identificar a sua.",
+    seo_title: "Google Ads caro: quais podem ser as causas?",
+    seo_description: "Google Ads caro? Conheça as causas mais comuns do custo alto — concorrência, índice de qualidade, palavras amplas, negativas — e como identificar a sua.",
+    cta_type: "campanha",
+    featured: 0,
+    related: "como-calcular-o-retorno-do-trafego-pago,como-saber-se-o-trafego-pago-esta-funcionando",
+    content: `<p>Ver o Google Ads "ficar caro" — custo por clique ou por lead subindo — é uma queixa frequente. O ponto importante é: <strong>custo alto é um sintoma</strong>, e o remédio depende da causa. Aumentar o lance às cegas costuma piorar.</p>
+<p>Direto ao ponto: as causas mais comuns são <strong>concorrência</strong>, <strong>índice de qualidade baixo</strong>, <strong>palavras-chave amplas</strong>, <strong>falta de palavras negativas</strong> e <strong>segmentação ou lances mal ajustados</strong>.</p>
+<h2>As causas mais comuns</h2>
+<h3>Concorrência no leilão</h3>
+<p>Mais anunciantes disputando os mesmos termos elevam o custo. É um fator externo, mas dá para responder melhorando relevância e escolhendo termos mais específicos.</p>
+<h3>Índice de qualidade baixo</h3>
+<p>Quando anúncio, palavra-chave e página de destino não estão alinhados, o Google cobra mais pelo mesmo clique. Melhorar essa correspondência costuma reduzir o custo sem perder posição.</p>
+<h3>Palavras-chave amplas demais</h3>
+<p>Termos genéricos atraem cliques de quem não quer comprar. Você paga por tráfego que não converte — o que encarece o custo por lead mesmo com CPC "baixo".</p>
+<h3>Falta de palavras negativas</h3>
+<p>Sem negativar termos irrelevantes, a conta gasta com buscas que nunca virariam venda. É um dos desperdícios mais comuns e mais fáceis de corrigir.</p>
+<h3>Lances e segmentação desajustados</h3>
+<p>Estratégias de lance mirando o objetivo errado, ou segmentação geográfica/horária mal definida, empurram o custo para cima sem retorno proporcional.</p>
+<div class="box alert"><div class="box-t">⚠️ Cuidado com a reação automática</div><p>Subir o orçamento ou o lance porque "está caro" pode escalar o desperdício. Antes, vale entender <em>por que</em> está caro — o relatório de termos de pesquisa costuma revelar muito.</p></div>
+<h2>Como identificar a causa na sua conta</h2>
+<table><thead><tr><th>Sintoma</th><th>Onde olhar primeiro</th></tr></thead><tbody><tr><td>CPC subindo em termos genéricos</td><td>Tipo de correspondência e negativas</td></tr><tr><td>Muitos cliques, poucas conversões</td><td>Índice de qualidade e página de destino</td></tr><tr><td>Gasto com buscas estranhas</td><td>Relatório de termos de pesquisa</td></tr><tr><td>Custo alto só em certas regiões/horários</td><td>Segmentação e ajustes de lance</td></tr></tbody></table>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se o custo subiu e você não sabe apontar a causa — ou se a conta é gerida por terceiros e falta transparência — um diagnóstico independente revisa estrutura, termos, índice de qualidade e rastreamento para mostrar onde o dinheiro escapa.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Concorrente clicando no meu anúncio encarece a conta?</summary><div class="fa">Cliques inválidos existem, mas o Google filtra boa parte automaticamente. Antes de atribuir o custo a isso, vale investigar causas internas, que costumam ter peso maior.</div></details>
+<details><summary>Baixar o lance resolve?</summary><div class="fa">Pode reduzir o custo, mas também a exposição — e não corrige a causa. Melhorar relevância, negativar termos e ajustar correspondência costuma trazer resultado mais consistente.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Google Ads caro é sintoma de causas como concorrência, índice de qualidade baixo, palavras amplas e falta de negativas. Investigue o relatório de termos de pesquisa e a relevância antes de mexer no lance — e meça o custo por cliente, não só o CPC.</p></div>`,
   },
 ];
