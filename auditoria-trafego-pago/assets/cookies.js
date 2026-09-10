@@ -14,7 +14,7 @@
   // ID de Medição do Google Analytics 4 (formato "G-XXXXXXXXXX").
   // Deixe vazio para manter o GA4 desligado. Ao preencher, o GA4 passa a
   // carregar SOMENTE quando o visitante aceita os cookies analíticos.
-  var GA_ID = "";
+  var GA_ID = "G-QTECY1TNZ1";
 
   function getChoice() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
