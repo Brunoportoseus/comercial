@@ -262,6 +262,19 @@ const CATS = [
 const CAT_MAP = Object.fromEntries(CATS);
 const catLabel = (s) => CAT_MAP[s] || s || "";
 
+// Página pilar de cada categoria (para o backlink automático artigo → guia).
+// Categorias ainda sem pilar simplesmente não exibem o aviso.
+const CAT_PILLAR = {
+  "diagnostico-de-trafego-pago": { slug: "guia-completo-do-diagnostico-de-trafego-pago", title: "Guia completo do diagnóstico de tráfego pago" },
+  "metricas-e-rentabilidade": { slug: "metricas-de-trafego-pago-guia-para-empresarios", title: "Métricas de tráfego pago: guia para empresários" },
+  "leads-e-conversao": { slug: "guia-completo-para-melhorar-a-qualidade-dos-leads", title: "Guia completo para melhorar a qualidade dos leads" },
+  "agencias-e-gestao-de-trafego": { slug: "como-avaliar-sua-agencia-de-trafego-pago", title: "Como avaliar sua agência de tráfego pago" },
+  "meta-ads": { slug: "meta-ads-para-empresarios-guia-completo", title: "Meta Ads para empresários: o guia completo" },
+  "google-ads": { slug: "google-ads-para-empresarios-guia-completo", title: "Google Ads para empresários: o guia completo" },
+  "rastreamento-e-dados": { slug: "rastreamento-e-dados-guia-para-empresarios", title: "Rastreamento e dados no tráfego pago: guia para empresários" },
+  "landing-pages": { slug: "landing-pages-que-convertem-guia-para-empresarios", title: "Landing pages que convertem: guia para empresários" },
+};
+
 const SITE = "https://www.diagnosticotrafegopago.com.br";
 const AUTHOR_NAME = "Bruno Porto Seus";
 const AUTHOR_BIO =
@@ -485,7 +498,13 @@ async function blogArticlePage(slug, env, url) {
     ? `<figure class="article-cover"><img src="${esc(post.cover)}" alt="${esc(post.cover_alt || post.title)}" width="1120" height="560"></figure>`
     : "";
 
-  const body = `<article class="article-wrap"><nav class="breadcrumb"><a href="/">Início</a> › <a href="/blog">Blog</a>${post.category ? ` › <a href="/blog/categoria/${esc(post.category)}">${esc(catLabel(post.category))}</a>` : ""} › <span>${esc(post.title)}</span></nav><header class="article-head">${post.category ? `<span class="cat-pill">${esc(catLabel(post.category))}</span>` : ""}<h1>${esc(post.title)}</h1>${post.subtitle ? `<p class="sub">${esc(post.subtitle)}</p>` : ""}<div class="byline"><img src="/assets/bruno.jpg" alt="Foto de Bruno Porto" width="44" height="44"><div class="who"><b>${esc(post.author || AUTHOR_NAME)}</b><span>Publicado em ${esc(fmtDate(post.published_at || post.created_at))} · ${post.updated_at && post.updated_at !== post.created_at ? "Atualizado em " + esc(fmtDate(post.updated_at)) + " · " : ""}${rt} min de leitura</span></div></div>${cover}</header></article><div class="article-wrap"><div class="article-layout"><div class="prose">${tocHtml}${contentHtml}${ctaBlock(post.cta_type)}<div class="author-box"><img src="/assets/bruno.jpg" alt="Foto de Bruno Porto" width="72" height="72"><div><h3>Sobre o autor · ${esc(AUTHOR_NAME)}</h3><p>${esc(AUTHOR_BIO)}</p></div></div>${share}${relatedHtml}</div>${tocSide}</div></div>`;
+  // Backlink automático artigo → página pilar da categoria (não aparece na própria pilar).
+  const pill = CAT_PILLAR[post.category];
+  const pillarNote = (pill && pill.slug !== post.slug)
+    ? `<div class="pillar-note"><span class="pn-ic" aria-hidden="true">📚</span> Este artigo faz parte do guia <a href="/blog/${pill.slug}">${esc(pill.title)}</a>.</div>`
+    : "";
+
+  const body = `<article class="article-wrap"><nav class="breadcrumb"><a href="/">Início</a> › <a href="/blog">Blog</a>${post.category ? ` › <a href="/blog/categoria/${esc(post.category)}">${esc(catLabel(post.category))}</a>` : ""} › <span>${esc(post.title)}</span></nav><header class="article-head">${post.category ? `<span class="cat-pill">${esc(catLabel(post.category))}</span>` : ""}<h1>${esc(post.title)}</h1>${post.subtitle ? `<p class="sub">${esc(post.subtitle)}</p>` : ""}<div class="byline"><img src="/assets/bruno.jpg" alt="Foto de Bruno Porto" width="44" height="44"><div class="who"><b>${esc(post.author || AUTHOR_NAME)}</b><span>Publicado em ${esc(fmtDate(post.published_at || post.created_at))} · ${post.updated_at && post.updated_at !== post.created_at ? "Atualizado em " + esc(fmtDate(post.updated_at)) + " · " : ""}${rt} min de leitura</span></div></div>${cover}</header></article><div class="article-wrap"><div class="article-layout"><div class="prose">${pillarNote}${tocHtml}${contentHtml}${ctaBlock(post.cta_type)}<div class="author-box"><img src="/assets/bruno.jpg" alt="Foto de Bruno Porto" width="72" height="72"><div><h3>Sobre o autor · ${esc(AUTHOR_NAME)}</h3><p>${esc(AUTHOR_BIO)}</p></div></div>${share}${relatedHtml}</div>${tocSide}</div></div>`;
 
   // structured data
   const ld = [{
