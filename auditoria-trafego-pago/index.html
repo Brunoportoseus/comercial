@@ -748,6 +748,12 @@
       color:var(--muted-d);margin-bottom:.5rem;}
     .foot-company b{color:#fff;font-weight:600;}
     .foot-company address{font-style:normal;}
+    .foot-contact{width:100%;border-top:1px solid var(--line-d);margin-top:1.6rem;padding-top:1.4rem;font-size:.86rem;color:var(--muted-d);}
+    .foot-contact .lbl{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);margin-bottom:.5rem;}
+    .foot-contact address{font-style:normal;line-height:1.95;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;}
+    .foot-contact a{color:var(--copper);text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;}
+    .foot-contact a:hover{color:#fff;text-decoration:underline;text-underline-offset:2px;}
+    .foot-contact svg{width:15px;height:15px;flex-shrink:0;opacity:.85;}
 
     /* whatsapp float + CTA mobile fixo */
     .wa{position:fixed;right:16px;bottom:16px;z-index:80;width:56px;height:56px;border-radius:50%;background:#25d366;
@@ -1803,6 +1809,20 @@
           </span>
         </div>
       </div>
+      <div class="foot-contact">
+        <span class="lbl">Contato</span>
+        <address>
+          <a href="mailto:bruno@soubrunoporto.com.br">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            bruno@soubrunoporto.com.br
+          </a>
+          <a href="tel:+5541998448989">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +55 (41) 99844-8989
+          </a>
+        </address>
+      </div>
+
       <div class="foot-company">
         <span class="lbl">Dados da empresa</span>
         <address><b>Midialike LTDA</b> · CNPJ 17.930.007/0001-05<br>R. Professor Luiz César, 578 — Curitiba/PR</address>
