@@ -1103,4 +1103,159 @@ const SEED_POSTS = [
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>O dinheiro se perde em etapas específicas entre o anúncio e a venda. Mapeie o funil, meça a passagem de cada etapa e ataque a maior queda — que muitas vezes está depois do clique. Sem rastreamento e CRM integrados, o ponto de fuga fica invisível.</p></div>`,
   },
+  {
+    slug: "guia-completo-do-diagnostico-de-trafego-pago",
+    title: "Guia completo do diagnóstico de tráfego pago",
+    subtitle: "O que é, quando fazer, o que é analisado e o que esperar de uma análise independente das suas campanhas — reunido em um único guia.",
+    category: "diagnostico-de-trafego-pago",
+    tags: "diagnóstico,guia,auditoria,independente",
+    excerpt: "Guia completo sobre diagnóstico de tráfego pago: o que é, quando fazer, o que é analisado, o que você recebe e como se preparar.",
+    seo_title: "Guia completo do diagnóstico de tráfego pago",
+    seo_description: "Tudo sobre diagnóstico de tráfego pago em um guia: o que é, quando fazer, o que é analisado, diferença para a gestão e como se preparar.",
+    cta_type: "default",
+    featured: 1,
+    related: "o-que-e-um-diagnostico-de-trafego-pago,dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico,diagnostico-de-trafego-pago-ou-gestao-de-campanhas",
+    content: `<p>Este guia reúne, em um só lugar, o essencial sobre <strong>diagnóstico de tráfego pago</strong>: o que é, quando faz sentido, o que é analisado e o que você recebe. Ao longo do texto, há links para artigos que aprofundam cada tema.</p>
+<div class="box info"><div class="box-t">ℹ️ Resposta rápida</div><p>Diagnóstico de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão — da campanha à venda — para mostrar onde o investimento perde eficiência e o que priorizar.</p></div>
+<h2>O que é um diagnóstico</h2>
+<p>Diferente da operação diária, o diagnóstico lê e interpreta os dados de toda a jornada, sem defender decisões anteriores. Ele avalia e orienta; não assume as campanhas. Para uma explicação detalhada, veja <a href="/blog/o-que-e-um-diagnostico-de-trafego-pago">o que é um diagnóstico de tráfego pago</a>.</p>
+<h2>Diagnóstico não é gestão</h2>
+<p>A gestão opera as campanhas; o diagnóstico faz uma leitura independente e pontual. Os dois se complementam — entenda a distinção em <a href="/blog/diagnostico-de-trafego-pago-ou-gestao-de-campanhas">diagnóstico ou gestão de campanhas</a>.</p>
+<h2>Quando fazer um diagnóstico</h2>
+<p>Faz sentido antes de aumentar o orçamento, quando há muitos leads e poucas vendas, quando os relatórios não mostram resultado comercial, ou como revisão periódica. Se quiser um checklist de sintomas, veja os <a href="/blog/dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico">dez sinais de que suas campanhas precisam de um diagnóstico</a>.</p>
+<h2>O que é analisado</h2>
+<p>Um bom diagnóstico olha a jornada inteira:</p>
+<ul>
+<li><strong>Campanhas</strong> — estrutura, segmentação, palavras-chave, criativos, orçamento;</li>
+<li><strong>Rastreamento e dados</strong> — se a medição reflete o que importa;</li>
+<li><strong>Qualidade dos leads</strong> — se os contatos têm perfil de compra;</li>
+<li><strong>Página e formulário</strong> — o que acontece depois do clique;</li>
+<li><strong>Atendimento e vendas</strong> — velocidade, cadência, fechamento;</li>
+<li><strong>Rentabilidade</strong> — se há lucro, não só faturamento.</li>
+</ul>
+<h2>O que você recebe</h2>
+<p>Em geral: o que está funcionando, o que representa risco ou desperdício, e uma lista de prioridades — de preferência transformável em plano de ação. O objetivo é clareza para decidir.</p>
+<h2>Como se preparar</h2>
+<p>Reúna acessos de leitura às plataformas de anúncios, ao Analytics, ao Tag Manager, ao CRM e aos relatórios comerciais. Quanto mais completa a informação, mais preciso o diagnóstico.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>O diagnóstico substitui a agência?</summary><div class="fa">Não. Avalia a operação e orienta a empresa; as recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
+<details><summary>Quanto tempo leva?</summary><div class="fa">Depende do escopo e da disponibilidade dos dados. Contas com boa organização e acessos completos são analisadas mais rápido.</div></details>
+<details><summary>Preciso pausar as campanhas?</summary><div class="fa">Não. O diagnóstico é feito em paralelo, sem interromper a operação.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>O diagnóstico de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas. Serve para mostrar onde o investimento perde eficiência e priorizar correções, sem assumir a operação. Use os links deste guia para aprofundar cada tema.</p></div>`,
+  },
+  {
+    slug: "metricas-de-trafego-pago-guia-para-empresarios",
+    title: "Métricas de tráfego pago: guia para empresários",
+    subtitle: "Quais números realmente importam, o que são métricas de vaidade e como enxergar vendas e lucro por trás dos cliques. Um guia sem jargão.",
+    category: "metricas-e-rentabilidade",
+    tags: "métricas,roi,roas,cac,rentabilidade",
+    excerpt: "Guia de métricas de tráfego pago para empresários: o que acompanhar, o que ignorar e como ligar os números à venda e ao lucro.",
+    seo_title: "Métricas de tráfego pago: guia para empresários",
+    seo_description: "Entenda as métricas de tráfego pago que importam para o negócio — ROI, ROAS, CAC — e como separar resultado real de métrica de vaidade.",
+    cta_type: "rentabilidade",
+    featured: 0,
+    related: "como-saber-se-o-trafego-pago-esta-funcionando,cliques-nao-sao-vendas-como-avaliar-o-resultado-real,como-calcular-o-retorno-do-trafego-pago,onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda",
+    content: `<p>Painéis de anúncios mostram dezenas de números — e nem todos ajudam a decidir. Este guia organiza as <strong>métricas de tráfego pago</strong> pelo que importa para o seu negócio: vendas e lucro, não só cliques.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>Métricas de mídia servem para <em>operar</em> campanhas; métricas de negócio servem para <em>decidir</em> se vale a pena. Use as duas — e decida pela segunda.</p></div>
+<h2>Métricas de mídia x métricas de negócio</h2>
+<p>Impressões, cliques, CTR e CPC medem alcance e interesse. Leads qualificados, vendas, CAC e margem medem resultado. Confundir os dois leva a decisões erradas — o tema é aprofundado em <a href="/blog/cliques-nao-sao-vendas-como-avaliar-o-resultado-real">cliques não são vendas</a>.</p>
+<h2>Cuidado com as métricas de vaidade</h2>
+<p>Números que parecem ótimos na tela — muitos cliques, CPC baixo, "conversões" — podem esconder que o público é errado ou que a venda não acontece. Veja como avaliar de verdade em <a href="/blog/como-saber-se-o-trafego-pago-esta-funcionando">como saber se o tráfego pago está funcionando</a>.</p>
+<h2>ROI, ROAS e a diferença que muda tudo</h2>
+<p>O ROAS compara receita e mídia; o ROI considera todos os custos. Uma campanha pode ter ROAS alto e prejuízo. Aprenda a calcular o retorno real, com margem e impostos, em <a href="/blog/como-calcular-o-retorno-do-trafego-pago">como calcular o retorno do tráfego pago</a>.</p>
+<h2>CAC, CPA, CPL e CPC</h2>
+<ul>
+<li><strong>CPC</strong> — custo por clique;</li>
+<li><strong>CPL</strong> — custo por lead;</li>
+<li><strong>CPA</strong> — custo por ação/conversão;</li>
+<li><strong>CAC</strong> — custo por cliente adquirido.</li>
+</ul>
+<p>O que decide a saúde da campanha é o <strong>CAC</strong> dentro da sua margem — não o CPC baixo isolado.</p>
+<h2>O funil por trás dos números</h2>
+<p>Os números só fazem sentido em conjunto: do clique à venda, cada etapa perde parte das pessoas. Descubra onde a maior perda acontece em <a href="/blog/onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda">onde sua empresa perde dinheiro entre o anúncio e a venda</a>.</p>
+<h2>Como montar um acompanhamento útil</h2>
+<p>Um bom painel liga mídia, leads e vendas, mostra custo por cliente e margem, e compara períodos com contexto. Sem integração entre campanhas e CRM, o número do painel e o caixa seguem separados.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Qual é a métrica mais importante?</summary><div class="fa">Não há uma só. Para decidir investimento, o CAC dentro da margem e a receita/lucro por campanha costumam ser os que mais importam.</div></details>
+<details><summary>ROAS alto é sempre bom?</summary><div class="fa">Não. Depende da sua margem e do seu ROAS de equilíbrio. É possível ter ROAS alto e prejuízo.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Acompanhe métricas de negócio — leads qualificados, CAC, vendas e margem — e use as de mídia só para operar. Fuja das métricas de vaidade e ligue campanhas ao CRM para enxergar o resultado real. Os links deste guia aprofundam cada ponto.</p></div>`,
+  },
+  {
+    slug: "guia-completo-para-melhorar-a-qualidade-dos-leads",
+    title: "Guia completo para melhorar a qualidade dos leads",
+    subtitle: "Volume não é qualidade. Entenda o que é um lead qualificado, por que os ruins aparecem e como aumentar a proporção de contatos com perfil de compra.",
+    category: "leads-e-conversao",
+    tags: "leads,qualidade,qualificação,conversão",
+    excerpt: "Guia para melhorar a qualidade dos leads: o que é um lead qualificado, causas de leads ruins, como qualificar e como medir qualidade por origem.",
+    seo_title: "Guia completo para melhorar a qualidade dos leads",
+    seo_description: "Aprenda a melhorar a qualidade dos leads do tráfego pago: o que é lead qualificado, causas de leads ruins, qualificação e medição por origem.",
+    cta_type: "leads",
+    featured: 0,
+    related: "muitos-leads-e-poucas-vendas-onde-esta-o-problema,por-que-minhas-campanhas-geram-leads-desqualificados",
+    content: `<p>Gerar muitos contatos é fácil; gerar contatos com <strong>perfil real de compra</strong> é o que sustenta a venda. Este guia reúne o essencial para melhorar a qualidade dos leads do seu tráfego pago.</p>
+<div class="box info"><div class="box-t">ℹ️ Ponto de partida</div><p>Quantidade de leads não é qualidade de leads. O objetivo não é ter mais contatos, e sim mais contatos que compram.</p></div>
+<h2>O que é um lead qualificado</h2>
+<p>É o contato que tem perfil, interesse e condição de comprar o que você vende — na região atendida e dentro do seu ticket. Sem esse critério definido, "lead bom" vira opinião.</p>
+<h2>Por que aparecem leads ruins</h2>
+<p>As causas mais comuns são segmentação ampla, promessa desalinhada e falta de qualificação. Cada uma tem correção — o tema é detalhado em <a href="/blog/por-que-minhas-campanhas-geram-leads-desqualificados">por que minhas campanhas geram leads desqualificados</a>.</p>
+<h2>Quando o volume esconde o problema</h2>
+<p>Muitos leads e poucas vendas costuma ser sintoma de qualidade baixa em algum ponto da jornada. Veja como localizar em <a href="/blog/muitos-leads-e-poucas-vendas-onde-esta-o-problema">muitos leads e poucas vendas</a>.</p>
+<h2>Como qualificar melhor</h2>
+<ul>
+<li><strong>Segmentação</strong> mais precisa (público, região, intenção);</li>
+<li><strong>Mensagem</strong> que atrai quem tem perfil e afasta curiosos;</li>
+<li><strong>Perguntas de qualificação</strong> no formulário;</li>
+<li><strong>Integração com o CRM</strong> para classificar e acompanhar cada lead;</li>
+<li><strong>Envio de dados de venda</strong> de volta às plataformas, para otimizarem por clientes.</li>
+</ul>
+<h2>Medir qualidade por origem</h2>
+<p>O ponto-chave é avaliar a qualidade por campanha, anúncio e palavra-chave — descobrindo o que gera cliente, não só contato. Sem esse cruzamento entre marketing e vendas, fica impossível melhorar com precisão.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Formulário longo reduz o volume?</summary><div class="fa">Pode reduzir, mas aumenta a qualidade ao filtrar quem não tem interesse real. O equilíbrio depende do seu ciclo de venda e do valor do cliente.</div></details>
+<details><summary>Lead barato é bom negócio?</summary><div class="fa">Só se tiver perfil de compra. O que importa é o custo por cliente, não o custo por lead isolado.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Melhorar a qualidade dos leads passa por segmentação, mensagem, qualificação e integração com o CRM — e por medir a qualidade por origem. Foque em contatos que compram, não em volume. Aprofunde nos artigos ligados neste guia.</p></div>`,
+  },
+  {
+    slug: "como-avaliar-sua-agencia-de-trafego-pago",
+    title: "Como avaliar sua agência de tráfego pago",
+    subtitle: "Um guia prático para julgar a parceria por sinais objetivos — transparência, acesso, foco em vendas e metas realistas — sem virar especialista.",
+    category: "agencias-e-gestao-de-trafego",
+    tags: "agência,avaliação,transparência,relatório",
+    excerpt: "Guia para avaliar sua agência de tráfego pago por sinais objetivos: acesso às contas, transparência, foco no resultado comercial e metas realistas.",
+    seo_title: "Como avaliar sua agência de tráfego pago",
+    seo_description: "Guia para avaliar sua agência de tráfego pago: sinais de parceria saudável, o que pedir nos relatórios, alertas e quando buscar uma segunda opinião.",
+    cta_type: "agencia",
+    featured: 0,
+    related: "como-saber-se-minha-agencia-de-trafego-esta-dando-resultado,por-que-o-relatorio-da-agencia-nao-mostra-o-resultado-comercial",
+    content: `<p>Avaliar uma agência de tráfego pago não exige que você entenda de leilão de anúncios. Exige observar <strong>sinais objetivos</strong> de transparência, método e foco no que importa. Este guia organiza o que olhar.</p>
+<div class="box info"><div class="box-t">ℹ️ Objetivo</div><p>Avaliar é para melhorar a parceria e alinhar o foco na venda — não para procurar culpado. Muitas vezes falta apenas a empresa fornecer os dados de venda para fechar a conta.</p></div>
+<h2>Sinais de uma parceria saudável</h2>
+<ul>
+<li>Você é <strong>dono das contas</strong> de anúncio e tem acesso;</li>
+<li>A agência <strong>explica</strong> o que faz e por quê;</li>
+<li>Os relatórios evoluem para falar de <strong>leads qualificados e vendas</strong>;</li>
+<li>Há <strong>metas combinadas</strong> e revisão com contexto;</li>
+<li>Existe <strong>troca com o comercial</strong> sobre a qualidade dos leads.</li>
+</ul>
+<p>Para aprofundar, veja <a href="/blog/como-saber-se-minha-agencia-de-trafego-esta-dando-resultado">como saber se minha agência está dando resultado</a>.</p>
+<h2>O que pedir nos relatórios</h2>
+<p>Relatórios costumam mostrar métricas de mídia, não vendas — e há motivos para isso. Entenda o porquê e o que cobrar em <a href="/blog/por-que-o-relatorio-da-agencia-nao-mostra-o-resultado-comercial">por que o relatório da agência não mostra o resultado comercial</a>. Em resumo, peça: leads qualificados por campanha, quais campanhas geraram vendas, custo por cliente e receita atribuível.</p>
+<h2>Sinais de alerta</h2>
+<ul>
+<li>Falta de acesso às campanhas;</li>
+<li>Relatórios só com cliques e "conversões";</li>
+<li>Promessa de "vendas garantidas" ou "primeira posição";</li>
+<li>Respostas vagas sobre o que foi feito.</li>
+</ul>
+<h2>Quando buscar uma segunda opinião</h2>
+<p>Se persiste a insegurança mesmo com relatórios em dia, uma análise independente avalia a operação sem interromper o trabalho da agência — e devolve uma visão imparcial do que está bom e do que pode melhorar.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>A empresa deve ser dona da conta de anúncios?</summary><div class="fa">Sim, é recomendável. A conta e o histórico são ativos da empresa e evitam perda de dados na troca de fornecedor.</div></details>
+<details><summary>Uma segunda opinião ofende a agência?</summary><div class="fa">Não precisa. Bem conduzida, ela traz informação útil para todos e melhora a parceria.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Avalie a agência por sinais objetivos: propriedade das contas, transparência, foco em vendas e metas realistas. Cobre indicadores comerciais nos relatórios e desconfie de garantias. Uma segunda opinião independente ajuda a alinhar — sem interromper o trabalho.</p></div>`,
+  },
 ];
