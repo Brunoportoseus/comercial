@@ -625,18 +625,18 @@ async function insertPost(env, s) {
 // Carga automática dos artigos-semente: uma vez por isolate, insere os que
 // ainda não existem. Assim, cada novo lote publicado aparece sozinho no
 // próximo deploy. Não sobrescreve edições feitas pelo painel (só insere o que
-// falta). Observação: um artigo-semente apagado reaparece no próximo deploy —
-// quando o CMS do /admin estiver pronto, a semeadura é encerrada.
+// falta). O CMS do /admin é agora a fonte da verdade: a semeadura só roda numa
+// base VAZIA (bootstrap inicial). Assim um artigo excluído pelo painel não
+// reaparece no próximo deploy — mas um blog nunca fica sem conteúdo.
 let _seedChecked = false;
 async function maybeSeed(env) {
   if (_seedChecked || !env.DB) return;
   _seedChecked = true;
   try {
     await ensurePostsTable(env);
-    for (const s of SEED_POSTS) {
-      const exists = await env.DB.prepare("SELECT 1 FROM posts WHERE slug=?").bind(s.slug).first();
-      if (!exists) await insertPost(env, s);
-    }
+    const row = await env.DB.prepare("SELECT COUNT(*) AS n FROM posts").first();
+    if (row && Number(row.n) > 0) return; // já há conteúdo → não semeia
+    for (const s of SEED_POSTS) await insertPost(env, s);
   } catch (e) {}
 }
 
