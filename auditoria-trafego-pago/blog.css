@@ -126,6 +126,11 @@ h1,h2,h3,h4{font-family:'Sora',sans-serif;color:var(--ink);line-height:1.25;lett
 .byline .who span{display:block;color:var(--muted);font-size:.8rem;}
 .article-cover{margin:1.4rem 0 0;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--line);}
 .article-cover img{width:100%;aspect-ratio:16/8;object-fit:cover;}
+.pillar-note{font-size:.95rem;line-height:1.5;color:var(--ink);
+  background:var(--copper-50);border:1px solid var(--copper-soft);border-left:4px solid var(--copper);
+  border-radius:var(--r-btn);padding:.75rem 1rem;margin:0 0 1.6rem;}
+.pillar-note .pn-ic{margin-right:.4rem;}
+.pillar-note a{color:var(--copper-btn);font-weight:700;}
 
 .article-layout{display:grid;grid-template-columns:minmax(0,760px) 260px;gap:3rem;justify-content:center;padding:2rem 0 1rem;}
 @media(max-width:1000px){ .article-layout{grid-template-columns:minmax(0,760px);} .toc-side{display:none;} }
