@@ -1886,6 +1886,9 @@
     window.dataLayer = window.dataLayer || [];
     window.bpEnableAnalytics = function(){ analyticsOn = true; };
     function bpTrack(name, meta){
+      // Envia direto ao GA4 (só dispara após o consentimento, quando window.gtag existe).
+      try{ if(window.bpGA) window.bpGA(name, meta||{}); }catch(e){}
+      // Empurra também no dataLayer (para GTM, se houver) — respeitando o consentimento.
       if(!analyticsOn) return;
       try{ window.dataLayer.push(Object.assign({event:"bp_"+name}, meta||{})); }catch(e){}
     }

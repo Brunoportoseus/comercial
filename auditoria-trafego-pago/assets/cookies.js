@@ -20,27 +20,15 @@
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
 
-  // Carrega o GA4 (gtag.js) sob consentimento e espelha para ele os eventos
-  // "bp_*" que a landing e o blog já empurram em window.dataLayer — sem exigir
-  // alteração no código de eventos de cada página.
+  // Carrega o GA4 (gtag.js) sob consentimento. O snippet padrão do Google —
+  // sem interceptar o dataLayer, porque a própria lib do gtag reescreve o
+  // dataLayer.push ao inicializar e derrubaria qualquer "ponte" instalada aqui.
   var gaLoaded = false;
   function loadGA4() {
     if (gaLoaded || !GA_ID) return;
     gaLoaded = true;
     window.dataLayer = window.dataLayer || [];
-    var rawPush = window.dataLayer.push.bind(window.dataLayer);
-    window.gtag = function () { rawPush(arguments); };
-    // Ponte: espelha objetos {event:"bp_..."} como eventos do GA4.
-    window.dataLayer.push = function (o) {
-      try {
-        if (o && typeof o === "object" && typeof o.event === "string" && o.event.indexOf("bp_") === 0) {
-          var params = {};
-          for (var k in o) { if (o.hasOwnProperty(k) && k !== "event") params[k] = o[k]; }
-          window.gtag("event", o.event.slice(3), params);
-        }
-      } catch (e) {}
-      return rawPush.apply(null, arguments);
-    };
+    window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
     window.gtag("config", GA_ID);
     var s = document.createElement("script");
@@ -48,6 +36,14 @@
     s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
     document.head.appendChild(s);
   }
+
+  // Envia um evento diretamente ao GA4. As páginas (landing e blog) chamam
+  // window.bpGA(nome, params) para registrar cliques, form_submit etc. Só tem
+  // efeito depois do consentimento, quando window.gtag passa a existir — logo,
+  // respeita a LGPD sem depender de nenhuma "ponte" sobre o dataLayer.
+  window.bpGA = function (name, params) {
+    try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (e) {}
+  };
 
   function enableAnalytics() {
     if (typeof window.bpEnableAnalytics === "function") {
