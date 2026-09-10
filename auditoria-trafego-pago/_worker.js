@@ -963,4 +963,144 @@ const SEED_POSTS = [
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>Google Ads caro é sintoma de causas como concorrência, índice de qualidade baixo, palavras amplas e falta de negativas. Investigue o relatório de termos de pesquisa e a relevância antes de mexer no lance — e meça o custo por cliente, não só o CPC.</p></div>`,
   },
+  {
+    slug: "diagnostico-de-trafego-pago-ou-gestao-de-campanhas",
+    title: "Diagnóstico de tráfego pago ou gestão de campanhas: qual é a diferença?",
+    subtitle: "São serviços diferentes, com objetivos diferentes. Entender a distinção evita contratar a coisa errada para o problema que você tem.",
+    category: "diagnostico-de-trafego-pago",
+    tags: "diagnóstico,gestão,agência",
+    excerpt: "Gestão opera as campanhas no dia a dia; o diagnóstico avalia a operação de forma independente e pontual. Veja quando cada um faz sentido.",
+    seo_title: "Diagnóstico de tráfego pago ou gestão de campanhas?",
+    seo_description: "Entenda a diferença entre diagnóstico de tráfego pago e gestão de campanhas — objetivos, independência e quando contratar cada um.",
+    cta_type: "default",
+    featured: 0,
+    related: "o-que-e-um-diagnostico-de-trafego-pago,como-saber-se-minha-agencia-de-trafego-esta-dando-resultado",
+    content: `<p>É comum confundir os dois — mas <strong>diagnóstico</strong> e <strong>gestão</strong> de tráfego pago resolvem problemas diferentes. Contratar um esperando o outro costuma gerar frustração.</p>
+<p>Direto ao ponto: a <strong>gestão</strong> opera suas campanhas no dia a dia (cria, ajusta, otimiza); o <strong>diagnóstico</strong> é uma análise independente e pontual, que avalia a operação — incluindo, muitas vezes, o próprio trabalho da gestão — e aponta prioridades.</p>
+<h2>O que faz a gestão de campanhas</h2>
+<p>É um trabalho contínuo: estruturar campanhas, escolher palavras-chave e públicos, criar anúncios, acompanhar métricas e otimizar ao longo do tempo. A gestão está dentro da operação e responde pelo desempenho corrente.</p>
+<h2>O que faz o diagnóstico</h2>
+<p>É pontual e independente. Em vez de operar, ele lê os dados de toda a jornada — campanhas, rastreamento, qualidade dos leads, página e vendas — e responde onde o investimento perde eficiência. Não assume a conta; entrega clareza e recomendações.</p>
+<table><thead><tr><th></th><th>Gestão</th><th>Diagnóstico</th></tr></thead><tbody><tr><td>Natureza</td><td>Contínua</td><td>Pontual</td></tr><tr><td>Papel</td><td>Operar as campanhas</td><td>Avaliar e orientar</td></tr><tr><td>Posição</td><td>Dentro da operação</td><td>Independente</td></tr><tr><td>Entrega</td><td>Desempenho no dia a dia</td><td>Prioridades e plano de ação</td></tr></tbody></table>
+<div class="box info"><div class="box-t">ℹ️ Não são concorrentes</div><p>O diagnóstico pode, inclusive, ajudar a gestão a melhorar — mostrando onde focar. Um avalia; o outro executa. Os dois se complementam.</p></div>
+<h2>Quando contratar cada um</h2>
+<ul><li><strong>Gestão</strong>: quando você precisa de alguém operando as campanhas de forma consistente.</li><li><strong>Diagnóstico</strong>: quando você quer uma segunda opinião, está inseguro com os resultados, vai aumentar a verba ou precisa entender por que "os números são bons, mas a venda não vem".</li></ul>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você já tem gestão (interna ou por agência) e mesmo assim falta clareza sobre o retorno, o diagnóstico independente entra sem substituir ninguém — só para mostrar o que os relatórios do dia a dia não mostram.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Posso ter os dois ao mesmo tempo?</summary><div class="fa">Sim, e é comum. A gestão cuida da operação; o diagnóstico faz uma leitura independente periódica. Um não exclui o outro.</div></details>
+<details><summary>O diagnóstico cria conflito com a agência?</summary><div class="fa">Não precisa. Bem conduzido, ele fornece informação útil para todos e melhora a conversa entre empresa, agência e comercial.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Gestão opera as campanhas; diagnóstico avalia a operação de forma independente e pontual. Se falta clareza sobre o retorno mesmo com gestão ativa, o diagnóstico entra para orientar — não para substituir.</p></div>`,
+  },
+  {
+    slug: "por-que-o-relatorio-da-agencia-nao-mostra-o-resultado-comercial",
+    title: "Por que o relatório da agência não mostra o resultado comercial?",
+    subtitle: "Relatórios cheios de cliques e conversões, mas que não respondem quanto a empresa vendeu. Entenda por que isso acontece e o que pedir.",
+    category: "agencias-e-gestao-de-trafego",
+    tags: "agência,relatório,vendas",
+    excerpt: "Relatórios de agência costumam mostrar métricas de mídia, não vendas. Veja por que isso acontece e quais indicadores comerciais cobrar.",
+    seo_title: "Por que o relatório da agência não mostra o resultado comercial?",
+    seo_description: "Entenda por que o relatório da agência mostra cliques e conversões, mas não vendas — e o que pedir para acompanhar o resultado comercial real.",
+    cta_type: "agencia",
+    featured: 0,
+    related: "como-saber-se-minha-agencia-de-trafego-esta-dando-resultado,cliques-nao-sao-vendas-como-avaliar-o-resultado-real",
+    content: `<p>Você recebe um relatório caprichado, cheio de gráficos de impressões, cliques, CTR e "conversões" — e mesmo assim não consegue dizer quanto aquilo virou venda. Isso é mais comum do que parece, e nem sempre indica má-fé.</p>
+<p>Direto ao ponto: o relatório costuma mostrar <strong>métricas de mídia</strong> porque é o que as plataformas entregam facilmente. O <strong>resultado comercial</strong> — vendas, receita e margem — exige integrar campanhas, rastreamento e CRM, o que nem sempre está montado.</p>
+<h2>Por que isso acontece</h2>
+<h3>As plataformas medem publicidade, não vendas</h3>
+<p>Google e Meta enxergam cliques e conversões configuradas, não o fechamento no seu comercial. Se a venda acontece no WhatsApp, por telefone ou dias depois, ela não aparece sozinha.</p>
+<h3>Falta integração com o CRM</h3>
+<p>Sem ligar o lead à sua origem e ao desfecho comercial, é impossível dizer qual campanha gerou cliente. O relatório para no "gerou contato".</p>
+<h3>"Conversão" não é venda</h3>
+<p>Uma conversão pode ser um formulário, um clique no botão ou uma mensagem iniciada. Contar isso como resultado infla a percepção sem refletir o caixa.</p>
+<div class="box alert"><div class="box-t">⚠️ Nem sempre é problema da agência</div><p>Muitas vezes a agência não tem acesso aos dados de venda — que estão no CRM ou no comercial da empresa. Sem esses dados, ninguém consegue fechar a conta. É uma falha de integração, não necessariamente de esforço.</p></div>
+<h2>O que pedir no relatório</h2>
+<ul><li>Leads qualificados por campanha (não só o total de contatos);</li><li>Quais campanhas geraram vendas — com integração ao CRM;</li><li>Custo por lead <em>e</em> custo por cliente;</li><li>Receita atribuível e, quando possível, margem;</li><li>Comparação de períodos com contexto (sazonalidade, mudanças na conta).</li></ul>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se o relatório não evolui para mostrar vendas, ou se falta a integração que ligaria mídia a resultado, um diagnóstico independente ajuda a montar essa ponte e a definir os indicadores que você deveria acompanhar.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>A agência deveria mostrar vendas no relatório?</summary><div class="fa">Idealmente sim, mas só consegue se tiver acesso aos dados de venda (CRM/comercial) e à integração correta. Muitas vezes o dado está do lado da empresa.</div></details>
+<details><summary>Como ligar a venda à campanha?</summary><div class="fa">Com rastreamento correto, parâmetros de origem (UTMs) e integração ao CRM, registrando de onde veio cada lead e se ele virou cliente.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Relatórios mostram métricas de mídia porque medir venda exige integrar campanhas, rastreamento e CRM. Cobre indicadores comerciais — leads qualificados, vendas por campanha, custo por cliente — e garanta que os dados de venda cheguem a quem monta o relatório.</p></div>`,
+  },
+  {
+    slug: "como-saber-se-minha-agencia-de-trafego-esta-dando-resultado",
+    title: "Como saber se minha agência de tráfego está dando resultado?",
+    subtitle: "Sem virar especialista, você pode avaliar sinais objetivos de transparência, método e foco no que importa: a venda. Veja como.",
+    category: "agencias-e-gestao-de-trafego",
+    tags: "agência,avaliação,transparência",
+    excerpt: "Avalie sua agência de tráfego por sinais objetivos: acesso às contas, clareza nas decisões, foco em resultado comercial e metas realistas.",
+    seo_title: "Como saber se minha agência de tráfego está dando resultado?",
+    seo_description: "Aprenda a avaliar sua agência de tráfego pago por sinais objetivos — acesso, transparência, foco em vendas e metas realistas — sem ser especialista.",
+    cta_type: "agencia",
+    featured: 0,
+    related: "por-que-o-relatorio-da-agencia-nao-mostra-o-resultado-comercial,diagnostico-de-trafego-pago-ou-gestao-de-campanhas",
+    content: `<p>Avaliar uma agência de tráfego pago sem ser especialista parece difícil, mas dá para olhar <strong>sinais objetivos</strong> — de transparência, método e foco no que importa. Você não precisa entender de leilão de anúncios para perceber se a relação é saudável.</p>
+<p>Direto ao ponto: uma boa parceria costuma ter <strong>acesso transparente</strong> às contas, <strong>decisões explicadas</strong>, <strong>foco no resultado comercial</strong> (e não só em cliques) e <strong>metas realistas</strong>, sem promessas de venda garantida.</p>
+<h2>Sinais de uma parceria saudável</h2>
+<ul>
+<li><strong>Você é dono das contas de anúncio</strong> e tem acesso a elas.</li>
+<li>A agência <strong>explica o que faz e por quê</strong>, em linguagem que você entende.</li>
+<li>Os relatórios evoluem para falar de <strong>leads qualificados e vendas</strong>, não só de métricas de mídia.</li>
+<li>Há <strong>metas combinadas</strong> e revisão periódica com contexto.</li>
+<li>A agência pede — e usa — <strong>feedback do comercial</strong> sobre a qualidade dos leads.</li>
+</ul>
+<h2>Sinais de alerta</h2>
+<ul>
+<li>Falta de acesso às campanhas ou à conta.</li>
+<li>Relatórios que só mostram cliques e "conversões" sem ligação com venda.</li>
+<li>Promessa de "vendas garantidas" ou de "primeira posição".</li>
+<li>Respostas vagas quando você pergunta o que foi feito.</li>
+<li>Nenhuma troca com o time comercial sobre a qualidade dos leads.</li>
+</ul>
+<div class="box tip"><div class="box-t">✓ Uma pergunta que revela muito</div><p>Pergunte: "quais campanhas geraram clientes no último trimestre?". Se a resposta ficar só em cliques e conversões, provavelmente falta a integração que liga mídia a venda — e vale resolver isso junto.</p></div>
+<h2>Avaliar não é acusar</h2>
+<p>Muitas vezes a agência trabalha bem, mas falta a empresa fornecer os dados de venda para fechar a conta. O objetivo da avaliação é <strong>melhorar a parceria</strong> e alinhar o foco, não procurar culpado.</p>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você quer uma leitura imparcial — sem interromper o trabalho da agência — um diagnóstico independente avalia a operação e devolve uma visão objetiva do que está bom e do que pode melhorar.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Devo ser dono da minha conta de anúncios?</summary><div class="fa">Sim, é recomendável. A conta e o histórico são ativos da empresa. Isso evita perder dados ao trocar de fornecedor e aumenta a transparência.</div></details>
+<details><summary>Uma agência pode garantir vendas?</summary><div class="fa">Não de forma responsável. Ela pode se comprometer com método, acompanhamento e otimização, mas o resultado depende de oferta, mercado e execução comercial.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Avalie a agência por sinais objetivos: você é dono das contas, as decisões são explicadas, o foco vai além do clique e as metas são realistas. Desconfie de promessas garantidas. E lembre: avaliar é para melhorar a parceria, não para acusar.</p></div>`,
+  },
+  {
+    slug: "onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda",
+    title: "Como descobrir onde sua empresa perde dinheiro entre o anúncio e a venda",
+    subtitle: "Entre o clique e o cliente existe um funil com vários pontos de fuga. Veja como mapear cada etapa e achar onde o investimento escapa.",
+    category: "estrategia-digital",
+    tags: "funil,jornada,rentabilidade,diagnóstico",
+    excerpt: "O dinheiro do tráfego pago se perde em pontos específicos entre o anúncio e a venda. Aprenda a mapear o funil e localizar onde está a maior fuga.",
+    seo_title: "Onde sua empresa perde dinheiro entre o anúncio e a venda",
+    seo_description: "Descubra como mapear a jornada do clique à venda e localizar onde o investimento em tráfego pago se perde — do anúncio ao processo comercial.",
+    cta_type: "rentabilidade",
+    featured: 0,
+    related: "o-que-e-um-diagnostico-de-trafego-pago,muitos-leads-e-poucas-vendas-onde-esta-o-problema",
+    content: `<p>Entre pagar por um clique e receber o dinheiro de uma venda, existe um caminho com várias etapas. Em cada uma delas, parte das pessoas — e do investimento — pode escapar. Descobrir <strong>onde</strong> isso acontece é o que separa decisão de achismo.</p>
+<p>Direto ao ponto: para achar o ponto de fuga, você mapeia a jornada em etapas, mede quantos avançam em cada uma e procura a <strong>maior queda</strong>. Ali, quase sempre, está a maior oportunidade — e nem sempre é no anúncio.</p>
+<h2>As etapas onde o dinheiro pode se perder</h2>
+<ol>
+<li><strong>Anúncio</strong> — segmentação e mensagem atraem o público certo?</li>
+<li><strong>Clique → página</strong> — a página carrega rápido e mantém a promessa do anúncio?</li>
+<li><strong>Página → lead</strong> — o formulário converte e qualifica, ou espanta?</li>
+<li><strong>Lead → atendimento</strong> — a resposta é rápida e boa, ou o lead esfria?</li>
+<li><strong>Atendimento → venda</strong> — a oferta e o preço fecham?</li>
+<li><strong>Venda → margem</strong> — sobra lucro depois de custos, ou só faturamento?</li>
+</ol>
+<h2>Como mapear na prática</h2>
+<p>Monte uma visão simples com o número de cada etapa: cliques, visitas, leads, oportunidades, vendas e margem. Depois, calcule a passagem de uma etapa para a outra. A etapa com a maior perda relativa é a sua prioridade.</p>
+<table><thead><tr><th>Se a maior queda está em…</th><th>O foco provável é…</th></tr></thead><tbody><tr><td>Clique → página</td><td>Velocidade, alinhamento anúncio/página</td></tr><tr><td>Página → lead</td><td>Oferta, formulário, prova social</td></tr><tr><td>Lead → atendimento</td><td>Velocidade e cadência do comercial</td></tr><tr><td>Atendimento → venda</td><td>Qualificação, oferta, preço</td></tr><tr><td>Venda → margem</td><td>Mix de produtos, custos, precificação</td></tr></tbody></table>
+<div class="box info"><div class="box-t">ℹ️ Por que isso muda tudo</div><p>Aumentar o orçamento quando o gargalo está no atendimento só traz mais leads para esfriar. Consertar a etapa certa costuma render mais do que gastar mais em mídia.</p></div>
+<h2>O papel dos dados</h2>
+<p>Esse mapeamento só é confiável com rastreamento correto e integração ao CRM. Sem ligar campanha, lead e venda, as etapas ficam desconectadas e o ponto de fuga permanece invisível.</p>
+<h2>Quando procurar uma análise independente</h2>
+<p>Se você suspeita que perde dinheiro, mas não sabe em qual etapa, um diagnóstico independente reconstrói o funil completo, encontra a maior fuga e transforma isso em prioridades de ação.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Preciso de ferramentas caras para mapear o funil?</summary><div class="fa">Não. O essencial é organização: rastreamento correto, parâmetros de origem e registro do desfecho de cada lead no CRM. A ferramenta ajuda, mas não substitui o método.</div></details>
+<details><summary>E se a maior perda não estiver no marketing?</summary><div class="fa">É comum. Muitas vezes o gargalo está no atendimento, na oferta ou na margem. Por isso a análise precisa olhar do anúncio até a venda, e não só as campanhas.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>O dinheiro se perde em etapas específicas entre o anúncio e a venda. Mapeie o funil, meça a passagem de cada etapa e ataque a maior queda — que muitas vezes está depois do clique. Sem rastreamento e CRM integrados, o ponto de fuga fica invisível.</p></div>`,
+  },
 ];
