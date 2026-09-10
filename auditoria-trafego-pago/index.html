@@ -1675,19 +1675,17 @@
       </div>
 
       <div class="form-card reveal">
-        <div class="form-progress" aria-hidden="true">
-          <span class="fp-step active" id="fpStep1"><span class="n">1</span> Contato</span>
-          <span class="fp-bar"><i id="fpBar"></i></span>
-          <span class="fp-step" id="fpStep2"><span class="n">2</span> Operação</span>
-        </div>
-
         <form class="lead-form" id="leadForm" novalidate>
-          <!-- ETAPA 1 -->
-          <fieldset id="step1" aria-label="Etapa 1 de 2 — Contato">
+          <fieldset id="step1" aria-label="Seus dados de contato">
             <div>
               <label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label>
               <input id="f-nome" name="nome" type="text" autocomplete="name" required aria-required="true" aria-describedby="err-nome" placeholder="Seu nome" />
               <span class="field-err" id="err-nome" role="alert"></span>
+            </div>
+            <div>
+              <label for="f-email">E-mail profissional <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="err-email" placeholder="voce@empresa.com.br" />
+              <span class="field-err" id="err-email" role="alert"></span>
             </div>
             <div>
               <label for="f-empresa">Empresa <span class="req" aria-hidden="true">*</span></label>
@@ -1699,77 +1697,9 @@
               <input id="f-wpp" name="whatsapp" type="tel" autocomplete="tel" required aria-required="true" aria-describedby="err-wpp" placeholder="(41) 9 9999-9999" />
               <span class="field-err" id="err-wpp" role="alert"></span>
             </div>
-            <div>
-              <label for="f-email">E-mail profissional <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="err-email" placeholder="voce@empresa.com.br" />
-              <span class="field-err" id="err-email" role="alert"></span>
-            </div>
             <div class="full">
               <label for="f-site">Site</label>
               <input id="f-site" name="site" type="text" autocomplete="url" placeholder="www.suaempresa.com.br" />
-            </div>
-            <div class="full form-actions">
-              <button type="button" class="btn btn-primary" id="toStep2">
-                Continuar
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- ETAPA 2 -->
-          <fieldset id="step2" aria-label="Etapa 2 de 2 — Operação" hidden>
-            <div>
-              <label for="f-segmento">Segmento</label>
-              <input id="f-segmento" name="segmento" type="text" placeholder="Ex.: indústria, varejo, serviços…" />
-            </div>
-            <div>
-              <label for="f-invest">Investimento mensal em mídia</label>
-              <select id="f-invest" name="investimento">
-                <option value="">Selecione…</option>
-                <option>Até R$ 5 mil</option>
-                <option>De R$ 5 mil a R$ 10 mil</option>
-                <option>De R$ 10 mil a R$ 30 mil</option>
-                <option>De R$ 30 mil a R$ 100 mil</option>
-                <option>Acima de R$ 100 mil</option>
-              </select>
-            </div>
-            <div>
-              <label for="f-plataformas">Plataformas utilizadas</label>
-              <input id="f-plataformas" name="plataformas" type="text" placeholder="Meta Ads, Google Ads…" />
-            </div>
-            <div>
-              <label for="f-quem">Quem administra as campanhas</label>
-              <select id="f-quem" name="quem">
-                <option value="">Selecione…</option>
-                <option>Agência</option>
-                <option>Gestor de tráfego externo</option>
-                <option>Equipe interna</option>
-                <option>Eu mesmo</option>
-                <option>Ainda não sei / misto</option>
-              </select>
-            </div>
-            <div>
-              <label for="f-crm">Utiliza CRM?</label>
-              <select id="f-crm" name="crm">
-                <option value="">Selecione…</option>
-                <option>Sim</option>
-                <option>Não</option>
-                <option>Parcialmente</option>
-              </select>
-            </div>
-            <div>
-              <label for="f-pacote">Pacote de interesse</label>
-              <select id="f-pacote" name="pacote">
-                <option value="">Selecione…</option>
-                <option>Diagnóstico Essencial</option>
-                <option>Diagnóstico Estratégico Completo</option>
-                <option>Diagnóstico + Conselho Independente</option>
-                <option>Ainda não sei</option>
-              </select>
-            </div>
-            <div class="full">
-              <label for="f-dificuldade">Principal dificuldade hoje</label>
-              <textarea id="f-dificuldade" name="dificuldade" placeholder="Ex.: recebo leads mas não sei se viram venda; não confio nos relatórios; quero aumentar a verba com segurança…"></textarea>
             </div>
             <div class="full consent">
               <input id="f-consent" name="consent" type="checkbox" required aria-required="true" aria-describedby="err-consent" />
@@ -1779,10 +1709,6 @@
               </label>
             </div>
             <div class="full form-actions">
-              <button type="button" class="btn btn-outline on-dark" id="backStep1">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-                Voltar
-              </button>
               <button type="submit" class="btn btn-primary" id="submitBtn">
                 <span class="btn-label">Solicitar avaliação inicial</span>
                 <svg class="btn-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
@@ -1796,6 +1722,43 @@
       </div>
     </div>
   </section>
+
+  <!-- ==================== MODAL PÓS-CADASTRO ==================== -->
+  <style>
+    .lead-modal{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:20px;}
+    .lead-modal[hidden]{display:none;}
+    .lead-modal-backdrop{position:absolute;inset:0;background:rgba(11,23,42,.62);}
+    .lead-modal-card{position:relative;background:var(--white);color:var(--ink);border-radius:var(--r-card);
+      max-width:400px;width:100%;padding:2.1rem 1.6rem 1.5rem;text-align:center;
+      box-shadow:0 24px 70px rgba(11,23,42,.4);animation:lmIn .24s ease;}
+    @keyframes lmIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+    .lead-modal-x{position:absolute;top:.5rem;right:.5rem;width:34px;height:34px;border:none;background:transparent;
+      font-size:1.6rem;line-height:1;color:var(--muted);cursor:pointer;border-radius:8px;}
+    .lead-modal-x:hover{background:var(--paper);}
+    .lm-ico{font-size:2.4rem;margin-bottom:.3rem;}
+    .lead-modal-card h3{font-family:'Sora',sans-serif;font-size:1.4rem;margin:0 0 .5rem;color:var(--ink);}
+    .lead-modal-card p{color:var(--muted);font-size:.98rem;line-height:1.55;margin:0 0 1.3rem;}
+    .lm-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;box-sizing:border-box;
+      background:#25D366;color:#fff;font-weight:700;font-size:1rem;padding:.85rem 1rem;border-radius:var(--r-btn);
+      text-decoration:none;transition:background .2s,transform .2s;}
+    .lm-wa:hover{background:#1ebe5b;transform:translateY(-1px);}
+    .lm-later{margin-top:.9rem;background:transparent;border:none;color:var(--muted);font-size:.9rem;cursor:pointer;
+      text-decoration:underline;text-underline-offset:2px;}
+  </style>
+  <div class="lead-modal" id="leadModal" hidden>
+    <div class="lead-modal-backdrop" id="leadModalClose"></div>
+    <div class="lead-modal-card" role="dialog" aria-modal="true" aria-labelledby="lm-title">
+      <button class="lead-modal-x" id="leadModalX" type="button" aria-label="Fechar">&times;</button>
+      <div class="lm-ico" aria-hidden="true">✅</div>
+      <h3 id="lm-title">Cadastro recebido!</h3>
+      <p>Quer adiantar? Fale agora comigo no WhatsApp — eu respondo pessoalmente.</p>
+      <a class="lm-wa" id="lm-wa" href="#" target="_blank" rel="noopener" data-ev="wa_modal">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.6 6.32A8 8 0 0 0 4.05 14.6L3 20l5.55-1.04a8 8 0 0 0 11.4-7.27 8 8 0 0 0-2.35-5.37Zm-5.6 12.27a6.6 6.6 0 0 1-3.37-.92l-.24-.14-3.29.62.62-3.21-.16-.26a6.65 6.65 0 1 1 6.44 3.91Z"/></svg>
+        Falar agora no WhatsApp
+      </a>
+      <button class="lm-later" id="leadModalLater" type="button">Agora não, obrigado</button>
+    </div>
+  </div>
   </main>
 
   <!-- ==================== FOOTER ==================== -->
@@ -1975,9 +1938,8 @@
        implemente window.bpSubmitLead(payload) retornando uma Promise;
        se existir, ela é usada no lugar do WhatsApp.
        ============================================================ */
-    var form = $("#leadForm"), step1 = $("#step1"), step2 = $("#step2");
-    var toStep2 = $("#toStep2"), backStep1 = $("#backStep1"), submitBtn = $("#submitBtn");
-    var fpStep1 = $("#fpStep1"), fpStep2 = $("#fpStep2"), fpBar = $("#fpBar"), statusBox = $("#formStatus");
+    var form = $("#leadForm"), step1 = $("#step1"), submitBtn = $("#submitBtn"), statusBox = $("#formStatus");
+    var leadModal = $("#leadModal"), lmWa = $("#lm-wa");
 
     function setErr(id, msg){
       var input = $("#f-"+id), err = $("#err-"+id);
@@ -2003,23 +1965,12 @@
       return ok;
     }
 
-    function goStep2(){
-      if(!validateStep1()) return;
-      step1.setAttribute("hidden",""); step2.removeAttribute("hidden");
-      fpStep1.classList.remove("active"); fpStep1.classList.add("done");
-      fpStep2.classList.add("active"); fpBar.style.width = "100%";
-      bpTrack("form_step2");
-      var f = step2.querySelector("input,select,textarea"); if(f) f.focus();
-      step2.scrollIntoView({behavior: reduce ? "auto":"smooth", block:"center"});
-    }
-    function goStep1(){
-      step2.setAttribute("hidden",""); step1.removeAttribute("hidden");
-      fpStep2.classList.remove("active"); fpStep1.classList.remove("done"); fpStep1.classList.add("active");
-      fpBar.style.width = "50%";
-      $("#f-nome").focus();
-    }
-    toStep2.addEventListener("click", goStep2);
-    backStep1.addEventListener("click", goStep1);
+    function openModal(){ leadModal.hidden = false; document.body.style.overflow = "hidden"; }
+    function closeModal(){ leadModal.hidden = true; document.body.style.overflow = ""; }
+    $("#leadModalX").addEventListener("click", closeModal);
+    $("#leadModalLater").addEventListener("click", closeModal);
+    $("#leadModalClose").addEventListener("click", closeModal);
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !leadModal.hidden) closeModal(); });
 
     // marca início do preenchimento uma única vez
     var started = false;
@@ -2030,17 +1981,10 @@
     function collect(){
       return {
         nome: $("#f-nome").value.trim(),
+        email: $("#f-email").value.trim(),
         empresa: $("#f-empresa").value.trim(),
         whatsapp: $("#f-wpp").value.trim(),
-        email: $("#f-email").value.trim(),
         site: $("#f-site").value.trim(),
-        segmento: $("#f-segmento").value.trim(),
-        investimento: $("#f-invest").value,
-        plataformas: $("#f-plataformas").value.trim(),
-        quem: $("#f-quem").value,
-        crm: $("#f-crm").value,
-        pacote: $("#f-pacote").value,
-        dificuldade: $("#f-dificuldade").value.trim(),
         origem: "www.diagnosticotrafegopago.com.br"
       };
     }
@@ -2059,19 +2003,16 @@
     }
     function setLoading(on){
       submitBtn.disabled = on;
-      var label = submitBtn.querySelector(".btn-label"), ico = submitBtn.querySelector(".btn-ico");
-      if(on){
-        submitBtn.dataset.prev = label.textContent;
-        label.textContent = "Enviando…";
-        if(ico){ ico.outerHTML = '<span class="spinner btn-ico" role="presentation"></span>'; }
+      var label = submitBtn.querySelector(".btn-label");
+      if(label){
+        if(on){ submitBtn.dataset.prev = label.textContent; label.textContent = "Enviando…"; }
+        else if(submitBtn.dataset.prev){ label.textContent = submitBtn.dataset.prev; }
       }
     }
 
     form.addEventListener("submit", function(e){
       e.preventDefault();
-      // se etapa 2 escondida, apenas avança
-      if(step2.hasAttribute("hidden")){ goStep2(); return; }
-      if(!validateStep1()){ goStep1(); return; }
+      if(!validateStep1()) return;
       setErr("consent","");
       if(!$("#f-consent").checked){
         setErr("consent","É necessário autorizar o contato para prosseguir.");
@@ -2081,26 +2022,26 @@
       var data = collect();
       setLoading(true);
       showStatus("ok","Processando sua solicitação…");
-      bpTrack("form_submit", data.pacote ? {pacote:data.pacote} : {});
+      bpTrack("form_submit", {});
 
-      // Ponto de integração desacoplado: usa backend se disponível, senão WhatsApp.
+      // Prepara o link do WhatsApp para o botão do modal. O clique do usuário no
+      // modal abre o WhatsApp (gesto do usuário = sem bloqueio de pop-up).
+      lmWa.href = "https://wa.me/" + WPP + "?text=" + encodeURIComponent(waMessage(data));
+
+      // Ponto de integração desacoplado: grava o lead no backend, se disponível.
       var flow = (typeof window.bpSubmitLead === "function")
         ? window.bpSubmitLead(data)
         : Promise.reject({fallback:true});
 
       flow.then(function(){
-        // Lead já gravado no banco. Abre o WhatsApp com a mensagem simples
-        // para o contato chegar direto ao Bruno.
-        var url = "https://wa.me/" + WPP + "?text=" + encodeURIComponent(waMessage(data));
-        window.open(url, "_blank", "noopener,noreferrer");
-        showStatus("ok","Recebemos sua solicitação! Abrimos o WhatsApp para você finalizar o contato. Se não abrir, chame em wa.me/" + WPP + ".");
+        showStatus("ok","Recebemos seu cadastro! ✅");
         setLoading(false);
+        openModal();
       }).catch(function(err){
-        // fallback WhatsApp — NÃO limpa o formulário em caso de falha de backend.
-        var url = "https://wa.me/" + WPP + "?text=" + encodeURIComponent(waMessage(data));
-        window.open(url, "_blank", "noopener,noreferrer");
-        showStatus("ok","Abrimos o WhatsApp com seus dados. Se não abrir, chame diretamente em wa.me/" + WPP + ".");
+        // Mesmo sem backend, mostramos o modal para o contato seguir pelo WhatsApp.
+        showStatus("ok","Recebemos seu cadastro! ✅");
         setLoading(false);
+        openModal();
         if(err && !err.fallback){ bpTrack("form_backend_error"); }
       });
     });
