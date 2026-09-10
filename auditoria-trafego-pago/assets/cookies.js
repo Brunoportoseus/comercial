@@ -11,14 +11,49 @@
 (function () {
   var KEY = "bp-cookie-consent"; // "accepted" | "rejected"
 
+  // ID de Medição do Google Analytics 4 (formato "G-XXXXXXXXXX").
+  // Deixe vazio para manter o GA4 desligado. Ao preencher, o GA4 passa a
+  // carregar SOMENTE quando o visitante aceita os cookies analíticos.
+  var GA_ID = "";
+
   function getChoice() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  // Carrega o GA4 (gtag.js) sob consentimento e espelha para ele os eventos
+  // "bp_*" que a landing e o blog já empurram em window.dataLayer — sem exigir
+  // alteração no código de eventos de cada página.
+  var gaLoaded = false;
+  function loadGA4() {
+    if (gaLoaded || !GA_ID) return;
+    gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    var rawPush = window.dataLayer.push.bind(window.dataLayer);
+    window.gtag = function () { rawPush(arguments); };
+    // Ponte: espelha objetos {event:"bp_..."} como eventos do GA4.
+    window.dataLayer.push = function (o) {
+      try {
+        if (o && typeof o === "object" && typeof o.event === "string" && o.event.indexOf("bp_") === 0) {
+          var params = {};
+          for (var k in o) { if (o.hasOwnProperty(k) && k !== "event") params[k] = o[k]; }
+          window.gtag("event", o.event.slice(3), params);
+        }
+      } catch (e) {}
+      return rawPush.apply(null, arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    document.head.appendChild(s);
   }
 
   function enableAnalytics() {
     if (typeof window.bpEnableAnalytics === "function") {
       try { window.bpEnableAnalytics(); } catch (e) {}
     }
+    loadGA4();
   }
 
   function save(value) {
