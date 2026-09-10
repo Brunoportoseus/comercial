@@ -1528,4 +1528,163 @@ const SEED_POSTS = [
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>Site institucional informa; landing page converte. Mandar o tráfego pago para a home costuma diluir a atenção e derrubar a conversão. Leve cada clique para uma página que continua a promessa do anúncio, com uma oferta, um objetivo e o mínimo de distração.</p></div>`,
   },
+  {
+    slug: "meta-ads-para-empresarios-guia-completo",
+    title: "Meta Ads para empresários: o guia completo",
+    subtitle: "Como funciona a publicidade no Instagram e no Facebook, quanto investir, por que o resultado mudou e como saber se está dando lucro — sem jargão, do ponto de vista de quem paga a conta.",
+    category: "meta-ads",
+    tags: "meta ads,facebook ads,instagram ads,guia",
+    excerpt: "Guia de Meta Ads para empresários: como funciona, quanto investir, por que o resultado mudou e como medir se dá lucro. Uma visão de negócio, sem jargão técnico.",
+    seo_title: "Meta Ads para empresários: o guia completo",
+    seo_description: "Guia completo de Meta Ads (Facebook e Instagram) para empresários: como funciona, quanto investir, por que rende menos que antes e como medir o resultado real.",
+    cta_type: "campanha",
+    featured: 0,
+    related: "meta-ads-nao-vende-como-antes-o-que-mudou,quanto-investir-em-meta-ads-para-comecar,google-ads-ou-meta-ads-qual-e-melhor-para-o-meu-negocio,rastreamento-de-conversoes-por-que-e-a-base-de-tudo",
+    content: `<p>O <strong>Meta Ads</strong> — a plataforma que anuncia no Instagram e no Facebook — é, para muitas empresas, a porta de entrada no tráfego pago. Este guia reúne, num só lugar e sem jargão, o que um empresário precisa entender para investir com clareza: como funciona, quanto colocar, por que o resultado mudou e como saber se dá lucro.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>Meta Ads não é sobre "impulsionar post". É sobre mostrar a oferta certa para a pessoa certa e medir se aquilo virou cliente. A plataforma é uma ferramenta — o resultado depende de oferta, página, medição e atendimento.</p></div>
+<h2>Como o Meta Ads funciona, em resumo</h2>
+<p>Diferente do Google, onde a pessoa procura pelo que quer, no Meta a sua oferta aparece para quem <em>ainda não estava procurando</em>. Isso torna a plataforma forte para gerar demanda e apresentar produtos visuais — mas exige criativo bom e uma oferta clara, porque você está interrompendo, não respondendo a uma busca. A diferença entre os dois canais está detalhada em <a href="/blog/google-ads-ou-meta-ads-qual-e-melhor-para-o-meu-negocio">Google Ads ou Meta Ads: qual é melhor para o meu negócio</a>.</p>
+<h2>Quanto investir para começar</h2>
+<p>Não existe um valor mágico. O orçamento certo parte de quanto a sua margem suporta pagar por cliente e de quantos clientes você quer testar — não de um número aleatório. Investir de menos gera dados insuficientes e a conclusão errada de que "não funciona". O raciocínio completo está em <a href="/blog/quanto-investir-em-meta-ads-para-comecar">quanto investir em Meta Ads para começar</a>.</p>
+<h2>Por que o resultado mudou nos últimos anos</h2>
+<p>Quem anuncia há mais tempo sente que o mesmo investimento rende menos. Não é impressão: mais concorrência, mídia mais cara (com o repasse de tributos desde 2026) e rastreamento enfraquecido se somam — junto, muitas vezes, com criativos fadigados. Separar o que é de mercado do que está no seu controle é o tema de <a href="/blog/meta-ads-nao-vende-como-antes-o-que-mudou">Meta Ads não vende como antes: o que mudou</a>.</p>
+<h2>Como saber se está dando lucro</h2>
+<p>O painel do Meta mostra cliques e "conversões", mas isso não é o mesmo que venda com margem. Para decidir bem, é preciso ligar as campanhas ao que foi de fato vendido — e isso depende de rastreamento correto, base de toda a medição, explicado em <a href="/blog/rastreamento-de-conversoes-por-que-e-a-base-de-tudo">rastreamento de conversões: por que é a base de tudo</a>.</p>
+<h2>Os erros mais comuns</h2>
+<ul>
+<li><strong>Impulsionar por impulsionar</strong>, sem oferta nem objetivo claro;</li>
+<li><strong>Orçamento baixo demais</strong> para gerar aprendizado;</li>
+<li><strong>Mandar o clique para a home</strong> do site em vez de uma página de conversão;</li>
+<li><strong>Decidir só pelo painel</strong>, sem confirmar a venda no caixa;</li>
+<li><strong>Deixar o mesmo criativo</strong> rodando até cansar o público.</li>
+</ul>
+<h2>Quando um diagnóstico ajuda</h2>
+<p>Se você investe no Meta e não consegue dizer, com dados, quanto cada campanha vendeu e se deu lucro, um diagnóstico independente cruza mídia, rastreamento, página e vendas — e mostra onde está a perda antes de você aumentar a verba.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Meta Ads é o mesmo que impulsionar post?</summary><div class="fa">Impulsionar é a versão mais simples e limitada. O Meta Ads (pelo Gerenciador de Anúncios) permite objetivos, públicos e medição muito mais completos — e costuma render mais quando bem usado.</div></details>
+<details><summary>Preciso estar no Instagram e no Facebook?</summary><div class="fa">A plataforma entrega nos dois e em outros espaços da Meta. Onde o seu público está e onde o resultado aparece é algo que se descobre medindo, não presumindo.</div></details>
+<details><summary>Dá para ter resultado com pouco investimento?</summary><div class="fa">Dá, mas há um mínimo prático: verba suficiente para a campanha aprender. Abaixo disso, os dados não permitem conclusão — e o barato sai caro em tempo perdido.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Meta Ads gera demanda no Instagram e no Facebook — forte para apresentar ofertas a quem ainda não procurava. O resultado depende de orçamento bem dimensionado, criativo, página, rastreamento e atendimento. Meça pela venda, não pelo painel. Os guias ligados aqui aprofundam cada ponto.</p></div>`,
+  },
+  {
+    slug: "google-ads-para-empresarios-guia-completo",
+    title: "Google Ads para empresários: o guia completo",
+    subtitle: "Como capturar quem já procura pelo que você vende, por que o custo sobe, onde a verba se perde e como avaliar o retorno — uma visão de negócio, sem tecnês.",
+    category: "google-ads",
+    tags: "google ads,rede de pesquisa,guia,custo",
+    excerpt: "Guia de Google Ads para empresários: como funciona a captura de demanda, por que fica caro, onde a verba se perde e como avaliar o retorno real das campanhas.",
+    seo_title: "Google Ads para empresários: o guia completo",
+    seo_description: "Guia completo de Google Ads para empresários: como funciona, por que o custo sobe, como reduzir desperdício com palavras-chave negativas e como medir o retorno.",
+    cta_type: "campanha",
+    featured: 0,
+    related: "google-ads-caro-quais-podem-ser-as-causas,palavras-chave-negativas-o-ajuste-que-reduz-desperdicio,google-ads-ou-meta-ads-qual-e-melhor-para-o-meu-negocio,como-calcular-o-retorno-do-trafego-pago",
+    content: `<p>O <strong>Google Ads</strong> tem uma vantagem que poucas mídias oferecem: ele coloca a sua empresa na frente de quem <em>já está procurando</em> pelo que você vende. Este guia organiza, para o empresário, o que importa saber — como funciona, por que fica caro, onde a verba se perde e como avaliar se dá retorno.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>No Google, você não gera desejo — você captura demanda que já existe. Por isso o segredo não é gastar mais, e sim aparecer para as buscas certas e evitar as erradas.</p></div>
+<h2>Como o Google Ads funciona, em resumo</h2>
+<p>Na rede de pesquisa, alguém digita "dentista em Curitiba" ou "conserto de geladeira urgente" e o seu anúncio pode aparecer ali, no momento da intenção. Isso torna o Google especialmente forte para serviços e compras com busca clara. Quando faz mais sentido investir no Google e quando no Meta está em <a href="/blog/google-ads-ou-meta-ads-qual-e-melhor-para-o-meu-negocio">Google Ads ou Meta Ads: qual é melhor para o meu negócio</a>.</p>
+<h2>Por que o Google Ads fica caro</h2>
+<p>Custo alto raramente tem uma causa única. Concorrência no leilão, palavras-chave amplas demais, anúncios pouco relevantes e página fraca empurram o preço para cima. As causas mais comuns — e o que fazer com cada uma — estão em <a href="/blog/google-ads-caro-quais-podem-ser-as-causas">Google Ads caro: quais podem ser as causas</a>.</p>
+<h2>Onde a verba se perde (e como cortar)</h2>
+<p>Um dos maiores desperdícios é invisível: pagar por cliques de buscas sem intenção de compra. O ajuste que mais economiza — e que muita conta ignora — são as palavras-chave negativas, detalhadas em <a href="/blog/palavras-chave-negativas-o-ajuste-que-reduz-desperdicio">palavras-chave negativas: o ajuste que reduz desperdício</a>.</p>
+<h2>Como avaliar o retorno</h2>
+<p>Cliques e "conversões" no painel não são vendas com margem. Para saber se o Google Ads dá lucro, é preciso calcular o retorno considerando margem, impostos e custo por cliente — o passo a passo está em <a href="/blog/como-calcular-o-retorno-do-trafego-pago">como calcular o retorno do tráfego pago</a>.</p>
+<h2>Os erros mais comuns</h2>
+<ul>
+<li><strong>Palavras-chave amplas</strong> sem lista de negativas;</li>
+<li><strong>Mandar todo mundo para a home</strong> em vez de páginas específicas;</li>
+<li><strong>Olhar o CPC baixo</strong> e ignorar o custo por cliente;</li>
+<li><strong>Não acompanhar o relatório de termos de pesquisa</strong>;</li>
+<li><strong>Decidir verba pelo painel</strong>, sem ligar à venda real.</li>
+</ul>
+<h2>Quando um diagnóstico ajuda</h2>
+<p>Se a conta está cara e você não sabe onde a verba escapa, uma auditoria independente olha estrutura de campanhas, termos de pesquisa e página de destino — e mostra o desperdício e o que dá para recuperar sem aumentar o orçamento.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Google Ads serve para qualquer negócio?</summary><div class="fa">Serve melhor quando há busca ativa pelo que você oferece. Se ninguém procura pelo produto ainda, gerar demanda no Meta pode fazer mais sentido como ponto de partida.</div></details>
+<details><summary>Aparecer em primeiro lugar vale a pena?</summary><div class="fa">Nem sempre. A primeira posição custa mais e não garante a venda mais barata. O que importa é o custo por cliente, não a posição pela posição.</div></details>
+<details><summary>Preciso mexer na conta toda semana?</summary><div class="fa">Contas de pesquisa pedem manutenção recorrente — sobretudo negativar buscas irrelevantes. Sem isso, o desperdício cresce silenciosamente.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Google Ads captura demanda que já existe — poderoso para quem é procurado. O custo sobe por concorrência e por buscas erradas; o maior ganho está em aparecer para os termos certos e cortar os irrelevantes. Meça o retorno pela venda com margem, não pelo CPC. Os guias ligados aqui detalham cada etapa.</p></div>`,
+  },
+  {
+    slug: "rastreamento-e-dados-guia-para-empresarios",
+    title: "Rastreamento e dados no tráfego pago: guia para empresários",
+    subtitle: "Por que medir corretamente é o que separa decisão de palpite, por que os números nunca batem entre as ferramentas e como montar uma base de dados confiável.",
+    category: "rastreamento-e-dados",
+    tags: "rastreamento,dados,atribuição,mensuração",
+    excerpt: "Guia de rastreamento e dados para empresários: por que a medição é a base do tráfego pago, por que os números divergem entre ferramentas e como confiar nos dados.",
+    seo_title: "Rastreamento e dados no tráfego pago: guia para empresários",
+    seo_description: "Guia de rastreamento e dados para empresários: por que a medição é a base do tráfego pago, por que os números divergem entre plataformas e como decidir com dados.",
+    cta_type: "default",
+    featured: 0,
+    related: "rastreamento-de-conversoes-por-que-e-a-base-de-tudo,por-que-o-numero-do-meta-nao-bate-com-o-do-google-analytics,como-saber-se-o-trafego-pago-esta-funcionando,cliques-nao-sao-vendas-como-avaliar-o-resultado-real",
+    content: `<p>Toda decisão de tráfego pago — aumentar verba, cortar campanha, trocar de canal — depende de uma coisa que ninguém vê nos anúncios: os <strong>dados</strong>. Quando a medição é confiável, você decide com base em fatos. Quando não é, decide no escuro. Este guia explica, para o empresário, por que rastreamento e dados são a base de tudo.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>Sem medir o que acontece depois do clique, toda decisão vira palpite — e o algoritmo das plataformas também aprende errado. Dados confiáveis não são um luxo técnico: são o que separa investir de apostar.</p></div>
+<h2>Por que o rastreamento é o alicerce</h2>
+<p>As plataformas otimizam com base em resultado: quando sabem quem converteu, buscam mais pessoas parecidas. Se esse sinal não chega, a campanha entrega no escuro. Por que isso é a base de tudo está em <a href="/blog/rastreamento-de-conversoes-por-que-e-a-base-de-tudo">rastreamento de conversões: por que é a base de tudo</a>.</p>
+<h2>Por que os números nunca batem</h2>
+<p>Meta, Google Analytics e o seu sistema de vendas quase nunca mostram o mesmo número para a mesma campanha — e isso é esperado, não um erro. Cada um conta de um jeito. O perigo é somar tudo e superestimar o resultado. O porquê da divergência está em <a href="/blog/por-que-o-numero-do-meta-nao-bate-com-o-do-google-analytics">por que o número do Meta não bate com o do Google Analytics</a>.</p>
+<h2>Conversão no painel não é venda</h2>
+<p>Uma "conversão" pode ser um clique, um formulário ou uma mensagem — não necessariamente uma venda com margem. Confundir os dois é origem de decisão errada, como mostra <a href="/blog/cliques-nao-sao-vendas-como-avaliar-o-resultado-real">cliques não são vendas</a>. Para avaliar o que realmente indica resultado, veja <a href="/blog/como-saber-se-o-trafego-pago-esta-funcionando">como saber se o tráfego pago está funcionando</a>.</p>
+<h2>Como montar uma base de dados confiável</h2>
+<ul>
+<li><strong>Instalar e validar</strong> o Pixel e a API de Conversões;</li>
+<li><strong>Marcar os eventos certos</strong> (compra, lead, contato) e testar se disparam;</li>
+<li><strong>Eleger uma fonte de verdade</strong> para a venda — normalmente o CRM ou o sistema de vendas;</li>
+<li><strong>Ligar campanhas ao resultado comercial</strong>, não só ao painel;</li>
+<li><strong>Comparar o registrado com o caixa</strong> de tempos em tempos.</li>
+</ul>
+<div class="box tip"><div class="box-t">💡 Quase nunca é falta de ferramenta</div><p>Na maioria dos casos, o que falta não é um software caro, e sim organização: rastreamento correto, eventos certos e integração com o CRM. É trabalho de base, de alto impacto.</p></div>
+<h2>Quando um diagnóstico ajuda</h2>
+<p>Se você desconfia que os números não refletem a realidade, um diagnóstico começa pela medição: verifica se o rastreamento está íntegro antes de discutir criativo ou orçamento — porque, sem essa base, o resto é chute.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Qual ferramenta devo usar como fonte de verdade?</summary><div class="fa">Para o resultado comercial, normalmente o CRM ou o sistema de vendas — é onde a venda real fica registrada. As plataformas de anúncio servem para otimizar, não como placar final.</div></details>
+<details><summary>Rastreamento não é assunto só de técnico?</summary><div class="fa">A implementação é técnica, mas a decisão de exigir dados confiáveis é do dono do negócio. Sem essa cobrança, é comum a operação rodar meses medindo errado.</div></details>
+<details><summary>Como sei se meus dados estão confiáveis?</summary><div class="fa">Comparando o que as ferramentas registram com as vendas reais do caixa. Diferenças pequenas são normais; diferenças enormes pedem revisão do rastreamento.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Rastreamento e dados são a base do tráfego pago: sem medir o que vem depois do clique, decisão vira palpite e o algoritmo aprende errado. Os números divergem entre ferramentas por natureza — eleja uma fonte de verdade e ligue campanhas à venda real. Os guias ligados aqui aprofundam cada ponto.</p></div>`,
+  },
+  {
+    slug: "landing-pages-que-convertem-guia-para-empresarios",
+    title: "Landing pages que convertem: guia para empresários",
+    subtitle: "Por que a página de destino decide o resultado do anúncio, o que uma boa landing page tem e como identificar se é ela que está travando as suas vendas.",
+    category: "landing-pages",
+    tags: "landing page,conversão,cro,guia",
+    excerpt: "Guia de landing pages para empresários: por que a página de destino decide o resultado do anúncio, o que uma boa landing tem e como saber se ela é o gargalo.",
+    seo_title: "Landing pages que convertem: guia para empresários",
+    seo_description: "Guia de landing pages que convertem para empresários: por que a página de destino decide o resultado do anúncio, o que uma boa landing tem e como testar.",
+    cta_type: "conversao",
+    featured: 0,
+    related: "landing-page-ou-site-institucional-para-onde-mandar-o-anuncio,muitos-leads-e-poucas-vendas-onde-esta-o-problema,onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda",
+    content: `<p>Você pode ter o melhor anúncio do mundo: se a página que recebe o clique não convence, o dinheiro escorre. A <strong>landing page</strong> — a página de destino do anúncio — é onde a promessa vira ação (ou se perde). Este guia mostra ao empresário por que ela decide o resultado e como reconhecer uma que funciona.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>O anúncio traz a pessoa até a porta; a landing page decide se ela entra. Muitas empresas otimizam o anúncio exaustivamente e ignoram a página — onde, na prática, a venda é ganha ou perdida.</p></div>
+<h2>Por que a página de destino decide o resultado</h2>
+<p>Mandar o tráfego pago para a home do site institucional é um dos erros mais comuns: excesso de opções, nenhuma ação óbvia, a pessoa se distrai e sai. A diferença entre uma página que informa e uma que converte está em <a href="/blog/landing-page-ou-site-institucional-para-onde-mandar-o-anuncio">landing page ou site institucional: para onde mandar o anúncio</a>.</p>
+<h2>O que uma landing page que converte tem</h2>
+<ul>
+<li><strong>Uma oferta clara</strong>, que continua a promessa do anúncio;</li>
+<li><strong>Um único objetivo</strong> — um botão, uma ação;</li>
+<li><strong>Provas</strong>: depoimentos, casos, garantias;</li>
+<li><strong>Pouca distração</strong> — sem menu cheio nem saídas desnecessárias;</li>
+<li><strong>Velocidade e boa experiência no celular.</strong></li>
+</ul>
+<h2>Como saber se a página é o seu gargalo</h2>
+<p>Se o anúncio tem bom CTR (as pessoas clicam) mas poucas convertem, o gargalo provavelmente está na página, não na campanha. Esse é um dos pontos onde a empresa <a href="/blog/onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda">perde dinheiro entre o anúncio e a venda</a> — e uma causa frequente de <a href="/blog/muitos-leads-e-poucas-vendas-onde-esta-o-problema">muitos leads e poucas vendas</a>.</p>
+<h2>Os erros mais comuns</h2>
+<ul>
+<li><strong>Usar a home</strong> como destino padrão de toda campanha;</li>
+<li><strong>Prometer no anúncio</strong> o que a página não entrega;</li>
+<li><strong>Página lenta</strong> ou ruim no celular;</li>
+<li><strong>Formulário longo</strong> demais ou objetivo confuso;</li>
+<li><strong>Falta de provas</strong> que sustentem a oferta.</li>
+</ul>
+<h2>Quando um diagnóstico ajuda</h2>
+<p>Se os anúncios geram cliques mas poucos contatos ou vendas, vale avaliar a página junto com a campanha. Um diagnóstico independente olha a jornada inteira — do anúncio à página ao atendimento — e mostra onde o clique pago está travando.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Toda campanha precisa de uma landing page própria?</summary><div class="fa">Não obrigatoriamente, mas cada campanha deveria levar a uma página coerente com sua promessa. Ofertas muito diferentes pedem páginas próprias; semelhantes podem compartilhar uma boa landing.</div></details>
+<details><summary>Uma landing page precisa ser cara?</summary><div class="fa">Não. Uma página simples, clara e rápida, com uma oferta e um objetivo, costuma converter mais do que um site elaborado e cheio de distrações.</div></details>
+<details><summary>Como testo se a página está boa?</summary><div class="fa">Acompanhando a taxa de conversão de quem chega pelo anúncio e comparando versões. Se o clique é bom e a conversão é baixa, a página é a primeira suspeita.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>A landing page decide se o clique pago vira cliente. Site institucional informa; landing page converte. Leve cada anúncio a uma página com uma oferta, um objetivo e o mínimo de distração — e, se o clique é bom mas a venda não vem, olhe a página antes de culpar a campanha. Os guias ligados aqui detalham cada ponto.</p></div>`,
+  },
 ];
