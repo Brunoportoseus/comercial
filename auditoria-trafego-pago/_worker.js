@@ -273,6 +273,7 @@ const CAT_PILLAR = {
   "google-ads": { slug: "google-ads-para-empresarios-guia-completo", title: "Google Ads para empresários: o guia completo" },
   "rastreamento-e-dados": { slug: "rastreamento-e-dados-guia-para-empresarios", title: "Rastreamento e dados no tráfego pago: guia para empresários" },
   "landing-pages": { slug: "landing-pages-que-convertem-guia-para-empresarios", title: "Landing pages que convertem: guia para empresários" },
+  "vendas-e-atendimento": { slug: "vendas-e-atendimento-guia-para-empresarios", title: "Vendas e atendimento no tráfego pago: guia para empresários" },
 };
 
 const SITE = "https://www.diagnosticotrafegopago.com.br";
@@ -1705,5 +1706,185 @@ const SEED_POSTS = [
 <details><summary>Como testo se a página está boa?</summary><div class="fa">Acompanhando a taxa de conversão de quem chega pelo anúncio e comparando versões. Se o clique é bom e a conversão é baixa, a página é a primeira suspeita.</div></details>
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>A landing page decide se o clique pago vira cliente. Site institucional informa; landing page converte. Leve cada anúncio a uma página com uma oferta, um objetivo e o mínimo de distração — e, se o clique é bom mas a venda não vem, olhe a página antes de culpar a campanha. Os guias ligados aqui detalham cada ponto.</p></div>`,
+  },
+  {
+    slug: "lead-nao-responde-como-fazer-follow-up-que-funciona",
+    title: "O lead não responde: como fazer um follow-up que funciona",
+    subtitle: "A maioria das vendas perdidas no tráfego pago não morre no anúncio — morre no silêncio depois do primeiro contato. Veja como estruturar o acompanhamento.",
+    category: "vendas-e-atendimento",
+    tags: "follow-up,cadência,vendas,whatsapp",
+    excerpt: "Lead que não responde raramente é lead ruim — muitas vezes é follow-up fraco. Veja como estruturar uma cadência de contato que recupera vendas sem parecer insistência.",
+    seo_title: "O lead não responde: como fazer um follow-up que funciona",
+    seo_description: "O lead do tráfego pago não responde? Aprenda a montar um follow-up estruturado — cadência, canais e timing — que recupera vendas sem soar insistente.",
+    cta_type: "conversao",
+    featured: 0,
+    related: "muitos-leads-e-poucas-vendas-onde-esta-o-problema,velocidade-de-atendimento-o-primeiro-a-responder-vende-mais",
+    content: `<p>Você paga pelo lead, ele chega, o vendedor manda uma mensagem… e o silêncio. A reação mais comum é concluir que "o lead é ruim". Mas, na maioria dos casos, o contato simplesmente <strong>não foi trabalhado o suficiente</strong>. Follow-up fraco é uma das maiores fontes de venda perdida no tráfego pago.</p>
+<p>De forma direta: um bom follow-up é uma <strong>sequência planejada de contatos</strong> — não uma mensagem única que, se não for respondida, é abandonada. A diferença entre desistir no primeiro "oi" sem resposta e ter uma cadência costuma ser a diferença entre o lead esquecido e o lead que fecha.</p>
+<h2>Por que o primeiro contato quase nunca basta</h2>
+<p>O lead do tráfego pago muitas vezes está em pesquisa, ocupado ou avaliando opções. Não responder na hora não significa "não quero" — significa "agora não". Quem desiste no primeiro silêncio entrega a venda para o concorrente que insistiu com educação.</p>
+<div class="box alert"><div class="box-t">⚠️ Desistir cedo é jogar verba fora</div><p>Cada lead custou dinheiro em mídia. Abandoná-lo após uma tentativa é desperdiçar o investimento já feito — pior do que não ter gerado o lead, porque você pagou e não colheu.</p></div>
+<h2>Como estruturar uma cadência simples</h2>
+<p>Não precisa de nada sofisticado. Uma cadência básica já muda o resultado:</p>
+<table><thead><tr><th>Momento</th><th>Ação</th></tr></thead><tbody><tr><td>Nos primeiros minutos</td><td>Primeiro contato, enquanto o interesse está quente</td></tr><tr><td>Algumas horas depois</td><td>Segunda tentativa, por outro canal se possível</td></tr><tr><td>No dia seguinte</td><td>Retomada com uma informação útil, não só "e aí?"</td></tr><tr><td>Nos dias seguintes</td><td>2 a 3 toques espaçados, com valor a cada um</td></tr></tbody></table>
+<p>O segredo não é insistir mais alto — é insistir com <strong>utilidade</strong>: uma dúvida respondida, um caso parecido, uma condição. Cada toque deve dar um motivo para a pessoa voltar.</p>
+<h2>Os erros que matam o follow-up</h2>
+<ul>
+<li><strong>Uma tentativa só</strong> e desistência;</li>
+<li>Mensagens genéricas de <strong>"tem interesse ainda?"</strong> sem valor;</li>
+<li>Demora de horas ou dias para o <strong>primeiro contato</strong>;</li>
+<li>Nenhum <strong>registro</strong> de quem já foi contatado e quando.</li>
+</ul>
+<p>Esse último ponto é decisivo: sem registrar os contatos, a operação perde o fio — e é aí que um CRM entra, tema de <a href="/blog/crm-por-que-o-trafego-pago-precisa-de-um">por que o tráfego pago precisa de um CRM</a>.</p>
+<h2>Quando o problema é o follow-up e quando é o lead</h2>
+<p>Se leads da mesma origem fecham quando bem trabalhados e somem quando mal acompanhados, o gargalo é o processo, não a qualidade. Distinguir os dois é parte de descobrir <a href="/blog/muitos-leads-e-poucas-vendas-onde-esta-o-problema">onde está o problema entre muitos leads e poucas vendas</a>.</p>
+<h2>Quando procurar uma análise</h2>
+<p>Se o comercial reclama da qualidade e o marketing jura que os leads são bons, um diagnóstico olha a jornada inteira — inclusive o follow-up — e mostra, com dados, onde a venda realmente se perde.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Quantas vezes posso tentar contato sem incomodar?</summary><div class="fa">Não há número mágico, mas alguns toques espaçados e com valor costumam ser bem recebidos. O que incomoda não é a quantidade, e sim a mensagem vazia e repetida.</div></details>
+<details><summary>Follow-up por WhatsApp funciona?</summary><div class="fa">Sim, é um dos canais mais eficazes no Brasil — desde que com mensagens úteis e no timing certo, não spam. Combinar canais (ligação, WhatsApp, e-mail) tende a melhorar a resposta.</div></details>
+<details><summary>Vale a pena automatizar o follow-up?</summary><div class="fa">Automatizar lembretes e organização ajuda muito. Automatizar a mensagem inteira, sem toque humano, pode esfriar leads de maior valor. O equilíbrio depende do seu ticket e do ciclo de venda.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Lead que não responde raramente é lead ruim — costuma ser follow-up fraco. Monte uma cadência simples de contatos, com utilidade a cada toque, responda rápido e registre tudo. Desistir na primeira tentativa é desperdiçar a verba de mídia já gasta.</p></div>`,
+  },
+  {
+    slug: "velocidade-de-atendimento-o-primeiro-a-responder-vende-mais",
+    title: "Velocidade de atendimento: por que o primeiro a responder vende mais",
+    subtitle: "No tráfego pago, o tempo entre o lead chegar e alguém responder decide boa parte das vendas. Minutos importam mais do que a maioria das empresas imagina.",
+    category: "vendas-e-atendimento",
+    tags: "atendimento,tempo de resposta,vendas,conversão",
+    excerpt: "No tráfego pago, responder rápido ao lead é uma das maiores alavancas de conversão. Entenda por que minutos fazem diferença e como estruturar a agilidade.",
+    seo_title: "Velocidade de atendimento: o primeiro a responder vende mais",
+    seo_description: "Por que a velocidade de atendimento decide vendas no tráfego pago: o efeito de responder o lead em minutos e como estruturar a operação para não perder o timing.",
+    cta_type: "conversao",
+    featured: 0,
+    related: "lead-nao-responde-como-fazer-follow-up-que-funciona,muitos-leads-e-poucas-vendas-onde-esta-o-problema",
+    content: `<p>Existe uma alavanca de vendas no tráfego pago que quase não custa dinheiro e é sistematicamente ignorada: a <strong>velocidade de atendimento</strong>. O tempo entre o lead enviar o contato e alguém responder é um dos fatores que mais influenciam se aquele lead vira cliente.</p>
+<p>De forma direta: quanto mais rápido você responde, maior a chance de vender — porque o interesse do lead está no auge no momento em que ele clica, e esfria a cada minuto. Quem responde primeiro costuma levar a venda, mesmo quando não tem o melhor preço.</p>
+<h2>Por que o tempo pesa tanto</h2>
+<p>Quem preenche um formulário ou manda uma mensagem vindo de um anúncio está com a necessidade ativa <em>agora</em>. Se a resposta demora horas, duas coisas acontecem: o interesse cai e, muitas vezes, o concorrente já respondeu. O lead que parecia frio era só mal atendido.</p>
+<div class="box info"><div class="box-t">ℹ️ O lead tem prazo de validade</div><p>Um contato respondido em minutos e o mesmo contato respondido no dia seguinte são, na prática, leads diferentes. O primeiro está quente; o segundo já pode ter resolvido com outro fornecedor.</p></div>
+<h2>Onde a demora nasce</h2>
+<ul>
+<li><strong>Ninguém é dono</strong> da resposta — todos acham que outro vai responder;</li>
+<li>Os leads chegam <strong>espalhados</strong> (formulário, WhatsApp, DM) sem centralização;</li>
+<li>O time só olha os contatos <strong>em horários específicos</strong>;</li>
+<li>Falta um <strong>alerta</strong> quando um novo lead entra.</li>
+</ul>
+<h2>Como ganhar velocidade sem virar refém do celular</h2>
+<p>Não é sobre responder 24h por dia, e sim sobre <strong>reduzir o atrito</strong>: centralizar os leads num só lugar, definir quem responde, criar um alerta de novo lead e ter uma primeira mensagem pronta para o contato imediato. Uma resposta automática de "recebemos e já te chamamos" segura o lead até o toque humano — mas não substitui o atendimento real.</p>
+<table><thead><tr><th>Situação comum</th><th>Ajuste simples</th></tr></thead><tbody><tr><td>Leads chegam em canais diferentes</td><td>Centralizar num CRM ou caixa única</td></tr><tr><td>Ninguém sabe de quem é a vez</td><td>Definir responsável e revezamento</td></tr><tr><td>Ninguém percebe o lead novo</td><td>Alerta imediato de entrada</td></tr></tbody></table>
+<p>Centralizar os contatos é também o que permite medir e não perder ninguém — assunto de <a href="/blog/crm-por-que-o-trafego-pago-precisa-de-um">por que o tráfego pago precisa de um CRM</a>. E responder rápido é o começo de um bom <a href="/blog/lead-nao-responde-como-fazer-follow-up-que-funciona">follow-up</a>.</p>
+<h2>Quando procurar uma análise</h2>
+<p>Se você desconfia que bons leads estão esfriando por demora, um diagnóstico mede o tempo de resposta da sua operação e mostra quanto isso pesa nas vendas — muitas vezes a correção mais barata e mais rápida de todas.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Qual é o tempo ideal de resposta?</summary><div class="fa">Quanto antes, melhor — os primeiros minutos são os mais valiosos. Não existe número universal, mas responder em minutos supera de longe responder em horas.</div></details>
+<details><summary>Resposta automática resolve?</summary><div class="fa">Ajuda a segurar o lead e a dar um primeiro sinal, mas não substitui o atendimento humano. Serve de ponte até alguém assumir a conversa, não como resposta final.</div></details>
+<details><summary>E fora do horário comercial?</summary><div class="fa">Leads chegam a qualquer hora. Vale ter uma mensagem automática que acolhe e informa o horário, e priorizar o retorno logo na abertura do expediente seguinte.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>No tráfego pago, o primeiro a responder costuma vender — o interesse do lead está no auge no clique e esfria a cada minuto. Reduza o atrito: centralize os leads, defina quem responde e crie um alerta de entrada. É uma das correções mais baratas e de maior impacto.</p></div>`,
+  },
+  {
+    slug: "crm-por-que-o-trafego-pago-precisa-de-um",
+    title: "CRM: por que o tráfego pago precisa de um",
+    subtitle: "Sem um lugar para registrar e acompanhar cada lead, o investimento em anúncios vira um balde furado. Entenda o papel do CRM na conta do tráfego pago.",
+    category: "vendas-e-atendimento",
+    tags: "crm,gestão de leads,vendas,processo",
+    excerpt: "Sem CRM, leads pagos se perdem e ninguém sabe qual campanha vende. Entenda por que o tráfego pago precisa de um CRM para não desperdiçar investimento.",
+    seo_title: "CRM: por que o tráfego pago precisa de um",
+    seo_description: "Entenda por que o tráfego pago precisa de um CRM: registrar leads, acompanhar o funil e ligar campanhas às vendas para parar de desperdiçar investimento.",
+    cta_type: "default",
+    featured: 0,
+    related: "velocidade-de-atendimento-o-primeiro-a-responder-vende-mais,como-saber-se-o-trafego-pago-esta-funcionando",
+    content: `<p>Investir em anúncios sem um <strong>CRM</strong> é como encher um balde furado: os leads entram e vão escorrendo pelos buracos — esquecidos, sem acompanhamento, sem ninguém sabendo o que aconteceu com cada um. Para quem paga por lead, isso é dinheiro vazando todo dia.</p>
+<p>De forma direta: CRM é o sistema onde você <strong>registra cada lead e acompanha o que acontece com ele</strong> — do primeiro contato à venda (ou à perda). No tráfego pago, ele deixa de ser "coisa de empresa grande" e vira o que liga o investimento em mídia ao resultado comercial.</p>
+<h2>O que se perde sem um CRM</h2>
+<ul>
+<li><strong>Leads esquecidos:</strong> contatos que ninguém retornou, some no meio das conversas;</li>
+<li><strong>Sem histórico:</strong> ninguém sabe o que já foi falado com cada pessoa;</li>
+<li><strong>Sem visão de funil:</strong> quantos leads viraram proposta, quantos fecharam?</li>
+<li><strong>Sem ligação com a mídia:</strong> qual campanha gerou cliente, e não só contato?</li>
+</ul>
+<div class="box alert"><div class="box-t">⚠️ O relatório de anúncios não é o funil</div><p>O painel do Meta ou do Google mostra cliques e conversões, mas não sabe se o lead virou cliente. Só o CRM fecha essa conta — sem ele, você otimiza mídia no escuro.</p></div>
+<h2>Por que o tráfego pago em especial precisa</h2>
+<p>Campanhas geram volume: dezenas ou centenas de contatos por mês. Sem um lugar para organizar isso, o time perde leads simplesmente por não dar conta de lembrar. E, o mais caro: sem registrar a venda no CRM, você nunca sabe <em>qual campanha traz cliente</em> — decidindo verba pelo palpite. É esse elo que permite responder <a href="/blog/como-saber-se-o-trafego-pago-esta-funcionando">se o tráfego pago está funcionando</a>.</p>
+<h2>Não precisa ser complexo</h2>
+<p>CRM não é sinônimo de sistema caro e cheio de recursos. Para a maioria das PMEs, começar simples — registrar lead, origem, status e próximo passo — já resolve o essencial. Ferramentas como Kommo, Pipedrive e outras atendem bem; o que importa é a <strong>disciplina de usar</strong>, não o software em si.</p>
+<table><thead><tr><th>Sem CRM</th><th>Com CRM usado de verdade</th></tr></thead><tbody><tr><td>Leads espalhados e esquecidos</td><td>Todos registrados e com próximo passo</td></tr><tr><td>"Acho que essa campanha vende"</td><td>Dados de qual campanha gera cliente</td></tr><tr><td>Follow-up depende da memória</td><td>Acompanhamento organizado e medido</td></tr></tbody></table>
+<h2>Quando procurar uma análise</h2>
+<p>Se você investe em anúncios mas não consegue dizer quantos leads viraram cliente nem por qual campanha, um diagnóstico ajuda a estruturar essa medição — ligando mídia, CRM e vendas para que a verba pare de ser decidida no escuro.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Uma planilha serve como CRM?</summary><div class="fa">Para começar, uma planilha bem organizada já é melhor que nada. Ela costuma travar quando o volume cresce e vários vendedores atualizam ao mesmo tempo — aí um CRM de verdade compensa.</div></details>
+<details><summary>CRM é caro?</summary><div class="fa">Há opções acessíveis e até gratuitas para começar. O maior custo não é a mensalidade, e sim a disciplina de manter o registro em dia — sem isso, nenhum CRM entrega valor.</div></details>
+<details><summary>Como o CRM se liga às campanhas?</summary><div class="fa">Registrando a origem de cada lead e o resultado comercial. Assim dá para cruzar qual campanha, anúncio ou palavra-chave gerou clientes — e não apenas contatos.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Sem CRM, o tráfego pago vira balde furado: leads se perdem e ninguém sabe qual campanha vende. O CRM registra cada lead, organiza o follow-up e liga a mídia à venda real. Não precisa ser caro nem complexo — precisa ser usado com disciplina.</p></div>`,
+  },
+  {
+    slug: "marketing-e-vendas-desalinhados-o-custo-invisivel",
+    title: "Marketing e vendas desalinhados: o custo invisível",
+    subtitle: "Quando marketing entrega leads e vendas reclama da qualidade, os dois lados têm razão pela metade — e a empresa paga a conta no meio. Veja como fechar essa fenda.",
+    category: "vendas-e-atendimento",
+    tags: "marketing e vendas,alinhamento,leads,processo",
+    excerpt: "Quando marketing e vendas não se falam, leads bons se perdem e a verba é decidida no achismo. Entenda o custo invisível do desalinhamento e como resolvê-lo.",
+    seo_title: "Marketing e vendas desalinhados: o custo invisível",
+    seo_description: "O desalinhamento entre marketing e vendas custa caro no tráfego pago: leads perdidos, verba no escuro e culpa cruzada. Veja como alinhar os dois times.",
+    cta_type: "default",
+    featured: 0,
+    related: "muitos-leads-e-poucas-vendas-onde-esta-o-problema,por-que-minhas-campanhas-geram-leads-desqualificados",
+    content: `<p>É uma das cenas mais comuns — e mais caras — nas empresas que investem em tráfego pago: o <strong>marketing diz que entrega leads</strong> e o <strong>comercial diz que os leads são ruins</strong>. Cada lado defende o seu número, ninguém está totalmente errado, e a venda escapa no meio do caminho.</p>
+<p>De forma direta: o desalinhamento entre marketing e vendas é um custo que não aparece em relatório nenhum, mas pesa no caixa. Enquanto os dois times não olham o mesmo dado, a verba é decidida na base do "eu acho" — e leads que poderiam fechar se perdem na fronteira entre os dois.</p>
+<h2>Por que os dois lados têm razão pela metade</h2>
+<p>O marketing olha volume e custo por lead; vê os números "bons" e conclui que fez sua parte. O comercial olha quem responde e fecha; sente que recebe contato sem perfil. Ambos enxergam um pedaço da verdade — e nenhum vê a jornada inteira. É aí que nasce a culpa cruzada, mais discutida em <a href="/blog/muitos-leads-e-poucas-vendas-onde-esta-o-problema">muitos leads e poucas vendas: onde está o problema</a>.</p>
+<div class="box info"><div class="box-t">ℹ️ Ninguém dono do resultado inteiro</div><p>Quando marketing responde por leads e vendas responde por fechamento, ninguém responde pelo <em>cliente</em> — o número que realmente importa. O resultado escorrega justamente na fronteira entre os dois.</p></div>
+<h2>O que o desalinhamento custa de verdade</h2>
+<ul>
+<li><strong>Leads bons perdidos</strong> por falta de acompanhamento combinado;</li>
+<li><strong>Verba mal alocada</strong>, porque ninguém sabe qual campanha gera cliente;</li>
+<li><strong>Retrabalho e atrito</strong> entre times que deveriam colaborar;</li>
+<li><strong>Decisões por opinião</strong>, não por dado compartilhado.</li>
+</ul>
+<h2>Como fechar a fenda</h2>
+<p>O ponto de partida é simples e poderoso: <strong>uma definição única de lead qualificado</strong> e um <strong>dado compartilhado</strong> que os dois times olhem. Quando o comercial registra o desfecho de cada lead e o marketing enxerga isso por campanha, a conversa deixa de ser "seus leads são ruins" e vira "esta campanha traz cliente, aquela não". Parte da qualidade também nasce no anúncio — tema de <a href="/blog/por-que-minhas-campanhas-geram-leads-desqualificados">por que minhas campanhas geram leads desqualificados</a>.</p>
+<table><thead><tr><th>Sintoma</th><th>O que costuma faltar</th></tr></thead><tbody><tr><td>"Os leads são ruins" x "os leads são bons"</td><td>Definição comum de lead qualificado</td></tr><tr><td>Ninguém sabe qual campanha vende</td><td>Registro do desfecho ligado à origem</td></tr><tr><td>Reuniões viram troca de culpa</td><td>Um dado único, não dois relatórios</td></tr></tbody></table>
+<h2>Quando procurar uma análise</h2>
+<p>Se marketing e vendas já vivem apontando o dedo um para o outro, um diagnóstico independente entra sem defender nenhum lado: cruza campanhas, qualidade de leads e desfecho comercial para mostrar, com dados, onde a empresa está de fato perdendo dinheiro.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>De quem é a culpa quando o lead não fecha?</summary><div class="fa">Quase nunca é de um lado só. Pode ser segmentação, promessa do anúncio, qualificação, página ou atendimento. Por isso a resposta exige olhar a jornada inteira, não escolher um culpado.</div></details>
+<details><summary>Como alinhar sem uma reunião interminável?</summary><div class="fa">Começando pelo essencial: uma definição comum de lead qualificado e um dado único que os dois times acompanhem. O alinhamento vem do fato compartilhado, não da discussão de opiniões.</div></details>
+<details><summary>Uma consultoria externa ajuda nesse conflito?</summary><div class="fa">Sim, justamente por ser neutra. Uma análise independente não defende marketing nem vendas — mostra o dado e tira a discussão do campo da opinião.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>Marketing e vendas desalinhados é um custo invisível: leads bons se perdem na fronteira e a verba é decidida no achismo. A saída é uma definição comum de lead qualificado e um dado compartilhado do desfecho de cada lead — para a conversa sair da culpa e ir para o fato.</p></div>`,
+  },
+  {
+    slug: "vendas-e-atendimento-guia-para-empresarios",
+    title: "Vendas e atendimento no tráfego pago: guia para empresários",
+    subtitle: "O que acontece depois do clique decide se o investimento em anúncios vira cliente. Um guia sobre velocidade, follow-up, CRM e o alinhamento entre marketing e vendas.",
+    category: "vendas-e-atendimento",
+    tags: "vendas,atendimento,crm,follow-up,guia",
+    excerpt: "Guia de vendas e atendimento no tráfego pago para empresários: velocidade de resposta, follow-up, CRM e alinhamento entre marketing e vendas para não perder leads pagos.",
+    seo_title: "Vendas e atendimento no tráfego pago: guia para empresários",
+    seo_description: "Guia de vendas e atendimento no tráfego pago: por que a jornada após o clique decide o resultado — velocidade, follow-up, CRM e alinhamento marketing-vendas.",
+    cta_type: "conversao",
+    featured: 0,
+    related: "velocidade-de-atendimento-o-primeiro-a-responder-vende-mais,lead-nao-responde-como-fazer-follow-up-que-funciona,crm-por-que-o-trafego-pago-precisa-de-um,marketing-e-vendas-desalinhados-o-custo-invisivel",
+    content: `<p>Muita empresa investe pesado em anúncios e trata o que vem <em>depois</em> do clique como detalhe. É o erro mais caro do tráfego pago: a campanha pode ser ótima, mas quem transforma o lead em cliente é o <strong>atendimento e o processo comercial</strong>. Este guia reúne o que decide essa etapa — velocidade, follow-up, CRM e o alinhamento entre marketing e vendas.</p>
+<div class="box info"><div class="box-t">ℹ️ Ideia central</div><p>O anúncio traz o lead; a operação comercial fecha (ou perde) a venda. Otimizar campanha e ignorar o atendimento é encher o funil por cima enquanto ele vaza por baixo.</p></div>
+<h2>Velocidade: o primeiro a responder vende mais</h2>
+<p>O interesse do lead está no auge no momento do clique e esfria a cada minuto. Responder rápido é uma das alavancas mais baratas de conversão, como detalha <a href="/blog/velocidade-de-atendimento-o-primeiro-a-responder-vende-mais">velocidade de atendimento: por que o primeiro a responder vende mais</a>.</p>
+<h2>Follow-up: a venda mora na insistência com valor</h2>
+<p>A maioria das vendas não morre no anúncio, morre no silêncio após o primeiro contato. Uma cadência simples de toques, com utilidade a cada um, recupera vendas que pareciam perdidas — o passo a passo está em <a href="/blog/lead-nao-responde-como-fazer-follow-up-que-funciona">como fazer um follow-up que funciona</a>.</p>
+<h2>CRM: o lugar onde o lead não se perde</h2>
+<p>Sem um sistema para registrar e acompanhar cada contato, o investimento vira balde furado e ninguém sabe qual campanha gera cliente. Por que isso é essencial está em <a href="/blog/crm-por-que-o-trafego-pago-precisa-de-um">CRM: por que o tráfego pago precisa de um</a>.</p>
+<h2>Alinhamento: marketing e vendas olhando o mesmo dado</h2>
+<p>Quando marketing entrega leads e vendas reclama da qualidade, a empresa paga a conta no meio. Fechar essa fenda com uma definição comum de lead e um dado compartilhado é o tema de <a href="/blog/marketing-e-vendas-desalinhados-o-custo-invisivel">marketing e vendas desalinhados: o custo invisível</a>.</p>
+<h2>Como tudo se conecta</h2>
+<p>Velocidade, follow-up, CRM e alinhamento não são iniciativas soltas: são elos da mesma corrente entre o clique pago e a venda. Uma corrente é tão forte quanto o elo mais fraco — e o dinheiro se perde justamente no elo que ninguém está olhando.</p>
+<section class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>Meu problema é o anúncio ou o atendimento?</summary><div class="fa">Pode ser qualquer um dos dois — ou ambos. Se o anúncio gera cliques e contatos mas a venda não vem, o atendimento e o processo comercial costumam ser os primeiros suspeitos.</div></details>
+<details><summary>Preciso de uma equipe grande para atender bem?</summary><div class="fa">Não. Muito do resultado vem de organização: responder rápido, seguir uma cadência e registrar tudo. Isso é processo, não tamanho de time.</div></details>
+<details><summary>Por onde começo a melhorar?</summary><div class="fa">Em geral, pela velocidade de resposta e pelo registro dos leads. São os ajustes mais baratos e de efeito mais imediato sobre as vendas.</div></details>
+</section>
+<div class="box resume"><div class="box-t">Em resumo</div><p>No tráfego pago, o que acontece depois do clique decide o resultado. Velocidade de resposta, follow-up estruturado, um CRM usado com disciplina e o alinhamento entre marketing e vendas são os elos que transformam lead pago em cliente. Os guias ligados aqui aprofundam cada um.</p></div>`,
   },
 ];
