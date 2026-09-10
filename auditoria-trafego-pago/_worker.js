@@ -47,6 +47,7 @@ export default {
       if (p === "/api/leads" && request.method === "GET") return listLeads(request, env);
       if (p === "/api/leads.csv" && request.method === "GET") return exportLeads(request, env);
       if (p === "/api/health" && request.method === "GET") return health(env);
+      if (p === "/api/init-db" && request.method === "GET") return initDb(env);
     } catch (err) {
       return json({ error: "internal", detail: String((err && err.message) || err) }, 500);
     }
@@ -156,6 +157,24 @@ async function health(env) {
     }
   }
   return json(out);
+}
+
+// GET /api/init-db — cria a tabela `leads` (idempotente). Serve para criar a
+// tabela sem precisar do Console do D1. Pode ser removido depois.
+async function initDb(env) {
+  if (!env.DB) return json({ ok: false, error: "db_nao_configurado" }, 503);
+  try {
+    await env.DB.prepare(
+      "CREATE TABLE IF NOT EXISTS leads (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, empresa TEXT, whatsapp TEXT, email TEXT, site TEXT, segmento TEXT, investimento TEXT, plataformas TEXT, quem TEXT, crm TEXT, pacote TEXT, dificuldade TEXT, origem TEXT, user_agent TEXT, referer TEXT, ip TEXT, created_at TEXT NOT NULL DEFAULT (datetime('now')))"
+    ).run();
+    await env.DB.prepare(
+      "CREATE INDEX IF NOT EXISTS idx_leads_created ON leads (created_at DESC)"
+    ).run();
+    const r = await env.DB.prepare("SELECT COUNT(*) AS n FROM leads").first();
+    return json({ ok: true, created: true, total_leads: r ? r.n : 0 });
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 500);
+  }
 }
 
 /* ───────────────────────── Auth ───────────────────────── */
