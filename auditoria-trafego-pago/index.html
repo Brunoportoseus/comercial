@@ -651,7 +651,7 @@
     .videointro .eyebrow{justify-content:center;color:var(--copper-soft);}
     .videointro .s-title{color:#F5F7FB;}
     .videointro .vi-sub{color:var(--muted-d);max-width:60ch;margin:1rem auto 0;font-size:1.05rem;}
-    .ytlite{position:relative;width:100%;max-width:324px;aspect-ratio:9/16;margin:2.4rem auto 0;
+    .ytlite{position:relative;width:100%;aspect-ratio:9/16;
       border-radius:22px;overflow:hidden;cursor:pointer;border:1px solid rgba(201,111,59,.30);
       box-shadow:var(--sh-md);
       background:radial-gradient(120% 80% at 50% 0%,rgba(201,111,59,.22),transparent 60%),#0F1E38;
@@ -668,8 +668,20 @@
     .ytlite .yt-label{font-family:'Sora';font-weight:700;font-size:.95rem;letter-spacing:.4px;color:#F5F7FB;
       background:rgba(11,23,42,.55);padding:.45rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);}
     .ytlite .yt-cap{position:absolute;left:0;right:0;bottom:14px;font-size:.78rem;color:var(--muted-d);}
-
-    /* ===================== MARCAS / PORTFÓLIO ===================== */
+    /* trilho de vídeos: desktop lado a lado, mobile carrossel */
+    .vi-track{display:flex;justify-content:center;gap:22px;margin:2.4rem auto 0;max-width:1000px;}
+    .vi-track>.ytlite{flex:1 1 0;min-width:0;max-width:320px;}
+    .vi-dots{display:none;}
+    @media(max-width:820px){
+      .vi-track{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;
+        gap:16px;padding:4px 11% 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+      .vi-track::-webkit-scrollbar{display:none;}
+      .vi-track>.ytlite{flex:0 0 78%;max-width:none;scroll-snap-align:center;}
+      .vi-dots{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:20px;}
+      .vi-dot{width:9px;height:9px;padding:0;border:0;border-radius:999px;cursor:pointer;
+        background:rgba(255,255,255,.28);transition:width .25s ease,background .25s ease;}
+      .vi-dot.active{width:26px;background:var(--copper);}
+    }
     .brands{background:var(--navy);color:var(--ink-d);}
     .brands .eyebrow{color:var(--copper);}
     .brands .s-title{color:#fff;}
@@ -940,12 +952,33 @@
       <span class="eyebrow reveal">Em vídeo · 1 minuto</span>
       <h2 class="s-title reveal">Seu tráfego gera vendas ou somente <span style="color:var(--copper)">leads frios</span>?</h2>
       <p class="vi-sub reveal">Bruno Porto explica, em menos de um minuto, como o diagnóstico independente separa o que realmente gera venda do que só gera lead frio.</p>
-      <div class="ytlite reveal" data-ytid="tFHs7_G_LHs" role="button" tabindex="0" aria-label="Reproduzir vídeo de apresentação de Bruno Porto no YouTube">
-        <div class="yt-inner">
-          <span class="yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="yt-label">Assista · 1 min</span>
+      <div class="vi-track reveal" id="viTrack">
+        <div class="ytlite" data-ytid="tFHs7_G_LHs" role="button" tabindex="0" aria-label="Reproduzir vídeo 1 de Bruno Porto no YouTube">
+          <div class="yt-inner">
+            <span class="yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="yt-label">Assista · 1 min</span>
+          </div>
+          <span class="yt-cap">Toque para reproduzir</span>
         </div>
-        <span class="yt-cap">Toque para reproduzir</span>
+        <div class="ytlite" data-ytid="5Aj68kJAD9k" role="button" tabindex="0" aria-label="Reproduzir vídeo 2 de Bruno Porto no YouTube">
+          <div class="yt-inner">
+            <span class="yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="yt-label">Assista · 1 min</span>
+          </div>
+          <span class="yt-cap">Toque para reproduzir</span>
+        </div>
+        <div class="ytlite" data-ytid="4xwHf-XHVvk" role="button" tabindex="0" aria-label="Reproduzir vídeo 3 de Bruno Porto no YouTube">
+          <div class="yt-inner">
+            <span class="yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="yt-label">Assista · 1 min</span>
+          </div>
+          <span class="yt-cap">Toque para reproduzir</span>
+        </div>
+      </div>
+      <div class="vi-dots" id="viDots" role="tablist" aria-label="Selecionar vídeo">
+        <button class="vi-dot active" type="button" aria-label="Ver vídeo 1"></button>
+        <button class="vi-dot" type="button" aria-label="Ver vídeo 2"></button>
+        <button class="vi-dot" type="button" aria-label="Ver vídeo 3"></button>
       </div>
     </div>
   </section>
@@ -1923,6 +1956,29 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
       });
     });
+
+    /* ---------- Carrossel de vídeos (mobile): dots <-> scroll ---------- */
+    (function(){
+      var track = $("#viTrack"), dotsBox = $("#viDots");
+      if(!track || !dotsBox) return;
+      var items = $$(".ytlite", track), dots = $$(".vi-dot", dotsBox);
+      if(items.length < 2 || dots.length !== items.length) return;
+      function setActive(i){ dots.forEach(function(d,di){ d.classList.toggle("active", di === i); }); }
+      dots.forEach(function(d,i){
+        d.addEventListener("click", function(){
+          items[i].scrollIntoView({ behavior:"smooth", inline:"center", block:"nearest" });
+          setActive(i);
+        });
+      });
+      if("IntersectionObserver" in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){ var idx = items.indexOf(e.target); if(idx > -1) setActive(idx); }
+          });
+        }, { root: track, threshold: 0.6 });
+        items.forEach(function(it){ io.observe(it); });
+      }
+    })();
 
     // expansão "Ver todos os detalhes" de cada pacote
     $$("details.more").forEach(function(d){
