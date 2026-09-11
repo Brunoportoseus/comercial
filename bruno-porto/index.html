@@ -380,44 +380,6 @@
     .tl-desc{color:var(--muted);font-size:.95rem;}
     .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
 
-    /* ── BLOG ── */
-    .blog-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-    .blog-intro{
-      display:flex;justify-content:space-between;align-items:flex-end;
-      gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem;
-    }
-    .blog-intro p{color:var(--muted);max-width:520px;font-size:1rem;}
-    .blog-all{
-      color:var(--brand);font-size:.92rem;font-weight:600;
-      display:inline-flex;align-items:center;gap:.4rem;
-      transition:gap .2s;flex-shrink:0;
-    }
-    .blog-all:hover{gap:.7rem;}
-    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
-    @media(max-width:980px){ .blog-grid{grid-template-columns:1fr 1fr;} }
-    @media(max-width:600px){ .blog-grid{grid-template-columns:1fr;} }
-    .blog-card{
-      position:relative;display:flex;flex-direction:column;
-      background:var(--card);border:1px solid var(--line);
-      border-radius:var(--radius-lg);padding:1.6rem;
-      transition:transform .3s,border-color .3s,background .3s;overflow:hidden;
-    }
-    .blog-card::after{
-      content:"";position:absolute;top:0;left:0;right:0;height:3px;
-      background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s;
-    }
-    .blog-card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.35);}
-    .blog-card:hover::after{transform:scaleX(1);}
-    .blog-card-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;}
-    .blog-card h3{font-size:1.1rem;line-height:1.3;margin-bottom:.6rem;}
-    .blog-card p{color:var(--muted);font-size:.92rem;flex:1;margin-bottom:1.2rem;}
-    .blog-card-cta{
-      display:inline-flex;align-items:center;gap:.4rem;
-      color:var(--brand);font-weight:600;font-size:.88rem;
-      transition:gap .2s;
-    }
-    .blog-card:hover .blog-card-cta{gap:.7rem;color:var(--brand-2);}
-
     /* ── FORMAÇÃO ── */
     .education-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
     @media(max-width:980px){ .education-grid{grid-template-columns:1fr 1fr;} }
@@ -1373,65 +1335,6 @@
       </div>
 
       <p class="partners-foot reveal">e outras plataformas de e-commerce, CRM, automação e IA.</p>
-    </div>
-  </section>
-
-  <!-- ─────────── BLOG ─────────── -->
-  <section id="blog" class="blog-section">
-    <div class="wrap">
-      <div class="blog-intro reveal">
-        <div>
-          <span class="eyebrow">Blog</span>
-          <h2 class="section-title">Ideias práticas sobre IA, CRM e crescimento comercial.</h2>
-        </div>
-        <a href="/blog/" class="blog-all">
-          Ver todos os artigos
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <div class="blog-grid">
-
-        <a href="/blog/posts/ia-no-comercial/" class="blog-card reveal">
-          <div class="blog-card-tags">
-            <span class="chip">IA</span>
-            <span class="chip">Comercial</span>
-          </div>
-          <h3>IA aplicada no comercial: por onde começar sem complicar</h3>
-          <p>Três aplicações práticas que dão resultado nos primeiros 30 dias — sem equipe técnica nem orçamento de startup.</p>
-          <span class="blog-card-cta">
-            Ler artigo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </span>
-        </a>
-
-        <a href="/blog/posts/crm-que-vende/" class="blog-card reveal">
-          <div class="blog-card-tags">
-            <span class="chip">CRM</span>
-            <span class="chip">Automação</span>
-          </div>
-          <h3>CRM que vende: o trio que faz a diferença</h3>
-          <p>Por que 70% das implantações de CRM falham — e os 3 pilares que separam um CRM útil de um CRM que vira obrigação.</p>
-          <span class="blog-card-cta">
-            Ler artigo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </span>
-        </a>
-
-        <a href="/blog/posts/ecommerce-conversao/" class="blog-card reveal">
-          <div class="blog-card-tags">
-            <span class="chip">E-commerce</span>
-            <span class="chip">Conversão</span>
-          </div>
-          <h3>E-commerce: 5 ajustes que aumentam conversão sem reformar a loja</h3>
-          <p>Antes de gastar mais em tráfego, vale olhar pra esses cinco pontos da operação. Impacto direto no faturamento.</p>
-          <span class="blog-card-cta">
-            Ler artigo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </span>
-        </a>
-
-      </div>
     </div>
   </section>
 
