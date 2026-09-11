@@ -380,6 +380,34 @@
     .tl-desc{color:var(--muted);font-size:.95rem;}
     .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
 
+    /* Experiência: título como gatilho + modal */
+    .exp-trigger{cursor:pointer;transition:color .2s;}
+    .exp-trigger:hover .exp-title-txt,.exp-trigger:focus-visible .exp-title-txt{
+      background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .exp-trigger:focus-visible{outline:2px solid var(--brand);outline-offset:6px;border-radius:8px;}
+    .exp-hint{
+      display:inline-flex;align-items:center;gap:.5rem;margin-top:1.3rem;
+      font-size:.95rem;font-weight:600;color:var(--brand);
+      padding:.6rem 1.1rem;border:1px solid rgba(124,92,255,.35);border-radius:999px;
+      background:rgba(124,92,255,.08);transition:gap .2s,background .2s;}
+    .exp-trigger:hover .exp-hint,.exp-trigger:focus-visible .exp-hint{gap:.75rem;background:rgba(124,92,255,.16);}
+    .exp-hint svg{width:16px;height:16px;flex-shrink:0;}
+    .exp-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:1.2rem;}
+    .exp-modal.open{display:flex;}
+    .exp-backdrop{position:absolute;inset:0;background:rgba(4,6,10,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+    .exp-dialog{position:relative;z-index:1;width:100%;max-width:760px;max-height:86vh;overflow:auto;
+      background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius-lg);
+      padding:2.4rem;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:expIn .25s ease;}
+    @keyframes expIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+    .exp-dialog .eyebrow{margin-bottom:.5rem;}
+    .exp-dialog h3{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:800;margin:0 3rem 1.8rem 0;line-height:1.25;}
+    .exp-close{position:absolute;top:1rem;right:1rem;width:40px;height:40px;border-radius:50%;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;transition:background .2s;}
+    .exp-close:hover{background:rgba(255,255,255,.1);}
+    .exp-close svg{width:20px;height:20px;}
+    @media(max-width:600px){ .exp-dialog{padding:1.6rem;} }
+
     /* ── FORMAÇÃO ── */
     .education-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
     @media(max-width:980px){ .education-grid{grid-template-columns:1fr 1fr;} }
@@ -1144,10 +1172,23 @@
   <section id="experiencia" class="experience">
     <div class="wrap">
       <span class="eyebrow reveal">Experiência</span>
-      <h2 class="section-title reveal">Mais de três décadas em negócios — e mais de duas no digital — transformando operações em máquinas de vendas.</h2>
+      <h2 class="section-title reveal exp-trigger" id="expOpen" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="expModal" aria-expanded="false">
+        <span class="exp-title-txt">Mais de três décadas em negócios — e mais de duas no digital — transformando operações em máquinas de vendas.</span>
+        <span class="exp-hint">Clique para ver a trajetória completa
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </h2>
 
-      <div class="timeline">
-        <div class="tl-item reveal">
+      <div class="exp-modal" id="expModal" hidden>
+        <div class="exp-backdrop" data-exp-close></div>
+        <div class="exp-dialog" role="dialog" aria-modal="true" aria-labelledby="expDialogTitle">
+          <button class="exp-close" type="button" data-exp-close aria-label="Fechar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+          <span class="eyebrow">Trajetória profissional</span>
+          <h3 id="expDialogTitle">Mais de três décadas em negócios — e mais de duas no digital.</h3>
+          <div class="timeline">
+        <div class="tl-item">
           <h3>Consultor Sênior em E-commerce, IA e Estratégia Comercial Digital — Atual</h3>
           <p class="tl-company">Bruno Porto · Comercial · Growth · Digital · IA — Curitiba, PR</p>
           <p class="tl-desc">
@@ -1161,7 +1202,7 @@
           </div>
         </div>
 
-        <div class="tl-item reveal">
+        <div class="tl-item">
           <h3>Diretor — 17 anos 6 meses</h3>
           <p class="tl-company">Webstorm Soluções Digitais — Curitiba, PR</p>
           <p class="tl-desc">
@@ -1177,7 +1218,7 @@
           </div>
         </div>
 
-        <div class="tl-item reveal">
+        <div class="tl-item">
           <h3>Diretor de Desenvolvimento de Negócios — 2 anos</h3>
           <p class="tl-company">Unique — Curitiba, PR</p>
           <p class="tl-desc">
@@ -1191,7 +1232,7 @@
           </div>
         </div>
 
-        <div class="tl-item reveal">
+        <div class="tl-item">
           <h3>Gerente de Gestão Comercial — 14 anos</h3>
           <p class="tl-company">Grupo Carvajal — Curitiba, PR</p>
           <p class="tl-desc">
@@ -1204,7 +1245,9 @@
             <span class="chip">Negociação</span>
           </div>
         </div>
-      </div>
+          </div><!-- .timeline -->
+        </div><!-- .exp-dialog -->
+      </div><!-- .exp-modal -->
     </div>
   </section>
 
@@ -1528,6 +1571,40 @@
         window.open(url, '_blank', 'noopener,noreferrer');
       });
     }
+
+    // Experiência: título abre a trajetória em modal
+    (function(){
+      var trigger = document.getElementById('expOpen');
+      var modal = document.getElementById('expModal');
+      if (!trigger || !modal) return;
+      var lastFocus = null;
+      function open(){
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        modal.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var closeBtn = modal.querySelector('.exp-close');
+        if (closeBtn) closeBtn.focus();
+      }
+      function close(){
+        modal.classList.remove('open');
+        modal.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      trigger.addEventListener('click', open);
+      trigger.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+      modal.addEventListener('click', function(e){
+        if (e.target.hasAttribute('data-exp-close')) close();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && modal.classList.contains('open')) close();
+      });
+    })();
 
     // Vídeos (Consultoria Integral): facade "clique para reproduzir" + carrossel mobile
     (function(){
