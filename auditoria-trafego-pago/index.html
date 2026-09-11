@@ -646,6 +646,29 @@
     .about-sign .n{font-family:'Sora';font-weight:700;color:var(--ink);}
     .about-sign .r{font-size:.85rem;color:var(--muted);}
 
+    /* ===================== VÍDEO DE APRESENTAÇÃO ===================== */
+    .videointro{background:linear-gradient(160deg,var(--navy) 0%,#0C1B32 55%,var(--navy-2) 100%);color:#F5F7FB;text-align:center;}
+    .videointro .eyebrow{justify-content:center;color:var(--copper-soft);}
+    .videointro .s-title{color:#F5F7FB;}
+    .videointro .vi-sub{color:var(--muted-d);max-width:60ch;margin:1rem auto 0;font-size:1.05rem;}
+    .ytlite{position:relative;width:100%;max-width:324px;aspect-ratio:9/16;margin:2.4rem auto 0;
+      border-radius:22px;overflow:hidden;cursor:pointer;border:1px solid rgba(201,111,59,.30);
+      box-shadow:var(--sh-md);
+      background:radial-gradient(120% 80% at 50% 0%,rgba(201,111,59,.22),transparent 60%),#0F1E38;
+      transition:transform .25s ease,box-shadow .25s ease;}
+    .ytlite:hover,.ytlite:focus-visible{transform:translateY(-3px);box-shadow:0 22px 50px rgba(0,0,0,.4);outline:none;}
+    .ytlite:focus-visible{border-color:var(--copper);}
+    .ytlite iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:22px;}
+    .ytlite .yt-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;}
+    .ytlite .yt-play{width:82px;height:82px;border-radius:50%;background:var(--copper-btn);
+      display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(164,69,27,.5);
+      transition:transform .2s ease;}
+    .ytlite:hover .yt-play{transform:scale(1.06);}
+    .ytlite .yt-play svg{width:34px;height:34px;margin-left:4px;fill:#fff;}
+    .ytlite .yt-label{font-family:'Sora';font-weight:700;font-size:.95rem;letter-spacing:.4px;color:#F5F7FB;
+      background:rgba(11,23,42,.55);padding:.45rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);}
+    .ytlite .yt-cap{position:absolute;left:0;right:0;bottom:14px;font-size:.78rem;color:var(--muted-d);}
+
     /* ===================== MARCAS / PORTFÓLIO ===================== */
     .brands{background:var(--navy);color:var(--ink-d);}
     .brands .eyebrow{color:var(--copper);}
@@ -1528,6 +1551,22 @@
     </div>
   </section>
 
+  <!-- ==================== VÍDEO DE APRESENTAÇÃO ==================== -->
+  <section class="videointro" id="video">
+    <div class="wrap">
+      <span class="eyebrow reveal">Em vídeo</span>
+      <h2 class="s-title reveal">Bruno Porto apresenta o diagnóstico</h2>
+      <p class="vi-sub reveal">Em menos de um minuto, entenda a proposta da análise independente de tráfego pago e por que ela vai além das métricas das plataformas.</p>
+      <div class="ytlite reveal" data-ytid="tFHs7_G_LHs" role="button" tabindex="0" aria-label="Reproduzir vídeo de apresentação de Bruno Porto no YouTube">
+        <div class="yt-inner">
+          <span class="yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="yt-label">Assista · 1 min</span>
+        </div>
+        <span class="yt-cap">Toque para reproduzir</span>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ==================== MARCAS / PORTFÓLIO ==================== -->
   <section class="brands" id="marcas">
@@ -1863,6 +1902,29 @@
         bpTrack(el.getAttribute("data-ev"), el.getAttribute("data-pkg") ? {pacote:el.getAttribute("data-pkg")} : {});
       });
     });
+    /* ---------- Vídeo YouTube: facade "clique para reproduzir" ---------- */
+    $$(".ytlite").forEach(function(box){
+      function play(){
+        if (box.dataset.loaded) return;
+        box.dataset.loaded = "1";
+        var id = box.getAttribute("data-ytid");
+        var ifr = document.createElement("iframe");
+        ifr.setAttribute("src", "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&playsinline=1&rel=0&modestbranding=1");
+        ifr.setAttribute("title", "Vídeo de apresentação de Bruno Porto");
+        ifr.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+        ifr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+        ifr.allowFullscreen = true;
+        box.innerHTML = "";
+        box.appendChild(ifr);
+        box.removeAttribute("role"); box.removeAttribute("tabindex"); box.style.cursor = "default";
+        bpTrack("play_video", { id: id });
+      }
+      box.addEventListener("click", play);
+      box.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
+      });
+    });
+
     // expansão "Ver todos os detalhes" de cada pacote
     $$("details.more").forEach(function(d){
       var s = d.querySelector("summary[data-ev-expand]");
