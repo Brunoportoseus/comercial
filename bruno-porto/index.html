@@ -997,6 +997,76 @@
     </div>
   </section>
 
+  <!-- ─────────── VÍDEOS · CONSULTORIA INTEGRAL ─────────── -->
+  <style>
+    .cvid{padding:3.4rem 0 1rem;text-align:center;}
+    .cvid .eyebrow{margin-bottom:.7rem;}
+    .cvid .section-sub{margin-left:auto;margin-right:auto;}
+    .cvid .section-sub strong{color:var(--ink);font-weight:600;}
+    .cvid-track{display:flex;justify-content:center;gap:22px;margin:2.2rem auto 0;max-width:1000px;}
+    .cvid-track>.cvid-item{flex:1 1 0;min-width:0;max-width:320px;}
+    .cvid-item{position:relative;width:100%;aspect-ratio:9/16;border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;
+      border:1px solid rgba(124,92,255,.28);
+      background:radial-gradient(120% 80% at 50% 0%,rgba(124,92,255,.20),transparent 60%),var(--card);
+      transition:transform .25s,box-shadow .25s;}
+    .cvid-item:hover,.cvid-item:focus-visible{transform:translateY(-3px);box-shadow:0 22px 50px rgba(0,0,0,.45);outline:none;}
+    .cvid-item:focus-visible{border-color:var(--brand);}
+    .cvid-item iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:var(--radius-lg);}
+    .cvid-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;}
+    .cvid-play{width:82px;height:82px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 30px rgba(124,92,255,.5);transition:transform .2s;}
+    .cvid-item:hover .cvid-play{transform:scale(1.06);}
+    .cvid-play svg{width:34px;height:34px;margin-left:4px;fill:#fff;}
+    .cvid-label{font-weight:700;font-size:.95rem;color:var(--ink);background:rgba(255,255,255,.06);padding:.45rem 1rem;border-radius:999px;border:1px solid var(--line);}
+    .cvid-cap{position:absolute;left:0;right:0;bottom:14px;font-size:.78rem;color:var(--muted);}
+    .cvid-dots{display:none;}
+    @media(max-width:820px){
+      .cvid-track{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;
+        gap:16px;padding:4px 11% 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+      .cvid-track::-webkit-scrollbar{display:none;}
+      .cvid-track>.cvid-item{flex:0 0 78%;max-width:none;scroll-snap-align:center;}
+      .cvid-dots{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:20px;}
+      .cvid-dot{width:9px;height:9px;padding:0;border:0;border-radius:999px;cursor:pointer;
+        background:rgba(255,255,255,.22);transition:width .25s,background .25s;}
+      .cvid-dot.active{width:26px;background:var(--grad);}
+    }
+  </style>
+  <section id="videos" class="cvid">
+    <div class="wrap">
+      <span class="eyebrow reveal">Consultoria Integral</span>
+      <h2 class="section-title reveal">Veja a <span class="grad">consultoria integral</span> em ação</h2>
+      <p class="section-sub reveal">Nestes vídeos, Bruno Porto mostra como conecta <strong>negócio, marketing, vendas, gestão e tráfego pago</strong> em uma consultoria integral — transformando esforço em resultado real.</p>
+      <div class="cvid-track reveal" id="cvidTrack">
+        <div class="cvid-item" data-ytid="5Aj68kJAD9k" role="button" tabindex="0" aria-label="Reproduzir vídeo 1 de Bruno Porto no YouTube">
+          <div class="cvid-inner">
+            <span class="cvid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="cvid-label">Assista · 1 min</span>
+          </div>
+          <span class="cvid-cap">Toque para reproduzir</span>
+        </div>
+        <div class="cvid-item" data-ytid="tFHs7_G_LHs" role="button" tabindex="0" aria-label="Reproduzir vídeo 2 de Bruno Porto no YouTube">
+          <div class="cvid-inner">
+            <span class="cvid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="cvid-label">Assista · 1 min</span>
+          </div>
+          <span class="cvid-cap">Toque para reproduzir</span>
+        </div>
+        <div class="cvid-item" data-ytid="4xwHf-XHVvk" role="button" tabindex="0" aria-label="Reproduzir vídeo 3 de Bruno Porto no YouTube">
+          <div class="cvid-inner">
+            <span class="cvid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="cvid-label">Assista · 1 min</span>
+          </div>
+          <span class="cvid-cap">Toque para reproduzir</span>
+        </div>
+      </div>
+      <div class="cvid-dots" id="cvidDots" role="tablist" aria-label="Selecionar vídeo">
+        <button class="cvid-dot active" type="button" aria-label="Ver vídeo 1"></button>
+        <button class="cvid-dot" type="button" aria-label="Ver vídeo 2"></button>
+        <button class="cvid-dot" type="button" aria-label="Ver vídeo 3"></button>
+      </div>
+    </div>
+  </section>
+
   <!-- ─────────── PRODUTO · DIAGNÓSTICO DE TRÁFEGO PAGO ─────────── -->
   <style>
     .prod-dt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.4rem 0;}
@@ -1555,6 +1625,50 @@
         window.open(url, '_blank', 'noopener,noreferrer');
       });
     }
+
+    // Vídeos (Consultoria Integral): facade "clique para reproduzir" + carrossel mobile
+    (function(){
+      var track = document.getElementById('cvidTrack');
+      if (!track) return;
+      var items = Array.prototype.slice.call(track.querySelectorAll('.cvid-item'));
+      items.forEach(function(box){
+        function play(){
+          if (box.dataset.loaded) return;
+          box.dataset.loaded = '1';
+          var id = box.getAttribute('data-ytid');
+          var ifr = document.createElement('iframe');
+          ifr.setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0&modestbranding=1');
+          ifr.setAttribute('title', 'Vídeo de Bruno Porto');
+          ifr.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share');
+          ifr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+          ifr.allowFullscreen = true;
+          box.innerHTML = '';
+          box.appendChild(ifr);
+          box.removeAttribute('role'); box.removeAttribute('tabindex'); box.style.cursor = 'default';
+        }
+        box.addEventListener('click', play);
+        box.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
+      });
+      var dotsBox = document.getElementById('cvidDots');
+      if (dotsBox) {
+        var dots = Array.prototype.slice.call(dotsBox.querySelectorAll('.cvid-dot'));
+        if (dots.length === items.length && items.length > 1) {
+          var setActive = function(i){ dots.forEach(function(d,di){ d.classList.toggle('active', di === i); }); };
+          dots.forEach(function(d,i){
+            d.addEventListener('click', function(){
+              items[i].scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+              setActive(i);
+            });
+          });
+          if ('IntersectionObserver' in window) {
+            var cio = new IntersectionObserver(function(entries){
+              entries.forEach(function(e){ if (e.isIntersecting) { var idx = items.indexOf(e.target); if (idx > -1) setActive(idx); } });
+            }, { root: track, threshold: 0.6 });
+            items.forEach(function(it){ cio.observe(it); });
+          }
+        }
+      }
+    })();
   </script>
 
   <!-- Consentimento de cookies (LGPD) -->
