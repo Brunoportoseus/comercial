@@ -172,6 +172,13 @@ body.menu-open{overflow:hidden}
   font-size:.82rem;font-weight:600}
 .quicknav a:hover{background:rgba(255,255,255,.20);text-decoration:none;color:#fff}
 .quicknav a[aria-current="page"]{background:var(--gold);border-color:transparent;color:#231a06}
+@media (max-width:700px){
+  /* no mobile não fica fixo (evita empilhar com o cabeçalho e comer a tela) */
+  .quicknav{position:static}
+  .quicknav__inner{gap:.5rem;padding:.45rem 0}
+  .quicknav__label{font-size:.72rem}
+  .quicknav a{font-size:.8rem;padding:.3rem .66rem}
+}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;color:#fff;isolation:isolate}
