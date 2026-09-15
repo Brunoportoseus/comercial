@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Financiamento direto de terrenos na região de Curitiba</title>
-<meta name="description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) nos empreendimentos da região de Curitiba. Simule com um corretor.">
+<title>Financiamento direto de terrenos na região de Curitiba | Calculadora</title>
+<meta name="description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) na região de Curitiba, com calculadora por empreendimento para estimar a parcela. Simule com um corretor.">
 <link rel="canonical" href="https://terrenocuritibaeregiao.com.br/financiamento/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#0e3a42">
@@ -12,13 +12,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Terrenos Curitiba e Região">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Financiamento direto de terrenos na região de Curitiba">
-<meta property="og:description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) nos empreendimentos da região de Curitiba. Simule com um corretor.">
+<meta property="og:title" content="Financiamento direto de terrenos na região de Curitiba | Calculadora">
+<meta property="og:description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) na região de Curitiba, com calculadora por empreendimento para estimar a parcela. Simule com um corretor.">
 <meta property="og:url" content="https://terrenocuritibaeregiao.com.br/financiamento/">
 <meta property="og:image" content="https://terrenocuritibaeregiao.com.br/assets/img/aerea.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Financiamento direto de terrenos na região de Curitiba">
-<meta name="twitter:description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) nos empreendimentos da região de Curitiba. Simule com um corretor.">
+<meta name="twitter:title" content="Financiamento direto de terrenos na região de Curitiba | Calculadora">
+<meta name="twitter:description" content="Como funciona o financiamento direto de terrenos (entrada e parcelas, sem banco) na região de Curitiba, com calculadora por empreendimento para estimar a parcela. Simule com um corretor.">
 <meta name="twitter:image" content="https://terrenocuritibaeregiao.com.br/assets/img/aerea.jpg">
 <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
@@ -81,11 +81,86 @@
     <button class="btn btn--outline" data-open-form data-emp="">Simular com um corretor</button>
   </div>
 </div></section>
+
+<section class="section" id="simulador"><div class="wrap">
+  <div class="section-head center">
+    <span class="eyebrow">Simulador</span>
+    <h2>Calculadora de financiamento por empreendimento</h2>
+    <p>Escolha um empreendimento para carregar o preço de referência e estimar a parcela. Ajuste entrada, prazo e juros. É uma <strong>estimativa</strong> — as condições reais são confirmadas com o corretor.</p>
+  </div>
+  <div class="grid-2">
+    <form class="form" id="calcForm" novalidate autocomplete="off">
+      <div class="field"><label for="calcEmp">Empreendimento</label>
+        <select id="calcEmp"><optgroup label="Almirante Tamandaré"><option value="0">Condomínio Bela Vista</option><option value="1">Condomínio Ecoville I</option><option value="2">Condomínio Ecoville II</option><option value="3">Condomínio Valparaíso</option></optgroup><optgroup label="Araucária"><option value="4">Loteamento Residencial Vista Alegre</option></optgroup><optgroup label="Curitiba"><option value="5">Sierra Vista Condomínio Parque (Eccotown)</option><option value="6">Condomínio Le Vert</option><option value="7">Condomínio Vivendas do Parque</option></optgroup><optgroup label="São José dos Pinhais"><option value="8">Residencial Cortona (La Bella Toscana)</option><option value="9">Residencial Firenze (La Bella Toscana)</option><option value="10">Residencial Siena (La Bella Toscana)</option><option value="11">Morada do Bosque</option></optgroup></select></div>
+      <div class="row">
+        <div class="field"><label for="calcPreco">Preço (R$)</label>
+          <input type="number" id="calcPreco" inputmode="numeric" min="0" step="1000"></div>
+        <div class="field"><label for="calcEntrada">Entrada (R$)</label>
+          <input type="number" id="calcEntrada" inputmode="numeric" min="0" step="1000">
+          <span class="form__note" id="calcEntradaPct"></span></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="calcPrazo">Prazo (meses)</label>
+          <input type="number" id="calcPrazo" inputmode="numeric" min="1" max="480" step="1"></div>
+        <div class="field"><label for="calcTaxa">Juros (% ao mês)</label>
+          <input type="number" id="calcTaxa" inputmode="decimal" min="0" max="5" step="0.1"></div>
+      </div>
+      <p class="form__note">Valores em reais. A taxa vem preenchida com a referência do empreendimento e pode ser ajustada.</p>
+    </form>
+    <div>
+      <div class="pricebox">
+        <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="outFin">—</div></div>
+        <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="outParc">—</span><small>/mês</small></div></div>
+      </div>
+      <ul class="specs" style="margin-top:1rem">
+        <li><span class="k">Entrada</span><span class="v" id="outEntrada">—</span></li>
+        <li><span class="k">Total estimado (entrada + parcelas)</span><span class="v" id="outTotal">—</span></li>
+      </ul>
+      <p class="source" id="calcNote"><b>Estimativa</b> pela Tabela Price (juros compostos), sem correção monetária (INCC), seguros ou taxas de cartório. As condições reais de cada empreendimento — que podem incluir parcelas <b>sem juros</b>, balões e planos estendidos — são confirmadas com o corretor e sujeitas à análise de crédito.</p>
+      <div class="hero__cta" style="margin-top:1rem">
+        <a class="btn btn--primary" id="calcLink" href="#">Ver o empreendimento</a>
+        <button type="button" class="btn btn--outline" data-open-form data-emp="">Simular com um corretor</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
 <section class="section"><div class="wrap"><div class="ctaband">
   <h2>Quer uma simulação para o seu perfil?</h2>
   <p>Informe cidade, valor pretendido e forma de pagamento. O corretor retorna com as opções e condições atualizadas.</p>
   <button class="btn btn--gold btn--lg" data-open-form data-emp="">Fale com nosso corretor</button>
 </div></div></section>
+
+<script>
+(function(){
+  var EMPS = [{"cidade": "Almirante Tamandaré", "nome": "Condomínio Bela Vista", "preco": 205000, "entrada": 8200, "taxa": 0.8, "prazo": 420, "url": "/almirante-tamandare/bela-vista/", "temSims": true}, {"cidade": "Almirante Tamandaré", "nome": "Condomínio Ecoville I", "preco": 180000, "entrada": 40000, "taxa": 0.9, "prazo": 312, "url": "/almirante-tamandare/ecoville-i/", "temSims": true}, {"cidade": "Almirante Tamandaré", "nome": "Condomínio Ecoville II", "preco": 149900, "entrada": 5996, "taxa": 0.9, "prazo": 312, "url": "/almirante-tamandare/ecoville-ii/", "temSims": true}, {"cidade": "Almirante Tamandaré", "nome": "Condomínio Valparaíso", "preco": 198800, "entrada": 7952, "taxa": 0.9, "prazo": 312, "url": "/almirante-tamandare/valparaiso/", "temSims": true}, {"cidade": "Araucária", "nome": "Loteamento Residencial Vista Alegre", "preco": 190060, "entrada": 19006, "taxa": 0.9, "prazo": 180, "url": "/araucaria/vista-alegre/", "temSims": false}, {"cidade": "Curitiba", "nome": "Sierra Vista Condomínio Parque (Eccotown)", "preco": 630000, "entrada": 63000, "taxa": 0.0, "prazo": 48, "url": "/curitiba/sierra-vista/", "temSims": true}, {"cidade": "Curitiba", "nome": "Condomínio Le Vert", "preco": 845412, "entrada": 84541, "taxa": 0.9, "prazo": 180, "url": "/curitiba/le-vert/", "temSims": false}, {"cidade": "Curitiba", "nome": "Condomínio Vivendas do Parque", "preco": 360000, "entrada": 36000, "taxa": 0.9, "prazo": 180, "url": "/curitiba/vivendas-do-parque/", "temSims": false}, {"cidade": "São José dos Pinhais", "nome": "Residencial Cortona (La Bella Toscana)", "preco": 197120, "entrada": 19712, "taxa": 0.9, "prazo": 120, "url": "/sao-jose-dos-pinhais/cortona/", "temSims": true}, {"cidade": "São José dos Pinhais", "nome": "Residencial Firenze (La Bella Toscana)", "preco": 281600, "entrada": 28160, "taxa": 0.9, "prazo": 180, "url": "/sao-jose-dos-pinhais/firenze/", "temSims": false}, {"cidade": "São José dos Pinhais", "nome": "Residencial Siena (La Bella Toscana)", "preco": 247300, "entrada": 24730, "taxa": 0.9, "prazo": 180, "url": "/sao-jose-dos-pinhais/siena/", "temSims": false}, {"cidade": "São José dos Pinhais", "nome": "Morada do Bosque", "preco": 332300, "entrada": 33230, "taxa": 0.9, "prazo": 180, "url": "/sao-jose-dos-pinhais/morada-do-bosque/", "temSims": false}];
+  var $=function(id){return document.getElementById(id);};
+  var sel=$('calcEmp'), preco=$('calcPreco'), entrada=$('calcEntrada'), prazo=$('calcPrazo'), taxa=$('calcTaxa');
+  var oFin=$('outFin'), oParc=$('outParc'), oEnt=$('outEntrada'), oTot=$('outTotal'), link=$('calcLink'), entPct=$('calcEntradaPct');
+  if(!sel) return;
+  var brl0=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  var brl2=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
+  function load(){
+    var e=EMPS[+sel.value]; if(!e) return;
+    preco.value=e.preco; entrada.value=e.entrada; prazo.value=e.prazo; taxa.value=e.taxa;
+    link.setAttribute('href', e.url); calc();
+  }
+  function calc(){
+    var p=Math.max(0,+preco.value||0), en=Math.min(p,Math.max(0,+entrada.value||0));
+    var n=Math.max(1,Math.round(+prazo.value||1)), i=Math.max(0,(+taxa.value||0))/100;
+    var fin=Math.max(0,p-en);
+    var parc = i===0 ? fin/n : fin*i/(1-Math.pow(1+i,-n));
+    oFin.textContent=brl0.format(fin);
+    oParc.textContent=isFinite(parc)?brl2.format(parc):'—';
+    oEnt.textContent=brl0.format(en)+(p>0?(' ('+Math.round(en/p*100)+'%)'):'');
+    oTot.textContent=isFinite(parc)?brl0.format(en+parc*n):'—';
+    entPct.textContent = p>0 ? ('≈ '+Math.round(en/p*100)+'% do valor') : '';
+  }
+  sel.addEventListener('change',load);
+  [preco,entrada,prazo,taxa].forEach(function(el){el.addEventListener('input',calc);});
+  load();
+})();
+</script>
 
 </main>
 <footer class="footer">
