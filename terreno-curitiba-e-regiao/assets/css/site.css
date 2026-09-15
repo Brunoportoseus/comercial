@@ -152,6 +152,21 @@ strong{color:var(--petrol);font-weight:700}
 .mobile-menu .btn{margin-top:20px}
 body.menu-open{overflow:hidden}
 
+/* Barra de acesso rápido — cidades com estoque */
+.quicknav{position:sticky;top:var(--header-h);z-index:98;background:var(--petrol);
+  border-bottom:1px solid rgba(255,255,255,.10)}
+.quicknav__inner{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.quicknav__inner::-webkit-scrollbar{display:none}
+.quicknav__label{flex:0 0 auto;color:#bcd0cf;font-size:.78rem;font-weight:700;
+  letter-spacing:.02em;white-space:nowrap}
+.quicknav__chips{display:flex;gap:.45rem;flex:0 0 auto}
+.quicknav a{flex:0 0 auto;white-space:nowrap;color:#fff;background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.20);padding:.34rem .74rem;border-radius:999px;
+  font-size:.82rem;font-weight:600}
+.quicknav a:hover{background:rgba(255,255,255,.20);text-decoration:none;color:#fff}
+.quicknav a[aria-current="page"]{background:var(--gold);border-color:transparent;color:#231a06}
+
 /* ---------- Hero ---------- */
 .hero{position:relative;color:#fff;isolation:isolate}
 .hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2}
