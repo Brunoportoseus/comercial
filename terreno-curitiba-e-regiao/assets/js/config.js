@@ -6,9 +6,9 @@
 window.SITE_CONFIG = {
   /* ---- Contato ---- */
   brand: "Terrenos Curitiba e Região",
-  whatsapp: "5541998448989",           // número no formato internacional (só dígitos)
-  whatsappLabel: "(41) 99844-8989",
-  phone: "+5541998448989",
+  whatsapp: "5541988504931",           // número no formato internacional (só dígitos)
+  whatsappLabel: "(41) 98850-4931",
+  phone: "+5541988504931",
   email: "imoveisbrunoporto@gmail.com", // e-mail oficial de atendimento
   waDefaultText: "Olá! Vim pelo portal terrenocuritibaeregiao.com.br e quero informações sobre terrenos na região de Curitiba.",
 
