@@ -9,7 +9,7 @@ window.SITE_CONFIG = {
   whatsapp: "5541998448989",           // número no formato internacional (só dígitos)
   whatsappLabel: "(41) 99844-8989",
   phone: "+5541998448989",
-  email: "contato@terrenoalmirantetamandare.com.br", // [CONFIRMAR e-mail oficial]
+  email: "imoveisbrunoporto@gmail.com", // e-mail oficial de atendimento
   waDefaultText: "Olá! Vim pelo portal terrenoalmirantetamandare.com.br e quero informações sobre terrenos em Almirante Tamandaré.",
 
   /* ---- Faixas de investimento (edite livremente) ---- */
