@@ -19,9 +19,12 @@ Site estático (HTML/CSS/JS) + Cloudflare Pages Functions (formulário → D1/we
 /fontes-e-metodologia/ · /politica-de-privacidade/ · /politica-de-cookies/ · /termos-de-uso/
 /404.html
 ```
-Cidades **sem produto/conteúdo** (São José dos Pinhais, Curitiba, Araucária, Campo Largo,
-Fazenda Rio Grande, Pinhais, Piraquara) **ainda não têm página** — o domínio de cada uma
-redireciona para a home (ver abaixo). Não publicar página fina (contamina o SEO do site).
+**Publicadas** (com empreendimentos da planilha EVEX, cada um com página própria + preço/entrada/parcela):
+`/almirante-tamandare/` (7 empreendimentos), `/sao-jose-dos-pinhais/` (6), `/curitiba/` (5, com
+divisão alto padrão × entrada), `/araucaria/` (1) — 19 páginas de empreendimento no total.
+
+Cidades **sem produto** (Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara) **não têm página** —
+o domínio de cada uma redireciona para a home. Não publicar página fina (contamina o SEO do site).
 
 ## Publicar (novo projeto Cloudflare Pages)
 1. **Workers & Pages → Create → Pages → Connect to Git** → repo `Brunoportoseus/comercial`.
@@ -42,8 +45,8 @@ O hub é `terrenocuritibaeregiao.com.br`. Os demais domínios fazem **301** para
 |---|---|
 | terrenocuritibaeregiao.com.br | **é o hub** (custom domain do projeto) |
 | terrenoalmirantetamandare.com.br | `/almirante-tamandare/` |
-| terrenosaojosedospinhais.com.br | home do hub (até existir `/sao-jose-dos-pinhais/`) |
-| terrenoaraucaria.com.br | home do hub (até existir `/araucaria/`) |
+| terrenosaojosedospinhais.com.br | `/sao-jose-dos-pinhais/` |
+| terrenoaraucaria.com.br | `/araucaria/` |
 | terrenocampolargo.com.br | home do hub |
 | terrenofazendariogrande.com.br | home do hub |
 | terrenopinhais.com.br | home do hub |
