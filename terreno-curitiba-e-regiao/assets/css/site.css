@@ -319,8 +319,12 @@ table.data tr:last-child td{border-bottom:0}
 
 /* article listing */
 .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.post{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+.post{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
   box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .15s,box-shadow .2s}
+.post__tag{position:absolute;top:10px;right:10px;z-index:2;font-size:.72rem;font-weight:800;
+  letter-spacing:.03em;text-transform:uppercase;padding:.34rem .66rem;border-radius:999px;box-shadow:var(--shadow-sm)}
+.post__tag--new{background:var(--green);color:#fff}
+.post__tag--scarce{background:var(--gold);color:#231a06}
 .post:hover{transform:translateY(-3px);box-shadow:var(--shadow);text-decoration:none}
 /* moldura mais grossa nos cards de empreendimento (destaque) */
 .post--emp{border-width:2px;border-color:#bcdcc6}
