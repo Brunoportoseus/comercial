@@ -100,8 +100,9 @@ strong{color:var(--petrol);font-weight:700}
 .btn--wa{background:var(--wa);color:#06331b}
 .btn--wa:hover{background:var(--wa-600);color:#06331b}
 .btn--ghost{background:transparent;border-color:currentColor;color:var(--petrol)}
-.section--dark .btn--ghost{color:#fff}
+.section--dark .btn--ghost,.hero .btn--ghost{color:#fff;border-color:rgba(255,255,255,.6)}
 .btn--ghost:hover{background:rgba(255,255,255,.08)}
+.hero .btn--ghost:hover{background:rgba(255,255,255,.16);border-color:#fff}
 .btn--outline{background:#fff;border-color:var(--line);color:var(--petrol)}
 .btn--outline:hover{border-color:var(--green);color:var(--green-600)}
 .btn--block{width:100%}
@@ -121,7 +122,7 @@ strong{color:var(--petrol);font-weight:700}
 .brand__name small{display:block;font-family:var(--font-body);font-weight:500;font-size:.68rem;
   color:var(--muted);letter-spacing:.02em;text-transform:none}
 .topnav{margin-left:auto;display:flex;gap:2px;align-items:center}
-.topnav a{color:var(--ink);font-weight:600;font-size:.95rem;padding:.5rem .7rem;border-radius:8px}
+.topnav a{color:var(--ink);font-weight:600;font-size:.92rem;padding:.5rem .6rem;border-radius:8px;white-space:nowrap}
 .topnav a:hover{background:var(--bg-soft);text-decoration:none;color:var(--petrol)}
 .topnav a[aria-current="page"]{color:var(--green-600)}
 .topbar__cta{margin-left:6px}
@@ -140,6 +141,11 @@ strong{color:var(--petrol);font-weight:700}
   width:46px;height:46px;border-radius:10px;cursor:pointer;color:var(--petrol);align-items:center;justify-content:center}
 .nav-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.2}
 
+/* Menu compacta cedo (evita nav apertada com muitos itens) */
+@media (max-width:1000px){
+  .topnav,.topbar__cta{display:none}
+  .nav-toggle{display:inline-flex}
+}
 /* Mobile menu */
 .mobile-menu{position:fixed;inset:var(--header-h) 0 0;background:#fff;z-index:99;
   transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding:8px 20px 40px;visibility:hidden}
@@ -394,6 +400,17 @@ textarea{resize:vertical;min-height:80px}
 @media (max-width:560px){
   .cookiebar{left:12px;right:12px;bottom:88px;max-width:none}
 }
+
+/* Destaque do item "Financiamento" (calculadora) no menu */
+.topnav a.nav-fin{color:var(--gold-600);font-weight:700}
+.topnav a.nav-fin:hover{background:#f6efdd;color:var(--gold-600)}
+.mobile-menu a.nav-fin{color:var(--gold-600)}
+
+/* ---------- Calculadora em destaque ---------- */
+.section--calc{background:var(--petrol-050)}
+.calc-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);
+  border-radius:var(--radius);box-shadow:var(--shadow-md);padding:26px}
+@media (max-width:700px){.calc-card{padding:18px}}
 
 /* ---------- Assistente "encontre pelo orçamento" ---------- */
 .finder__controls{display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:flex-end;justify-content:space-between;margin-bottom:.6rem}
