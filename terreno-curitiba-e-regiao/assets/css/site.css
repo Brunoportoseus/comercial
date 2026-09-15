@@ -322,6 +322,9 @@ table.data tr:last-child td{border-bottom:0}
 .post{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
   box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .15s,box-shadow .2s}
 .post:hover{transform:translateY(-3px);box-shadow:var(--shadow);text-decoration:none}
+/* moldura mais grossa nos cards de empreendimento (destaque) */
+.post--emp{border-width:2px;border-color:#bcdcc6}
+.post--emp:hover{border-color:var(--green)}
 .post__img{aspect-ratio:16/9;object-fit:cover;width:100%}
 .post__body{padding:18px 20px;display:flex;flex-direction:column;flex:1}
 .post__cat{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-600);margin-bottom:.4rem}
