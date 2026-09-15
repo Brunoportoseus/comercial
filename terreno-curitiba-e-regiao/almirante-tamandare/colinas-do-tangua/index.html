@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=202609152133">
+<link rel="stylesheet" href="/assets/css/site.css?v=202609152140">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://terrenocuritibaeregiao.com.br/#website", "url": "https://terrenocuritibaeregiao.com.br", "name": "Terrenos Curitiba e Região", "inLanguage": "pt-BR", "publisher": {"@id": "https://terrenocuritibaeregiao.com.br/#org"}}, {"@type": "RealEstateAgent", "@id": "https://terrenocuritibaeregiao.com.br/#org", "name": "Terrenos Curitiba e Região", "url": "https://terrenocuritibaeregiao.com.br", "description": "Portal independente de terrenos e oportunidades imobiliárias na Região Metropolitana de Curitiba (RMC), em parceria com EVEX Imóveis.", "areaServed": {"@type": "AdministrativeArea", "name": "Região Metropolitana de Curitiba (PR)"}, "logo": "https://terrenocuritibaeregiao.com.br/assets/img/evex-logo.png", "telephone": "+55-41-98850-4931", "contactPoint": {"@type": "ContactPoint", "telephone": "+55-41-98850-4931", "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}}, {"@type": ["Product", "RealEstateListing"], "name": "Residencial Colinas do Tanguá", "description": "Apartamentos 2 e 3 quartos (condomínio clube) em Almirante Tamandaré (PR). Sob consulta.", "category": "Apartamentos 2 e 3 quartos (condomínio clube)", "brand": {"@type": "Organization", "name": "EVEX Imóveis"}, "url": "https://terrenocuritibaeregiao.com.br/almirante-tamandare/colinas-do-tangua/"}, {"@type": "Place", "name": "Residencial Colinas do Tanguá", "address": {"@type": "PostalAddress", "streetAddress": "Rua José Kleina, 580 — Almirante Tamandaré (PR)", "addressLocality": "Almirante Tamandaré", "addressRegion": "PR", "addressCountry": "BR"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://terrenocuritibaeregiao.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Almirante Tamandaré", "item": "https://terrenocuritibaeregiao.com.br/almirante-tamandare/"}, {"@type": "ListItem", "position": 3, "name": "Residencial Colinas do Tanguá"}]}]}</script>
 </head>
 <body>
@@ -98,6 +98,73 @@
     <p>O preço do Residencial Colinas do Tanguá é sob consulta. Fale com o corretor para receber os valores e simular a parcela.</p></div>
   <p class="center"><button class="btn btn--primary btn--lg" data-open-form data-emp="Residencial Colinas do Tanguá">Receber valores e simular</button></p>
 </div></section>
+
+
+<section class="section" id="buildcalc" data-frente="8" data-prof="20" data-recf="5" data-recl="1.5" data-recfundos="3" data-coef="1"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">Projeto</span>
+    <h2>O que dá para construir neste lote</h2>
+    <p>Estime a área construível considerando os <strong>recuos</strong> (frontal, laterais e fundos) e o coeficiente de aproveitamento. Ajuste os valores conforme o lote.</p></div>
+  <div class="build-card grid-2">
+    <form class="form" autocomplete="off" onsubmit="return false">
+      <h3 style="margin-top:0">Dimensões do lote</h3>
+      <div class="row">
+        <div class="field"><label for="bFrente">Frente / largura (m)</label>
+          <input type="number" id="bFrente" inputmode="decimal" min="1" step="0.5"></div>
+        <div class="field"><label for="bProf">Profundidade (m)</label>
+          <input type="number" id="bProf" inputmode="decimal" min="1" step="0.5"></div>
+      </div>
+      <h3>Recuos (m)</h3>
+      <div class="row">
+        <div class="field"><label for="bRecF">Frontal</label>
+          <input type="number" id="bRecF" inputmode="decimal" min="0" step="0.5"></div>
+        <div class="field"><label for="bRecL">Lateral (cada lado)</label>
+          <input type="number" id="bRecL" inputmode="decimal" min="0" step="0.5"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="bRecFundos">Fundos</label>
+          <input type="number" id="bRecFundos" inputmode="decimal" min="0" step="0.5"></div>
+        <div class="field"><label for="bCoef">Coef. de aproveitamento</label>
+          <input type="number" id="bCoef" inputmode="decimal" min="0" max="6" step="0.1"></div>
+      </div>
+      <p class="form__note">Valores-padrão apenas ilustrativos. Os recuos, a taxa de ocupação e o coeficiente reais dependem do <strong>zoneamento do lote</strong>.</p>
+    </form>
+    <div>
+      <div class="pricebox">
+        <div class="price"><div class="price__label">Projeção máxima no térreo (pelos recuos)</div><div class="price__value" id="bFootprint" style="font-size:1.6rem">—</div><div class="price__note">faixa útil <span id="bDim">—</span></div></div>
+        <div class="price"><div class="price__label">Área construível (pelo coeficiente)</div><div class="price__value" id="bTotal" style="font-size:1.6rem">—</div><div class="price__note">soma dos pavimentos</div></div>
+      </div>
+      <ul class="specs" style="margin-top:1rem">
+        <li><span class="k">Área do lote</span><span class="v" id="bArea">—</span></li>
+        <li><span class="k">Taxa de ocupação no térreo</span><span class="v" id="bTaxa">—</span></li>
+      </ul>
+      <p class="source"><b>Estimativa educativa.</b> Não substitui projeto de arquiteto nem a consulta ao zoneamento. Confirme recuos, taxa de ocupação e coeficiente na Prefeitura antes de projetar. <b>Atualizado em setembro de 2026.</b></p>
+      <p><a href="/conteudos/como-consultar-o-zoneamento-de-um-lote/">Como consultar o zoneamento de um lote →</a><br>
+      <a href="/guia-do-comprador/">Ver o guia do comprador →</a></p>
+    </div>
+  </div>
+</div></section><script>
+(function(){
+  var el=document.getElementById('buildcalc'); if(!el) return;
+  var g=function(id){return document.getElementById(id);}, d=el.dataset;
+  var fr=g('bFrente'),pr=g('bProf'),rf=g('bRecF'),rl=g('bRecL'),rfu=g('bRecFundos'),co=g('bCoef');
+  var oArea=g('bArea'),oDim=g('bDim'),oFoot=g('bFootprint'),oTaxa=g('bTaxa'),oTotal=g('bTotal');
+  fr.value=d.frente; pr.value=d.prof; rf.value=d.recf; rl.value=d.recl; rfu.value=d.recfundos; co.value=d.coef;
+  var nf=new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1});
+  function num(x){return Math.max(0,+x.value||0);}
+  function calc(){
+    var f=num(fr),p=num(pr),a=f*p;
+    var uw=Math.max(0,f-2*num(rl)), ud=Math.max(0,p-num(rf)-num(rfu));
+    var foot=uw*ud, taxa=a>0?foot/a*100:0, total=a*num(co);
+    oArea.textContent=nf.format(a)+' m²';
+    oDim.textContent=nf.format(uw)+' m × '+nf.format(ud)+' m';
+    oFoot.textContent=nf.format(foot)+' m²';
+    oTaxa.textContent=Math.round(taxa)+'%';
+    oTotal.textContent=nf.format(total)+' m²';
+  }
+  [fr,pr,rf,rl,rfu,co].forEach(function(x){x.addEventListener('input',calc);});
+  calc();
+})();
+</script>
 
 
 
@@ -329,7 +396,7 @@
     <button class="btn btn--outline btn--sm" data-cookie-reject>Recusar</button>
   </div>
 </div>
-<script src="/assets/js/config.js?v=202609152133"></script>
-<script src="/assets/js/site.js?v=202609152133" defer></script>
+<script src="/assets/js/config.js?v=202609152140"></script>
+<script src="/assets/js/site.js?v=202609152140" defer></script>
 </body>
 </html>
