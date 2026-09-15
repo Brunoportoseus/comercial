@@ -19,12 +19,20 @@ Site estático (HTML/CSS/JS) + Cloudflare Pages Functions (formulário → D1/we
 /fontes-e-metodologia/ · /politica-de-privacidade/ · /politica-de-cookies/ · /termos-de-uso/
 /404.html
 ```
-**Publicadas** (com empreendimentos da planilha EVEX, cada um com página própria + preço/entrada/parcela):
+**Com produto** (empreendimentos da planilha EVEX, cada um com página própria + preço/entrada/parcela):
 `/almirante-tamandare/` (7 empreendimentos), `/sao-jose-dos-pinhais/` (6), `/curitiba/` (5, com
 divisão alto padrão × entrada), `/araucaria/` (1) — 19 páginas de empreendimento no total.
+Cada cidade traz também um bloco **"Entenda a cidade"** com dados demográficos do IBGE
+(população, área e densidade — Censo 2022), com fonte e data.
 
-Cidades **sem produto** (Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara) **não têm página** —
-o domínio de cada uma redireciona para a home. Não publicar página fina (contamina o SEO do site).
+Cidades **sem produto ainda** (Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara) têm uma
+**página de contexto** (`/campo-largo/`, `/fazenda-rio-grande/`, `/pinhais/`, `/piraquara/`):
+dados demográficos do IBGE + contexto do município + captação de interesse ("Quero ser avisado"),
+deixando claro que não há empreendimento em comercialização no momento. É conteúdo real (não página
+fina) e serve de destino para o menu e para o 301 do domínio de cada cidade.
+
+**Menu:** o topo tem um dropdown **"Cidades"** com as 8 cidades da RMC (no mobile, vira uma lista
+agrupada), além de Guia do comprador, Financiamento e Conteúdos.
 
 ## Publicar (novo projeto Cloudflare Pages)
 1. **Workers & Pages → Create → Pages → Connect to Git** → repo `Brunoportoseus/comercial`.
@@ -47,10 +55,10 @@ O hub é `terrenocuritibaeregiao.com.br`. Os demais domínios fazem **301** para
 | terrenoalmirantetamandare.com.br | `/almirante-tamandare/` |
 | terrenosaojosedospinhais.com.br | `/sao-jose-dos-pinhais/` |
 | terrenoaraucaria.com.br | `/araucaria/` |
-| terrenocampolargo.com.br | home do hub |
-| terrenofazendariogrande.com.br | home do hub |
-| terrenopinhais.com.br | home do hub |
-| terrenopiraquara.com.br | home do hub |
+| terrenocampolargo.com.br | `/campo-largo/` (página de contexto) |
+| terrenofazendariogrande.com.br | `/fazenda-rio-grande/` (página de contexto) |
+| terrenopinhais.com.br | `/pinhais/` (página de contexto) |
+| terrenopiraquara.com.br | `/piraquara/` (página de contexto) |
 
 Como fazer no Cloudflare: adicione cada domínio à conta e use **Rules → Redirect Rules**
 (ou **Bulk Redirects**) com 301 para o destino. O `_redirects` deste projeto já cuida das
@@ -62,7 +70,7 @@ caso o domínio antigo seja apontado para o hub.
 > `terrenoalmirantetamandare.com.br` → `/almirante-tamandare/` (ou coloque o site antigo em noindex).
 
 ## Pendências que BLOQUEIAM publicar/anunciar (fornecer antes)
-- **CRECI** real — hoje `[CONFIRMAR CRECI]` no rodapé/contato. Sem CRECI não se anuncia (Meta/Google reprovam).
+- ~~**CRECI** real~~ — ✅ aplicado (EVEX · CRECI 7650J) no rodapé/contato.
 - **Autorização por escrito da EVEX** para veicular marca, estoque e preços.
 - **Dados dos demais empreendimentos** (metragem, preço “a partir de”, entrada/parcela) para criar as páginas —
   hoje só o **Bela Vista** tem dados confirmados; os outros de Almirante aparecem como “sob consulta”.

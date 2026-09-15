@@ -9,7 +9,7 @@ window.SITE_CONFIG = {
   whatsapp: "5541998448989",           // número no formato internacional (só dígitos)
   whatsappLabel: "(41) 99844-8989",
   phone: "+5541998448989",
-  email: "contato@terrenocuritibaeregiao.com.br", // [CONFIRMAR e-mail oficial]
+  email: "imoveisbrunoporto@gmail.com", // e-mail oficial de atendimento
   waDefaultText: "Olá! Vim pelo portal terrenocuritibaeregiao.com.br e quero informações sobre terrenos na região de Curitiba.",
 
   /* ---- Faixas de investimento (edite livremente) ---- */

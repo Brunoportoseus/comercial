@@ -125,6 +125,17 @@ strong{color:var(--petrol);font-weight:700}
 .topnav a:hover{background:var(--bg-soft);text-decoration:none;color:var(--petrol)}
 .topnav a[aria-current="page"]{color:var(--green-600)}
 .topbar__cta{margin-left:6px}
+/* Dropdown "Cidades" */
+.hasmenu{position:relative}
+.hasmenu__trigger{display:inline-flex;align-items:center;gap:.3rem}
+.hasmenu .caret{font-size:.7rem;transition:transform .18s}
+.hasmenu:hover .caret,.hasmenu:focus-within .caret{transform:rotate(180deg)}
+.hasmenu__panel{position:absolute;top:calc(100% + 4px);right:0;min-width:236px;background:#fff;
+  border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-md);padding:6px;
+  display:flex;flex-direction:column;gap:1px;opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .16s ease,transform .16s ease}
+.hasmenu:hover .hasmenu__panel,.hasmenu:focus-within .hasmenu__panel{opacity:1;visibility:visible;transform:none}
+.hasmenu__panel a{white-space:nowrap;font-size:.92rem;padding:.55rem .7rem;border-radius:8px}
 .nav-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);
   width:46px;height:46px;border-radius:10px;cursor:pointer;color:var(--petrol);align-items:center;justify-content:center}
 .nav-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.2}
@@ -136,6 +147,8 @@ strong{color:var(--petrol);font-weight:700}
 .mobile-menu a{display:block;padding:.95rem .4rem;font-family:var(--font-head);font-weight:700;
   font-size:1.1rem;color:var(--petrol);border-bottom:1px solid var(--line)}
 .mobile-menu a:hover{text-decoration:none}
+.mobile-menu__label{display:block;font-family:var(--font-body);font-weight:700;font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:1.2rem .4rem .3rem}
 .mobile-menu .btn{margin-top:20px}
 body.menu-open{overflow:hidden}
 
