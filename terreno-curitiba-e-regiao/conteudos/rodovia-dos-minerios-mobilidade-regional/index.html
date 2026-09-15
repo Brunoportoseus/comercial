@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css?v=202609152128">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://terrenocuritibaeregiao.com.br/#website", "url": "https://terrenocuritibaeregiao.com.br", "name": "Terrenos Curitiba e Região", "inLanguage": "pt-BR", "publisher": {"@id": "https://terrenocuritibaeregiao.com.br/#org"}}, {"@type": "RealEstateAgent", "@id": "https://terrenocuritibaeregiao.com.br/#org", "name": "Terrenos Curitiba e Região", "url": "https://terrenocuritibaeregiao.com.br", "description": "Portal independente de terrenos e oportunidades imobiliárias na Região Metropolitana de Curitiba (RMC), em parceria com EVEX Imóveis.", "areaServed": {"@type": "AdministrativeArea", "name": "Região Metropolitana de Curitiba (PR)"}, "logo": "https://terrenocuritibaeregiao.com.br/assets/img/evex-logo.png", "telephone": "+55-41-98850-4931", "contactPoint": {"@type": "ContactPoint", "telephone": "+55-41-98850-4931", "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}}, {"@type": "Article", "headline": "Como a Rodovia dos Minérios influencia a mobilidade regional", "description": "Entenda o papel da Rodovia dos Minérios (PR-092) na ligação entre Curitiba e Almirante Tamandaré e o que a duplicação pode mudar.", "image": "https://terrenocuritibaeregiao.com.br/assets/img/mapa.jpg", "datePublished": "2026-08-18", "dateModified": "2026-09-02", "author": {"@type": "Organization", "name": "Terrenos Curitiba e Região"}, "publisher": {"@id": "https://terrenocuritibaeregiao.com.br/#org"}, "mainEntityOfPage": "https://terrenocuritibaeregiao.com.br/conteudos/rodovia-dos-minerios-mobilidade-regional/", "articleSection": "Infraestrutura e mobilidade", "inLanguage": "pt-BR"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://terrenocuritibaeregiao.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Conteúdos", "item": "https://terrenocuritibaeregiao.com.br/conteudos/"}, {"@type": "ListItem", "position": 3, "name": "Como a Rodovia dos Minérios influencia a mobilidade regional"}]}]}</script>
 </head>
 <body>
@@ -46,12 +46,14 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Navegação">
-    <span class="mobile-menu__label">Cidades da região</span><a href="/almirante-tamandare/">Almirante Tamandaré</a><a href="/sao-jose-dos-pinhais/">São José dos Pinhais</a><a href="/curitiba/">Curitiba</a><a href="/araucaria/">Araucária</a><a href="/campo-largo/">Campo Largo</a><a href="/fazenda-rio-grande/">Fazenda Rio Grande</a><a href="/pinhais/">Pinhais</a><a href="/piraquara/">Piraquara</a><span class="mobile-menu__label">Institucional</span><a href="/comparar/">Comparar</a><a href="/guia-do-comprador/">Guia do comprador</a><a href="/financiamento/" class="nav-fin">🧮 Financiamento</a><a href="/conteudos/" aria-current="page">Conteúdos</a>
-    <button class="btn btn--primary btn--block" data-open-form data-emp="">Fale com nosso corretor</button>
-    <a class="btn btn--wa btn--block" data-wa data-loc="menu-mobile" style="margin-top:10px"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.4.7 4.6 1.9 6.5L4 29l7-1.8c1.8 1 3.9 1.5 6 1.5 6.6 0 12-5.3 12-11.9C29 8.3 22.6 3 16 3zm0 21.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4a9.6 9.6 0 01-1.5-5.3C5 9.5 9.9 4.9 16 4.9S27 9.5 27 14.9 22.1 24.7 16 24.7zm5.4-7.2c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.5 3.5 0 00-1.1 2.6c0 1.5 1.1 3 1.3 3.2.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.1.9 3.7.8.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg> WhatsApp</a>
-  </nav>
 </header>
+<!-- menu mobile FORA do <header>: a topbar tem backdrop-filter, que viraria
+     o bloco de contenção de um position:fixed filho e limitaria a altura do menu. -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Navegação">
+  <span class="mobile-menu__label">Cidades da região</span><a href="/almirante-tamandare/">Almirante Tamandaré</a><a href="/sao-jose-dos-pinhais/">São José dos Pinhais</a><a href="/curitiba/">Curitiba</a><a href="/araucaria/">Araucária</a><a href="/campo-largo/">Campo Largo</a><a href="/fazenda-rio-grande/">Fazenda Rio Grande</a><a href="/pinhais/">Pinhais</a><a href="/piraquara/">Piraquara</a><span class="mobile-menu__label">Institucional</span><a href="/comparar/">Comparar</a><a href="/guia-do-comprador/">Guia do comprador</a><a href="/financiamento/" class="nav-fin">🧮 Financiamento</a><a href="/conteudos/" aria-current="page">Conteúdos</a>
+  <button class="btn btn--primary btn--block" data-open-form data-emp="">Fale com nosso corretor</button>
+  <a class="btn btn--wa btn--block" data-wa data-loc="menu-mobile" style="margin-top:10px"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.4.7 4.6 1.9 6.5L4 29l7-1.8c1.8 1 3.9 1.5 6 1.5 6.6 0 12-5.3 12-11.9C29 8.3 22.6 3 16 3zm0 21.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4a9.6 9.6 0 01-1.5-5.3C5 9.5 9.9 4.9 16 4.9S27 9.5 27 14.9 22.1 24.7 16 24.7zm5.4-7.2c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.5 3.5 0 00-1.1 2.6c0 1.5 1.1 3 1.3 3.2.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.1.9 3.7.8.6-.1 1.8-.7 2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg> WhatsApp</a>
+</nav>
 <nav class="quicknav" aria-label="Cidades com terrenos em estoque">
   <div class="wrap quicknav__inner">
     <span class="quicknav__label">Terrenos em estoque:</span>
@@ -228,7 +230,7 @@
     <button class="btn btn--outline btn--sm" data-cookie-reject>Recusar</button>
   </div>
 </div>
-<script src="/assets/js/config.js"></script>
-<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/config.js?v=202609152128"></script>
+<script src="/assets/js/site.js?v=202609152128" defer></script>
 </body>
 </html>
