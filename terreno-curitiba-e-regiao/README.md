@@ -1,4 +1,4 @@
-# terrenocuritibaeregiao.com.br — Hub “Terrenos Curitiba e Região”
+# terrenoscuritibaeregiao.com.br — Hub “Terrenos Curitiba e Região”
 
 Hub regional (hub-and-spoke) de terrenos na **Região Metropolitana de Curitiba (RMC)**.
 Cada cidade tem **página com URL própria** (não aba de JS). Começa por **Almirante Tamandaré**
@@ -47,11 +47,11 @@ agrupada), além de Guia do comprador, Financiamento e Conteúdos.
 
 ## Mapa de domínios e redirects (301 — feito no painel Cloudflare, nível de domínio)
 
-O hub é `terrenocuritibaeregiao.com.br`. Os demais domínios fazem **301** para o destino:
+O hub é `terrenoscuritibaeregiao.com.br`. Os demais domínios fazem **301** para o destino:
 
 | Domínio | Destino do 301 |
 |---|---|
-| terrenocuritibaeregiao.com.br | **é o hub** (custom domain do projeto) |
+| terrenoscuritibaeregiao.com.br | **é o hub** (custom domain do projeto) |
 | terrenoalmirantetamandare.com.br | `/almirante-tamandare/` |
 | terrenosaojosedospinhais.com.br | `/sao-jose-dos-pinhais/` |
 | terrenoaraucaria.com.br | `/araucaria/` |

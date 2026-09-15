@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /obrigado/
 
-Sitemap: https://terrenocuritibaeregiao.com.br/sitemap.xml
+Sitemap: https://terrenoscuritibaeregiao.com.br/sitemap.xml
