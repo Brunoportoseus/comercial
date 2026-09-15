@@ -10,7 +10,7 @@ window.SITE_CONFIG = {
   whatsappLabel: "(41) 98850-4931",
   phone: "+5541988504931",
   email: "imoveisbrunoporto@gmail.com", // e-mail oficial de atendimento
-  waDefaultText: "Olá! Vim pelo portal terrenocuritibaeregiao.com.br e quero informações sobre terrenos na região de Curitiba.",
+  waDefaultText: "Olá! Vim pelo portal terrenoscuritibaeregiao.com.br e quero informações sobre terrenos na região de Curitiba.",
 
   /* ---- Faixas de investimento (edite livremente) ---- */
   faixas: [
