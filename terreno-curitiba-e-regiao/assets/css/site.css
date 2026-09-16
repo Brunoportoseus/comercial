@@ -363,7 +363,7 @@ table.data tr:last-child td{border-bottom:0}
 .footer__brand p{font-size:.9rem;color:#a9c0bf;margin-top:1rem}
 .footer__mark{display:flex;align-items:center;gap:.6rem;color:#fff;font-family:var(--font-head);font-weight:800;font-size:1.1rem}
 .footer__mark{display:inline-flex;align-items:center;gap:.55rem}
-.footer__mark .brand__mark{height:34px;background:#F7F5EF;border-radius:8px;padding:4px 6px;box-shadow:var(--shadow-sm)}
+.footer__logo{height:42px;width:auto;flex:0 0 auto;display:block}
 .footer__disc{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding:22px 0;font-size:.82rem;color:#93aeac}
 .footer__legal{border-top:1px solid rgba(255,255,255,.12);padding:16px 0;font-size:.8rem;color:#93aeac;
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
