@@ -526,7 +526,9 @@ textarea{resize:vertical;min-height:80px}
 .emp-feature__seal{position:absolute;top:16px;left:16px;background:var(--gold);color:#241c07;font-weight:700;
   font-size:.8rem;padding:.35rem .85rem;border-radius:999px;box-shadow:var(--shadow-sm)}
 .emp-feature__body{padding:32px}
-.emp-feature__body h3{font-size:1.7rem;margin-bottom:.2rem}
+.emp-feature__body h3{font-size:1.7rem;margin-bottom:.2rem;color:var(--gold-600)}
+/* Nomes dos empreendimentos em dourado (cards) */
+.post--emp .post__body h3{color:var(--gold-600)}
 .emp-feature__tags{display:flex;flex-wrap:wrap;gap:8px;margin:.8rem 0 1rem;list-style:none;padding:0}
 .emp-feature__tags li{background:var(--green-050);color:var(--green-600);border-radius:999px;padding:.28rem .7rem;font-size:.82rem;font-weight:600}
 .emp-feature__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.2rem}
