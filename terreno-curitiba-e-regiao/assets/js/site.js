@@ -53,6 +53,25 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
   }
 
+  /* ---------------- Lightbox / zoom nas fotos da galeria ---------------- */
+  (function () {
+    var imgs = $$("figure.media img");
+    if (!imgs.length) return;
+    var ov = document.createElement("div");
+    ov.className = "lightbox"; ov.hidden = true;
+    ov.innerHTML = '<button class="lightbox__x" type="button" aria-label="Fechar">×</button><img alt="">';
+    document.body.appendChild(ov);
+    var big = ov.querySelector("img");
+    function open(src, alt) { big.src = src; big.alt = alt || ""; ov.hidden = false; document.body.classList.add("menu-open"); }
+    function close() { ov.hidden = true; big.removeAttribute("src"); document.body.classList.remove("menu-open"); }
+    imgs.forEach(function (im) {
+      im.style.cursor = "zoom-in";
+      im.addEventListener("click", function () { open(im.currentSrc || im.src, im.alt); });
+    });
+    ov.addEventListener("click", function (e) { if (e.target !== big) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  })();
+
   /* ---------------- Analytics ---------------- */
   var analyticsLoaded = false;
   function loadAnalytics() {
