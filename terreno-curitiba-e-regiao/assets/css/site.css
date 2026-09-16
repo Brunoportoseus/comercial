@@ -191,7 +191,7 @@ body.menu-open{overflow:hidden}
   border:1px solid rgba(255,255,255,.25);color:#fff;padding:.4rem .9rem;border-radius:999px;
   font-size:.82rem;font-weight:600;margin-bottom:1.1rem;line-height:1.4}
 .hero h1{color:#fff;margin-bottom:1rem}
-.hero__lead{font-size:1.18rem;color:#e7efee;max-width:600px;margin-bottom:1.6rem}
+.hero__lead{font-size:1.05rem;color:#e7efee;max-width:600px;margin-bottom:1rem}
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px}
 .hero__note{margin-top:1.8rem;font-size:.85rem;color:#c6d6d5;max-width:520px}
 
@@ -497,10 +497,10 @@ textarea{resize:vertical;min-height:80px}
 
 /* ---------- Hero comercial (split) ---------- */
 .hero--split{background:linear-gradient(160deg,var(--petrol),var(--petrol-700))}
-.hero--split .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:56px}
-.hero--split .hero__copy h1{color:#fff;font-size:clamp(1.8rem,3.6vw,2.6rem)}
+.hero--split .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding-top:34px;padding-bottom:34px}
+.hero--split .hero__copy h1{color:#fff;font-size:clamp(1.5rem,3vw,2.1rem)}
 .hero--split .hero__copy .hero__lead{color:#e7efee}
-.hero--split .hero__benefits{list-style:none;padding:0;margin:1.2rem 0 1.6rem;display:grid;gap:.5rem}
+.hero--split .hero__benefits{list-style:none;padding:0;margin:.8rem 0 1.1rem;display:grid;gap:.35rem}
 .hero--split .hero__benefits li{display:flex;gap:.55rem;align-items:flex-start;color:#dfeaea}
 .hero--split .hero__benefits .fi{color:var(--gold);font-weight:800}
 .hero--split .hero__media{position:relative}
@@ -559,7 +559,7 @@ textarea{resize:vertical;min-height:80px}
   .topnav,.topbar__cta{display:none}
   .nav-toggle{display:inline-flex}
   .grid-2,.grid-3,.grid-4,.stats,.emp-grid,.post-grid,.features,.pricebox,.emp__specs,.form .row{grid-template-columns:1fr}
-  .hero--split .hero__grid{grid-template-columns:1fr;gap:24px;padding-top:40px;padding-bottom:40px}
+  .hero--split .hero__grid{grid-template-columns:1fr;gap:20px;padding-top:26px;padding-bottom:26px}
   .hero--split .hero__media{order:2}
   .emp-feature{grid-template-columns:1fr}
   .emp-feature__media{min-height:220px;position:relative}
