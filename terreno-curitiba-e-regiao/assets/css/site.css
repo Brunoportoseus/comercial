@@ -231,6 +231,14 @@ body.menu-open{overflow:hidden}
 /* ---------- Media ---------- */
 .media img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;object-fit:cover}
 .media--stack{position:relative}
+/* Galeria dos empreendimentos — masonry (encaixa fotos verticais/horizontais sem buracos) */
+.gallery{columns:3;column-gap:18px}
+.gallery .media{break-inside:avoid;margin:0 0 18px}
+.gallery .media img{width:100%;height:auto;object-fit:cover;border-radius:14px;
+  box-shadow:0 6px 18px rgba(14,58,66,.10);transition:transform .35s ease,box-shadow .35s ease;cursor:zoom-in}
+.gallery .media img:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 16px 34px rgba(14,58,66,.20)}
+@media (max-width:900px){.gallery{columns:2;column-gap:14px}.gallery .media{margin-bottom:14px}}
+@media (max-width:560px){.gallery{columns:1}}
 .fignote{font-size:.78rem;color:var(--muted);margin-top:.5rem}
 .section--dark .fignote{color:#a9c0bf}
 
