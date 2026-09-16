@@ -73,9 +73,32 @@
   })();
 
   /* ---------------- Analytics ---------------- */
-  var analyticsLoaded = false;
-  function loadAnalytics() {
-    if (analyticsLoaded) return; analyticsLoaded = true;
+  // Google Consent Mode v2
+  var CONSENT_DENIED = { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" };
+  var CONSENT_GRANTED = { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted" };
+  var baseLoaded = false, consentedLoaded = false;
+
+  // Carrega a base do gtag (Google Ads / GA4) com consentimento NEGADO por padrão.
+  function initGtagBase() {
+    if (baseLoaded) return; baseLoaded = true;
+    var a = CFG.analytics || {};
+    var gid = a.ga4 || a.googleAds;
+    if (!gid) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", Object.assign({}, CONSENT_DENIED, { wait_for_update: 500 }));
+    window.gtag("set", "url_passthrough", true);
+    window.gtag("set", "ads_data_redaction", true);
+    var g = document.createElement("script"); g.async = true;
+    g.src = "https://www.googletagmanager.com/gtag/js?id=" + gid; document.head.appendChild(g);
+    window.gtag("js", new Date());
+    if (a.ga4) window.gtag("config", a.ga4);
+    if (a.googleAds) window.gtag("config", a.googleAds);
+  }
+
+  // Tags que só carregam APÓS aceite (GTM e Meta Pixel — sem consent mode).
+  function loadConsentedTags() {
+    if (consentedLoaded) return; consentedLoaded = true;
     var a = CFG.analytics || {};
     window.dataLayer = window.dataLayer || [];
     if (a.gtm) {
@@ -84,15 +107,6 @@
         var f = d.getElementsByTagName(s)[0], j = d.createElement(s);
         j.async = true; j.src = "https://www.googletagmanager.com/gtm.js?id=" + i; f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", a.gtm);
-    }
-    if (a.ga4 || a.googleAds) {
-      var gid = a.ga4 || a.googleAds;
-      var g = document.createElement("script"); g.async = true;
-      g.src = "https://www.googletagmanager.com/gtag/js?id=" + gid; document.head.appendChild(g);
-      window.gtag = function () { window.dataLayer.push(arguments); };
-      window.gtag("js", new Date());
-      if (a.ga4) window.gtag("config", a.ga4);
-      if (a.googleAds) window.gtag("config", a.googleAds);
     }
     if (a.metaPixel) {
       !function (f, b, e, v, n, t, s) {
@@ -103,6 +117,9 @@
       window.fbq("init", a.metaPixel); window.fbq("track", "PageView");
     }
   }
+
+  function grantConsent() { if (window.gtag) window.gtag("consent", "update", CONSENT_GRANTED); loadConsentedTags(); }
+  function denyConsent() { if (window.gtag) window.gtag("consent", "update", CONSENT_DENIED); }
   // Evento unificado de conversão -> dataLayer + gtag + fbq
   window.trackEvent = function (name, params) {
     params = params || {};
@@ -129,20 +146,19 @@
   var CONSENT_KEY = "tat_cookie_consent";
   function getConsent() { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } }
   function setConsent(v) { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} }
-  function applyConsent(v) {
-    if (v === "accepted") loadAnalytics();
-  }
   var bar = $(".cookiebar");
   if (CFG.requireCookieConsent) {
+    initGtagBase(); // Consent Mode: tag carrega com consentimento negado por padrão
     var c = getConsent();
-    if (c) { applyConsent(c); }
+    if (c === "accepted") { grantConsent(); }
+    else if (c === "rejected") { denyConsent(); }
     else if (bar) { bar.hidden = false; }
     if (bar) {
       var accept = $("[data-cookie-accept]", bar), reject = $("[data-cookie-reject]", bar);
-      if (accept) accept.addEventListener("click", function () { setConsent("accepted"); bar.hidden = true; applyConsent("accepted"); });
-      if (reject) reject.addEventListener("click", function () { setConsent("rejected"); bar.hidden = true; });
+      if (accept) accept.addEventListener("click", function () { setConsent("accepted"); bar.hidden = true; grantConsent(); });
+      if (reject) reject.addEventListener("click", function () { setConsent("rejected"); bar.hidden = true; denyConsent(); });
     }
-  } else { loadAnalytics(); }
+  } else { initGtagBase(); grantConsent(); }
 
   /* ---------------- UTM / origem ---------------- */
   function captureUTM() {
