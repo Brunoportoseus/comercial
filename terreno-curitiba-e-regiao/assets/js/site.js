@@ -85,11 +85,14 @@
         j.async = true; j.src = "https://www.googletagmanager.com/gtm.js?id=" + i; f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", a.gtm);
     }
-    if (a.ga4) {
+    if (a.ga4 || a.googleAds) {
+      var gid = a.ga4 || a.googleAds;
       var g = document.createElement("script"); g.async = true;
-      g.src = "https://www.googletagmanager.com/gtag/js?id=" + a.ga4; document.head.appendChild(g);
+      g.src = "https://www.googletagmanager.com/gtag/js?id=" + gid; document.head.appendChild(g);
       window.gtag = function () { window.dataLayer.push(arguments); };
-      window.gtag("js", new Date()); window.gtag("config", a.ga4);
+      window.gtag("js", new Date());
+      if (a.ga4) window.gtag("config", a.ga4);
+      if (a.googleAds) window.gtag("config", a.googleAds);
     }
     if (a.metaPixel) {
       !function (f, b, e, v, n, t, s) {
