@@ -117,8 +117,7 @@ strong{color:var(--petrol);font-weight:700}
 .brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-head);font-weight:800;
   color:var(--petrol);text-decoration:none;line-height:1.05}
 .brand:hover{text-decoration:none}
-.brand__mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--petrol),var(--green));
-  color:#fff;display:grid;place-items:center;font-size:1.05rem;flex:0 0 auto;box-shadow:var(--shadow-sm)}
+.brand__mark{height:36px;width:auto;flex:0 0 auto;display:block}
 .brand__name{font-size:1.02rem}
 .brand__name small{display:block;font-family:var(--font-body);font-weight:500;font-size:.68rem;
   color:var(--muted);letter-spacing:.02em;text-transform:none}
@@ -363,7 +362,8 @@ table.data tr:last-child td{border-bottom:0}
 .footer li{margin-bottom:.5rem}
 .footer__brand p{font-size:.9rem;color:#a9c0bf;margin-top:1rem}
 .footer__mark{display:flex;align-items:center;gap:.6rem;color:#fff;font-family:var(--font-head);font-weight:800;font-size:1.1rem}
-.footer__mark .brand__mark{background:linear-gradient(135deg,#fff,#cfe0df);color:var(--petrol)}
+.footer__mark{display:inline-flex;align-items:center;gap:.55rem}
+.footer__mark .brand__mark{height:34px;background:#F7F5EF;border-radius:8px;padding:4px 6px;box-shadow:var(--shadow-sm)}
 .footer__disc{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding:22px 0;font-size:.82rem;color:#93aeac}
 .footer__legal{border-top:1px solid rgba(255,255,255,.12);padding:16px 0;font-size:.8rem;color:#93aeac;
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}

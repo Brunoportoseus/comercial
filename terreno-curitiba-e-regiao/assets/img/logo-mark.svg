@@ -1,0 +1,18 @@
+<svg viewBox="0 0 130 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Terrenos Curitiba e Região">
+  <!-- T: barra superior -->
+  <rect x="2" y="4" width="60" height="13" rx="2" fill="#1F5A46"/>
+  <!-- Pin de localização (haste do T) -->
+  <path d="M28 17c-11 0-20 8.5-20 19 0 13.5 20 32 20 32s20-18.5 20-32c0-10.5-9-19-20-19z" fill="#123F4A"/>
+  <circle cx="28" cy="37" r="7.2" fill="#F7F5EF"/>
+  <!-- Escudo de lotes (segmentado) -->
+  <defs><clipPath id="lgplot"><rect x="70" y="4" width="54" height="64" rx="11"/></clipPath></defs>
+  <g clip-path="url(#lgplot)">
+    <rect x="70" y="4" width="54" height="64" fill="#E8DDCB"/>
+    <rect x="70" y="4" width="27" height="32" fill="#1F5A46"/>
+    <path d="M97 36 L124 4 L124 36 Z" fill="#1F5A46"/>
+  </g>
+  <g fill="none" stroke="#1F5A46" stroke-width="4" stroke-linejoin="round">
+    <rect x="72" y="6" width="50" height="60" rx="9.5"/>
+    <path d="M97 4v64M70 36h54"/>
+  </g>
+</svg>
