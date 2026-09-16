@@ -25,7 +25,7 @@ window.SITE_CONFIG = {
 
   /* ---- Analytics (deixe vazio para desativar) ---- */
   analytics: {
-    ga4: "",        // ex.: "G-XXXXXXXXXX"
+    ga4: "G-09VDSHN8G3",        // Google Analytics 4
     gtm: "",        // ex.: "GTM-XXXXXXX"
     googleAds: "AW-18455696294",  // Google Ads (gtag) — tag de remarketing/conversão
     metaPixel: ""   // ex.: "123456789012345"
