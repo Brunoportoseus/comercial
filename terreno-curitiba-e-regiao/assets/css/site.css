@@ -425,7 +425,7 @@ textarea{resize:vertical;min-height:80px}
 .calc-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);
   border-radius:var(--radius);box-shadow:var(--shadow-md);padding:26px}
 @media (max-width:700px){.calc-card{padding:18px}}
-.build-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--green);
+.build-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);
   border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px}
 .build-card h3{font-size:1rem;color:var(--petrol);margin:1rem 0 .5rem}
 @media (max-width:700px){.build-card{padding:18px}}
