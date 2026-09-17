@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Metodologia — Bruno Porto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --petro:#0B2A2F; --petro-2:#103A40; --panel:#0F343A;
+    --brass:#C79A45; --brass-lt:#E4C77E;
+    --parch:#ECE6D6; --muted:#8FA7A6; --line:rgba(199,154,69,0.30);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#082024;color:var(--parch);
+    font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    display:flex;justify-content:center;padding:26px}
+  .poster{width:100%;max-width:1240px;background:var(--petro);
+    border:1px solid rgba(199,154,69,0.18);border-radius:18px;padding:46px 46px 40px}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-0.01em;margin:0;line-height:1.1}
+  p{margin:0}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:0.16em;color:var(--brass);text-transform:uppercase}
+
+  header{border-bottom:1px solid rgba(236,230,214,0.1);padding-bottom:24px;margin-bottom:30px}
+  header h1{font-size:38px;margin:12px 0 12px;max-width:24ch}
+  header .sub{font-size:17px;color:#D2CBB9;max-width:74ch}
+
+  /* journey */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 36px;align-items:start}
+  .stage{position:relative;border-top:2px solid var(--line);padding-top:16px}
+  .stnum{font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:var(--brass);
+    border:1px solid var(--brass);width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .stage h3{font-size:20px;margin-bottom:12px;min-height:0}
+  .item{display:flex;gap:8px;align-items:flex-start;margin-bottom:11px}
+  .item .d{flex:none;width:6px;height:6px;border-radius:50%;background:var(--brass);margin-top:8px}
+  .item .tx b{display:block;font-size:14px;font-weight:600;color:var(--parch);line-height:1.25}
+  .item .tx span{font-size:12.5px;color:var(--muted);line-height:1.3}
+
+  /* foundation */
+  .foundation{margin-top:34px;background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .foundation .lbl{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--brass-lt);white-space:nowrap}
+  .foundation .txt{font-size:15px;color:#D2CBB9;flex:1;min-width:260px}
+  .foundation .arrowline{flex:none;width:2px;height:34px;background:var(--line)}
+
+  .arclabel{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:14px}
+  .arclabel .cap{font-size:12.5px;color:var(--muted)}
+  .arclabel .track{flex:1;height:2px;background:linear-gradient(90deg,rgba(199,154,69,0.15),var(--brass))}
+
+  footer{margin-top:32px;padding-top:20px;border-top:1px solid rgba(236,230,214,0.1);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .mark{font-family:'Fraunces',serif;font-weight:600;font-size:18px}
+  .mark b{color:var(--brass)}
+  .mark .tag{font-family:'Public Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--muted);display:block;margin-top:2px}
+  footer .site{font-size:13px;color:var(--muted)}
+
+  @media (max-width:860px){
+    body{padding:14px}
+    .poster{padding:30px 24px}
+    header h1{font-size:29px}
+    .flow{grid-template-columns:1fr;gap:0}
+    .stage{padding:20px 0;border-left:0!important;border-top:1px solid rgba(236,230,214,0.09)}
+    .stage:first-child{border-top:0;padding-top:0}
+    .stage h3{min-height:0}
+  }
+  @media print{
+    body{background:#fff;padding:0}
+    .poster{border:0;border-radius:0}
+    @page{size:landscape}
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header>
+    <div class="eyebrow">A metodologia</div>
+    <h1>Como eu leio a sua operação, ponto a ponto.</h1>
+    <p class="sub">Sigo o cliente e o dinheiro — do primeiro investimento à recompra — medindo a qualidade em cada ponto de contato, sobre uma base de dados integrados.</p>
+  </header>
+
+  <div class="flow">
+
+    <div class="stage">
+      <div class="stnum">1</div>
+      <h3>Mercado &amp; Investimento</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>Investimento &amp; metas</b><span>Quanto entra, onde vai e a meta derivada da margem — não genérica.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Canais</b><span>Mix e desempenho por canal.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Concorrência</b><span>Como o mercado se posiciona.</span></span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stnum">2</div>
+      <h3>Comunicação</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>Qualidade dos anúncios</b><span>Clareza, oferta e execução.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Conteúdos</b><span>O que sustenta a venda.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Ofertas</b><span>Força e coerência da proposta.</span></span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stnum">3</div>
+      <h3>Pontos de contato</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>Todos os pontos</b><span>Onde o cliente encosta na marca.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Qualidade do contato</b><span>Como é cada interação.</span></span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stnum">4</div>
+      <h3>Leads &amp; Atendimento</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>Volume de leads</b><span>Frios, mornos e quentes.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Qualidade dos leads</b><span>Quem realmente compra.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Scripts de atendimento</b><span>O que se fala e como responde.</span></span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stnum">5</div>
+      <h3>Valor do cliente</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>CAC</b><span>Custo real de aquisição.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Vida do cliente</b><span>Tempo e valor de vida (LTV).</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Atribuição &amp; incrementalidade</b><span>O que a mídia realmente gera, além do que já viria sozinho.</span></span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stnum">6</div>
+      <h3>Fidelização &amp; Retenção</h3>
+      <div class="item"><span class="d"></span><span class="tx"><b>Recompra &amp; pós-venda</b><span>Fazer o cliente voltar, não comprar uma vez só.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Relacionamento &amp; CRM</b><span>Régua de contato que retém em vez de esfriar.</span></span></div>
+      <div class="item"><span class="d"></span><span class="tx"><b>Indicação</b><span>Cliente satisfeito que traz cliente — e derruba o CAC.</span></span></div>
+    </div>
+
+  </div>
+
+  <div class="arclabel">
+    <span class="cap">Investimento</span>
+    <span class="track"></span>
+    <span class="cap">Cliente fiel · recompra e indicação</span>
+  </div>
+
+  <div class="foundation">
+    <span class="lbl">Mensuração, Integração &amp; Dados</span>
+    <span class="arrowline"></span>
+    <span class="txt">A base que atravessa tudo: rastreamento de conversão correto, valores reais e sistemas conectados. Sem medição confiável, cada análise acima vira achismo — com ela, cada decisão é por número.</span>
+  </div>
+
+  <footer>
+    <div class="mark">Bruno <b>Porto</b><span class="tag">Comercial · Growth · Digital · IA</span></div>
+    <div class="site">soubrunoporto.com.br</div>
+  </footer>
+
+</div>
+</body>
+</html>
