@@ -28,7 +28,11 @@ window.SITE_CONFIG = {
     ga4: "G-09VDSHN8G3",        // Google Analytics 4
     gtm: "",        // ex.: "GTM-XXXXXXX"
     googleAds: "AW-18455696294",  // Google Ads (gtag) — tag de remarketing/conversão
-    metaPixel: ""   // ex.: "123456789012345"
+    metaPixel: "",  // ex.: "123456789012345"
+    // Ações de conversão do Google Ads por evento (send_to: "AW-XXXX/label")
+    adsConversions: {
+      whatsapp_click: "AW-18455696294/jHnYCLz46vscEKanruBE"
+    }
   },
 
   /* Exige consentimento de cookies antes de carregar analytics */
