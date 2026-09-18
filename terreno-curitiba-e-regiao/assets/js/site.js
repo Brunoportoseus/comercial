@@ -125,6 +125,11 @@
     params = params || {};
     try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, params)); } catch (e) {}
     try { if (window.gtag) window.gtag("event", name, params); } catch (e) {}
+    // Conversão do Google Ads mapeada para este evento (ex.: whatsapp_click)
+    try {
+      var conv = (CFG.analytics && CFG.analytics.adsConversions) || {};
+      if (window.gtag && conv[name]) window.gtag("event", "conversion", { send_to: conv[name] });
+    } catch (e) {}
     try {
       if (window.fbq) {
         var map = { form_submit: "Lead", open_form: "InitiateCheckout", whatsapp_click: "Contact", view_empreendimento: "ViewContent" };
