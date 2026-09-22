@@ -94,7 +94,10 @@
   .mark{font-family:'Fraunces',serif;font-weight:600;font-size:18px}
   .mark b{color:var(--brass)}
   .mark .tagline{font-family:'Public Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;color:var(--muted);display:block;margin-top:2px}
-  footer .site{font-size:13px;color:var(--muted)}
+  footer .site{font-size:13px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  footer .site a{color:var(--muted);text-decoration:none;transition:color .15s}
+  footer .site a:hover{color:var(--brass-lt)}
+  footer .site a b{color:var(--brass);font-weight:600}
 
   @media (max-width:900px){
     .grid{grid-template-columns:1fr;gap:26px}
@@ -231,7 +234,10 @@
 
   <footer>
     <div class="mark">Bruno <b>Porto</b><span class="tagline">Comercial · Growth · Digital · IA</span></div>
-    <div class="site">soubrunoporto.com.br</div>
+    <div class="site">
+      <a href="https://soubrunoporto.com.br" target="_blank" rel="noopener">soubrunoporto<b>.com.br</b></a>
+      <a href="https://diagnosticotrafegopago.com.br" target="_blank" rel="noopener">diagnosticotrafegopago<b>.com.br</b></a>
+    </div>
   </footer>
 
 </div>
