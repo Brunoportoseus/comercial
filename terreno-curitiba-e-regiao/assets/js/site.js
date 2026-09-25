@@ -178,6 +178,18 @@
     return out;
   }
 
+  // Google Click ID — necessário para importar conversões offline no Google Ads
+  // depois que um lead vira negócio fechado (ver /api/leads-export?format=gads).
+  function captureGCLID() {
+    var qs = new URLSearchParams(location.search);
+    var v = qs.get("gclid");
+    try {
+      if (v) sessionStorage.setItem("tat_gclid", v);
+      else v = sessionStorage.getItem("tat_gclid") || "";
+    } catch (e) { v = v || ""; }
+    return v;
+  }
+
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
@@ -273,6 +285,7 @@
         else data[el.name] = el.value;
       });
       Object.assign(data, captureUTM());
+      data.gclid = captureGCLID();
       data.pagina_origem = location.pathname + location.search;
       data.url_completa = location.href;
       data.referrer = document.referrer || "";

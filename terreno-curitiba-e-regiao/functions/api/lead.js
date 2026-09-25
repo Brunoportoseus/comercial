@@ -39,11 +39,31 @@ const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
   regiao TEXT, observacoes TEXT, empreendimento_interesse TEXT,
   pagina_origem TEXT, referrer TEXT,
   utm_source TEXT, utm_medium TEXT, utm_campaign TEXT, utm_content TEXT, utm_term TEXT,
+  gclid TEXT, status TEXT DEFAULT 'novo', valor_negocio REAL, convertido_em TEXT,
   ip TEXT, user_agent TEXT, raw TEXT
 )`;
 
+// Colunas adicionadas depois da criação inicial da tabela em produção — em bancos
+// D1 já existentes, a 1ª gravação após o deploy migra sozinha via ALTER TABLE.
+const LEADS_NEW_COLUMNS = [
+  "ALTER TABLE leads ADD COLUMN gclid TEXT",
+  "ALTER TABLE leads ADD COLUMN status TEXT DEFAULT 'novo'",
+  "ALTER TABLE leads ADD COLUMN valor_negocio REAL",
+  "ALTER TABLE leads ADD COLUMN convertido_em TEXT",
+];
+
 async function ensureLeadsTable(db) {
   await db.prepare(LEADS_SCHEMA).run();
+}
+
+async function ensureLeadsColumns(db) {
+  for (const sql of LEADS_NEW_COLUMNS) {
+    try {
+      await db.prepare(sql).run();
+    } catch (e) {
+      if (!/duplicate column/i.test(String(e && e.message))) throw e;
+    }
+  }
 }
 
 function escapeHtml(v) {
@@ -66,7 +86,9 @@ async function sendLeadEmail(env, lead) {
     ["Forma de pagamento", lead.forma_pagamento], ["Prazo", lead.prazo], ["Região", lead.regiao],
     ["Observações", lead.observacoes], ["Página de origem", lead.pagina_origem],
     ["Campanha (UTM)", [lead.utm_source, lead.utm_medium, lead.utm_campaign].filter(Boolean).join(" / ")],
+    ["Veio do Google Ads", lead.gclid ? "Sim (clique rastreado)" : ""],
     ["Enviado em", lead.criado_em],
+    ["ID do lead (D1)", lead.id ? "#" + lead.id : ""],
   ];
   const trs = rows.filter((r) => r[1]).map(
     (r) => `<tr><td style="padding:7px 12px;font-weight:600;background:#f3f5f2;border:1px solid #e5e7e6">${r[0]}</td>` +
@@ -100,15 +122,15 @@ function insertLead(db, lead, body) {
       `INSERT INTO leads
        (criado_em,nome,telefone,email,cidade,objetivo,faixa_investimento,forma_pagamento,prazo,
         regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
-        utm_source,utm_medium,utm_campaign,utm_content,utm_term,ip,user_agent,raw)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+        utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,ip,user_agent,raw)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     .bind(
       lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
       lead.faixa_investimento, lead.forma_pagamento, lead.prazo, lead.regiao, lead.observacoes,
       lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
       lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
-      lead.ip, lead.user_agent, JSON.stringify(body)
+      lead.gclid, lead.ip, lead.user_agent, JSON.stringify(body)
     )
     .run();
 }
@@ -190,6 +212,7 @@ export async function onRequestPost(context) {
     utm_campaign: String(body.utm_campaign || "").trim(),
     utm_content: String(body.utm_content || "").trim(),
     utm_term: String(body.utm_term || "").trim(),
+    gclid: String(body.gclid || "").trim(),
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: request.headers.get("User-Agent") || "",
   };
@@ -197,22 +220,23 @@ export async function onRequestPost(context) {
   let persisted = false;
   const errors = [];
 
-  // 1) D1 — cria a tabela automaticamente se ainda não existir
+  // 1) D1 — cria a tabela (ou migra colunas novas) automaticamente se preciso
   if (env.DB) {
     try {
-      await insertLead(env.DB, lead, body);
+      const r = await insertLead(env.DB, lead, body);
+      lead.id = r && r.meta && r.meta.last_row_id;
       persisted = true;
     } catch (e) {
-      if (/no such table/i.test(String(e && e.message))) {
-        try {
-          await ensureLeadsTable(env.DB);
-          await insertLead(env.DB, lead, body);
-          persisted = true;
-        } catch (e2) {
-          errors.push("d1:" + (e2 && e2.message));
-        }
-      } else {
-        errors.push("d1:" + (e && e.message));
+      const msg = String(e && e.message);
+      try {
+        if (/no such table/i.test(msg)) await ensureLeadsTable(env.DB);
+        else if (/no column named|has no column/i.test(msg)) await ensureLeadsColumns(env.DB);
+        else throw e;
+        const r2 = await insertLead(env.DB, lead, body);
+        lead.id = r2 && r2.meta && r2.meta.last_row_id;
+        persisted = true;
+      } catch (e2) {
+        errors.push("d1:" + (e2 && e2.message));
       }
     }
   }
