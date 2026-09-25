@@ -400,6 +400,7 @@ table.data tr:last-child td{border-bottom:0}
 
 /* Forms */
 .form{display:grid;gap:14px}
+.form[hidden]{display:none}
 .form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:.35rem}
 .field label,.form>label{font-weight:600;font-size:.9rem;color:var(--petrol)}
@@ -443,6 +444,13 @@ textarea{resize:vertical;min-height:80px}
   border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px}
 .build-card h3{font-size:1rem;color:var(--petrol);margin:1rem 0 .5rem}
 @media (max-width:700px){.build-card{padding:18px}}
+
+/* ---------- Teaser de conteúdo liberado após identificação (gate) ---------- */
+.gate-teaser{background:var(--petrol-050);border:1.5px dashed var(--gold);border-radius:var(--radius);
+  padding:22px;text-align:center}
+.gate-teaser__title{font-weight:700;color:var(--petrol);margin:0 0 .4rem;font-size:1.02rem}
+.gate-teaser p{margin:0 0 1rem;color:var(--muted);font-size:.92rem}
+.gate-teaser .btn{margin:0 auto}
 
 /* ---------- Assistente "encontre pelo orçamento" ---------- */
 .finder__controls{display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:flex-end;justify-content:space-between;margin-bottom:.6rem}
