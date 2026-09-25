@@ -213,7 +213,7 @@
   // só conta como "visto" depois de desbloqueado — enquanto está desfocado
   // atrás do teaser não é um resultado real sendo consumido.
   (function () {
-    var targets = $$("[data-gated][data-gate-track]");
+    var targets = $$("[data-gate-track]");
     if (!targets.length || !window.IntersectionObserver) return;
     var seen = {};
     var io = new IntersectionObserver(function (entries) {

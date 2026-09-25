@@ -463,6 +463,32 @@ body.is-identified .gate-blur [data-gate-teaser]{display:none}
 .gate-teaser__list li{color:var(--petrol);font-weight:600;font-size:.92rem;padding:.15rem 0}
 .gate-teaser__list--modal{margin:0 0 1.1rem}
 
+/* Seções inteiras (simulador financeiro / potencial construtivo) que só
+   existem depois da identificação — em vez de desfocar campo por campo,
+   a calculadora some por completo e dá lugar ao card .fincon-card abaixo. */
+[data-gate-hide]{display:none}
+body.is-identified [data-gate-hide]{display:block}
+body.is-identified [data-gate-fincon]{display:none}
+
+/* ---------- Card de entrada para financiamento + potencial construtivo ---------- */
+.fincon-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);
+  border-radius:var(--radius);box-shadow:var(--shadow-md);padding:30px;max-width:760px;margin:0 auto}
+.fincon-card__head{text-align:center;margin-bottom:1.5rem}
+.fincon-card__head p{color:var(--muted);font-size:.95rem;margin-top:.3rem}
+.fincon-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:1.6rem}
+.fincon-cols--single{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}
+.fincon-col{background:var(--petrol-050);border-radius:var(--radius-sm);padding:20px}
+.fincon-col__icon{width:50px;height:50px;border-radius:50%;background:var(--gold);color:#241c07;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.7rem}
+.fincon-col h3{font-size:1.02rem;margin:0 0 .7rem;color:var(--petrol)}
+.fincon-col ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.fincon-col li{display:flex;align-items:center;gap:.55rem;font-size:.9rem;color:var(--ink);font-weight:600}
+.fincon-col li .ico{font-size:1.05rem;flex:0 0 auto}
+.fincon-cta{display:block;width:100%;text-align:center;font-size:1.05rem;padding:1rem;margin-bottom:.9rem}
+.fincon-note{display:flex;align-items:center;justify-content:center;gap:.4rem;text-align:center;
+  font-size:.85rem;color:var(--muted);margin:0}
+@media (max-width:700px){.fincon-cols{grid-template-columns:1fr}.fincon-card{padding:22px}}
+
 /* ---------- Assistente "encontre pelo orçamento" ---------- */
 .finder__controls{display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:flex-end;justify-content:space-between;margin-bottom:.6rem}
 .finder__group{display:flex;flex-wrap:wrap;gap:.5rem}
