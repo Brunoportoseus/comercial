@@ -271,6 +271,14 @@
     if (!gateModal) return;
     if (isIdentified()) { revealGated(); return; }
     gateContext = context || "";
+    // em páginas com mais de um empreendimento (ex.: /financiamento/), sincroniza
+    // qual está selecionado no momento para o campo oculto do formulário do gate
+    var empSrc = $("[data-gate-emp-label]");
+    var empField = $("[name=empreendimento_interesse]", gateModal);
+    if (empSrc && empField) {
+      var opt = empSrc.options && empSrc.options[empSrc.selectedIndex];
+      empField.value = opt ? opt.textContent.trim() : "";
+    }
     gateModal.hidden = false; document.body.classList.add("menu-open");
     gateLastFocus = document.activeElement;
     var first = $("input,select,textarea,button", gateModal); if (first) first.focus();
@@ -328,8 +336,8 @@
         data.simulacao_financeira = true;
         data.potencial_construtivo = true;
         // aproveita o que a pessoa já ajustou nos simuladores da página, se houver
-        var simEntrada = $("#sEntrada"); if (simEntrada && simEntrada.value) data.entrada_informada = Math.round(+simEntrada.value) || null;
-        var simParc = $("#sParc"); if (simParc && simParc.textContent && simParc.textContent !== "—") data.faixa_parcela = simParc.textContent.trim();
+        var simEntrada = $("[data-gate-entrada]"); if (simEntrada && simEntrada.value) data.entrada_informada = Math.round(+simEntrada.value) || null;
+        var simParc = $("[data-gate-parcela]"); if (simParc && simParc.textContent && simParc.textContent !== "—") data.faixa_parcela = simParc.textContent.trim();
 
         var finish = function (success) {
           gateSubmitting = false;

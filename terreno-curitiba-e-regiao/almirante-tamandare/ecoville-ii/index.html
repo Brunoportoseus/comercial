@@ -112,7 +112,7 @@
         <div class="field"><label for="sPreco">Preço (R$)</label>
           <input type="number" id="sPreco" inputmode="numeric" min="0" step="1000"></div>
         <div class="field"><label for="sEntrada">Entrada (R$)</label>
-          <input type="number" id="sEntrada" inputmode="numeric" min="0" step="1000">
+          <input type="number" id="sEntrada" data-gate-entrada inputmode="numeric" min="0" step="1000">
           <span class="form__note" id="sHint"></span></div>
       </div>
       <div class="row">
@@ -126,7 +126,7 @@
       <div data-gated data-gate-track="simulacao_financeira" hidden>
         <div class="pricebox">
           <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="sFin">—</div></div>
-          <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="sParc">—</span><small>/mês</small></div></div>
+          <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="sParc" data-gate-parcela>—</span><small>/mês</small></div></div>
         </div>
         <ul class="specs" style="margin-top:1rem">
           <li><span class="k">Entrada</span><span class="v" id="sEnt">—</span></li>
