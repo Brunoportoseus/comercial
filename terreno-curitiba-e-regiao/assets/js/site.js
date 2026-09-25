@@ -193,14 +193,14 @@
   /* ---------------- Gate de identificação ----------------
      Um único cadastro (nome + WhatsApp) libera, na mesma visita, todos os
      blocos marcados com [data-gated] da página (simulação financeira,
-     potencial construtivo e condições comerciais completas). */
+     potencial construtivo e condições comerciais completas). O resultado
+     real fica desfocado atrás do teaser (CSS, via body.is-identified) em
+     vez de simplesmente sumir — ver .gate-blur em site.css. */
   var IDENT_KEY = "tat_identified";
   function isIdentified() {
     try { return sessionStorage.getItem(IDENT_KEY) === "1"; } catch (e) { return false; }
   }
   function revealGated() {
-    $$("[data-gated]").forEach(function (el) { el.hidden = false; });
-    $$("[data-gate-teaser]").forEach(function (el) { el.hidden = true; });
     document.body.classList.add("is-identified");
   }
   function setIdentified() {
@@ -210,13 +210,15 @@
   if (isIdentified()) revealGated();
 
   // rastreia quando cada bloco liberado é efetivamente visto (funil por bloco)
+  // só conta como "visto" depois de desbloqueado — enquanto está desfocado
+  // atrás do teaser não é um resultado real sendo consumido.
   (function () {
     var targets = $$("[data-gated][data-gate-track]");
     if (!targets.length || !window.IntersectionObserver) return;
     var seen = {};
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
+        if (!en.isIntersecting || !isIdentified()) return;
         var key = en.target.getAttribute("data-gate-track");
         if (key && !seen[key]) { seen[key] = true; window.trackEvent("view_" + key, {}); }
         io.unobserve(en.target);
