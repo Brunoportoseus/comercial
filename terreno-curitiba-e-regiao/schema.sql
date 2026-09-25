@@ -38,6 +38,10 @@ CREATE TABLE IF NOT EXISTS leads (
   status TEXT DEFAULT 'novo',
   valor_negocio REAL,
   convertido_em TEXT,
+  entrada_informada REAL,
+  faixa_parcela TEXT,
+  simulacao_financeira TEXT,
+  potencial_construtivo TEXT,
   ip TEXT,
   user_agent TEXT,
   raw TEXT

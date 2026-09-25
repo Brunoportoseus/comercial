@@ -40,6 +40,7 @@ const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
   pagina_origem TEXT, referrer TEXT,
   utm_source TEXT, utm_medium TEXT, utm_campaign TEXT, utm_content TEXT, utm_term TEXT,
   gclid TEXT, status TEXT DEFAULT 'novo', valor_negocio REAL, convertido_em TEXT,
+  entrada_informada REAL, faixa_parcela TEXT, simulacao_financeira TEXT, potencial_construtivo TEXT,
   ip TEXT, user_agent TEXT, raw TEXT
 )`;
 
@@ -50,6 +51,10 @@ const LEADS_NEW_COLUMNS = [
   "ALTER TABLE leads ADD COLUMN status TEXT DEFAULT 'novo'",
   "ALTER TABLE leads ADD COLUMN valor_negocio REAL",
   "ALTER TABLE leads ADD COLUMN convertido_em TEXT",
+  "ALTER TABLE leads ADD COLUMN entrada_informada REAL",
+  "ALTER TABLE leads ADD COLUMN faixa_parcela TEXT",
+  "ALTER TABLE leads ADD COLUMN simulacao_financeira TEXT",
+  "ALTER TABLE leads ADD COLUMN potencial_construtivo TEXT",
 ];
 
 async function ensureLeadsTable(db) {
@@ -122,15 +127,18 @@ function insertLead(db, lead, body) {
       `INSERT INTO leads
        (criado_em,nome,telefone,email,cidade,objetivo,faixa_investimento,forma_pagamento,prazo,
         regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
-        utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,ip,user_agent,raw)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+        utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,
+        entrada_informada,faixa_parcela,simulacao_financeira,potencial_construtivo,
+        ip,user_agent,raw)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     .bind(
       lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
       lead.faixa_investimento, lead.forma_pagamento, lead.prazo, lead.regiao, lead.observacoes,
       lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
       lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
-      lead.gclid, lead.ip, lead.user_agent, JSON.stringify(body)
+      lead.gclid, lead.entrada_informada, lead.faixa_parcela, lead.simulacao_financeira, lead.potencial_construtivo,
+      lead.ip, lead.user_agent, JSON.stringify(body)
     )
     .run();
 }
@@ -213,6 +221,11 @@ export async function onRequestPost(context) {
     utm_content: String(body.utm_content || "").trim(),
     utm_term: String(body.utm_term || "").trim(),
     gclid: String(body.gclid || "").trim(),
+    entrada_informada: Number.isFinite(Number(body.entrada_informada)) && body.entrada_informada !== "" && body.entrada_informada != null
+      ? Number(body.entrada_informada) : null,
+    faixa_parcela: String(body.faixa_parcela || "").trim(),
+    simulacao_financeira: body.simulacao_financeira ? "sim" : "",
+    potencial_construtivo: body.potencial_construtivo ? "sim" : "",
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: request.headers.get("User-Agent") || "",
   };

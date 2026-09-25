@@ -190,6 +190,41 @@
     return v;
   }
 
+  /* ---------------- Gate de identificação ----------------
+     Um único cadastro (nome + WhatsApp) libera, na mesma visita, todos os
+     blocos marcados com [data-gated] da página (simulação financeira,
+     potencial construtivo e condições comerciais completas). */
+  var IDENT_KEY = "tat_identified";
+  function isIdentified() {
+    try { return sessionStorage.getItem(IDENT_KEY) === "1"; } catch (e) { return false; }
+  }
+  function revealGated() {
+    $$("[data-gated]").forEach(function (el) { el.hidden = false; });
+    $$("[data-gate-teaser]").forEach(function (el) { el.hidden = true; });
+    document.body.classList.add("is-identified");
+  }
+  function setIdentified() {
+    try { sessionStorage.setItem(IDENT_KEY, "1"); } catch (e) {}
+    revealGated();
+  }
+  if (isIdentified()) revealGated();
+
+  // rastreia quando cada bloco liberado é efetivamente visto (funil por bloco)
+  (function () {
+    var targets = $$("[data-gated][data-gate-track]");
+    if (!targets.length || !window.IntersectionObserver) return;
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var key = en.target.getAttribute("data-gate-track");
+        if (key && !seen[key]) { seen[key] = true; window.trackEvent("view_" + key, {}); }
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.4 });
+    targets.forEach(function (t) { io.observe(t); });
+  })();
+
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
@@ -224,6 +259,100 @@
       return (a ? "(" + a + ")" : "") + (b ? " " + b : "") + (c ? "-" + c : "");
     }).trim();
     return v.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+  }
+
+  /* ---------------- Modal do gate de identificação ----------------
+     Separado do .lead-form: em vez de esconder o formulário e mostrar uma
+     caixa de "obrigado" com WhatsApp, o sucesso aqui fecha o modal e revela
+     o conteúdo bloqueado na própria página (ver revealGated acima). */
+  var gateModal = $("#gateModal");
+  var gateLastFocus = null, gateContext = "";
+  function openGateModal(context) {
+    if (!gateModal) return;
+    if (isIdentified()) { revealGated(); return; }
+    gateContext = context || "";
+    gateModal.hidden = false; document.body.classList.add("menu-open");
+    gateLastFocus = document.activeElement;
+    var first = $("input,select,textarea,button", gateModal); if (first) first.focus();
+    window.trackEvent("view_gate", { contexto: gateContext });
+  }
+  function closeGateModal() {
+    if (!gateModal) return; gateModal.hidden = true; document.body.classList.remove("menu-open");
+    if (gateLastFocus) gateLastFocus.focus();
+  }
+  $$("[data-open-gate]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) { e.preventDefault(); openGateModal(btn.getAttribute("data-gate-context") || ""); });
+  });
+  if (gateModal) {
+    $$("[data-close-form]", gateModal).forEach(function (b) { b.addEventListener("click", closeGateModal); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !gateModal.hidden) closeGateModal(); });
+
+    var gateForm = $("form", gateModal);
+    if (gateForm) {
+      var gtel = $("[name=telefone]", gateForm);
+      if (gtel) gtel.addEventListener("input", function () { gtel.value = maskPhone(gtel.value); });
+
+      var gateSubmitting = false;
+      gateForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var hp = $("[name=website]", gateForm); if (hp && hp.value) return;
+        if (gateSubmitting) return;
+
+        var ok = true;
+        $$("[required]", gateForm).forEach(function (el) {
+          var wrap = el.closest(".field"); var valid = true;
+          if (el.type === "checkbox") valid = el.checked;
+          else if (el.name === "email" && el.value) valid = isEmail(el.value);
+          else if (el.name === "telefone") valid = isPhone(el.value);
+          else valid = !!el.value.trim();
+          if (wrap) wrap.classList.toggle("field--invalid", !valid);
+          if (!valid) ok = false;
+        });
+        if (!ok) { var bad = $(".field--invalid input,.field--invalid select", gateForm); if (bad) bad.focus(); return; }
+
+        gateSubmitting = true;
+        var btn = $("[type=submit]", gateForm); var btnTxt = btn ? btn.textContent : "";
+        if (btn) { btn.disabled = true; btn.textContent = "Enviando..."; }
+
+        var data = {};
+        $$("input,select,textarea", gateForm).forEach(function (el) {
+          if (el.type === "checkbox") data[el.name] = el.checked;
+          else data[el.name] = el.value;
+        });
+        Object.assign(data, captureUTM());
+        data.gclid = captureGCLID();
+        data.pagina_origem = location.pathname + location.search;
+        data.url_completa = location.href;
+        data.referrer = document.referrer || "";
+        data.enviado_em = new Date().toISOString();
+        data.simulacao_financeira = true;
+        data.potencial_construtivo = true;
+        // aproveita o que a pessoa já ajustou nos simuladores da página, se houver
+        var simEntrada = $("#sEntrada"); if (simEntrada && simEntrada.value) data.entrada_informada = Math.round(+simEntrada.value) || null;
+        var simParc = $("#sParc"); if (simParc && simParc.textContent && simParc.textContent !== "—") data.faixa_parcela = simParc.textContent.trim();
+
+        var finish = function (success) {
+          gateSubmitting = false;
+          if (btn) { btn.disabled = false; btn.textContent = btnTxt; }
+          window.trackEvent("gate_submit", { success: success, contexto: gateContext });
+          if (success) {
+            window.trackEvent("identification_success", { contexto: gateContext });
+            closeGateModal();
+            setIdentified();
+          } else {
+            window.trackEvent("gate_error", { contexto: gateContext });
+            var note = $(".form__note", gateForm);
+            if (note) note.textContent = "Não conseguimos enviar agora. Tente novamente em instantes ou chame no WhatsApp.";
+          }
+        };
+
+        if (CFG.leadEndpoint) {
+          fetch(CFG.leadEndpoint, {
+            method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+          }).then(function (r) { finish(r.ok); }).catch(function () { finish(false); });
+        } else { finish(false); }
+      });
+    }
   }
 
   // aplica em todos os formulários com class .lead-form

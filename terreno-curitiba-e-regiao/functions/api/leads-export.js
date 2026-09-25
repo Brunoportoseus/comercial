@@ -18,12 +18,20 @@
  *   Cabeçalho alternativo: Authorization: Bearer SEU_TOKEN
  */
 
+// Colunas adicionadas depois da criação inicial da tabela — em bancos D1 antigos
+// que ainda não gravaram nenhum lead desde o deploy, um SELECT com elas dá erro
+// "no such column" até a 1ª gravação migrar a tabela (ver ensureLeadsColumns em lead.js).
+const MIGRATABLE_COLUMNS = [
+  "gclid", "status", "valor_negocio", "convertido_em",
+  "entrada_informada", "faixa_parcela", "simulacao_financeira", "potencial_construtivo",
+];
+
 const COLUMNS = [
   "id", "criado_em", "nome", "telefone", "email", "cidade", "objetivo",
   "faixa_investimento", "forma_pagamento", "prazo", "regiao", "observacoes",
   "empreendimento_interesse", "pagina_origem", "referrer",
   "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
-  "gclid", "status", "valor_negocio", "convertido_em",
+  ...MIGRATABLE_COLUMNS,
   "ip", "user_agent",
 ];
 
@@ -125,14 +133,15 @@ export async function onRequestGet(context) {
     if (/no such table/i.test(msg)) {
       rows = [];
     } else if (/no such column|no column named|has no column/i.test(msg)) {
-      // Colunas novas (gclid/status/...) ainda não migraram nesta tabela — cai para
-      // as colunas originais e completa o resto em branco, sem perder os leads já salvos.
-      const LEGACY_COLUMNS = COLUMNS.filter((c) => !["gclid", "status", "valor_negocio", "convertido_em"].includes(c));
+      // Colunas novas ainda não migraram nesta tabela — cai para as colunas
+      // originais e completa o resto em branco, sem perder os leads já salvos.
+      const LEGACY_COLUMNS = COLUMNS.filter((c) => !MIGRATABLE_COLUMNS.includes(c));
+      const blanks = {}; MIGRATABLE_COLUMNS.forEach((c) => { blanks[c] = ""; });
       try {
         const res2 = await env.DB.prepare(
           `SELECT ${LEGACY_COLUMNS.join(",")} FROM leads ORDER BY id DESC LIMIT ?`
         ).bind(limit).all();
-        rows = ((res2 && res2.results) || []).map((r) => ({ ...r, gclid: "", status: "", valor_negocio: "", convertido_em: "" }));
+        rows = ((res2 && res2.results) || []).map((r) => ({ ...blanks, ...r }));
       } catch (e2) {
         return new Response(JSON.stringify({ ok: false, error: String(e2 && e2.message) }), {
           status: 500, headers: { "Content-Type": "application/json" },
