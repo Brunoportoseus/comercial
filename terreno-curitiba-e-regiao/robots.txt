@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /obrigado/
+Disallow: /admin/
 
 Sitemap: https://terrenoscuritibaeregiao.com.br/sitemap.xml

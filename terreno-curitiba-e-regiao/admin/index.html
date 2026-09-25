@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin de leads — Terrenos Curitiba e Região</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root{
+    --petrol:#0e3a42; --petrol-700:#0b2d33; --petrol-050:#e9f1f1;
+    --green:#3f8451; --green-600:#356f45; --green-050:#eaf3ec;
+    --gold:#b7924a; --gold-600:#9c7c3c;
+    --ink:#1e2a2e; --muted:#5c6b70; --line:#e3e8e8;
+    --bg:#ffffff; --bg-soft:#f4f7f6; --bg-cream:#f7f5ef;
+    --danger:#b3261e; --radius:12px; --radius-sm:8px;
+    --font:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{font-family:var(--font);color:var(--ink);background:var(--bg-soft);margin:0;font-size:14px;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+  header.top{background:var(--petrol);color:#fff;padding:14px 16px}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:0}
+  header.top h1{font-size:16px;margin:0;font-weight:700}
+  header.top .sub{color:#cfe0df;font-size:12px}
+  #gate{max-width:420px;margin:80px auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 10px 30px rgba(14,58,66,.10)}
+  #gate h2{margin:0 0 6px;font-size:18px;color:var(--petrol)}
+  #gate p{color:var(--muted);margin:0 0 16px;font-size:13px}
+  input,select{font:inherit;padding:.6rem .75rem;border:1px solid var(--line);border-radius:var(--radius-sm);width:100%}
+  button{font:inherit;cursor:pointer;border:0;border-radius:var(--radius-sm);padding:.6rem 1rem;font-weight:600}
+  .btn-primary{background:var(--green);color:#fff}
+  .btn-primary:hover{background:var(--green-600)}
+  .btn-outline{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn-outline:hover{border-color:var(--petrol)}
+  .btn-danger{background:#fff;border:1px solid var(--danger);color:var(--danger)}
+  .btn-sm{padding:.35rem .7rem;font-size:12.5px}
+  #gate .err{color:var(--danger);font-size:13px;margin-top:8px;min-height:1.2em}
+  #app{display:none}
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+  .toolbar input[type=search]{flex:1;min-width:220px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;font-size:12.5px;color:var(--muted)}
+  .stat b{color:var(--petrol);font-size:15px;display:block}
+  .stats-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:13px}
+  th{background:var(--petrol-050);color:var(--petrol);text-align:left;padding:9px 10px;font-size:11.5px;text-transform:uppercase;white-space:nowrap}
+  td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
+  tr.status-qualificado td{background:var(--green-050)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+  .badge-novo{background:var(--bg-cream);color:var(--gold-600)}
+  .badge-qualificado{background:var(--green-050);color:var(--green-600)}
+  .badge-outro{background:var(--petrol-050);color:var(--petrol)}
+  .muted{color:var(--muted)}
+  .qform{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}
+  .qform input{width:110px}
+  .qform input[type=date]{width:135px}
+  .loading,.empty{text-align:center;color:var(--muted);padding:40px 0}
+  a{color:var(--green-600)}
+  .gclid-yes{color:var(--green-600);font-weight:700}
+  .gclid-no{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <div><h1>Admin de leads</h1><span class="sub">Terrenos Curitiba e Região</span></div>
+  <button id="btnLogout" class="btn-outline btn-sm" style="display:none">Sair</button>
+</div></header>
+
+<div id="gate">
+  <h2>Entrar</h2>
+  <p>Cole o mesmo token configurado em <code>LEADS_TOKEN</code> no Cloudflare.</p>
+  <input type="password" id="tokenInput" placeholder="Token" autocomplete="off">
+  <div style="margin-top:10px"><button id="btnEnter" class="btn-primary" style="width:100%">Entrar</button></div>
+  <div class="err" id="gateErr"></div>
+</div>
+
+<div id="app"><div class="wrap">
+
+  <div class="stats-row" id="stats"></div>
+
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Buscar por nome, telefone, e-mail ou empreendimento…">
+    <select id="filterStatus">
+      <option value="">Todos os status</option>
+      <option value="novo">Novo</option>
+      <option value="qualificado">Qualificado</option>
+    </select>
+    <button id="btnRefresh" class="btn-outline">↻ Atualizar</button>
+    <a id="linkGads" class="btn-primary" style="text-decoration:none;display:inline-block" href="#" target="_blank" rel="noopener">📄 Baixar CSV Google Ads</a>
+    <a id="linkAll" class="btn-outline" style="text-decoration:none;display:inline-block" href="#" target="_blank" rel="noopener">⬇ Baixar todos (CSV)</a>
+  </div>
+
+  <div id="tableWrap"><div class="loading">Carregando leads…</div></div>
+
+</div></div>
+
+<script>
+(function () {
+  "use strict";
+  var API = "/api/leads-export";
+  var API_QUALIFY = "/api/leads-qualify";
+  var TOKEN_KEY = "tat_admin_token";
+  var leads = [];
+
+  var gate = document.getElementById("gate");
+  var app = document.getElementById("app");
+  var btnLogout = document.getElementById("btnLogout");
+
+  function getToken() { try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; } }
+  function setToken(t) { try { localStorage.setItem(TOKEN_KEY, t); } catch (e) {} }
+  function clearToken() { try { localStorage.removeItem(TOKEN_KEY); } catch (e) {} }
+
+  function fmtMoney(v) {
+    if (v === null || v === undefined || v === "") return "";
+    var n = Number(v);
+    if (!isFinite(n)) return "";
+    return "R$ " + n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtDate(v) {
+    if (!v) return "";
+    var d = new Date(v);
+    if (isNaN(d.getTime())) return v;
+    return d.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  async function api(path, opts) {
+    var token = getToken();
+    opts = opts || {};
+    opts.headers = Object.assign({ Authorization: "Bearer " + token }, opts.headers || {});
+    var r = await fetch(path, opts);
+    var data = null;
+    try { data = await r.json(); } catch (e) {}
+    if (!r.ok || !data || data.ok === false) {
+      var msg = (data && data.error) || ("Erro HTTP " + r.status);
+      throw new Error(msg);
+    }
+    return data;
+  }
+
+  async function loadLeads() {
+    document.getElementById("tableWrap").innerHTML = '<div class="loading">Carregando leads…</div>';
+    try {
+      var data = await api(API + "?format=json&limit=2000");
+      leads = data.leads || [];
+      render();
+    } catch (e) {
+      if (/n.o autorizado|401/i.test(e.message)) {
+        showGate("Token inválido — confira e tente de novo.");
+        return;
+      }
+      document.getElementById("tableWrap").innerHTML =
+        '<div class="empty">Erro ao carregar: ' + esc(e.message) + "</div>";
+    }
+  }
+
+  function render() {
+    var q = document.getElementById("search").value.trim().toLowerCase();
+    var st = document.getElementById("filterStatus").value;
+    var filtered = leads.filter(function (l) {
+      if (st && (l.status || "novo") !== st) return false;
+      if (!q) return true;
+      return [l.nome, l.telefone, l.email, l.empreendimento_interesse, l.cidade]
+        .some(function (v) { return v && String(v).toLowerCase().indexOf(q) !== -1; });
+    });
+
+    var qualificados = leads.filter(function (l) { return l.status === "qualificado"; });
+    var comGclid = leads.filter(function (l) { return l.gclid; });
+    document.getElementById("stats").innerHTML =
+      stat(leads.length, "leads no total") +
+      stat(qualificados.length, "qualificados") +
+      stat(comGclid.length, "vieram do Google Ads (gclid)");
+
+    if (!filtered.length) {
+      document.getElementById("tableWrap").innerHTML = '<div class="empty">Nenhum lead encontrado.</div>';
+      return;
+    }
+
+    var rows = filtered.map(rowHtml).join("");
+    document.getElementById("tableWrap").innerHTML =
+      '<div style="overflow-x:auto"><table><thead><tr>' +
+      "<th>ID</th><th>Nome</th><th>Contato</th><th>Empreendimento</th><th>Origem</th>" +
+      "<th>Status</th><th>Valor</th><th>Recebido em</th><th></th>" +
+      "</tr></thead><tbody>" + rows + "</tbody></table></div>";
+
+    filtered.forEach(function (l) {
+      var btn = document.getElementById("q-" + l.id);
+      if (btn) btn.addEventListener("click", function () { toggleForm(l.id); });
+    });
+  }
+
+  function stat(value, label) {
+    return '<div class="stat"><b>' + value + "</b>" + esc(label) + "</div>";
+  }
+
+  function rowHtml(l) {
+    var status = l.status || "novo";
+    var badgeClass = status === "qualificado" ? "badge-qualificado" : (status === "novo" ? "badge-novo" : "badge-outro");
+    var wa = String(l.telefone || "").replace(/\D/g, "");
+    var waNum = wa.length >= 12 ? wa : "55" + wa;
+    return (
+      '<tr class="status-' + esc(status) + '" data-id="' + l.id + '">' +
+      "<td>#" + l.id + "</td>" +
+      "<td><b>" + esc(l.nome) + "</b>" + (l.cidade ? '<br><span class="muted">' + esc(l.cidade) + "</span>" : "") + "</td>" +
+      "<td>" + (l.telefone ? '<a href="https://wa.me/' + esc(waNum) + '" target="_blank" rel="noopener">' + esc(l.telefone) + "</a><br>" : "") +
+        (l.email ? '<span class="muted">' + esc(l.email) + "</span>" : "") + "</td>" +
+      "<td>" + esc(l.empreendimento_interesse || "—") + "</td>" +
+      "<td>" + (l.gclid ? '<span class="gclid-yes">Google Ads ✓</span>' : '<span class="gclid-no">' + esc(l.utm_source || "direto") + "</span>") + "</td>" +
+      "<td><span class=\"badge " + badgeClass + '">' + esc(status) + "</span></td>" +
+      "<td>" + fmtMoney(l.valor_negocio) + (l.convertido_em ? '<br><span class="muted">' + esc(l.convertido_em) + "</span>" : "") + "</td>" +
+      "<td>" + fmtDate(l.criado_em) + "</td>" +
+      "<td>" +
+        (status === "qualificado"
+          ? '<button class="btn-outline btn-sm" data-revert="' + l.id + '">Reverter</button>'
+          : '<button class="btn-primary btn-sm" id="q-' + l.id + '">Marcar qualificado</button>') +
+        '<div id="form-' + l.id + '"></div>' +
+      "</td>" +
+      "</tr>"
+    );
+  }
+
+  function toggleForm(id) {
+    var el = document.getElementById("form-" + id);
+    if (!el) return;
+    if (el.innerHTML) { el.innerHTML = ""; return; }
+    var today = new Date().toISOString().slice(0, 10);
+    el.innerHTML =
+      '<div class="qform">' +
+      '<input type="number" step="0.01" placeholder="Valor R$" id="valor-' + id + '">' +
+      '<input type="date" id="data-' + id + '" value="' + today + '">' +
+      '<button class="btn-primary btn-sm" id="save-' + id + '">Salvar</button>' +
+      "</div>";
+    document.getElementById("save-" + id).addEventListener("click", function () { qualify(id); });
+  }
+
+  async function qualify(id) {
+    var valor = document.getElementById("valor-" + id).value;
+    var data = document.getElementById("data-" + id).value;
+    try {
+      await api(API_QUALIFY, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id, status: "qualificado", valor_negocio: valor || null, convertido_em: data ? data + " 12:00:00" : undefined }),
+      });
+      await loadLeads();
+    } catch (e) {
+      alert("Erro ao salvar: " + e.message);
+    }
+  }
+
+  document.getElementById("tableWrap").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-revert]");
+    if (!btn) return;
+    var id = btn.getAttribute("data-revert");
+    if (!confirm("Reverter este lead para status \"novo\"?")) return;
+    api(API_QUALIFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id, status: "novo", valor_negocio: null, convertido_em: null }),
+    }).then(loadLeads).catch(function (e) { alert("Erro: " + e.message); });
+  });
+
+  document.getElementById("search").addEventListener("input", render);
+  document.getElementById("filterStatus").addEventListener("change", render);
+  document.getElementById("btnRefresh").addEventListener("click", loadLeads);
+
+  function updateDownloadLinks() {
+    var token = encodeURIComponent(getToken());
+    document.getElementById("linkGads").href = API + "?token=" + token + "&format=gads";
+    document.getElementById("linkAll").href = API + "?token=" + token + "&limit=10000";
+  }
+
+  function showApp() {
+    gate.style.display = "none";
+    app.style.display = "block";
+    btnLogout.style.display = "inline-block";
+    updateDownloadLinks();
+    loadLeads();
+  }
+  function showGate(err) {
+    app.style.display = "none";
+    gate.style.display = "block";
+    btnLogout.style.display = "none";
+    document.getElementById("gateErr").textContent = err || "";
+  }
+
+  document.getElementById("btnEnter").addEventListener("click", function () {
+    var t = document.getElementById("tokenInput").value.trim();
+    if (!t) return;
+    setToken(t);
+    showApp();
+  });
+  document.getElementById("tokenInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("btnEnter").click();
+  });
+  btnLogout.addEventListener("click", function () {
+    clearToken();
+    document.getElementById("tokenInput").value = "";
+    showGate("");
+  });
+
+  if (getToken()) showApp(); else showGate("");
+})();
+</script>
+</body>
+</html>
