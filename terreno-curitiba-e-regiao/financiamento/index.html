@@ -100,47 +100,47 @@
     <h2>Calculadora de financiamento por empreendimento</h2>
     <p>Escolha um empreendimento para carregar o preço de referência e estimar a parcela. Ajuste entrada, prazo e juros. É uma <strong>estimativa</strong> — as condições reais são confirmadas com o corretor.</p>
   </div>
-  <div class="calc-card grid-2">
-    <form class="form" id="calcForm" novalidate autocomplete="off">
-      <div class="field"><label for="calcEmp">Empreendimento</label>
-        <select id="calcEmp" data-gate-emp-label><optgroup label="Almirante Tamandaré"><option value="0">Condomínio Bela Vista</option><option value="1">Condomínio Ecoville I</option><option value="2">Condomínio Ecoville II</option><option value="3">Condomínio Valparaíso</option><option value="4">Residencial Jardim Mazza</option></optgroup><optgroup label="Araucária"><option value="5">Loteamento Residencial Vista Alegre</option></optgroup><optgroup label="Curitiba"><option value="6">Sierra Vista Condomínio Parque (Eccotown)</option><option value="7">Condomínio Le Vert</option><option value="8">Condomínio Vivendas do Parque</option></optgroup><optgroup label="São José dos Pinhais"><option value="9">Residencial Cortona (La Bella Toscana)</option><option value="10">Residencial Firenze (La Bella Toscana)</option><option value="11">Residencial Siena (La Bella Toscana)</option><option value="12">Morada do Bosque</option></optgroup></select></div>
-      <div class="row">
-        <div class="field"><label for="calcPreco">Preço (R$)</label>
-          <input type="number" id="calcPreco" inputmode="numeric" min="0" step="1000"></div>
-        <div class="field"><label for="calcEntrada">Entrada (R$)</label>
-          <input type="number" id="calcEntrada" data-gate-entrada inputmode="numeric" min="0" step="1000">
-          <span class="form__note" id="calcEntradaPct"></span></div>
-      </div>
-      <div class="row">
-        <div class="field"><label for="calcPrazo">Prazo (meses)</label>
-          <input type="number" id="calcPrazo" inputmode="numeric" min="1" max="480" step="1"></div>
-        <div class="field"><label for="calcTaxa">Juros (% ao mês)</label>
-          <input type="number" id="calcTaxa" inputmode="decimal" min="0" max="5" step="0.1"></div>
-      </div>
-      <p class="form__note">Valores em reais. A taxa vem preenchida com a referência do empreendimento e pode ser ajustada.</p>
-    </form>
-    <div>
-      <div class="gate-blur">
-      <div data-gated data-gate-track="simulacao_financeira">
-        <div class="pricebox">
-          <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="outFin">—</div></div>
-          <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="outParc" data-gate-parcela>—</span><small>/mês</small></div></div>
+  <div class="calc-card">
+    <div class="gate-blur">
+      <div class="grid-2" data-gated data-gate-track="simulacao_financeira">
+        <form class="form" id="calcForm" novalidate autocomplete="off">
+          <div class="field"><label for="calcEmp">Empreendimento</label>
+            <select id="calcEmp" data-gate-emp-label><optgroup label="Almirante Tamandaré"><option value="0">Condomínio Bela Vista</option><option value="1">Condomínio Ecoville I</option><option value="2">Condomínio Ecoville II</option><option value="3">Condomínio Valparaíso</option><option value="4">Residencial Jardim Mazza</option></optgroup><optgroup label="Araucária"><option value="5">Loteamento Residencial Vista Alegre</option></optgroup><optgroup label="Curitiba"><option value="6">Sierra Vista Condomínio Parque (Eccotown)</option><option value="7">Condomínio Le Vert</option><option value="8">Condomínio Vivendas do Parque</option></optgroup><optgroup label="São José dos Pinhais"><option value="9">Residencial Cortona (La Bella Toscana)</option><option value="10">Residencial Firenze (La Bella Toscana)</option><option value="11">Residencial Siena (La Bella Toscana)</option><option value="12">Morada do Bosque</option></optgroup></select></div>
+          <div class="row">
+            <div class="field"><label for="calcPreco">Preço (R$)</label>
+              <input type="number" id="calcPreco" inputmode="numeric" min="0" step="1000"></div>
+            <div class="field"><label for="calcEntrada">Entrada (R$)</label>
+              <input type="number" id="calcEntrada" data-gate-entrada inputmode="numeric" min="0" step="1000">
+              <span class="form__note" id="calcEntradaPct"></span></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="calcPrazo">Prazo (meses)</label>
+              <input type="number" id="calcPrazo" inputmode="numeric" min="1" max="480" step="1"></div>
+            <div class="field"><label for="calcTaxa">Juros (% ao mês)</label>
+              <input type="number" id="calcTaxa" inputmode="decimal" min="0" max="5" step="0.1"></div>
+          </div>
+          <p class="form__note">Valores em reais. A taxa vem preenchida com a referência do empreendimento e pode ser ajustada.</p>
+        </form>
+        <div>
+          <div class="pricebox">
+            <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="outFin">—</div></div>
+            <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="outParc" data-gate-parcela>—</span><small>/mês</small></div></div>
+          </div>
+          <ul class="specs" style="margin-top:1rem">
+            <li><span class="k">Entrada</span><span class="v" id="outEntrada">—</span></li>
+          </ul>
         </div>
-        <ul class="specs" style="margin-top:1rem">
-          <li><span class="k">Entrada</span><span class="v" id="outEntrada">—</span></li>
-        </ul>
       </div>
       <div class="gate-teaser" data-gate-teaser>
         <p class="gate-teaser__title">🔒 Sua simulação está pronta</p>
-        <p>Encontramos uma estimativa de financiamento para as condições selecionadas. Escolha o empreendimento e ajuste entrada, prazo e juros acima, depois desbloqueie gratuitamente o valor financiado e a parcela estimada.</p>
+        <p>Encontramos uma estimativa de financiamento para as condições selecionadas. Preencha seus dados e desbloqueie gratuitamente o valor financiado e a parcela estimada.</p>
         <button type="button" class="btn btn--primary btn--block" data-open-gate data-gate-context="simulador_financeiro">Ver meus resultados</button>
       </div>
-      </div>
-      <p class="source" id="calcNote"><b>Estimativa</b> pela Tabela Price (juros compostos), sem correção monetária (INCC), seguros ou taxas de cartório. As condições reais de cada empreendimento — que podem incluir parcelas <b>sem juros</b>, balões e planos estendidos — são confirmadas com o corretor e sujeitas à análise de crédito.</p>
-      <div class="hero__cta" style="margin-top:1rem">
-        <a class="btn btn--primary" id="calcLink" href="#">Ver o empreendimento</a>
-        <button type="button" class="btn btn--outline" data-open-form data-emp="">Simular com um corretor</button>
-      </div>
+    </div>
+    <p class="source" id="calcNote"><b>Estimativa</b> pela Tabela Price (juros compostos), sem correção monetária (INCC), seguros ou taxas de cartório. As condições reais de cada empreendimento — que podem incluir parcelas <b>sem juros</b>, balões e planos estendidos — são confirmadas com o corretor e sujeitas à análise de crédito.</p>
+    <div class="hero__cta" style="margin-top:1rem">
+      <a class="btn btn--primary" id="calcLink" href="#">Ver o empreendimento</a>
+      <button type="button" class="btn btn--outline" data-open-form data-emp="">Simular com um corretor</button>
     </div>
   </div>
 </div></section>

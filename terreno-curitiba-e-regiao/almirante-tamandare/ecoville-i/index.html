@@ -106,32 +106,33 @@
   <div class="section-head center"><span class="eyebrow eyebrow--gold">🧮 Simulador</span>
     <h2>Simule entrada e parcelas do Condomínio Ecoville I</h2>
     <p>Estimativa pela Tabela Price. Ajuste a entrada (mínimo de 10%), o prazo e os juros. As condições reais são confirmadas com o corretor.</p></div>
-  <div class="calc-card grid-2">
-    <form class="form" autocomplete="off" onsubmit="return false">
-      <div class="row">
-        <div class="field"><label for="sPreco">Preço (R$)</label>
-          <input type="number" id="sPreco" inputmode="numeric" min="0" step="1000"></div>
-        <div class="field"><label for="sEntrada">Entrada (R$)</label>
-          <input type="number" id="sEntrada" data-gate-entrada inputmode="numeric" min="0" step="1000">
-          <span class="form__note" id="sHint"></span></div>
-      </div>
-      <div class="row">
-        <div class="field"><label for="sPrazo">Prazo (meses)</label>
-          <input type="number" id="sPrazo" inputmode="numeric" min="1" max="480" step="1"></div>
-        <div class="field"><label for="sTaxa">Juros (% ao mês)</label>
-          <input type="number" id="sTaxa" inputmode="decimal" min="0" max="5" step="0.1"></div>
-      </div>
-    </form>
-    <div>
-      <div class="gate-blur">
-      <div data-gated data-gate-track="simulacao_financeira">
-        <div class="pricebox">
-          <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="sFin">—</div></div>
-          <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="sParc" data-gate-parcela>—</span><small>/mês</small></div></div>
+  <div class="calc-card">
+    <div class="gate-blur">
+      <div class="grid-2" data-gated data-gate-track="simulacao_financeira">
+        <form class="form" autocomplete="off" onsubmit="return false">
+          <div class="row">
+            <div class="field"><label for="sPreco">Preço (R$)</label>
+              <input type="number" id="sPreco" inputmode="numeric" min="0" step="1000"></div>
+            <div class="field"><label for="sEntrada">Entrada (R$)</label>
+              <input type="number" id="sEntrada" data-gate-entrada inputmode="numeric" min="0" step="1000">
+              <span class="form__note" id="sHint"></span></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="sPrazo">Prazo (meses)</label>
+              <input type="number" id="sPrazo" inputmode="numeric" min="1" max="480" step="1"></div>
+            <div class="field"><label for="sTaxa">Juros (% ao mês)</label>
+              <input type="number" id="sTaxa" inputmode="decimal" min="0" max="5" step="0.1"></div>
+          </div>
+        </form>
+        <div>
+          <div class="pricebox">
+            <div class="price"><div class="price__label">Valor financiado</div><div class="price__value" id="sFin">—</div></div>
+            <div class="price"><div class="price__label">Parcela estimada</div><div class="price__value"><span id="sParc" data-gate-parcela>—</span><small>/mês</small></div></div>
+          </div>
+          <ul class="specs" style="margin-top:1rem">
+            <li><span class="k">Entrada</span><span class="v" id="sEnt">—</span></li>
+          </ul>
         </div>
-        <ul class="specs" style="margin-top:1rem">
-          <li><span class="k">Entrada</span><span class="v" id="sEnt">—</span></li>
-        </ul>
       </div>
       <div class="gate-teaser" data-gate-teaser>
         <p class="gate-teaser__title">🔒 Seu estudo personalizado está pronto</p>
@@ -142,12 +143,11 @@
         </ul>
         <button type="button" class="btn btn--primary btn--block" data-open-gate data-gate-context="simulador_financeiro">Ver meus resultados</button>
       </div>
-      </div>
-      <p class="source"><b>Estimativa</b> pela Tabela Price (juros compostos), sem correção (INCC), seguros ou taxas. As condições reais — que podem incluir parcelas sem juros, balões e planos estendidos — são confirmadas com o corretor. <b>Atualizado em setembro de 2026.</b></p>
-      <div class="hero__cta" style="margin-top:1rem">
-        <button class="btn btn--primary" data-open-form data-emp="Condomínio Ecoville I">Falar com o corretor</button>
-        <a class="btn btn--outline" href="/comparar/">Comparar empreendimentos</a>
-      </div>
+    </div>
+    <p class="source"><b>Estimativa</b> pela Tabela Price (juros compostos), sem correção (INCC), seguros ou taxas. As condições reais — que podem incluir parcelas sem juros, balões e planos estendidos — são confirmadas com o corretor. <b>Atualizado em setembro de 2026.</b></p>
+    <div class="hero__cta" style="margin-top:1rem">
+      <button class="btn btn--primary" data-open-form data-emp="Condomínio Ecoville I">Falar com o corretor</button>
+      <a class="btn btn--outline" href="/comparar/">Comparar empreendimentos</a>
     </div>
   </div>
 </div></section><script>
@@ -183,8 +183,10 @@
   <div class="section-head center"><span class="eyebrow">Projeto</span>
     <h2>O que dá para construir neste lote</h2>
     <p>Estime a área construível considerando os <strong>recuos</strong> (frontal, laterais e fundos) e o coeficiente de aproveitamento. Ajuste os valores conforme o lote.</p></div>
-  <div class="build-card grid-2">
-    <form class="form" autocomplete="off" onsubmit="return false">
+  <div class="build-card">
+    <div class="gate-blur">
+      <div class="grid-2" data-gated data-gate-track="potencial_construtivo">
+        <form class="form" autocomplete="off" onsubmit="return false">
       <h3 style="margin-top:0">Dimensões do lote</h3>
       <div class="row">
         <div class="field"><label for="bFrente">Frente / largura (m)</label>
@@ -206,18 +208,17 @@
           <input type="number" id="bCoef" inputmode="decimal" min="0" max="6" step="0.1"></div>
       </div>
       <p class="form__note">Valores-padrão apenas ilustrativos. Os recuos, a taxa de ocupação e o coeficiente reais dependem do <strong>zoneamento do lote</strong>.</p>
-    </form>
-    <div>
-      <div class="gate-blur">
-      <div data-gated data-gate-track="potencial_construtivo">
-        <div class="pricebox">
-          <div class="price"><div class="price__label">Projeção máxima no térreo (pelos recuos)</div><div class="price__value" id="bFootprint" style="font-size:1.6rem">—</div><div class="price__note">faixa útil <span id="bDim">—</span></div></div>
-          <div class="price"><div class="price__label">Área construível (pelo coeficiente)</div><div class="price__value" id="bTotal" style="font-size:1.6rem">—</div><div class="price__note">soma dos pavimentos</div></div>
+        </form>
+        <div>
+          <div class="pricebox">
+            <div class="price"><div class="price__label">Projeção máxima no térreo (pelos recuos)</div><div class="price__value" id="bFootprint" style="font-size:1.6rem">—</div><div class="price__note">faixa útil <span id="bDim">—</span></div></div>
+            <div class="price"><div class="price__label">Área construível (pelo coeficiente)</div><div class="price__value" id="bTotal" style="font-size:1.6rem">—</div><div class="price__note">soma dos pavimentos</div></div>
+          </div>
+          <ul class="specs" style="margin-top:1rem">
+            <li><span class="k">Área do lote</span><span class="v" id="bArea">—</span></li>
+            <li><span class="k">Taxa de ocupação no térreo</span><span class="v" id="bTaxa">—</span></li>
+          </ul>
         </div>
-        <ul class="specs" style="margin-top:1rem">
-          <li><span class="k">Área do lote</span><span class="v" id="bArea">—</span></li>
-          <li><span class="k">Taxa de ocupação no térreo</span><span class="v" id="bTaxa">—</span></li>
-        </ul>
       </div>
       <div class="gate-teaser" data-gate-teaser>
         <p class="gate-teaser__title">🔒 Seu estudo personalizado está pronto</p>
@@ -228,11 +229,10 @@
         </ul>
         <button type="button" class="btn btn--primary btn--block" data-open-gate data-gate-context="potencial_construtivo">Ver meus resultados</button>
       </div>
-      </div>
-      <p class="source"><b>Estimativa educativa.</b> Não substitui projeto de arquiteto nem a consulta ao zoneamento. Confirme recuos, taxa de ocupação e coeficiente na Prefeitura antes de projetar. <b>Atualizado em setembro de 2026.</b></p>
-      <p><a href="/conteudos/como-consultar-o-zoneamento-de-um-lote/">Como consultar o zoneamento de um lote →</a><br>
-      <a href="/guia-do-comprador/">Ver o guia do comprador →</a></p>
     </div>
+    <p class="source"><b>Estimativa educativa.</b> Não substitui projeto de arquiteto nem a consulta ao zoneamento. Confirme recuos, taxa de ocupação e coeficiente na Prefeitura antes de projetar. <b>Atualizado em setembro de 2026.</b></p>
+    <p><a href="/conteudos/como-consultar-o-zoneamento-de-um-lote/">Como consultar o zoneamento de um lote →</a><br>
+    <a href="/guia-do-comprador/">Ver o guia do comprador →</a></p>
   </div>
 </div></section><script>
 (function(){

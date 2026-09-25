@@ -108,8 +108,10 @@
   <div class="section-head center"><span class="eyebrow">Projeto</span>
     <h2>O que dá para construir neste lote</h2>
     <p>Estime a área construível considerando os <strong>recuos</strong> (frontal, laterais e fundos) e o coeficiente de aproveitamento. Ajuste os valores conforme o lote.</p></div>
-  <div class="build-card grid-2">
-    <form class="form" autocomplete="off" onsubmit="return false">
+  <div class="build-card">
+    <div class="gate-blur">
+      <div class="grid-2" data-gated data-gate-track="potencial_construtivo">
+        <form class="form" autocomplete="off" onsubmit="return false">
       <h3 style="margin-top:0">Dimensões do lote</h3>
       <div class="row">
         <div class="field"><label for="bFrente">Frente / largura (m)</label>
@@ -131,29 +133,27 @@
           <input type="number" id="bCoef" inputmode="decimal" min="0" max="6" step="0.1"></div>
       </div>
       <p class="form__note">Valores-padrão apenas ilustrativos. Os recuos, a taxa de ocupação e o coeficiente reais dependem do <strong>zoneamento do lote</strong>.</p>
-    </form>
-    <div>
-      <div class="gate-blur">
-      <div data-gated data-gate-track="potencial_construtivo">
-        <div class="pricebox">
-          <div class="price"><div class="price__label">Projeção máxima no térreo (pelos recuos)</div><div class="price__value" id="bFootprint" style="font-size:1.6rem">—</div><div class="price__note">faixa útil <span id="bDim">—</span></div></div>
-          <div class="price"><div class="price__label">Área construível (pelo coeficiente)</div><div class="price__value" id="bTotal" style="font-size:1.6rem">—</div><div class="price__note">soma dos pavimentos</div></div>
+        </form>
+        <div>
+          <div class="pricebox">
+            <div class="price"><div class="price__label">Projeção máxima no térreo (pelos recuos)</div><div class="price__value" id="bFootprint" style="font-size:1.6rem">—</div><div class="price__note">faixa útil <span id="bDim">—</span></div></div>
+            <div class="price"><div class="price__label">Área construível (pelo coeficiente)</div><div class="price__value" id="bTotal" style="font-size:1.6rem">—</div><div class="price__note">soma dos pavimentos</div></div>
+          </div>
+          <ul class="specs" style="margin-top:1rem">
+            <li><span class="k">Área do lote</span><span class="v" id="bArea">—</span></li>
+            <li><span class="k">Taxa de ocupação no térreo</span><span class="v" id="bTaxa">—</span></li>
+          </ul>
         </div>
-        <ul class="specs" style="margin-top:1rem">
-          <li><span class="k">Área do lote</span><span class="v" id="bArea">—</span></li>
-          <li><span class="k">Taxa de ocupação no térreo</span><span class="v" id="bTaxa">—</span></li>
-        </ul>
       </div>
       <div class="gate-teaser" data-gate-teaser>
         <p class="gate-teaser__title">🔒 Seu potencial construtivo está pronto</p>
-        <p>Ajuste as dimensões e os recuos acima. Informe seu nome e WhatsApp para ver a área construível estimada com os números que você escolheu.</p>
+        <p>Preencha seus dados para ver a área construível estimada com as dimensões deste lote.</p>
         <button type="button" class="btn btn--primary btn--block" data-open-gate data-gate-context="potencial_construtivo">Ver meus resultados</button>
       </div>
-      </div>
-      <p class="source"><b>Estimativa educativa.</b> Não substitui projeto de arquiteto nem a consulta ao zoneamento. Confirme recuos, taxa de ocupação e coeficiente na Prefeitura antes de projetar. <b>Atualizado em setembro de 2026.</b></p>
-      <p><a href="/conteudos/como-consultar-o-zoneamento-de-um-lote/">Como consultar o zoneamento de um lote →</a><br>
-      <a href="/guia-do-comprador/">Ver o guia do comprador →</a></p>
     </div>
+    <p class="source"><b>Estimativa educativa.</b> Não substitui projeto de arquiteto nem a consulta ao zoneamento. Confirme recuos, taxa de ocupação e coeficiente na Prefeitura antes de projetar. <b>Atualizado em setembro de 2026.</b></p>
+    <p><a href="/conteudos/como-consultar-o-zoneamento-de-um-lote/">Como consultar o zoneamento de um lote →</a><br>
+    <a href="/guia-do-comprador/">Ver o guia do comprador →</a></p>
   </div>
 </div></section><script>
 (function(){
