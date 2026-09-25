@@ -191,11 +191,11 @@
   }
 
   /* ---------------- Gate de identificação ----------------
-     Um único cadastro (nome + WhatsApp) libera, na mesma visita, todos os
-     blocos marcados com [data-gated] da página (simulação financeira,
-     potencial construtivo e condições comerciais completas). O resultado
-     real fica desfocado atrás do teaser (CSS, via body.is-identified) em
-     vez de simplesmente sumir — ver .gate-blur em site.css. */
+     Um único cadastro (nome + WhatsApp) libera, na mesma visita, todas as
+     seções [data-gate-hide] da página (simulação financeira, potencial
+     construtivo e condições comerciais completas), que até lá ficam
+     substituídas pelo card [data-gate-fincon] — tudo via CSS, com a classe
+     body.is-identified. */
   var IDENT_KEY = "tat_identified";
   function isIdentified() {
     try { return sessionStorage.getItem(IDENT_KEY) === "1"; } catch (e) { return false; }
@@ -340,8 +340,8 @@
         data.url_completa = location.href;
         data.referrer = document.referrer || "";
         data.enviado_em = new Date().toISOString();
-        var usedFin = !!gateContextsUsed.simulador_financeiro;
-        var usedConstr = !!gateContextsUsed.potencial_construtivo;
+        var usedFin = !!(gateContextsUsed.simulador_financeiro || gateContextsUsed.combo);
+        var usedConstr = !!(gateContextsUsed.potencial_construtivo || gateContextsUsed.combo);
         var leadSourceTool = usedFin && usedConstr ? "ambos" : usedConstr ? "potencial_construtivo" : usedFin ? "simulador_financiamento" : "";
         data.simulacao_financeira = usedFin;
         data.potencial_construtivo = usedConstr;
