@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS leads (
   faixa_parcela TEXT,
   simulacao_financeira TEXT,
   potencial_construtivo TEXT,
+  lead_source_tool TEXT,
+  consentimento_texto TEXT,
   ip TEXT,
   user_agent TEXT,
   raw TEXT

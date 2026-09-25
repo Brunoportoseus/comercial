@@ -24,6 +24,7 @@
 const MIGRATABLE_COLUMNS = [
   "gclid", "status", "valor_negocio", "convertido_em",
   "entrada_informada", "faixa_parcela", "simulacao_financeira", "potencial_construtivo",
+  "lead_source_tool", "consentimento_texto",
 ];
 
 const COLUMNS = [

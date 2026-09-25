@@ -267,10 +267,15 @@
      o conteúdo bloqueado na própria página (ver revealGated acima). */
   var gateModal = $("#gateModal");
   var gateLastFocus = null, gateContext = "";
+  // registra por quais ferramentas (contextos do gate) a pessoa demonstrou
+  // interesse nesta sessão, para saber depois se o lead veio do simulador
+  // financeiro, do potencial construtivo, ou de ambos
+  var gateContextsUsed = {};
   function openGateModal(context) {
     if (!gateModal) return;
     if (isIdentified()) { revealGated(); return; }
     gateContext = context || "";
+    if (gateContext) gateContextsUsed[gateContext] = true;
     // em páginas com mais de um empreendimento (ex.: /financiamento/), sincroniza
     // qual está selecionado no momento para o campo oculto do formulário do gate
     var empSrc = $("[data-gate-emp-label]");
@@ -333,8 +338,14 @@
         data.url_completa = location.href;
         data.referrer = document.referrer || "";
         data.enviado_em = new Date().toISOString();
-        data.simulacao_financeira = true;
-        data.potencial_construtivo = true;
+        var usedFin = !!gateContextsUsed.simulador_financeiro;
+        var usedConstr = !!gateContextsUsed.potencial_construtivo;
+        var leadSourceTool = usedFin && usedConstr ? "ambos" : usedConstr ? "potencial_construtivo" : usedFin ? "simulador_financiamento" : "";
+        data.simulacao_financeira = usedFin;
+        data.potencial_construtivo = usedConstr;
+        data.lead_source_tool = leadSourceTool;
+        var consentSpan = $(".consent span", gateForm);
+        data.consentimento_texto = consentSpan ? consentSpan.textContent.trim() : "";
         // aproveita o que a pessoa já ajustou nos simuladores da página, se houver
         var simEntrada = $("[data-gate-entrada]"); if (simEntrada && simEntrada.value) data.entrada_informada = Math.round(+simEntrada.value) || null;
         var simParc = $("[data-gate-parcela]"); if (simParc && simParc.textContent && simParc.textContent !== "—") data.faixa_parcela = simParc.textContent.trim();
@@ -345,6 +356,7 @@
           window.trackEvent("gate_submit", { success: success, contexto: gateContext });
           if (success) {
             window.trackEvent("identification_success", { contexto: gateContext });
+            window.trackEvent("lead_simulador", { lead_source_tool: leadSourceTool });
             closeGateModal();
             setIdentified();
           } else {

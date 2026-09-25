@@ -41,6 +41,7 @@ const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
   utm_source TEXT, utm_medium TEXT, utm_campaign TEXT, utm_content TEXT, utm_term TEXT,
   gclid TEXT, status TEXT DEFAULT 'novo', valor_negocio REAL, convertido_em TEXT,
   entrada_informada REAL, faixa_parcela TEXT, simulacao_financeira TEXT, potencial_construtivo TEXT,
+  lead_source_tool TEXT, consentimento_texto TEXT,
   ip TEXT, user_agent TEXT, raw TEXT
 )`;
 
@@ -55,6 +56,8 @@ const LEADS_NEW_COLUMNS = [
   "ALTER TABLE leads ADD COLUMN faixa_parcela TEXT",
   "ALTER TABLE leads ADD COLUMN simulacao_financeira TEXT",
   "ALTER TABLE leads ADD COLUMN potencial_construtivo TEXT",
+  "ALTER TABLE leads ADD COLUMN lead_source_tool TEXT",
+  "ALTER TABLE leads ADD COLUMN consentimento_texto TEXT",
 ];
 
 async function ensureLeadsTable(db) {
@@ -129,8 +132,9 @@ function insertLead(db, lead, body) {
         regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
         utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,
         entrada_informada,faixa_parcela,simulacao_financeira,potencial_construtivo,
+        lead_source_tool,consentimento_texto,
         ip,user_agent,raw)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     .bind(
       lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
@@ -138,6 +142,7 @@ function insertLead(db, lead, body) {
       lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
       lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
       lead.gclid, lead.entrada_informada, lead.faixa_parcela, lead.simulacao_financeira, lead.potencial_construtivo,
+      lead.lead_source_tool, lead.consentimento_texto,
       lead.ip, lead.user_agent, JSON.stringify(body)
     )
     .run();
@@ -226,6 +231,8 @@ export async function onRequestPost(context) {
     faixa_parcela: String(body.faixa_parcela || "").trim(),
     simulacao_financeira: body.simulacao_financeira ? "sim" : "",
     potencial_construtivo: body.potencial_construtivo ? "sim" : "",
+    lead_source_tool: String(body.lead_source_tool || "").trim(),
+    consentimento_texto: String(body.consentimento_texto || "").trim().slice(0, 1000),
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: request.headers.get("User-Agent") || "",
   };
