@@ -31,7 +31,8 @@ window.SITE_CONFIG = {
     metaPixel: "",  // ex.: "123456789012345"
     // Ações de conversão do Google Ads por evento (send_to: "AW-XXXX/label")
     adsConversions: {
-      whatsapp_click: "AW-18455696294/jHnYCLz46vscEKanruBE"
+      whatsapp_click: "AW-18455696294/jHnYCLz46vscEKanruBE",
+      form_submit: "AW-18455696294/qfBgCMPWyYkdEKanruBE"
     }
   },
 
