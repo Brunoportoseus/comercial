@@ -122,6 +122,7 @@ strong{color:var(--petrol);font-weight:700}
   color:var(--petrol);text-decoration:none;line-height:1.05}
 .brand:hover{text-decoration:none}
 .brand__mark{height:36px;width:auto;flex:0 0 auto;display:block}
+.brand__logo{height:44px;width:auto;display:block}
 .brand__name{font-size:1.02rem}
 .brand__name small{display:block;font-family:var(--font-body);font-weight:500;font-size:.68rem;
   color:var(--muted);letter-spacing:.02em;text-transform:none}
@@ -151,6 +152,7 @@ strong{color:var(--petrol);font-weight:700}
   .nav-toggle{display:inline-flex}
   :root{--header-h:62px}   /* cabeçalho fixo compacto; o menu mobile e as âncoras usam esta variável */
   .topbar__inner{gap:12px}
+  .brand__logo{height:36px}
   .brand__name{font-size:.98rem}
   .brand__name small{display:none}   /* slogan só no desktop: libera altura e largura no celular */
 }
