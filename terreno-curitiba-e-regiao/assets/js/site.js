@@ -193,22 +193,29 @@
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
-  function openModal(emp) {
+  var modalCtx = {}; // origem do clique (ex.: assistente de parcela): data-lead-tool / data-lead-faixa
+  function openModal(emp, opener) {
     if (!modal) return;
+    modalCtx = {};
+    if (opener) {
+      var lt = opener.getAttribute("data-lead-tool"), lf = opener.getAttribute("data-lead-faixa");
+      if (lt) modalCtx.lead_source_tool = lt;
+      if (lf) modalCtx.faixa_parcela = lf;
+    }
     var f = $("form", modal);
     if (f && emp) { var h = $("[name=empreendimento_interesse]", f); if (h) h.value = emp; }
     var t = $("[data-modal-emp]", modal); if (t) t.textContent = emp ? (" — " + emp) : "";
     modal.hidden = false; document.body.classList.add("menu-open");
     lastFocus = document.activeElement;
     var first = $("input,select,textarea,button", modal); if (first) first.focus();
-    window.trackEvent("open_form", { empreendimento: emp || "" });
+    window.trackEvent("open_form", Object.assign({ empreendimento: emp || "" }, modalCtx));
   }
   function closeModal() {
     if (!modal) return; modal.hidden = true; document.body.classList.remove("menu-open");
     if (lastFocus) lastFocus.focus();
   }
   $$("[data-open-form]").forEach(function (btn) {
-    btn.addEventListener("click", function (e) { e.preventDefault(); openModal(btn.getAttribute("data-emp") || ""); });
+    btn.addEventListener("click", function (e) { e.preventDefault(); openModal(btn.getAttribute("data-emp") || "", btn); });
   });
   if (modal) {
     $$("[data-close-form]", modal).forEach(function (b) { b.addEventListener("click", closeModal); });
@@ -284,6 +291,7 @@
         if (el.type === "checkbox") data[el.name] = el.checked;
         else data[el.name] = el.value;
       });
+      Object.assign(data, modalCtx);
       Object.assign(data, captureUTM());
       data.gclid = captureGCLID();
       data.pagina_origem = location.pathname + location.search;
@@ -305,7 +313,8 @@
           var wa = $("[data-lead-wa]", okBox);
           if (wa) {
             var msg = "Olá! Sou " + (data.nome || "") + ". Vim pelo portal e tenho interesse" +
-              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em terrenos em Almirante Tamandaré") + ".";
+              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em terrenos em Almirante Tamandaré") + "." +
+              (data.faixa_parcela ? " Minha faixa de parcela: " + data.faixa_parcela + "." : "");
             wa.setAttribute("href", waLink(msg));
           }
         }
