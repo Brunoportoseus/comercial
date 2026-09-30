@@ -93,19 +93,19 @@
     </ul>
     <p style="margin-top:1rem"><a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&query=Av.%20Vereador%20Wadislau%20Bugalski%2C%203200%20%E2%80%94%20Almirante%20Tamandar%C3%A9%20%28PR%29" target="_blank" rel="noopener">Ver no Google Maps</a></p></div>
   <div><h2>Condições</h2>
-    <div class="pricebox"><div class="price"><div class="price__label">A partir de</div>
-          <div class="price__value">R$ 180.000</div><div class="price__note">valor à vista de referência</div></div><div class="price"><div class="price__label">Parcelas a partir de</div>
-        <div class="price__value">R$ 1.342,54<small>/mês</small></div><div class="price__note">entrada de R$ 40.000</div></div></div>
+    <div class="pricebox"><div class="price"><div class="price__label">Entrada mínima de 4% · R$&nbsp;7.200</div>
+          <div class="price__value" style="font-size:1.45rem;white-space:nowrap">R$&nbsp;1.656,39<small>/mês</small></div><div class="price__note">312 meses · R$&nbsp;180.000 à vista</div></div><div class="price"><div class="price__label">Com entrada ampliada de R$&nbsp;40.000</div>
+        <div class="price__value" style="font-size:1.45rem;white-space:nowrap">R$&nbsp;1.342,54<small>/mês</small></div><div class="price__note">312 meses · menor saldo financiado</div></div></div>
     <ul class="pill-list"><li>🤝 Direto com a incorporadora</li><li>✅ Sem burocracia de banco</li><li>⚡ Aprovação ágil</li></ul>
     <p class="source"><b>Condições informadas pelo empreendimento (EVEX Imóveis).</b> Valores sujeitos a alteração e à análise de crédito. <b>Atualizado em setembro de 2026.</b></p>
     <p><a href="/financiamento/">Como funciona o financiamento direto →</a></p></div>
 </div></section>
 
 
-<section class="section section--calc" id="empsim" data-preco="180000" data-entrada="18000" data-prazo="312" data-taxa="0.9"><div class="wrap">
+<section class="section section--calc" id="empsim" data-preco="180000" data-entrada="7200" data-prazo="312" data-taxa="0.9"><div class="wrap">
   <div class="section-head center"><span class="eyebrow eyebrow--gold">🧮 Simulador</span>
     <h2>Simule entrada e parcelas do Condomínio Ecoville I</h2>
-    <p>Estimativa pela Tabela Price. Ajuste a entrada (mínimo de 10%), o prazo e os juros. As condições reais são confirmadas com o corretor.</p></div>
+    <p>Estimativa pela Tabela Price. Ajuste a entrada (mínimo de 4%), o prazo e os juros. As condições reais são confirmadas com o corretor.</p></div>
   <div class="calc-card grid-2">
     <form class="form" autocomplete="off" onsubmit="return false">
       <div class="row">
@@ -146,7 +146,7 @@
   var brl0=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
   var brl2=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
   preco.value=d.preco; entrada.value=d.entrada; prazo.value=d.prazo; taxa.value=d.taxa;
-  function minEnt(p){return Math.round(p*0.10);}
+  function minEnt(p){return Math.round(p*0.04);}
   function calc(){
     var p=Math.max(0,+preco.value||0), me=minEnt(p);
     var en=Math.max(Math.min(p,Math.max(0,+entrada.value||0)),me);
@@ -156,7 +156,7 @@
     oFin.textContent=brl0.format(fin);
     oParc.textContent=isFinite(parc)?brl2.format(parc):'—';
     oEnt.textContent=brl0.format(en)+(p>0?(' ('+Math.round(en/p*100)+'%)'):'');
-    hint.textContent=p>0?('Entrada mínima: 10% ('+brl0.format(me)+')'):'';
+    hint.textContent=p>0?('Entrada mínima: 4% ('+brl0.format(me)+')'):'';
     entrada.min=me;
   }
   [preco,entrada,prazo,taxa].forEach(function(x){x.addEventListener('input',calc);});
@@ -235,10 +235,10 @@
 
 <section class="section section--soft"><div class="wrap">
   <h2>Simulações de financiamento direto</h2>
-  <p>Cálculos com a incorporadora, sem banco. Entrada + parcelas mensais.</p>
+  <p>Cálculos com a incorporadora, sem banco. Entrada mínima de 4% + parcelas mensais em 192, 252 ou 312 meses.</p>
   <div class="table-scroll"><table class="data">
     <thead><tr><th>Unidade</th><th>Área</th><th>À vista</th><th>Entrada</th><th>Prazo</th><th>Juros</th><th>Parcela</th></tr></thead>
-    <tbody><tr><td>Lote 180 m² (entrada 4%)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 7.200</td><td>312x</td><td>0,9% a.m.</td><td><strong>R$ 1.656,39</strong></td></tr><tr><td>Lote 180 m² (entrada 4%)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 7.200</td><td>192x</td><td>1,0% a.m.</td><td><strong>R$ 2.028,20</strong></td></tr><tr><td>Lote 180 m² (entrada R$ 40 mil)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 40.000</td><td>312x</td><td>0,9% a.m.</td><td><strong>R$ 1.342,54</strong></td></tr></tbody>
+    <tbody><tr><td>Lote 180 m² (entrada 4%)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 7.200</td><td>192x</td><td>1,0% a.m.</td><td><strong>R$ 2.028,20</strong></td></tr><tr><td>Lote 180 m² (entrada 4%)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 7.200</td><td>252x</td><td>0,9% a.m.</td><td><strong>R$ 1.736,83</strong></td></tr><tr><td>Lote 180 m² (entrada 4%)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 7.200</td><td>312x</td><td>0,9% a.m.</td><td><strong>R$ 1.656,39</strong></td></tr><tr><td>Lote 180 m² (entrada ampliada de R$ 40 mil)</td><td>180 m²</td><td>R$ 180.000</td><td>R$ 40.000</td><td>312x</td><td>0,9% a.m.</td><td><strong>R$ 1.342,54</strong></td></tr></tbody>
   </table></div>
   <p class="source"><b>Condições informadas pelo empreendimento (EVEX Imóveis).</b> Valores e prazos sujeitos a alteração e à análise de crédito e disponibilidade. <b>Atualizado em setembro de 2026.</b></p>
 </div></section>
