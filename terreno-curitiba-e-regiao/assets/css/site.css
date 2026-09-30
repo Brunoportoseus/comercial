@@ -595,6 +595,36 @@ textarea{resize:vertical;min-height:80px}
 .form-more[open]>summary::before{content:"–"}
 .form-more__inner{padding:0 .9rem .9rem;display:grid;gap:14px}
 
+/* ---------- Compartilhar empreendimento (montado por site.js) ---------- */
+.share{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;max-width:720px;margin:0 auto;padding:20px;text-align:center;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.share__title{margin:0 0 .2rem;font-family:var(--font-head);font-weight:800;font-size:1.2rem;line-height:1.2;color:var(--petrol)}
+.share__lead{margin:0;color:var(--muted);font-size:.95rem}
+.share__actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.share__btn{min-height:48px;min-width:0;padding:.7rem .6rem;font-size:.95rem;white-space:nowrap}
+.share__btn svg{width:1.2em;height:1.2em;flex:0 0 auto}
+.share__copy.is-copied{border-color:var(--green);color:var(--green-600)}
+.share__copy.is-copied svg{display:none}
+.share--native .share__text{padding:0 44px}
+.share__more{position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
+.share__more:hover{background:var(--petrol-050);color:var(--petrol)}
+.share__sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.share-slot{padding-top:6px;padding-bottom:30px}
+.share--compact{padding:0;background:transparent;border:0;box-shadow:none;max-width:420px}
+.share--compact .share__title{margin:0;font-size:.95rem;font-weight:700;color:var(--muted)}
+.share--compact .share__btn{min-height:44px;font-size:.9rem}
+@media (max-width:359px){
+  .share:not(.share--compact){padding:16px 12px}
+  .share__btn{gap:.4rem;padding:.7rem .3rem;font-size:.9rem}
+}
+@media (min-width:861px){
+  .share:not(.share--compact){grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;text-align:left}
+  .share:not(.share--compact) .share__actions{grid-template-columns:repeat(2,190px)}
+  .share--compact{max-width:none;grid-template-columns:auto auto;justify-content:center;align-items:center;gap:16px}
+  .share--compact .share__actions{grid-template-columns:repeat(2,160px)}
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
   .footer__grid{grid-template-columns:1fr 1fr}

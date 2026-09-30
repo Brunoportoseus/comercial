@@ -321,4 +321,148 @@
 
   // permitir abertura do modal via hash #contato-form
   if (location.hash === "#lead") openModal("");
+
+  /* ---------------- Compartilhar empreendimento (<ShareProperty />) ----------------
+     Componente reutilizável: as páginas de empreendimento são HTML estático, então o
+     bloco é montado aqui, automaticamente, em toda página que tenha o selo
+     "Empreendimento · Cidade" (eyebrow) e o formulário #interesse — empreendimentos
+     atuais e futuros ganham o recurso sem editar HTML.
+     Dados lidos da própria página: nome (breadcrumb), cidade/bairro (ficha "Resumo") e URL.
+     Opcional — controle manual em um template:
+       <div data-share-property data-share-name="…" data-share-loc="…"></div>  (monta ali)
+       <body data-share="off">                                                (desliga)
+     Não usa data-wa nem "whatsapp_click": compartilhar NÃO conta como conversão. */
+  (function shareProperty() {
+    if (document.body.getAttribute("data-share") === "off") return;
+    var isEmp = $$(".eyebrow").some(function (e) { return /^Empreendimento\b/.test(e.textContent.trim()); });
+    var manual = $("[data-share-property]");
+    var interesse = $("#interesse");
+    if (!manual && !(isEmp && interesse)) return;
+
+    var clean = function (t) { return (t || "").replace(/\s+/g, " ").trim(); };
+    var crumb = $(".crumbs [aria-current=\"page\"]");
+    var h1 = $("h1");
+    var name = clean(manual && manual.getAttribute("data-share-name")) ||
+      clean(crumb && crumb.textContent) ||
+      clean(h1 && h1.textContent).split(" — ")[0] || clean(document.title);
+    var loc = clean(manual && manual.getAttribute("data-share-loc"));
+    if (!loc) {
+      $$(".specs li").some(function (li) {
+        var k = $(".k", li), v = $(".v", li);
+        if (k && v && /^Cidade/i.test(clean(k.textContent))) { loc = clean(v.textContent); return true; }
+        return false;
+      });
+    }
+    if (!loc) { var eb = $(".eyebrow--gold"); loc = clean(eb && eb.textContent.split("·")[1]); }
+    loc = loc.replace(/\s+[—–-]\s+/g, ", ") || "Curitiba e região";
+    // URL sem query/hash: quem recebe não herda UTM/fbclid de quem enviou
+    var pageUrl = location.origin + location.pathname;
+    var text = "Olha este terreno que encontrei em " + loc + ":\n" + name;
+    var msg = text + "\n" + pageUrl + "\nAchei interessante e resolvi te enviar.";
+    var waHref = "https://wa.me/?text=" + encodeURIComponent(msg); // sem telefone: a pessoa escolhe o contato
+
+    var ICON_COPY = '<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></svg>';
+    var ICON_SHARE = '<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+    var waIcon = $(".ico-wa"); // reaproveita o ícone do WhatsApp já presente na página
+    var canNative = !!navigator.share && !!window.matchMedia && matchMedia("(pointer: coarse)").matches;
+
+    function track(method, position) {
+      var p = { share_method: method, empreendimento: name, page_url: window.location.href, share_position: position };
+      if (typeof window.trackEvent === "function") window.trackEvent("share_empreendimento", p);
+      else (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: "share_empreendimento" }, p));
+    }
+
+    function legacyCopy(t) {
+      return new Promise(function (ok, fail) {
+        var ta = document.createElement("textarea"), done = false;
+        ta.value = t; ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0";
+        document.body.appendChild(ta); ta.select();
+        try { ta.setSelectionRange(0, t.length); done = document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+        if (done) ok(); else fail();
+      });
+    }
+    function copyText(t) {
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        return navigator.clipboard.writeText(t).catch(function () { return legacyCopy(t); });
+      }
+      return legacyCopy(t);
+    }
+
+    var seq = 0;
+    function build(position) {
+      var compact = position === "compacto";
+      var id = "share-" + (++seq);
+      var box = document.createElement("div");
+      var native = canNative && !compact; // compartilhamento nativo só no bloco principal
+      box.className = "share" + (compact ? " share--compact" : "") + (native ? " share--native" : "");
+      box.setAttribute("role", "group");
+      box.setAttribute("aria-labelledby", id);
+      box.innerHTML =
+        '<div class="share__text"><p class="share__title" id="' + id + '">' +
+        (compact ? "Compartilhe este empreendimento" : "Gostou deste empreendimento?") + "</p>" +
+        (compact ? "" : '<p class="share__lead">Compartilhe com alguém que também pode se interessar.</p>') + "</div>" +
+        '<div class="share__actions">' +
+        '<a class="btn btn--wa share__btn" target="_blank" rel="noopener"><span class="share__ico" data-slot="wa"></span><span>WhatsApp</span></a>' +
+        '<button type="button" class="btn btn--outline share__btn share__copy">' + ICON_COPY + '<span class="share__label">Copiar link</span></button>' +
+        "</div>" +
+        (native ? '<button type="button" class="share__more" aria-label="Compartilhar em outros aplicativos" title="Outros aplicativos">' + ICON_SHARE + "</button>" : "") +
+        '<span class="share__sr" role="status" aria-live="polite"></span>';
+
+      var wa = $(".share__btn.btn--wa", box);
+      wa.setAttribute("href", waHref);
+      wa.setAttribute("aria-label", "Compartilhar " + name + " no WhatsApp");
+      var slot = $("[data-slot=wa]", box);
+      if (waIcon) slot.parentNode.replaceChild(waIcon.cloneNode(true), slot); else slot.parentNode.removeChild(slot);
+      wa.addEventListener("click", function () { track("whatsapp", position); });
+
+      var copyBtn = $(".share__copy", box), label = $(".share__label", copyBtn), sr = $(".share__sr", box), timer;
+      copyBtn.addEventListener("click", function () {
+        copyText(pageUrl).then(function () {
+          track("copy_link", position);
+          label.textContent = "✓ Link copiado!"; sr.textContent = "Link copiado";
+          copyBtn.classList.add("is-copied");
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            label.textContent = "Copiar link"; sr.textContent = ""; copyBtn.classList.remove("is-copied");
+          }, 2000);
+        }).catch(function () { window.prompt("Copie o link:", pageUrl); });
+      });
+
+      var more = $(".share__more", box);
+      if (more) more.addEventListener("click", function () {
+        navigator.share({ title: name, text: text + "\nAchei interessante e resolvi te enviar.", url: pageUrl })
+          .then(function () { track("native_share", position); })
+          .catch(function () { /* cancelado pelo usuário */ });
+      });
+      return box;
+    }
+
+    function prevSection(el) {
+      var n = el.previousElementSibling;
+      while (n && /^(SCRIPT|STYLE)$/.test(n.tagName)) n = n.previousElementSibling;
+      return n;
+    }
+
+    if (manual) { manual.appendChild(build("bloco")); return; }
+
+    // 1) bloco completo: depois das informações principais e do CTA/simulador (#empsim);
+    //    sem simulador, logo depois da seção com a ficha "Resumo".
+    var specs = $(".specs");
+    var anchor = $("#empsim") || (specs && specs.closest("section"));
+    if (!anchor) return;
+    var section = document.createElement("section");
+    section.className = "section section--tight share-section";
+    var wrap = document.createElement("div"); wrap.className = "wrap";
+    wrap.appendChild(build("bloco")); section.appendChild(wrap);
+    anchor.parentNode.insertBefore(section, anchor.nextSibling);
+
+    // 2) segunda aparição, discreta, antes do formulário — só se não ficar colada na primeira
+    if (prevSection(interesse) !== section) {
+      var slot = document.createElement("div"); slot.className = "wrap share-slot";
+      slot.appendChild(build("compacto"));
+      interesse.parentNode.insertBefore(slot, interesse);
+    }
+  })();
 })();
