@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /obrigado/
+Disallow: /admin/
+
+Sitemap: https://imoveiscuritibaeregiao.com.br/sitemap.xml
