@@ -1,0 +1,10 @@
+# URLs legadas do site de Almirante -> esquema do hub (301)
+/empreendimentos/bela-vista/        /almirante-tamandare/bela-vista/   301
+/empreendimentos/nova-oportunidade/ /almirante-tamandare/              301
+/empreendimentos/                   /almirante-tamandare/              301
+/conheca-almirante-tamandare/       /almirante-tamandare/              301
+/infraestrutura/                    /almirante-tamandare/              301
+/bairros/                           /almirante-tamandare/              301
+/guia-do-investidor/                /guia-do-comprador/                301
+/noticias/*                         /conteudos/:splat                  301
+/index.html                         /                                 301
