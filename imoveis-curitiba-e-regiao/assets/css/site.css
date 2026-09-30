@@ -382,7 +382,7 @@ table.data tr:last-child td{border-bottom:0}
 .footer__brand p{font-size:.9rem;color:#a9c0bf;margin-top:1rem}
 .footer__mark{display:flex;align-items:center;gap:.6rem;color:#fff;font-family:var(--font-head);font-weight:800;font-size:1.1rem}
 .footer__mark{display:inline-flex;align-items:center;gap:.55rem}
-.footer__logo{height:42px;width:auto;flex:0 0 auto;display:block}
+.footer__logo{height:52px;width:52px;padding:5px;background:#fff;border-radius:12px;object-fit:contain;flex:0 0 auto;display:block}
 .footer__social{display:flex;gap:12px;margin-top:14px}
 .footer__social a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.10);color:#e8ddcb;transition:background .2s,color .2s,transform .2s}
 .footer__social a:hover{background:var(--gold);color:#241c07;transform:translateY(-2px)}
