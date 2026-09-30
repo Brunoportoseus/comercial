@@ -1,0 +1,18 @@
+# Modo HTTP para usar pelo claude.ai (navegador/celular), exposto via Cloudflare Tunnel.
+# Nenhuma porta fica aberta na VM: o cloudflared faz a conexão de saída até o Cloudflare.
+services:
+  mcp:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./credentials/service-account.json:/credentials/service-account.json:ro
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - mcp

@@ -1,0 +1,19 @@
+{
+  "name": "mcp-google-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Servidor MCP (somente leitura) para Google Analytics 4 e Google Search Console",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "google-auth-library": "^11.1.0",
+    "zod": "^4.6.5"
+  }
+}
