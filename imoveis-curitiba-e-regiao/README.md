@@ -1,6 +1,6 @@
 # imoveiscuritibaeregiao.com.br — Hub “Imóveis Curitiba e Região”
 
-Hub regional (hub-and-spoke) de terrenos na **Região Metropolitana de Curitiba (RMC)**.
+Hub regional (hub-and-spoke) de imóveis (hoje, terrenos e lotes) na **Região Metropolitana de Curitiba (RMC)**.
 Cada cidade tem **página com URL própria** (não aba de JS). Começa por **Almirante Tamandaré**
 (portando o conteúdo do site atual); as demais cidades entram conforme houver produto/conteúdo.
 
@@ -36,8 +36,8 @@ agrupada), além de Guia do comprador, Financiamento e Conteúdos.
 
 ## Publicar (novo projeto Cloudflare Pages)
 1. **Workers & Pages → Create → Pages → Connect to Git** → repo `Brunoportoseus/comercial`.
-2. **Project name:** `terreno-curitiba-e-regiao` · **Production branch:** `main` ·
-   **Build command:** vazio · **Root directory (advanced):** `terreno-curitiba-e-regiao` ·
+2. **Project name:** `imoveis-curitiba-e-regiao` · **Production branch:** `main` ·
+   **Build command:** vazio · **Root directory (advanced):** `imoveis-curitiba-e-regiao` ·
    **Build output directory:** `.`.
 3. **Save and Deploy** → sai em `https://<projeto>.pages.dev`. Confirme `…/api/lead` respondendo `{"ok":false,"error":"Use POST."}`.
 4. **D1 (leads):** crie o banco `leads-tat` e adicione o binding **`DB`** (a tabela é criada
