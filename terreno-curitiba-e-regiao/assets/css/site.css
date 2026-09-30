@@ -41,8 +41,12 @@
 /* ---------- Reset ---------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{overflow-x:hidden;max-width:100%}
+/* overflow-x:hidden em html E body faz o body virar contêiner de rolagem e QUEBRA o
+   position:sticky do cabeçalho. "clip" corta o excesso sem criar contêiner de rolagem. */
+@supports (overflow:clip){html,body{overflow-x:clip}}
 h1,h2,h3,h4,p,li,a{overflow-wrap:break-word}
-html{scroll-behavior:smooth}
+/* com o cabeçalho fixo, âncoras (#interesse, #empsim…) não podem ficar escondidas sob ele */
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px);scrollbar-gutter:stable}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
   margin:0;font-family:var(--font-body);color:var(--ink);background:var(--bg);
@@ -145,6 +149,10 @@ strong{color:var(--petrol);font-weight:700}
 @media (max-width:1000px){
   .topnav,.topbar__cta{display:none}
   .nav-toggle{display:inline-flex}
+  :root{--header-h:62px}   /* cabeçalho fixo compacto; o menu mobile e as âncoras usam esta variável */
+  .topbar__inner{gap:12px}
+  .brand__name{font-size:.98rem}
+  .brand__name small{display:none}   /* slogan só no desktop: libera altura e largura no celular */
 }
 /* Mobile menu */
 .mobile-menu{position:fixed;inset:var(--header-h) 0 0;background:#fff;z-index:99;
@@ -156,10 +164,13 @@ strong{color:var(--petrol);font-weight:700}
 .mobile-menu__label{display:block;font-family:var(--font-body);font-weight:700;font-size:.72rem;
   letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:1.2rem .4rem .3rem}
 .mobile-menu .btn{margin-top:20px}
-body.menu-open{overflow:hidden}
+/* trava a rolagem (menu, modal de lead, zoom de foto) pelo <html>: overflow:hidden no <body>
+   o transformaria em contêiner de rolagem e quebraria o cabeçalho fixo */
+html:has(body.menu-open){overflow:hidden}
+@supports not selector(:has(*)){body.menu-open{overflow:hidden}}
 
 /* Barra de acesso rápido — cidades com estoque */
-.quicknav{position:sticky;top:var(--header-h);z-index:98;background:var(--petrol);
+.quicknav{position:static;background:var(--petrol);
   border-bottom:1px solid rgba(255,255,255,.10)}
 .quicknav__inner{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;
   overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -173,8 +184,6 @@ body.menu-open{overflow:hidden}
 .quicknav a:hover{background:rgba(255,255,255,.20);text-decoration:none;color:#fff}
 .quicknav a[aria-current="page"]{background:var(--gold);border-color:transparent;color:#231a06}
 @media (max-width:700px){
-  /* no mobile não fica fixo (evita empilhar com o cabeçalho e comer a tela) */
-  .quicknav{position:static}
   .quicknav__inner{gap:.5rem;padding:.45rem 0}
   .quicknav__label{font-size:.72rem}
   .quicknav a{font-size:.8rem;padding:.3rem .66rem}
