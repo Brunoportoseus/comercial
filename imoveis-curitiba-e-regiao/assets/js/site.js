@@ -305,7 +305,7 @@
           var wa = $("[data-lead-wa]", okBox);
           if (wa) {
             var msg = "Olá! Sou " + (data.nome || "") + ". Vim pelo portal e tenho interesse" +
-              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em terrenos em Almirante Tamandaré") + ".";
+              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em imóveis na região de Curitiba") + ".";
             wa.setAttribute("href", waLink(msg));
           }
         }
