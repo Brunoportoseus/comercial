@@ -27,12 +27,12 @@ window.SITE_CONFIG = {
   analytics: {
     ga4: "G-XXXXXXXXXX",        // Google Analytics 4
     gtm: "GTM-XXXXXXX",        // Google Tag Manager
-    googleAds: "AW-18455696294",  // Google Ads (gtag) — tag de remarketing/conversão
+    googleAds: "AW-XXXXXXXXXX",  // Google Ads (gtag) — tag de remarketing/conversão
     metaPixel: "",  // ex.: "123456789012345"
     // Ações de conversão do Google Ads por evento (send_to: "AW-XXXX/label")
     adsConversions: {
-      whatsapp_click: "AW-18455696294/jHnYCLz46vscEKanruBE",
-      form_submit: "AW-18455696294/qfBgCMPWyYkdEKanruBE"
+      whatsapp_click: "AW-XXXXXXXXXX/label",
+      form_submit: "AW-XXXXXXXXXX/label"
     }
   },
 
