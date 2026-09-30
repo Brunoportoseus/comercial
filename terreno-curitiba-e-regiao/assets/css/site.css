@@ -577,6 +577,8 @@ textarea{resize:vertical;min-height:80px}
 .budget__tag{justify-self:start;margin-top:.15rem;font-size:.72rem;font-weight:800;color:var(--warn);background:#fff3d6;border-radius:999px;padding:.12rem .55rem}
 .budget__go{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--green-600)}
 .budget__fine{margin:.7rem 0 0;font-size:.75rem;line-height:1.4;color:var(--muted)}
+.form__err{background:#fdecea;border:1px solid #f0b4ac;color:#7a1f14;border-radius:var(--radius-sm);padding:.7rem .9rem;margin:.7rem 0;font-size:.92rem;line-height:1.4}
+.form__err a{font-weight:700;color:inherit;text-decoration:underline}
 
 /* ---------- Empreendimento em destaque (feature) ---------- */
 .emp-feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
