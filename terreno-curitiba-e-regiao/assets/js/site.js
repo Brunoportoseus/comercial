@@ -9,6 +9,23 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---------------- Contexto da página (parâmetros padrão dos eventos) ---------------- */
+  var PAGE = (function () {
+    var path = location.pathname, type = "outro", name = "", city = "";
+    var eb = $$(".eyebrow").filter(function (e) { return /^Empreendimento\b/.test(e.textContent.trim()); })[0];
+    if (eb && $("#interesse")) {
+      type = "empreendimento";
+      var crumb = $(".crumbs [aria-current=\"page\"]"), h1 = $("h1");
+      name = ((crumb && crumb.textContent) || (h1 && h1.textContent.split(" — ")[0]) || "").replace(/\s+/g, " ").trim();
+      city = (eb.textContent.split("·")[1] || "").trim();
+    } else if (path === "/" || path === "/index.html") type = "home";
+    else if (/^\/(financiamento|comparar|contato|guia-do-comprador|obrigado)\//.test(path)) type = RegExp.$1;
+    else if (/^\/conteudos\//.test(path)) type = "conteudo";
+    else if (/^\/(sobre|termos-de-uso|politica-de-privacidade|politica-de-cookies|fontes-e-metodologia)\//.test(path)) type = "institucional";
+    else if (/^\/[a-z-]+\/$/.test(path)) type = "cidade";
+    return { type: type, name: name, city: city };
+  })();
+
   /* ---------------- Utilidades WhatsApp ---------------- */
   function waLink(text) {
     var t = encodeURIComponent(text || CFG.waDefaultText || "Olá!");
@@ -122,7 +139,9 @@
   function denyConsent() { if (window.gtag) window.gtag("consent", "update", CONSENT_DENIED); }
   // Evento unificado de conversão -> dataLayer + gtag + fbq
   window.trackEvent = function (name, params) {
-    params = params || {};
+    params = Object.assign({ page_type: PAGE.type }, params || {});
+    if (!params.empreendimento && PAGE.name) params.empreendimento = PAGE.name;
+    if (!params.cidade && PAGE.city) params.cidade = PAGE.city;
     try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, params)); } catch (e) {}
     try { if (window.gtag) window.gtag("event", name, params); } catch (e) {}
     // Conversão do Google Ads mapeada para este evento (ex.: whatsapp_click)
@@ -202,6 +221,15 @@
       if (lt) modalCtx.lead_source_tool = lt;
       if (lf) modalCtx.faixa_parcela = lf;
     }
+    // qual botão abriu o formulário (para medir CTAs): posição na página + texto
+    var cta = { cta_location: "", cta_text: "" };
+    if (opener) {
+      var sec = opener.closest("section[id]");
+      cta.cta_location = opener.closest(".topbar") ? "cabecalho" : opener.closest(".mobile-menu") ? "menu-mobile"
+        : opener.closest(".hero") ? "hero" : sec ? sec.id : "pagina";
+      cta.cta_text = (opener.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+    }
+    modalCtx.cta_location = cta.cta_location; modalCtx.cta_text = cta.cta_text;
     var f = $("form", modal);
     if (f && emp) { var h = $("[name=empreendimento_interesse]", f); if (h) h.value = emp; }
     var t = $("[data-modal-emp]", modal); if (t) t.textContent = emp ? (" — " + emp) : "";
@@ -282,6 +310,7 @@
       });
       if (!ok) { var bad = $(".field--invalid input,.field--invalid select", form); if (bad) bad.focus(); return; }
 
+      var oldErr = $(".form__err", form); if (oldErr) oldErr.remove();
       submitting = true; lastSubmit = now;
       var btn = $("[type=submit]", form); var btnTxt = btn ? btn.textContent : "";
       if (btn) { btn.disabled = true; btn.textContent = "Enviando..."; }
@@ -291,7 +320,7 @@
         if (el.type === "checkbox") data[el.name] = el.checked;
         else data[el.name] = el.value;
       });
-      Object.assign(data, modalCtx);
+      if (form.closest("#leadModal")) Object.assign(data, modalCtx); // só o modal herda a origem do clique
       Object.assign(data, captureUTM());
       data.gclid = captureGCLID();
       data.pagina_origem = location.pathname + location.search;
@@ -299,10 +328,34 @@
       data.referrer = document.referrer || "";
       data.enviado_em = new Date().toISOString();
 
-      var done = function (success) {
-        submitting = false; form.dataset.sent = "1";
+      var done = function (success, status) {
+        submitting = false;
         if (btn) { btn.disabled = false; btn.textContent = btnTxt; }
-        window.trackEvent("form_submit", { empreendimento: data.empreendimento_interesse || "", success: success });
+        var evp = {
+          interesse_form: data.empreendimento_interesse || "", // valor bruto do campo (pode ser "Quero comparar" ou uma cidade)
+          form_location: form.closest("#leadModal") ? "modal" : "pagina",
+          lead_source_tool: data.lead_source_tool || "", faixa_parcela: data.faixa_parcela || "",
+          cta_location: data.cta_location || "", cta_text: data.cta_text || ""
+        };
+        if (!success) {
+          // falha real: não conta conversão, não mostra "sucesso", mantém os dados e oferece o WhatsApp
+          window.trackEvent("form_error", Object.assign({ status: status || 0 }, evp));
+          var err = $(".form__err", form);
+          if (!err) {
+            err = document.createElement("div"); err.className = "form__err"; err.setAttribute("role", "alert");
+            (btn && btn.parentNode ? btn.parentNode : form).insertBefore(err, btn || null);
+          }
+          err.textContent = "Não conseguimos enviar seus dados agora. Tente de novo em instantes ou ";
+          var ea = document.createElement("a"); ea.textContent = "fale direto pelo WhatsApp";
+          ea.href = waLink("Olá! Tentei enviar meus dados pelo portal, mas deu erro. Sou " + (data.nome || "") + " e tenho interesse" +
+            (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em terrenos na região de Curitiba") + ".");
+          ea.target = "_blank"; ea.rel = "noopener";
+          ea.addEventListener("click", function () { window.trackEvent("whatsapp_click", { location: "falha-formulario" }); });
+          err.appendChild(ea); err.appendChild(document.createTextNode("."));
+          return;
+        }
+        form.dataset.sent = "1";
+        window.trackEvent("form_submit", Object.assign({ success: true }, evp));
         try { sessionStorage.removeItem(STORE); } catch (e) {}
         // sucesso na tela
         var okBox = $(".form__ok", form.parentNode) || $(".form__ok", form);
@@ -323,13 +376,44 @@
       if (CFG.leadEndpoint) {
         fetch(CFG.leadEndpoint, {
           method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
-        }).then(function (r) { done(r.ok); }).catch(function () { done(false); });
-      } else { done(false); }
+        }).then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (j) { done(r.ok && j.ok !== false, r.status); });
+        }).catch(function () { done(false, 0); });
+      } else { done(false, 0); }
     });
   });
 
   // permitir abertura do modal via hash #contato-form
   if (location.hash === "#lead") openModal("");
+
+  /* ---------------- Medição do funil ----------------
+     Eventos: view_empreendimento · tool_use · open_form · form_start · form_submit · form_error ·
+     whatsapp_click · lead_whatsapp_click. Todos levam page_type/empreendimento/cidade (trackEvent). */
+  // WhatsApp da tela "Recebemos seus dados": próximo passo depois do cadastro (não conta como conversão do Ads)
+  $$("[data-lead-wa]").forEach(function (a) {
+    a.addEventListener("click", function () { window.trackEvent("lead_whatsapp_click", {}); });
+  });
+  // visualização de empreendimento (1x por página; o Pixel da Meta já mapeia para ViewContent)
+  if (PAGE.type === "empreendimento") window.trackEvent("view_empreendimento", {});
+  // uso de ferramentas: dispara na 1ª interação do visitante com cada uma, por página
+  var TOOLS = [
+    { sel: "#empsim", tool: "simulador_financiamento" },
+    { sel: "#buildcalc", tool: "potencial_construtivo" },
+    { sel: "#simulador", tool: "simulador_financiamento_geral" },
+    { sel: ".finder", tool: "busca_preco_cidade" },
+    { sel: "#cmpCity", tool: "comparar" }
+  ];
+  var toolSeen = {};
+  ["input", "change", "click"].forEach(function (evt) {
+    document.addEventListener(evt, function (e) {
+      var t = e.target; if (!t || !t.closest) return;
+      if (evt === "click" && !t.closest(".finder .chip")) return; // clique só conta nos filtros da busca
+      TOOLS.forEach(function (x) {
+        if (toolSeen[x.tool] || !t.closest(x.sel)) return;
+        toolSeen[x.tool] = true; window.trackEvent("tool_use", { tool: x.tool });
+      });
+    }, true);
+  });
 
   /* ---------------- Compartilhar empreendimento (<ShareProperty />) ----------------
      Componente reutilizável: as páginas de empreendimento são HTML estático, então o
