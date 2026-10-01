@@ -10,7 +10,7 @@ Todos passam por `window.trackEvent`, que envia ao `dataLayer` (GTM), ao GA4 (`g
 
 | Parâmetro | Valores |
 |---|---|
-| `page_type` | `home`, `cidade`, `empreendimento`, `financiamento`, `comparar`, `contato`, `guia-do-comprador`, `conteudo`, `institucional`, `obrigado`, `outro` |
+| `page_type` | `home`, `cidade`, `empreendimento`, `financiamento`, `comparar`, `contato`, `guia-do-comprador`, `conteudo`, `cluster`, `institucional`, `obrigado`, `outro` |
 | `empreendimento` | Nome do empreendimento da página (só em páginas de empreendimento). Ex.: `Condomínio Bela Vista` |
 | `cidade` | Cidade do empreendimento (só em páginas de empreendimento). Ex.: `Almirante Tamandaré` |
 
@@ -30,6 +30,7 @@ Todos passam por `window.trackEvent`, que envia ao `dataLayer` (GTM), ao GA4 (`g
 | **Contato** | `whatsapp_click` | Clique em qualquer botão de WhatsApp do site | `location` |
 | Pós-lead | `lead_whatsapp_click` | WhatsApp da tela "Recebemos seus dados" | — |
 | Compartilhamento | `share_empreendimento` | Compartilhar pelo WhatsApp, copiar link ou compartilhamento nativo | `share_method`, `share_position`, `page_url` |
+| SEO local | `seo_link_click` | Clique em link marcado `data-seo` (páginas `/terrenos/…`, blocos "Encontre pelo seu perfil" e "Compare com outros terrenos") | `seo_origem`, `cluster`, `link_url`, `link_text` |
 | Outros | `phone_click`, `select_faixa` | Clique em telefone; escolha da faixa de investimento no formulário | — |
 
 ### Conversões do Google Ads
@@ -57,6 +58,8 @@ Só `whatsapp_click` e `form_submit` disparam conversão do Ads (`adsConversions
    | Local do formulário | `form_location` |
    | Método de compartilhamento | `share_method` |
    | Posição do compartilhamento | `share_position` |
+   | Origem do link de SEO | `seo_origem` |
+   | Cluster de SEO | `cluster` |
 
    O GA4 padrão permite 50 dimensões de evento. Dimensões só valem a partir da data de criação.
 2. **Administrador → Exibição de dados → Eventos** (ou *Eventos-chave*): marque como evento-chave
@@ -99,4 +102,5 @@ levado de volta:
 
 O servidor em `mcp-google-analytics/` lê esses eventos. Exemplo de relatório de funil:
 `ga4_run_report` com dimensão `eventName` e métrica `eventCount`, filtrando os eventos da tabela acima.
+Os clusters de SEO estão descritos em `docs/seo-clusters.md`.
 Para abrir por empreendimento, use a dimensão personalizada `customEvent:empreendimento` (depois de cadastrada).
