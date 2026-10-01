@@ -303,5 +303,7 @@ export async function onRequestPost(context) {
   }
 
   if (!persisted) return json({ ok: false, error: "Falha ao registrar o lead.", detail: errors }, 502);
-  return json({ ok: true, stored: true });
+  // lead_id: id da linha no D1 (null se só webhook/e-mail guardou). O site o envia no form_submit do GA4
+  // para cruzar o evento com o CRM e com a importação de conversões offline.
+  return json({ ok: true, stored: true, lead_id: lead.id || null });
 }
