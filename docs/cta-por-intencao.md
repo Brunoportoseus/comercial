@@ -45,3 +45,22 @@ No GA4, em Explorar → formato livre: linhas `cta_text` + `cta_location`, métr
 (taxa = `form_submit` / `open_form`). Compare só botões na mesma posição e no mesmo tipo de página. Mudanças feitas em
 1 de out. de 2026: o `cta_text` antigo ("Fale com nosso corretor") serve de linha de base para quem tiver dados anteriores.
 Dê pelo menos 2 a 4 semanas e algumas dezenas de aberturas por texto antes de concluir algo.
+
+## Mensagem do WhatsApp com o contexto da página
+
+Os botões de WhatsApp genéricos (flutuante, menu e rodapé, `data-wa` vazio) mandam uma mensagem que diz o que a pessoa estava
+vendo, para o corretor já saber do que se trata. Botões com texto próprio (`data-wa="…"`, como o do topo do empreendimento) não mudam.
+Quem está na home, em `/contato/` ou em página institucional recebe a mensagem padrão de `assets/js/config.js`.
+
+| Página | Mensagem |
+|---|---|
+| Empreendimento | "Olá! Vim pelo portal e tenho interesse no *{empreendimento}* (*{cidade}*). Pode me passar as condições atualizadas?" |
+| Empreendimento, depois de mexer no simulador | …acrescenta "Simulei entrada de R$ *X* em *N* meses (parcela estimada R$ *Y*/mês)." (valores no momento do clique) |
+| Cidade | "Olá! Vim pelo portal e quero ver terrenos em *{cidade}*." |
+| Cluster `/terrenos/…` | "Olá! Vim pelo portal pela página "*{título}*" e quero receber opções com esse perfil." |
+| Financiamento | "Olá! Vim pelo portal e quero ajuda com a simulação de financiamento de um terreno." |
+| Comparar | "Olá! Vim pelo portal e quero ajuda para comparar empreendimentos." |
+| Guia do comprador | "Olá! Vim pelo portal pelo guia do comprador e quero ajuda para escolher um terreno." |
+| Artigo | "Olá! Vim pelo portal e li "*{título}*". Quero ajuda para escolher um terreno." |
+
+O evento `whatsapp_click` (e a conversão do Google Ads) não muda. A lógica fica em `waContextText()` em `assets/js/site.js`.
