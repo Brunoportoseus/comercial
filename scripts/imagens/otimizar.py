@@ -3,8 +3,9 @@
 versões com srcset/sizes e width/height (o navegador baixa só o tamanho de que precisa e a página não "pula").
 
 Uso (da raiz do repositório):  python3 scripts/imagens/otimizar.py
-Idempotente: não refaz variantes que já existem nem tags que já foram trocadas. Os JPGs originais ficam onde estão
-(são usados em og:image/twitter:image, que redes sociais leem melhor em JPG). Veja docs/imagens.md.
+Idempotente: não refaz variantes que já existem nem tags que já foram trocadas. Mantenha em JPG as fotos usadas em
+og:image/twitter:image (redes sociais leem melhor em JPG); as demais podem ser apagadas depois (ficam nos WebP e no git).
+Veja docs/imagens.md.
 """
 import glob
 import os
