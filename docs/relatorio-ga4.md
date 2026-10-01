@@ -14,7 +14,7 @@ O servidor `mcp-google-analytics/` roda na VM, então o relatório é gerado lá
 
 Cadastre no GA4 as dimensões de evento (Administrador → Exibição de dados → Definições personalizadas), listadas em
 `docs/analytics-funil-ga4.md`: `page_type`, `empreendimento`, `cidade`, `tool`, `faixa_parcela`, `lead_source_tool`,
-`cta_location`, `cta_text`, `form_location`, `share_method`, `share_position`, `seo_origem`, `cluster`.
+`cta_location`, `cta_text`, `form_location`, `share_method`, `share_position`, `seo_origem`, `cluster`, `lead_id`, `lead_status`.
 Cada dimensão só vale a partir da data de criação; sem cadastro, os blocos 3 a 8 dão erro.
 
 ## Pedido
@@ -43,6 +43,9 @@ quando faltar dado, em vez de inferir.
    orgânica, seo_link_click por customEvent:seo_origem, e leads com
    customEvent:lead_source_tool começando em "cluster_".
 8. Compartilhamento: share_empreendimento por customEvent:share_method.
+9. Qualificação (depois de configurar o Measurement Protocol, veja analytics-funil-ga4.md): qualify_lead e
+   close_convert_lead por customEvent:empreendimento e customEvent:lead_source_tool, com a soma de value (eventValue).
+   Compare com form_submit dos mesmos empreendimentos/origens para ver quais geram lead qualificado, não só lead.
 
 Se uma dimensão personalizada der erro, é porque ainda não foi cadastrada no GA4; liste
 quais faltam. Ao final, resuma em 5 linhas: o que está bom, o que está travando o funil e
