@@ -210,6 +210,23 @@
     return v;
   }
 
+  // IDs do GA4 do visitante (cookies _ga e _ga_<id>), enviados junto com o lead para o servidor devolver ao GA4
+  // o estágio "qualificado/fechado" (Measurement Protocol, ver functions/api/leads-qualify.js). Só com consentimento
+  // de cookies: sem aceite, ou sem os cookies, não vai nada.
+  function captureGaIds() {
+    var out = {}, a = CFG.analytics || {};
+    if (!a.ga4 || (CFG.requireCookieConsent && getConsent() !== "accepted")) return out;
+    var jar = {};
+    document.cookie.split(/;\s*/).forEach(function (kv) { var i = kv.indexOf("="); if (i > 0) jar[kv.slice(0, i)] = kv.slice(i + 1); });
+    var c = /^GA\d+\.\d+\.(\d{1,12}\.\d{1,12})$/.exec(jar._ga || "");
+    if (!c) return out;
+    out.ga_client_id = c[1];
+    // sessão: GS1.1.<id>.<n>… (formato antigo) ou GS2.1.s<id>$o<n>… (novo)
+    var s = /^GS\d\.\d\.s?(\d{1,12})/.exec(jar["_ga_" + a.ga4.replace(/^G-/, "")] || "");
+    if (s) out.ga_session_id = s[1];
+    return out;
+  }
+
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
@@ -325,6 +342,7 @@
       if (form.closest("#leadModal")) Object.assign(data, modalCtx); // só o modal herda a origem do clique
       Object.assign(data, captureUTM());
       data.gclid = captureGCLID();
+      Object.assign(data, captureGaIds());
       data.pagina_origem = location.pathname + location.search;
       data.url_completa = location.href;
       data.referrer = document.referrer || "";

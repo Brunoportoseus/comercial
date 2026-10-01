@@ -100,10 +100,54 @@ levado de volta:
   aparece na página `/admin/`, na exportação (`/api/leads-export`) e em `/api/leads-qualify`. Assim dá para ligar o
   evento do GA4 ao lead no CRM e, depois, ao lead qualificado ou à venda. É só um número sequencial: não carrega nome,
   telefone nem e-mail, e não deve ser trocado por dados pessoais.
-- **Pendente (fase 2):** devolver ao GA4 o estágio posterior (lead qualificado, venda) como evento, via Measurement
-  Protocol, pelo `/api/leads-qualify`. Exige o `client_id` do GA (cookie `_ga`) guardado junto com o lead, um *API secret*
-  do GA4 e o ID de métricas como variáveis de ambiente. A importação de conversão offline no Google Ads (por `gclid`)
-  já funciona e continua sendo o caminho para o Ads.
+- **Qualificação de volta ao GA4 (fase 2):** quando um lead é marcado como qualificado em `/admin/` (ou via
+  `/api/leads-qualify`), o servidor envia um evento ao GA4 pelo Measurement Protocol, ligado ao mesmo visitante que gerou
+  o lead. Veja a seção abaixo.
+
+## Qualificação e venda no GA4 (Measurement Protocol)
+
+Fluxo: o formulário envia o `ga_client_id` e o `ga_session_id` (cookies `_ga` e `_ga_<id>`) junto com o lead, **só para
+quem aceitou os cookies**; `/api/lead` os grava no D1 (validados no formato do GA). Ao marcar o lead, `/api/leads-qualify`
+envia o evento correspondente ao GA4.
+
+| Status do lead | Evento no GA4 |
+|---|---|
+| `qualificado` (botão "Marcar qualificado" do `/admin/`) | `qualify_lead` |
+| `fechado`, `vendido` ou `convertido` (por `/api/leads-qualify`, o `/admin/` ainda não tem esse botão) | `close_convert_lead` |
+| `novo` e qualquer outro | nenhum (um evento enviado ao GA4 não pode ser desfeito) |
+
+Parâmetros do evento: `lead_id`, `lead_status`, `empreendimento`, `lead_source_tool`, `faixa_parcela`, `session_id` (quando
+existe), e `value` + `currency` (BRL) quando o valor do negócio foi informado. **Nenhum dado pessoal** (nome, telefone, e-mail)
+vai ao GA4.
+
+### Configurar (uma vez)
+
+1. **GA4 → Administrador → Fluxos de dados → o fluxo web → Measurement Protocol API secrets → Criar.** Copie o *segredo*.
+2. **Cloudflare Pages → o projeto `terreno-curitiba-e-regiao` → Settings → Variables and Secrets** (Production), como
+   *Secret* no segredo:
+   - `GA4_MEASUREMENT_ID` = `G-09VDSHN8G3` (o mesmo de `assets/js/config.js`)
+   - `GA4_API_SECRET` = o segredo criado no passo 1
+3. **Testar sem gravar nada no GA4:** crie também `GA4_MP_DEBUG` = `1`, faça um novo deploy (ou *Retry deployment*), envie um
+   lead de teste **aceitando os cookies**, marque-o como qualificado em `/admin/` e veja a resposta de
+   `/api/leads-qualify` (aba Rede do navegador): `ga4.validationMessages` vazio = formato aceito. Depois remova
+   `GA4_MP_DEBUG`, refaça o deploy e repita com outro lead de teste: o evento aparece em Tempo real em poucos minutos.
+4. **GA4 → Eventos → marque como evento-chave** `qualify_lead` e `close_convert_lead` (se quiser vê-los como conversões), e
+   cadastre as dimensões `lead_status` (e `lead_id`, `empreendimento`, `lead_source_tool`, `faixa_parcela`, se faltarem).
+
+### Limites e cuidados
+
+- **Só leads novos, de visitantes que aceitaram os cookies.** Lead antigo, ou de quem recusou, não tem `ga_client_id`: é
+  qualificado normalmente, sem evento (`ga4.reason = "sem_client_id"` na resposta).
+- **Sem duplicar:** a coluna `ga_eventos` guarda o que já foi enviado; marcar de novo o mesmo estágio não repete o evento.
+  Reverter para `novo` e qualificar outra vez também não repete.
+- **Falha no GA4 não atrapalha:** a qualificação no D1 é salva antes, e o motivo aparece em `ga4.reason`
+  (`ga4_erro`, `ga4_http_<código>`, `ga4_nao_configurado`).
+- **Atribuição:** o evento chega dias depois do clique. O `session_id` guardado tenta ligá-lo à sessão original; se o GA4 não
+  casar, ele entra pelo usuário (relatórios por usuário e por `lead_id`), e a origem em relatórios de sessão pode aparecer
+  como "(not set)". Para o Google Ads, o caminho de otimização continua sendo a importação por `gclid`.
+- **Privacidade:** o `client_id` vem dos cookies de análise e só é coletado com aceite; a política de cookies já diz que o
+  GA4 é usado com consentimento. Se quiser, vale mencionar na política de privacidade que o estágio do atendimento
+  (lead qualificado) é associado ao identificador de análise, sem dados pessoais.
 
 ## Como consultar pelo Claude
 
