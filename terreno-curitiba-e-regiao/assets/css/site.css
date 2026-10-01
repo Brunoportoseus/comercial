@@ -705,3 +705,7 @@ textarea{resize:vertical;min-height:80px}
 table.data--cluster{min-width:560px}
 table.data--cluster th,table.data--cluster td{padding:.7rem .75rem}
 table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){white-space:nowrap}
+
+/* simulador do empreendimento: preço (e a taxa, quando não há taxa publicada) travados */
+.calc-card input[readonly]{background:var(--bg-soft);color:var(--ink);cursor:not-allowed;-moz-appearance:textfield}
+.calc-card input[readonly]::-webkit-inner-spin-button,.calc-card input[readonly]::-webkit-outer-spin-button{display:none}
