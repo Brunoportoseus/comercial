@@ -32,10 +32,40 @@
     var t = encodeURIComponent(text || CFG.waDefaultText || "Olá!");
     return "https://wa.me/" + (CFG.whatsapp || "") + "?text=" + t;
   }
+  // Mensagem de WhatsApp com o contexto da página: o corretor já sabe o que a pessoa estava vendo. Botões com texto próprio
+  // (data-wa="…", ex.: o do topo do empreendimento) não mudam; os genéricos (data-wa vazio: flutuante, menu, rodapé)
+  // ganham a mensagem da página. Nos empreendimentos, quem mexeu no simulador leva entrada, prazo e parcela estimada.
+  var simTouched = false;
+  document.addEventListener("input", function (e) { if (e.target.closest && e.target.closest("#empsim")) simTouched = true; });
+  function clean(v, n) { return String(v || "").replace(/\s+/g, " ").trim().slice(0, n || 90); }
+  function waContextText() {
+    var h1 = clean(($("h1") || {}).textContent), crumb = clean(($(".crumbs [aria-current=\"page\"]") || {}).textContent);
+    var head = "Olá! Vim pelo portal";
+    switch (PAGE.type) {
+      case "empreendimento": {
+        var m = head + " e tenho interesse no " + PAGE.name + (PAGE.city ? " (" + PAGE.city + ")" : "") + ". Pode me passar as condições atualizadas?";
+        var en = $("#sEntrada"), pz = $("#sPrazo"), pa = $("#sParc");
+        if (simTouched && en && pz && pa && /\d/.test(pa.textContent)) {
+          m += " Simulei entrada de R$ " + Number(en.value || 0).toLocaleString("pt-BR") + " em " + (pz.value || "") +
+            " meses (parcela estimada " + clean(pa.textContent) + "/mês).";
+        }
+        return m;
+      }
+      case "cluster": return h1 ? head + " pela página \"" + h1 + "\" e quero receber opções com esse perfil." : "";
+      case "cidade": return crumb ? head + " e quero ver terrenos em " + crumb + "." : "";
+      case "financiamento": return head + " e quero ajuda com a simulação de financiamento de um terreno.";
+      case "comparar": return head + " e quero ajuda para comparar empreendimentos.";
+      case "guia-do-comprador": return head + " pelo guia do comprador e quero ajuda para escolher um terreno.";
+      case "conteudo": return h1 && h1.length > 6 ? head + " e li \"" + h1 + "\". Quero ajuda para escolher um terreno." : "";
+      default: return ""; // home, contato, institucionais: mensagem padrão do config.js
+    }
+  }
   // aplica número/links de whatsapp e telefone marcados com data-attr
   $$("[data-wa]").forEach(function (el) {
-    el.setAttribute("href", waLink(el.getAttribute("data-wa") || ""));
+    var own = el.getAttribute("data-wa") || "";
+    el.setAttribute("href", waLink(own || waContextText()));
     el.setAttribute("target", "_blank"); el.setAttribute("rel", "noopener");
+    if (!own) el.addEventListener("click", function () { el.setAttribute("href", waLink(waContextText())); }); // reflete o simulador no momento do clique
   });
   $$("[data-wa-label]").forEach(function (el) { el.textContent = CFG.whatsappLabel || ""; });
   $$("[data-tel]").forEach(function (el) { el.setAttribute("href", "tel:" + (CFG.phone || "")); });
