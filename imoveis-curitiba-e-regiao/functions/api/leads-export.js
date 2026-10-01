@@ -11,10 +11,13 @@
  *   /api/leads-export?token=SEU_TOKEN&limit=500
  *   /api/leads-export?token=SEU_TOKEN&format=gads → CSV pronto para importar como
  *     conversão offline no Google Ads (Ferramentas → Conversões → Uploads → Cliques).
- *     Só inclui leads com status='qualificado' e gclid preenchido (marque isso no
- *     Console do D1, veja schema.sql). Nome da conversão vem de GADS_CONVERSION_NAME
- *     (variável de ambiente) ou do parâmetro &conv_name=; moeda de GADS_CURRENCY
- *     (padrão BRL).
+ *     Só inclui leads com status 'qualificado' ou 'fechado' e gclid preenchido (marque
+ *     isso em /admin/, ou no Console do D1, veja schema.sql). Um lead fechado continua
+ *     no arquivo, com o valor e a data do fechamento. &status=qualificado ou
+ *     &status=fechado filtra um só (útil para enviar as vendas como outra ação de
+ *     conversão, junto com &conv_name=). Nome da conversão vem de
+ *     GADS_CONVERSION_NAME (variável de ambiente) ou do parâmetro &conv_name=;
+ *     moeda de GADS_CURRENCY (padrão BRL).
  *   Cabeçalho alternativo: Authorization: Bearer SEU_TOKEN
  */
 
@@ -92,12 +95,14 @@ export async function onRequestGet(context) {
   if (format === "gads") {
     const convName = url.searchParams.get("conv_name") || env.GADS_CONVERSION_NAME || "Lead qualificado (offline)";
     const currency = env.GADS_CURRENCY || "BRL";
+    const only = (url.searchParams.get("status") || "").toLowerCase();
+    const statuses = only === "qualificado" || only === "fechado" ? [only] : ["qualificado", "fechado"];
     let qrows = [];
     try {
       const res = await env.DB.prepare(
         `SELECT gclid, valor_negocio, convertido_em, criado_em FROM leads
-         WHERE status='qualificado' AND gclid IS NOT NULL AND gclid != '' ORDER BY id DESC LIMIT ?`
-      ).bind(limit).all();
+         WHERE status IN (${statuses.map(() => "?").join(",")}) AND gclid IS NOT NULL AND gclid != '' ORDER BY id DESC LIMIT ?`
+      ).bind(...statuses, limit).all();
       qrows = (res && res.results) || [];
     } catch (e) {
       // Tabela/colunas ainda não existem (nenhum lead qualificado registrado ainda)

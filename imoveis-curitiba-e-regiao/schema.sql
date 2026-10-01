@@ -12,6 +12,9 @@
 --   UPDATE leads SET status='qualificado', valor_negocio=189000, convertido_em='2026-09-25 14:30:00'
 --   WHERE id=42;
 -- Depois exporte para o Google Ads em /api/leads-export?token=SEU_TOKEN&format=gads
+--
+-- ga_client_id / ga_session_id: IDs do GA4 do visitante que aceitou cookies (vazios caso contrário).
+-- ga_eventos: eventos já enviados ao GA4 por /api/leads-qualify (ex.: 'qualify_lead'), para não duplicar.
 
 CREATE TABLE IF NOT EXISTS leads (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,6 +47,9 @@ CREATE TABLE IF NOT EXISTS leads (
   potencial_construtivo TEXT,
   lead_source_tool TEXT,
   consentimento_texto TEXT,
+  ga_client_id TEXT,
+  ga_session_id TEXT,
+  ga_eventos TEXT,
   ip TEXT,
   user_agent TEXT,
   raw TEXT

@@ -5,6 +5,12 @@
            + dourado discreto (destaques) + neutros claros (leitura).
    ===================================================================== */
 
+/* Fontes (Manrope e Inter, licença OFL) servidas pelo próprio site: sem pedido ao Google antes do consentimento. Veja docs/fontes.md. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:500 800;font-display:swap;src:url(/assets/fonts/manrope-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:500 800;font-display:swap;src:url(/assets/fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
 :root{
   /* Cores base */
   --petrol:#0e3a42;        /* azul-petróleo escuro — seções escuras, header */
@@ -560,6 +566,27 @@ textarea{resize:vertical;min-height:80px}
 .hero--split .hero__media img{border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:4/3;object-fit:cover}
 .hero--split .hero__seal{position:absolute;top:14px;left:14px;background:var(--gold);color:#241c07;font-weight:700;font-size:.78rem;padding:.35rem .8rem;border-radius:999px}
 .hero__micro{color:#bcd0cf;font-size:.82rem;margin-top:1rem}
+.hero__links{margin:.9rem 0 0;font-weight:600}
+.hero__links a{color:#e7cf9c}
+/* Assistente de parcela mensal (hero da home) */
+.budget{background:#fff;color:var(--ink);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-lg);margin:1.1rem 0 .4rem}
+.budget__q{margin:0 0 .7rem;font-family:var(--font-head);font-weight:800;font-size:1.1rem;color:var(--petrol)}
+.budget__chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+.budget__chips .chip{min-height:46px;padding:.45rem .5rem;font-size:.95rem;font-weight:700;line-height:1.15;text-align:center;display:inline-flex;align-items:center;justify-content:center}
+.budget__out{margin-top:1rem;border-top:1px solid var(--line);padding-top:.9rem}
+.budget__count{margin:0 0 .6rem;font-size:.92rem;font-weight:700;color:var(--petrol)}
+.budget__list{display:grid;gap:.5rem;margin-bottom:.9rem}
+.budget__item{position:relative;display:grid;gap:.1rem;padding:.7rem 2rem .7rem .85rem;background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:var(--radius-sm);color:var(--ink);text-decoration:none}
+.budget__item:hover{border-color:var(--green);text-decoration:none}
+.budget__name{font-family:var(--font-head);font-weight:800;color:var(--petrol);line-height:1.2}
+.budget__meta{font-size:.82rem;color:var(--muted)}
+.budget__cond{font-size:.9rem;font-weight:600}
+.budget__tag{justify-self:start;margin-top:.15rem;font-size:.72rem;font-weight:800;color:var(--warn);background:#fff3d6;border-radius:999px;padding:.12rem .55rem}
+.budget__go{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--green-600)}
+.budget__fine{margin:.7rem 0 0;font-size:.75rem;line-height:1.4;color:var(--muted)}
+.form__err{background:#fdecea;border:1px solid #f0b4ac;color:#7a1f14;border-radius:var(--radius-sm);padding:.7rem .9rem;margin:.7rem 0;font-size:.92rem;line-height:1.4}
+.form__err a{font-weight:700;color:inherit;text-decoration:underline}
 
 /* ---------- Empreendimento em destaque (feature) ---------- */
 .emp-feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
@@ -658,6 +685,17 @@ textarea{resize:vertical;min-height:80px}
   .two-col{columns:1}
   .hero__inner{padding-top:56px;padding-bottom:60px}
 }
+@media (min-width:600px){ .budget__chips{display:flex;flex-wrap:wrap} .budget__chips .chip{flex:1 1 auto;padding:.45rem 1rem} }
+/* hero da home (assistente de parcela): título menor e topo enxuto para as faixas aparecerem sem rolar */
+.hero--budget .hero__copy{max-width:640px}
+.hero--budget h1{font-size:clamp(1.55rem,4.4vw,2.35rem);line-height:1.15}
+@media (max-width:700px){
+  .hero--photo .hero__benefits{display:none}
+  .hero--budget .hero__kicker,.hero--budget .hero__lead{display:none}
+  .hero--budget .hero__inner{padding-top:22px;padding-bottom:26px}
+  .hero--budget h1{margin-bottom:.2rem}
+  .hero--budget .budget{margin-top:.8rem}
+}
 @media (max-width:520px){
   body{font-size:16px}
   .stats{grid-template-columns:1fr}
@@ -665,3 +703,17 @@ textarea{resize:vertical;min-height:80px}
   .modal__card{padding:22px}
   .price__value{font-size:1.4rem}
 }
+
+/* páginas de cluster de SEO (/terrenos/…) e blocos "Encontre pelo seu perfil" */
+.cluster-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:1rem 0 1.4rem}
+.cluster-cards .post__body{padding:16px 18px}
+.cluster-links{display:flex;flex-wrap:wrap;gap:8px;margin:.7rem 0 1rem}
+.cluster-links .chip{display:inline-block;text-decoration:none}
+@media (max-width:700px){ .cluster-cards{grid-template-columns:minmax(0,1fr)} }
+table.data--cluster{min-width:560px}
+table.data--cluster th,table.data--cluster td{padding:.7rem .75rem}
+table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){white-space:nowrap}
+
+/* simulador do empreendimento: preço (e a taxa, quando não há taxa publicada) travados */
+.calc-card input[readonly]{background:var(--bg-soft);color:var(--ink);cursor:not-allowed;-moz-appearance:textfield}
+.calc-card input[readonly]::-webkit-inner-spin-button,.calc-card input[readonly]::-webkit-outer-spin-button{display:none}

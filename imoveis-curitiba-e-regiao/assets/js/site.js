@@ -9,15 +9,63 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---------------- Contexto da página (parâmetros padrão dos eventos) ---------------- */
+  var PAGE = (function () {
+    var path = location.pathname, type = "outro", name = "", city = "";
+    var eb = $$(".eyebrow").filter(function (e) { return /^Empreendimento\b/.test(e.textContent.trim()); })[0];
+    if (eb && $("#interesse")) {
+      type = "empreendimento";
+      var crumb = $(".crumbs [aria-current=\"page\"]"), h1 = $("h1");
+      name = ((crumb && crumb.textContent) || (h1 && h1.textContent.split(" — ")[0]) || "").replace(/\s+/g, " ").trim();
+      city = (eb.textContent.split("·")[1] || "").trim();
+    } else if (path === "/" || path === "/index.html") type = "home";
+    else if (/^\/(financiamento|comparar|contato|guia-do-comprador|obrigado)\//.test(path)) type = RegExp.$1;
+    else if (/^\/conteudos\//.test(path)) type = "conteudo";
+    else if (/^\/terrenos\//.test(path)) type = "cluster";
+    else if (/^\/(sobre|termos-de-uso|politica-de-privacidade|politica-de-cookies|fontes-e-metodologia)\//.test(path)) type = "institucional";
+    else if (/^\/[a-z-]+\/$/.test(path)) type = "cidade";
+    return { type: type, name: name, city: city, cluster: type === "cluster" ? (path.split("/")[2] || "hub") : "" };
+  })();
+
   /* ---------------- Utilidades WhatsApp ---------------- */
   function waLink(text) {
     var t = encodeURIComponent(text || CFG.waDefaultText || "Olá!");
     return "https://wa.me/" + (CFG.whatsapp || "") + "?text=" + t;
   }
+  // Mensagem de WhatsApp com o contexto da página: o corretor já sabe o que a pessoa estava vendo. Botões com texto próprio
+  // (data-wa="…", ex.: o do topo do empreendimento) não mudam; os genéricos (data-wa vazio: flutuante, menu, rodapé)
+  // ganham a mensagem da página. Nos empreendimentos, quem mexeu no simulador leva entrada, prazo e parcela estimada.
+  var simTouched = false;
+  document.addEventListener("input", function (e) { if (e.target.closest && e.target.closest("#empsim")) simTouched = true; });
+  function clean(v, n) { return String(v || "").replace(/\s+/g, " ").trim().slice(0, n || 90); }
+  function waContextText() {
+    var h1 = clean(($("h1") || {}).textContent), crumb = clean(($(".crumbs [aria-current=\"page\"]") || {}).textContent);
+    var head = "Olá! Vim pelo portal";
+    switch (PAGE.type) {
+      case "empreendimento": {
+        var m = head + " e tenho interesse no " + PAGE.name + (PAGE.city ? " (" + PAGE.city + ")" : "") + ". Pode me passar as condições atualizadas?";
+        var en = $("#sEntrada"), pz = $("#sPrazo"), pa = $("#sParc");
+        if (simTouched && en && pz && pa && /\d/.test(pa.textContent)) {
+          m += " Simulei entrada de R$ " + Number(en.value || 0).toLocaleString("pt-BR") + " em " + (pz.value || "") +
+            " meses (parcela estimada " + clean(pa.textContent) + "/mês).";
+        }
+        return m;
+      }
+      case "cluster": return h1 ? head + " pela página \"" + h1 + "\" e quero receber opções com esse perfil." : "";
+      case "cidade": return crumb ? head + " e quero ver terrenos em " + crumb + "." : "";
+      case "financiamento": return head + " e quero ajuda com a simulação de financiamento de um terreno.";
+      case "comparar": return head + " e quero ajuda para comparar empreendimentos.";
+      case "guia-do-comprador": return head + " pelo guia do comprador e quero ajuda para escolher um terreno.";
+      case "conteudo": return h1 && h1.length > 6 ? head + " e li \"" + h1 + "\". Quero ajuda para escolher um terreno." : "";
+      default: return ""; // home, contato, institucionais: mensagem padrão do config.js
+    }
+  }
   // aplica número/links de whatsapp e telefone marcados com data-attr
   $$("[data-wa]").forEach(function (el) {
-    el.setAttribute("href", waLink(el.getAttribute("data-wa") || ""));
+    var own = el.getAttribute("data-wa") || "";
+    el.setAttribute("href", waLink(own || waContextText()));
     el.setAttribute("target", "_blank"); el.setAttribute("rel", "noopener");
+    if (!own) el.addEventListener("click", function () { el.setAttribute("href", waLink(waContextText())); }); // reflete o simulador no momento do clique
   });
   $$("[data-wa-label]").forEach(function (el) { el.textContent = CFG.whatsappLabel || ""; });
   $$("[data-tel]").forEach(function (el) { el.setAttribute("href", "tel:" + (CFG.phone || "")); });
@@ -66,7 +114,7 @@
     function close() { ov.hidden = true; big.removeAttribute("src"); document.body.classList.remove("menu-open"); }
     imgs.forEach(function (im) {
       im.style.cursor = "zoom-in";
-      im.addEventListener("click", function () { open(im.currentSrc || im.src, im.alt); });
+      im.addEventListener("click", function () { open(im.getAttribute("data-full") || im.currentSrc || im.src, im.alt); }); // data-full: versão grande da foto, só baixada no zoom
     });
     ov.addEventListener("click", function (e) { if (e.target !== big) close(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
@@ -122,7 +170,9 @@
   function denyConsent() { if (window.gtag) window.gtag("consent", "update", CONSENT_DENIED); }
   // Evento unificado de conversão -> dataLayer + gtag + fbq
   window.trackEvent = function (name, params) {
-    params = params || {};
+    params = Object.assign({ page_type: PAGE.type }, params || {});
+    if (!params.empreendimento && PAGE.name) params.empreendimento = PAGE.name;
+    if (!params.cidade && PAGE.city) params.cidade = PAGE.city;
     try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, params)); } catch (e) {}
     try { if (window.gtag) window.gtag("event", name, params); } catch (e) {}
     // Conversão do Google Ads mapeada para este evento (ex.: whatsapp_click)
@@ -190,25 +240,59 @@
     return v;
   }
 
+  // IDs do GA4 do visitante (cookies _ga e _ga_<id>), enviados junto com o lead para o servidor devolver ao GA4
+  // o estágio "qualificado/fechado" (Measurement Protocol, ver functions/api/leads-qualify.js). Só com consentimento
+  // de cookies: sem aceite, ou sem os cookies, não vai nada.
+  function captureGaIds() {
+    var out = {}, a = CFG.analytics || {};
+    if (!a.ga4 || (CFG.requireCookieConsent && getConsent() !== "accepted")) return out;
+    var jar = {};
+    document.cookie.split(/;\s*/).forEach(function (kv) { var i = kv.indexOf("="); if (i > 0) jar[kv.slice(0, i)] = kv.slice(i + 1); });
+    var c = /^GA\d+\.\d+\.(\d{1,12}\.\d{1,12})$/.exec(jar._ga || "");
+    if (!c) return out;
+    out.ga_client_id = c[1];
+    // sessão: GS1.1.<id>.<n>… (formato antigo) ou GS2.1.s<id>$o<n>… (novo)
+    var s = /^GS\d\.\d\.s?(\d{1,12})/.exec(jar["_ga_" + a.ga4.replace(/^G-/, "")] || "");
+    if (s) out.ga_session_id = s[1];
+    return out;
+  }
+
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
-  function openModal(emp) {
+  var lastLeadId = ""; // id do lead gravado (resposta de /api/lead): vai no form_submit e no lead_whatsapp_click
+  var modalCtx = {}; // origem do clique (ex.: assistente de parcela): data-lead-tool / data-lead-faixa
+  function openModal(emp, opener) {
     if (!modal) return;
+    modalCtx = {};
+    if (opener) {
+      var lt = opener.getAttribute("data-lead-tool"), lf = opener.getAttribute("data-lead-faixa");
+      if (lt) modalCtx.lead_source_tool = lt;
+      if (lf) modalCtx.faixa_parcela = lf;
+    }
+    // qual botão abriu o formulário (para medir CTAs): posição na página + texto
+    var cta = { cta_location: "", cta_text: "" };
+    if (opener) {
+      var sec = opener.closest("section[id]");
+      cta.cta_location = opener.closest(".topbar") ? "cabecalho" : opener.closest(".mobile-menu") ? "menu-mobile"
+        : opener.closest(".hero") ? "hero" : sec ? sec.id : "pagina";
+      cta.cta_text = (opener.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+    }
+    modalCtx.cta_location = cta.cta_location; modalCtx.cta_text = cta.cta_text;
     var f = $("form", modal);
     if (f && emp) { var h = $("[name=empreendimento_interesse]", f); if (h) h.value = emp; }
     var t = $("[data-modal-emp]", modal); if (t) t.textContent = emp ? (" — " + emp) : "";
     modal.hidden = false; document.body.classList.add("menu-open");
     lastFocus = document.activeElement;
     var first = $("input,select,textarea,button", modal); if (first) first.focus();
-    window.trackEvent("open_form", { empreendimento: emp || "" });
+    window.trackEvent("open_form", Object.assign({ empreendimento: emp || "" }, modalCtx));
   }
   function closeModal() {
     if (!modal) return; modal.hidden = true; document.body.classList.remove("menu-open");
     if (lastFocus) lastFocus.focus();
   }
   $$("[data-open-form]").forEach(function (btn) {
-    btn.addEventListener("click", function (e) { e.preventDefault(); openModal(btn.getAttribute("data-emp") || ""); });
+    btn.addEventListener("click", function (e) { e.preventDefault(); openModal(btn.getAttribute("data-emp") || "", btn); });
   });
   if (modal) {
     $$("[data-close-form]", modal).forEach(function (b) { b.addEventListener("click", closeModal); });
@@ -275,6 +359,7 @@
       });
       if (!ok) { var bad = $(".field--invalid input,.field--invalid select", form); if (bad) bad.focus(); return; }
 
+      var oldErr = $(".form__err", form); if (oldErr) oldErr.remove();
       submitting = true; lastSubmit = now;
       var btn = $("[type=submit]", form); var btnTxt = btn ? btn.textContent : "";
       if (btn) { btn.disabled = true; btn.textContent = "Enviando..."; }
@@ -284,17 +369,44 @@
         if (el.type === "checkbox") data[el.name] = el.checked;
         else data[el.name] = el.value;
       });
+      if (form.closest("#leadModal")) Object.assign(data, modalCtx); // só o modal herda a origem do clique
       Object.assign(data, captureUTM());
       data.gclid = captureGCLID();
+      Object.assign(data, captureGaIds());
       data.pagina_origem = location.pathname + location.search;
       data.url_completa = location.href;
       data.referrer = document.referrer || "";
       data.enviado_em = new Date().toISOString();
 
-      var done = function (success) {
-        submitting = false; form.dataset.sent = "1";
+      var done = function (success, status, leadId) {
+        submitting = false;
         if (btn) { btn.disabled = false; btn.textContent = btnTxt; }
-        window.trackEvent("form_submit", { empreendimento: data.empreendimento_interesse || "", success: success });
+        var evp = {
+          interesse_form: data.empreendimento_interesse || "", // valor bruto do campo (pode ser "Quero comparar" ou uma cidade)
+          form_location: form.closest("#leadModal") ? "modal" : "pagina",
+          lead_source_tool: data.lead_source_tool || "", faixa_parcela: data.faixa_parcela || "",
+          cta_location: data.cta_location || "", cta_text: data.cta_text || ""
+        };
+        if (!success) {
+          // falha real: não conta conversão, não mostra "sucesso", mantém os dados e oferece o WhatsApp
+          window.trackEvent("form_error", Object.assign({ status: status || 0 }, evp));
+          var err = $(".form__err", form);
+          if (!err) {
+            err = document.createElement("div"); err.className = "form__err"; err.setAttribute("role", "alert");
+            (btn && btn.parentNode ? btn.parentNode : form).insertBefore(err, btn || null);
+          }
+          err.textContent = "Não conseguimos enviar seus dados agora. Tente de novo em instantes ou ";
+          var ea = document.createElement("a"); ea.textContent = "fale direto pelo WhatsApp";
+          ea.href = waLink("Olá! Tentei enviar meus dados pelo portal, mas deu erro. Sou " + (data.nome || "") + " e tenho interesse" +
+            (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em terrenos na região de Curitiba") + ".");
+          ea.target = "_blank"; ea.rel = "noopener";
+          ea.addEventListener("click", function () { window.trackEvent("whatsapp_click", { location: "falha-formulario" }); });
+          err.appendChild(ea); err.appendChild(document.createTextNode("."));
+          return;
+        }
+        form.dataset.sent = "1";
+        if (leadId) { lastLeadId = String(leadId); evp.lead_id = lastLeadId; }
+        window.trackEvent("form_submit", Object.assign({ success: true }, evp));
         try { sessionStorage.removeItem(STORE); } catch (e) {}
         // sucesso na tela
         var okBox = $(".form__ok", form.parentNode) || $(".form__ok", form);
@@ -305,7 +417,8 @@
           var wa = $("[data-lead-wa]", okBox);
           if (wa) {
             var msg = "Olá! Sou " + (data.nome || "") + ". Vim pelo portal e tenho interesse" +
-              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em imóveis na região de Curitiba") + ".";
+              (data.empreendimento_interesse ? " no empreendimento " + data.empreendimento_interesse : " em imóveis na região de Curitiba") + "." +
+              (data.faixa_parcela ? " Minha faixa de parcela: " + data.faixa_parcela + "." : "");
             wa.setAttribute("href", waLink(msg));
           }
         }
@@ -314,13 +427,55 @@
       if (CFG.leadEndpoint) {
         fetch(CFG.leadEndpoint, {
           method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
-        }).then(function (r) { done(r.ok); }).catch(function () { done(false); });
-      } else { done(false); }
+        }).then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (j) { done(r.ok && j.ok !== false, r.status, j.lead_id); });
+        }).catch(function () { done(false, 0); });
+      } else { done(false, 0); }
     });
   });
 
   // permitir abertura do modal via hash #contato-form
   if (location.hash === "#lead") openModal("");
+
+  /* ---------------- Medição do funil ----------------
+     Eventos: view_empreendimento · tool_use · open_form · form_start · form_submit · form_error ·
+     whatsapp_click · lead_whatsapp_click. Todos levam page_type/empreendimento/cidade (trackEvent). */
+  // WhatsApp da tela "Recebemos seus dados": próximo passo depois do cadastro (não conta como conversão do Ads)
+  $$("[data-lead-wa]").forEach(function (a) {
+    a.addEventListener("click", function () { window.trackEvent("lead_whatsapp_click", lastLeadId ? { lead_id: lastLeadId } : {}); });
+  });
+  // cliques nos links internos do SEO local: páginas de cluster (/terrenos/…), blocos "Encontre pelo seu perfil"
+  // e "Compare com outros terrenos". data-seo = origem do link (ex.: cluster_<slug>, home_perfil, cidade, empreendimento)
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-seo]");
+    if (!a) return;
+    window.trackEvent("seo_link_click", {
+      seo_origem: a.getAttribute("data-seo"), cluster: PAGE.cluster || "",
+      link_url: (a.getAttribute("href") || "").slice(0, 100),
+      link_text: (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80)
+    });
+  });
+  // visualização de empreendimento (1x por página; o Pixel da Meta já mapeia para ViewContent)
+  if (PAGE.type === "empreendimento") window.trackEvent("view_empreendimento", {});
+  // uso de ferramentas: dispara na 1ª interação do visitante com cada uma, por página
+  var TOOLS = [
+    { sel: "#empsim", tool: "simulador_financiamento" },
+    { sel: "#buildcalc", tool: "potencial_construtivo" },
+    { sel: "#simulador", tool: "simulador_financiamento_geral" },
+    { sel: ".finder", tool: "busca_preco_cidade" },
+    { sel: "#cmpCity", tool: "comparar" }
+  ];
+  var toolSeen = {};
+  ["input", "change", "click"].forEach(function (evt) {
+    document.addEventListener(evt, function (e) {
+      var t = e.target; if (!t || !t.closest) return;
+      if (evt === "click" && !t.closest(".finder .chip")) return; // clique só conta nos filtros da busca
+      TOOLS.forEach(function (x) {
+        if (toolSeen[x.tool] || !t.closest(x.sel)) return;
+        toolSeen[x.tool] = true; window.trackEvent("tool_use", { tool: x.tool });
+      });
+    }, true);
+  });
 
   /* ---------------- Compartilhar empreendimento (<ShareProperty />) ----------------
      Componente reutilizável: as páginas de empreendimento são HTML estático, então o
