@@ -25,10 +25,10 @@ Todos passam por `window.trackEvent`, que envia ao `dataLayer` (GTM), ao GA4 (`g
 | Ferramenta | `tool_use` | 1ª interação da pessoa com uma ferramenta, por página | `tool`: `simulador_financiamento`, `potencial_construtivo`, `simulador_financiamento_geral`, `busca_preco_cidade`, `comparar` |
 | Intenção de contato | `open_form` | Abertura do formulário (modal) | `cta_location`, `cta_text`, `lead_source_tool`, `faixa_parcela` |
 | Intenção de contato | `form_start` | Primeiro foco em um campo do formulário | — |
-| **Lead** | `form_submit` | **Só quando o servidor confirma o cadastro** | `success` (`true`), `form_location` (`modal`/`pagina`), `cta_location`, `cta_text`, `lead_source_tool`, `faixa_parcela`, `interesse_form` |
+| **Lead** | `form_submit` | **Só quando o servidor confirma o cadastro** | `success` (`true`), `lead_id`, `form_location` (`modal`/`pagina`), `cta_location`, `cta_text`, `lead_source_tool`, `faixa_parcela`, `interesse_form` |
 | Falha | `form_error` | Envio falhou (servidor, validação ou rede) | `status` (HTTP; `0` = rede) e os mesmos de `form_submit` |
 | **Contato** | `whatsapp_click` | Clique em qualquer botão de WhatsApp do site | `location` |
-| Pós-lead | `lead_whatsapp_click` | WhatsApp da tela "Recebemos seus dados" | — |
+| Pós-lead | `lead_whatsapp_click` | WhatsApp da tela "Recebemos seus dados" | `lead_id` |
 | Compartilhamento | `share_empreendimento` | Compartilhar pelo WhatsApp, copiar link ou compartilhamento nativo | `share_method`, `share_position`, `page_url` |
 | SEO local | `seo_link_click` | Clique em link marcado `data-seo` (páginas `/terrenos/…`, blocos "Encontre pelo seu perfil" e "Compare com outros terrenos") | `seo_origem`, `cluster`, `link_url`, `link_text` |
 | Outros | `phone_click`, `select_faixa` | Clique em telefone; escolha da faixa de investimento no formulário | — |
@@ -58,6 +58,7 @@ Só `whatsapp_click` e `form_submit` disparam conversão do Ads (`adsConversions
    | Local do formulário | `form_location` |
    | Método de compartilhamento | `share_method` |
    | Posição do compartilhamento | `share_position` |
+   | ID do lead | `lead_id` |
    | Origem do link de SEO | `seo_origem` |
    | Cluster de SEO | `cluster` |
 
@@ -94,9 +95,15 @@ levado de volta:
 - O `gclid` já é capturado e gravado com cada lead (coluna `gclid` no D1). Com ele dá para importar
   **conversões offline** no Google Ads (lead qualificado e venda), o que faz o Ads otimizar por
   qualidade, não só por volume.
-- Para cruzar com o GA4 seria preciso guardar também um identificador do lead (por exemplo, o `id` da linha no
-  D1) e enviá-lo no `form_submit`; isso exige a API `functions/api/lead.js` devolver o `id`.
-  Ainda não implementado.
+- **`lead_id`:** a API `functions/api/lead.js` devolve o `id` da linha gravada no D1 (`lead_id`, `null` se só o
+  webhook ou o e-mail guardou o lead), e o site o envia no `form_submit` e no `lead_whatsapp_click`. É o mesmo `id` que
+  aparece na página `/admin/`, na exportação (`/api/leads-export`) e em `/api/leads-qualify`. Assim dá para ligar o
+  evento do GA4 ao lead no CRM e, depois, ao lead qualificado ou à venda. É só um número sequencial: não carrega nome,
+  telefone nem e-mail, e não deve ser trocado por dados pessoais.
+- **Pendente (fase 2):** devolver ao GA4 o estágio posterior (lead qualificado, venda) como evento, via Measurement
+  Protocol, pelo `/api/leads-qualify`. Exige o `client_id` do GA (cookie `_ga`) guardado junto com o lead, um *API secret*
+  do GA4 e o ID de métricas como variáveis de ambiente. A importação de conversão offline no Google Ads (por `gclid`)
+  já funciona e continua sendo o caminho para o Ads.
 
 ## Como consultar pelo Claude
 

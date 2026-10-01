@@ -213,6 +213,7 @@
   /* ---------------- Modal de lead + formulário ---------------- */
   var modal = $("#leadModal");
   var lastFocus = null;
+  var lastLeadId = ""; // id do lead gravado (resposta de /api/lead): vai no form_submit e no lead_whatsapp_click
   var modalCtx = {}; // origem do clique (ex.: assistente de parcela): data-lead-tool / data-lead-faixa
   function openModal(emp, opener) {
     if (!modal) return;
@@ -329,7 +330,7 @@
       data.referrer = document.referrer || "";
       data.enviado_em = new Date().toISOString();
 
-      var done = function (success, status) {
+      var done = function (success, status, leadId) {
         submitting = false;
         if (btn) { btn.disabled = false; btn.textContent = btnTxt; }
         var evp = {
@@ -356,6 +357,7 @@
           return;
         }
         form.dataset.sent = "1";
+        if (leadId) { lastLeadId = String(leadId); evp.lead_id = lastLeadId; }
         window.trackEvent("form_submit", Object.assign({ success: true }, evp));
         try { sessionStorage.removeItem(STORE); } catch (e) {}
         // sucesso na tela
@@ -378,7 +380,7 @@
         fetch(CFG.leadEndpoint, {
           method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
         }).then(function (r) {
-          return r.json().catch(function () { return {}; }).then(function (j) { done(r.ok && j.ok !== false, r.status); });
+          return r.json().catch(function () { return {}; }).then(function (j) { done(r.ok && j.ok !== false, r.status, j.lead_id); });
         }).catch(function () { done(false, 0); });
       } else { done(false, 0); }
     });
@@ -392,7 +394,7 @@
      whatsapp_click · lead_whatsapp_click. Todos levam page_type/empreendimento/cidade (trackEvent). */
   // WhatsApp da tela "Recebemos seus dados": próximo passo depois do cadastro (não conta como conversão do Ads)
   $$("[data-lead-wa]").forEach(function (a) {
-    a.addEventListener("click", function () { window.trackEvent("lead_whatsapp_click", {}); });
+    a.addEventListener("click", function () { window.trackEvent("lead_whatsapp_click", lastLeadId ? { lead_id: lastLeadId } : {}); });
   });
   // cliques nos links internos do SEO local: páginas de cluster (/terrenos/…), blocos "Encontre pelo seu perfil"
   // e "Compare com outros terrenos". data-seo = origem do link (ex.: cluster_<slug>, home_perfil, cidade, empreendimento)
