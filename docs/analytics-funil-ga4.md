@@ -113,8 +113,19 @@ envia o evento correspondente ao GA4.
 | Status do lead | Evento no GA4 |
 |---|---|
 | `qualificado` (botão "Marcar qualificado" do `/admin/`) | `qualify_lead` |
-| `fechado`, `vendido` ou `convertido` (por `/api/leads-qualify`, o `/admin/` ainda não tem esse botão) | `close_convert_lead` |
+| `fechado` (botão "Marcar fechado" do `/admin/`; `vendido` e `convertido` também valem por `/api/leads-qualify`) | `close_convert_lead` |
 | `novo` e qualquer outro | nenhum (um evento enviado ao GA4 não pode ser desfeito) |
+
+No `/admin/`, "Marcar fechado" pede o valor da venda e a data do fechamento (o valor vem preenchido se o lead já tinha sido
+qualificado com valor), pede confirmação (o evento não pode ser desfeito no GA4) e, ao salvar, mostra um aviso com o resultado
+do envio ao GA4 (enviado, já enviado, sem consentimento de cookies, não configurado ou falha). "Reverter" volta o lead para
+`novo` e não envia nada ao GA4.
+
+**Google Ads:** o CSV de conversões offline (`/api/leads-export?format=gads`, botão "Baixar CSV Google Ads") inclui leads
+`qualificado` **e** `fechado` com `gclid`; o fechado sai com o valor e a data do fechamento. Se o mesmo lead já foi enviado
+como qualificado e depois fecha, o novo arquivo traz outra linha para o mesmo clique (outro horário e valor): configure a ação de
+conversão no Google Ads para contar *uma* conversão por clique, ou envie as vendas como outra ação com
+`&status=fechado&conv_name=NOME_DA_ACAO` (e as qualificações com `&status=qualificado`).
 
 Parâmetros do evento: `lead_id`, `lead_status`, `empreendimento`, `lead_source_tool`, `faixa_parcela`, `session_id` (quando
 existe), e `value` + `currency` (BRL) quando o valor do negócio foi informado. **Nenhum dado pessoal** (nome, telefone, e-mail)

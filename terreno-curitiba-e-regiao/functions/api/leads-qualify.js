@@ -7,7 +7,8 @@
  * Body JSON:
  *   { id: 42, status: "qualificado", valor_negocio: 189000, convertido_em: "2026-09-25 14:30:00" }
  *   status é opcional (padrão "qualificado"); valor_negocio e convertido_em são opcionais.
- *   Para reverter, envie status: "novo" (ou outro valor).
+ *   Para marcar a venda, envie status: "fechado" com o valor do negócio e a data do fechamento.
+ *   Para reverter, envie status: "novo" (ou outro valor). O /admin/ usa "qualificado", "fechado" e "novo".
  *
  * Também devolve o estágio ao GA4 (Measurement Protocol), para o funil e os relatórios do GA4 enxergarem o
  * lead qualificado/fechado, ligado ao mesmo visitante (client_id) que gerou o lead:
