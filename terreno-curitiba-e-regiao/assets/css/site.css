@@ -695,3 +695,13 @@ textarea{resize:vertical;min-height:80px}
   .modal__card{padding:22px}
   .price__value{font-size:1.4rem}
 }
+
+/* páginas de cluster de SEO (/terrenos/…) e blocos "Encontre pelo seu perfil" */
+.cluster-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:1rem 0 1.4rem}
+.cluster-cards .post__body{padding:16px 18px}
+.cluster-links{display:flex;flex-wrap:wrap;gap:8px;margin:.7rem 0 1rem}
+.cluster-links .chip{display:inline-block;text-decoration:none}
+@media (max-width:700px){ .cluster-cards{grid-template-columns:minmax(0,1fr)} }
+table.data--cluster{min-width:560px}
+table.data--cluster th,table.data--cluster td{padding:.7rem .75rem}
+table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){white-space:nowrap}

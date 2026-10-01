@@ -21,9 +21,10 @@
     } else if (path === "/" || path === "/index.html") type = "home";
     else if (/^\/(financiamento|comparar|contato|guia-do-comprador|obrigado)\//.test(path)) type = RegExp.$1;
     else if (/^\/conteudos\//.test(path)) type = "conteudo";
+    else if (/^\/terrenos\//.test(path)) type = "cluster";
     else if (/^\/(sobre|termos-de-uso|politica-de-privacidade|politica-de-cookies|fontes-e-metodologia)\//.test(path)) type = "institucional";
     else if (/^\/[a-z-]+\/$/.test(path)) type = "cidade";
-    return { type: type, name: name, city: city };
+    return { type: type, name: name, city: city, cluster: type === "cluster" ? (path.split("/")[2] || "hub") : "" };
   })();
 
   /* ---------------- Utilidades WhatsApp ---------------- */
@@ -392,6 +393,17 @@
   // WhatsApp da tela "Recebemos seus dados": próximo passo depois do cadastro (não conta como conversão do Ads)
   $$("[data-lead-wa]").forEach(function (a) {
     a.addEventListener("click", function () { window.trackEvent("lead_whatsapp_click", {}); });
+  });
+  // cliques nos links internos do SEO local: páginas de cluster (/terrenos/…), blocos "Encontre pelo seu perfil"
+  // e "Compare com outros terrenos". data-seo = origem do link (ex.: cluster_<slug>, home_perfil, cidade, empreendimento)
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-seo]");
+    if (!a) return;
+    window.trackEvent("seo_link_click", {
+      seo_origem: a.getAttribute("data-seo"), cluster: PAGE.cluster || "",
+      link_url: (a.getAttribute("href") || "").slice(0, 100),
+      link_text: (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80)
+    });
   });
   // visualização de empreendimento (1x por página; o Pixel da Meta já mapeia para ViewContent)
   if (PAGE.type === "empreendimento") window.trackEvent("view_empreendimento", {});
