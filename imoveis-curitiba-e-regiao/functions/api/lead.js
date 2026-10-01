@@ -42,6 +42,7 @@ const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
   gclid TEXT, status TEXT DEFAULT 'novo', valor_negocio REAL, convertido_em TEXT,
   entrada_informada REAL, faixa_parcela TEXT, simulacao_financeira TEXT, potencial_construtivo TEXT,
   lead_source_tool TEXT, consentimento_texto TEXT,
+  ga_client_id TEXT, ga_session_id TEXT, ga_eventos TEXT,
   ip TEXT, user_agent TEXT, raw TEXT
 )`;
 
@@ -58,6 +59,9 @@ const LEADS_NEW_COLUMNS = [
   "ALTER TABLE leads ADD COLUMN potencial_construtivo TEXT",
   "ALTER TABLE leads ADD COLUMN lead_source_tool TEXT",
   "ALTER TABLE leads ADD COLUMN consentimento_texto TEXT",
+  "ALTER TABLE leads ADD COLUMN ga_client_id TEXT",
+  "ALTER TABLE leads ADD COLUMN ga_session_id TEXT",
+  "ALTER TABLE leads ADD COLUMN ga_eventos TEXT",
 ];
 
 async function ensureLeadsTable(db) {
@@ -132,9 +136,9 @@ function insertLead(db, lead, body) {
         regiao,observacoes,empreendimento_interesse,pagina_origem,referrer,
         utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,
         entrada_informada,faixa_parcela,simulacao_financeira,potencial_construtivo,
-        lead_source_tool,consentimento_texto,
+        lead_source_tool,consentimento_texto,ga_client_id,ga_session_id,
         ip,user_agent,raw)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     .bind(
       lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
@@ -142,7 +146,7 @@ function insertLead(db, lead, body) {
       lead.empreendimento_interesse, lead.pagina_origem, lead.referrer,
       lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
       lead.gclid, lead.entrada_informada, lead.faixa_parcela, lead.simulacao_financeira, lead.potencial_construtivo,
-      lead.lead_source_tool, lead.consentimento_texto,
+      lead.lead_source_tool, lead.consentimento_texto, lead.ga_client_id, lead.ga_session_id,
       lead.ip, lead.user_agent, JSON.stringify(body)
     )
     .run();
@@ -233,6 +237,11 @@ export async function onRequestPost(context) {
     potencial_construtivo: body.potencial_construtivo ? "sim" : "",
     lead_source_tool: String(body.lead_source_tool || "").trim(),
     consentimento_texto: String(body.consentimento_texto || "").trim().slice(0, 1000),
+    // IDs do GA4 (cookies _ga e _ga_<id>), só enviados pelo site com consentimento de cookies. Servem para
+    // devolver o estágio "qualificado/fechado" ao GA4 (Measurement Protocol, ver leads-qualify.js).
+    // Validados no formato do GA para nunca repassar texto livre ao GA4.
+    ga_client_id: /^\d{1,12}\.\d{1,12}$/.test(String(body.ga_client_id || "")) ? String(body.ga_client_id) : "",
+    ga_session_id: /^\d{1,12}$/.test(String(body.ga_session_id || "")) ? String(body.ga_session_id) : "",
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: request.headers.get("User-Agent") || "",
   };
@@ -303,5 +312,7 @@ export async function onRequestPost(context) {
   }
 
   if (!persisted) return json({ ok: false, error: "Falha ao registrar o lead.", detail: errors }, 502);
-  return json({ ok: true, stored: true });
+  // lead_id: id da linha no D1 (null se só webhook/e-mail guardou). O site o envia no form_submit do GA4
+  // para cruzar o evento com o CRM e com a importação de conversões offline.
+  return json({ ok: true, stored: true, lead_id: lead.id || null });
 }
