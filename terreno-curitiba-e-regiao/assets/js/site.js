@@ -84,7 +84,7 @@
     function close() { ov.hidden = true; big.removeAttribute("src"); document.body.classList.remove("menu-open"); }
     imgs.forEach(function (im) {
       im.style.cursor = "zoom-in";
-      im.addEventListener("click", function () { open(im.currentSrc || im.src, im.alt); });
+      im.addEventListener("click", function () { open(im.getAttribute("data-full") || im.currentSrc || im.src, im.alt); }); // data-full: versão grande da foto, só baixada no zoom
     });
     ov.addEventListener("click", function (e) { if (e.target !== big) close(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
