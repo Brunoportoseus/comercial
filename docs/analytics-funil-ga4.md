@@ -82,8 +82,8 @@ Só `whatsapp_click` e `form_submit` disparam conversão do Ads (`adsConversions
 - Onde o tráfego pago se perde: visita → empreendimento → ferramenta → formulário → lead.
 - Qual ferramenta (simulador, potencial construtivo, busca por preço, assistente de parcela) leva mais
   gente a abrir o formulário.
-- Qual botão converte mais: `cta_location` e `cta_text` em `open_form` e `form_submit`. É a base para testar
-  os textos dos CTAs ("Fale com nosso corretor" contra alternativas mais específicas).
+- Qual botão converte mais: `cta_location` e `cta_text` em `open_form` e `form_submit`. É a base para comparar
+  os textos dos CTAs por intenção (mapa em `docs/cta-por-intencao.md`).
 - Taxa de falha do envio: `form_error` dividido por `form_error` + `form_submit`.
 
 ## Etapas fora do site (lead qualificado → venda)
