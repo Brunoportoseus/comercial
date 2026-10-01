@@ -33,6 +33,11 @@
   .btn-outline:hover{border-color:var(--petrol)}
   .btn-danger{background:#fff;border:1px solid var(--danger);color:var(--danger)}
   .btn-sm{padding:.35rem .7rem;font-size:12.5px}
+  .btn-petrol{background:var(--petrol);color:#fff}
+  .btn-petrol:hover{background:var(--petrol-700)}
+  .actions{display:flex;gap:6px;flex-wrap:wrap}
+  #toast{display:none;margin:0 0 14px;padding:10px 14px;border-radius:var(--radius-sm);background:var(--green-050);border:1px solid #cfe6d5;color:var(--green-600);font-size:13px}
+  #toast.warn{background:var(--bg-cream);border-color:#eadfc4;color:var(--gold-600)}
   #gate .err{color:var(--danger);font-size:13px;margin-top:8px;min-height:1.2em}
   #app{display:none}
   .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
@@ -44,9 +49,11 @@
   th{background:var(--petrol-050);color:var(--petrol);text-align:left;padding:9px 10px;font-size:11.5px;text-transform:uppercase;white-space:nowrap}
   td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:top}
   tr.status-qualificado td{background:var(--green-050)}
+  tr.status-fechado td{background:var(--petrol-050)}
   .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
   .badge-novo{background:var(--bg-cream);color:var(--gold-600)}
   .badge-qualificado{background:var(--green-050);color:var(--green-600)}
+  .badge-fechado{background:var(--petrol);color:#fff}
   .badge-outro{background:var(--petrol-050);color:var(--petrol)}
   .muted{color:var(--muted)}
   .qform{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}
@@ -75,6 +82,7 @@
 
 <div id="app"><div class="wrap">
 
+  <div id="toast" role="status" aria-live="polite"></div>
   <div class="stats-row" id="stats"></div>
 
   <div class="toolbar">
@@ -83,6 +91,7 @@
       <option value="">Todos os status</option>
       <option value="novo">Novo</option>
       <option value="qualificado">Qualificado</option>
+      <option value="fechado">Fechado</option>
     </select>
     <button id="btnRefresh" class="btn-outline">↻ Atualizar</button>
     <a id="linkGads" class="btn-primary" style="text-decoration:none;display:inline-block" href="#" target="_blank" rel="noopener">📄 Baixar CSV Google Ads</a>
@@ -168,10 +177,14 @@
     });
 
     var qualificados = leads.filter(function (l) { return l.status === "qualificado"; });
+    var fechados = leads.filter(function (l) { return l.status === "fechado"; });
+    var vendas = fechados.reduce(function (t, l) { var n = Number(l.valor_negocio); return t + (isFinite(n) ? n : 0); }, 0);
     var comGclid = leads.filter(function (l) { return l.gclid; });
     document.getElementById("stats").innerHTML =
       stat(leads.length, "leads no total") +
       stat(qualificados.length, "qualificados") +
+      stat(fechados.length, "fechados") +
+      (fechados.length ? stat(fmtMoney(vendas), "em vendas fechadas") : "") +
       stat(comGclid.length, "vieram do Google Ads (gclid)");
 
     if (!filtered.length) {
@@ -185,11 +198,6 @@
       "<th>ID</th><th>Nome</th><th>Contato</th><th>Empreendimento</th><th>Origem</th>" +
       "<th>Status</th><th>Valor</th><th>Recebido em</th><th></th>" +
       "</tr></thead><tbody>" + rows + "</tbody></table></div>";
-
-    filtered.forEach(function (l) {
-      var btn = document.getElementById("q-" + l.id);
-      if (btn) btn.addEventListener("click", function () { toggleForm(l.id); });
-    });
   }
 
   function stat(value, label) {
@@ -198,7 +206,7 @@
 
   function rowHtml(l) {
     var status = l.status || "novo";
-    var badgeClass = status === "qualificado" ? "badge-qualificado" : (status === "novo" ? "badge-novo" : "badge-outro");
+    var badgeClass = status === "qualificado" ? "badge-qualificado" : status === "fechado" ? "badge-fechado" : (status === "novo" ? "badge-novo" : "badge-outro");
     var wa = String(l.telefone || "").replace(/\D/g, "");
     var waNum = wa.length >= 12 ? wa : "55" + wa;
     return (
@@ -213,45 +221,90 @@
       "<td>" + fmtMoney(l.valor_negocio) + (l.convertido_em ? '<br><span class="muted">' + esc(l.convertido_em) + "</span>" : "") + "</td>" +
       "<td>" + fmtDate(l.criado_em) + "</td>" +
       "<td>" +
-        (status === "qualificado"
-          ? '<button class="btn-outline btn-sm" data-revert="' + l.id + '">Reverter</button>'
-          : '<button class="btn-primary btn-sm" id="q-' + l.id + '">Marcar qualificado</button>') +
+        '<div class="actions">' +
+        (status !== "qualificado" && status !== "fechado"
+          ? '<button class="btn-primary btn-sm" data-qualify="' + l.id + '">Marcar qualificado</button>' : "") +
+        (status !== "fechado"
+          ? '<button class="btn-petrol btn-sm" data-close="' + l.id + '">Marcar fechado</button>' : "") +
+        (status === "qualificado" || status === "fechado"
+          ? '<button class="btn-outline btn-sm" data-revert="' + l.id + '">Reverter</button>' : "") +
+        "</div>" +
         '<div id="form-' + l.id + '"></div>' +
       "</td>" +
       "</tr>"
     );
   }
 
-  function toggleForm(id) {
-    var el = document.getElementById("form-" + id);
-    if (!el) return;
-    if (el.innerHTML) { el.innerHTML = ""; return; }
-    var today = new Date().toISOString().slice(0, 10);
-    el.innerHTML =
-      '<div class="qform">' +
-      '<input type="number" step="0.01" placeholder="Valor R$" id="valor-' + id + '">' +
-      '<input type="date" id="data-' + id + '" value="' + today + '">' +
-      '<button class="btn-primary btn-sm" id="save-' + id + '">Salvar</button>' +
-      "</div>";
-    document.getElementById("save-" + id).addEventListener("click", function () { qualify(id); });
+  var toastTimer = null;
+  function toast(text, warn) {
+    var el = document.getElementById("toast");
+    el.textContent = text; el.className = warn ? "warn" : ""; el.style.display = "block";
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.style.display = "none"; }, 15000);
   }
 
-  async function qualify(id) {
+  // Resultado do envio ao GA4 (campo ga4 da resposta de /api/leads-qualify), para o admin saber o que aconteceu.
+  function ga4Msg(g) {
+    if (!g) return { text: "", warn: false };
+    if (g.sent) return { text: "GA4: evento " + g.event + " enviado.", warn: false };
+    var r = String(g.reason || "");
+    if (r === "ja_enviado") return { text: "GA4: o evento " + g.event + " já tinha sido enviado antes.", warn: false };
+    if (r === "sem_client_id") return { text: "GA4: sem envio (lead anterior à integração ou de visitante que recusou os cookies).", warn: false };
+    if (r === "ga4_nao_configurado") return { text: "GA4: integração ainda não configurada no Cloudflare (GA4_MEASUREMENT_ID e GA4_API_SECRET).", warn: false };
+    if (r === "debug") return { text: "GA4: modo de teste ligado, nada foi gravado; " + ((g.validationMessages || []).length ? "o Google apontou problemas no formato." : "formato aceito."), warn: !!(g.validationMessages || []).length };
+    if (/^ga4_/.test(r)) return { text: "GA4: falha ao enviar o evento. O lead foi salvo mesmo assim.", warn: true };
+    return { text: "", warn: false };
+  }
+
+  // status: "qualificado" ou "fechado" (o mesmo formulário de valor e data serve aos dois)
+  function toggleForm(id, status) {
+    var el = document.getElementById("form-" + id);
+    if (!el) return;
+    if (el.innerHTML && el.getAttribute("data-status") === status) { el.innerHTML = ""; el.removeAttribute("data-status"); return; }
+    var fechado = status === "fechado";
+    var today = new Date().toISOString().slice(0, 10);
+    var lead = leads.filter(function (l) { return String(l.id) === String(id); })[0] || {};
+    var valor0 = lead.valor_negocio !== null && lead.valor_negocio !== undefined && lead.valor_negocio !== "" ? lead.valor_negocio : "";
+    el.setAttribute("data-status", status);
+    el.innerHTML =
+      '<div class="qform">' +
+      '<input type="number" step="0.01" min="0" placeholder="' + (fechado ? "Valor da venda R$" : "Valor R$") + '" id="valor-' + id + '" value="' + esc(valor0) + '">' +
+      '<input type="date" id="data-' + id + '" value="' + today + '" title="' + (fechado ? "Data do fechamento" : "Data") + '">' +
+      '<button class="' + (fechado ? "btn-petrol" : "btn-primary") + ' btn-sm" id="save-' + id + '">' + (fechado ? "Confirmar fechamento" : "Salvar") + "</button>" +
+      "</div>" +
+      (fechado ? '<div class="muted" style="font-size:11.5px;margin-top:4px">Envia o evento ao GA4 e entra no CSV do Google Ads. No GA4 não dá para desfazer.</div>' : "");
+    document.getElementById("save-" + id).addEventListener("click", function () { save(id, status); });
+  }
+
+  async function save(id, status) {
     var valor = document.getElementById("valor-" + id).value;
     var data = document.getElementById("data-" + id).value;
+    var fechado = status === "fechado";
+    if (fechado && !(Number(valor) > 0)) { alert("Informe o valor da venda para marcar o lead como fechado."); return; }
+    if (fechado && !confirm("Marcar o lead #" + id + " como fechado (R$ " + Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 }) + ")?\n\nO evento é enviado ao GA4 e não dá para desfazer lá.")) return;
+    var btn = document.getElementById("save-" + id);
+    if (btn) btn.disabled = true;
     try {
-      await api(API_QUALIFY, {
+      var res = await api(API_QUALIFY, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id, status: "qualificado", valor_negocio: valor || null, convertido_em: data ? data + " 12:00:00" : undefined }),
+        body: JSON.stringify({ id: id, status: status, valor_negocio: valor || null, convertido_em: data ? data + " 12:00:00" : undefined }),
       });
       await loadLeads();
+      var g = ga4Msg(res.ga4);
+      toast("Lead #" + id + " marcado como " + status + "." + (g.text ? " " + g.text : ""), g.warn);
     } catch (e) {
+      if (btn) btn.disabled = false;
       alert("Erro ao salvar: " + e.message);
     }
   }
 
   document.getElementById("tableWrap").addEventListener("click", function (e) {
+    var open = e.target.closest("[data-qualify],[data-close]");
+    if (open) {
+      if (open.hasAttribute("data-close")) toggleForm(open.getAttribute("data-close"), "fechado");
+      else toggleForm(open.getAttribute("data-qualify"), "qualificado");
+      return;
+    }
     var btn = e.target.closest("[data-revert]");
     if (!btn) return;
     var id = btn.getAttribute("data-revert");
