@@ -219,7 +219,7 @@ CLUSTERS = [
         "sort": lambda e: (e["preco"] is None, e["preco"] or 0),
         "lead": ("Se você procura um lote menor, com 140 m², {n} empreendimentos de Almirante Tamandaré têm lotes nessa metragem: "
                  "Condomínio Bela Vista (140 m² a 270 m²), Condomínio Valparaíso (140 m² a 302 m²) e Residencial Jardim Veneza "
-                 "(a partir de 140 m²). Em São José dos Pinhais, o Residencial Cortona tem lotes a partir de 120 m²."),
+                 "(a partir de 140 m²). Em São José dos Pinhais, o Residencial Cortona tem lotes de 128 m²."),
         "sections": [
             ("O que dá para construir em 140 m²",
              ["<p>Isso depende do <strong>zoneamento</strong>, dos recuos e do regulamento do condomínio, e não só da metragem. "

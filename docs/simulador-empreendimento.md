@@ -10,8 +10,13 @@ com o script embutido na própria página. Regras desde 1 de out. de 2026:
 | **Juros** com taxa publicada | Editável, começa na taxa da tabela de condições da página (ex.: 0,9% a.m.). |
 | **Juros** sem taxa publicada | Travado (`readonly`) em **0,9% a.m.** (`data-taxa="0.9"`), com a nota "Taxa de referência da estimativa (fixa)". |
 
-Páginas com taxa publicada (tabela de condições com juros): Bela Vista, Ecoville I e II, Jardim Mazza, Valparaíso e Cortona.
+Páginas com taxa publicada (tabela de condições com juros): Bela Vista, Ecoville I e II, Jardim Mazza e Valparaíso.
 Sem taxa publicada (juros travados em 0,9%): Sierra Vista, Vista Alegre, Le Vert, Vivendas do Parque, Firenze, Siena e Morada do Bosque.
+
+**Cortona (desde 5 de out. de 2026):** a condição publicada traz só as parcelas (120x de R$ 3.131,23 e 180x de R$ 2.597,64, entrada de 5%),
+sem a taxa. As duas parcelas correspondem à mesma taxa mensal, 0,948879% (equivale a 12% ao ano), então o simulador a usa **travada**
+(`data-taxa="0.948879"`) para reproduzir exatamente as parcelas publicadas (180x aparece de início; ao mudar o prazo para 120, dá R$ 3.131,23).
+A entrada mínima é de 5% (`minEnt` com 0.05; no simulador geral, `"minPct": 0.05` no Cortona do `EMPS` de `/financiamento/`).
 
 ## Quando a EVEX publicar condições de um empreendimento
 
