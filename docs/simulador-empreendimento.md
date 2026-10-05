@@ -11,12 +11,15 @@ com o script embutido na própria página. Regras desde 1 de out. de 2026:
 | **Juros** sem taxa publicada | Travado (`readonly`) em **0,9% a.m.** (`data-taxa="0.9"`), com a nota "Taxa de referência da estimativa (fixa)". |
 
 Páginas com taxa publicada (tabela de condições com juros): Bela Vista, Ecoville I e II, Jardim Mazza e Valparaíso.
-Sem taxa publicada (juros travados em 0,9%): Sierra Vista, Vista Alegre, Le Vert, Vivendas do Parque, Firenze, Siena e Morada do Bosque.
+Sem taxa publicada (juros travados em 0,9%): Sierra Vista, Vista Alegre, Le Vert e Vivendas do Parque.
 
 **Cortona (desde 5 de out. de 2026):** a condição publicada traz só as parcelas (120x de R$ 3.131,23 e 180x de R$ 2.597,64, entrada de 5%),
 sem a taxa. As duas parcelas correspondem à mesma taxa mensal, 0,948879% (equivale a 12% ao ano), então o simulador a usa **travada**
 (`data-taxa="0.948879"`) para reproduzir exatamente as parcelas publicadas (180x aparece de início; ao mudar o prazo para 120, dá R$ 3.131,23).
 A entrada mínima é de 5% (`minEnt` com 0.05; no simulador geral, `"minPct": 0.05` no Cortona do `EMPS` de `/financiamento/`).
+A mesma conta bate com a tela do app da incorporadora (lote L-168: à vista R$ 236.800, entrada R$ 11.840, 180x de R$ 2.611,76), que também reajusta pelo IPCA.
+
+**Siena, Firenze e Morada do Bosque (desde 5 de out. de 2026):** usam a **mesma taxa travada de 0,948879% a.m.** (`data-taxa="0.948879"` e `"taxa": 0.948879` no `EMPS`), com a entrada mínima padrão de 10% (a incorporadora ainda não publicou a entrada desses). As parcelas são estimativas; o PDF de São José dos Pinhais mostra entrada de 10% e 120x/180x calculadas com essa taxa.
 
 ## Quando a EVEX publicar condições de um empreendimento
 
