@@ -19,6 +19,8 @@ sem a taxa. As duas parcelas correspondem à mesma taxa mensal, 0,948879% (equiv
 A entrada mínima é de 5% (`minEnt` com 0.05; no simulador geral, `"minPct": 0.05` no Cortona do `EMPS` de `/financiamento/`).
 A mesma conta bate com a tela do app da incorporadora (lote L-168: à vista R$ 236.800, entrada R$ 11.840, 180x de R$ 2.611,76), que também reajusta pelo IPCA.
 
+**Cortona por grupo de lotes (desde 5 de out. de 2026):** a página tem um seletor `#sLote` com 5 grupos de lotes (cada `<option>` traz `data-preco` e `data-entrada`): 120…195 e 124…181 (128 m²), 66 e 67 (160 m²), 48 (178,16 m²) e 88 (204 m²). Ao trocar o grupo, o preço e a entrada mínima (5%, com centavos: `Math.round(p*5)/100`) são recalculados. As parcelas de todos os grupos conferem com a taxa de 0,948879% a.m. O preço de partida (`data-preco`) é o do primeiro grupo, R$ 235.520, que é o "a partir de" dos cards, da home e das páginas de SEO.
+
 **Siena, Firenze e Morada do Bosque (desde 5 de out. de 2026):** usam a **mesma taxa travada de 0,948879% a.m.** (`data-taxa="0.948879"` e `"taxa": 0.948879` no `EMPS`), com a entrada mínima padrão de 10% (a incorporadora ainda não publicou a entrada desses). As parcelas são estimativas; o PDF de São José dos Pinhais mostra entrada de 10% e 120x/180x calculadas com essa taxa.
 
 ## Quando a EVEX publicar condições de um empreendimento
