@@ -61,7 +61,7 @@ BY_SLUG = {e["slug"]: e for e in PROD}
 
 def is_terreno(e):
     t = e["tipo"].lower()
-    return not (t.startswith("apartamentos") or "casas" in t)
+    return not (t.startswith("apartamentos") or "casas" in t or "sobrado" in t)
 
 
 def preco_txt(e):
