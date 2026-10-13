@@ -48,3 +48,8 @@ Regra da especificação: não publicar preço, entrega ou estoque sem validaç�
 - **Fýsi**: as casas do folder são projetos de exemplo; a condição de 2026 (sinal de 20%, 60x, IPCA + 1% ao mês) não foi publicada.
 - **Vivendas do Parque**: o e-book fala em lotes de 122 m², mas a metragem do site (a partir de 140 m²) não foi alterada, porque falta o preço do lote menor.
 - Sem acesso: Canet Junior, Bairru (demais empreendimentos), Paraíso e Elio Winter (Lumina, Dona Sofia).
+
+## Atualização (13/10/2026, quarta rodada)
+
+- **Firenze** passou a mostrar a ficha técnica do Drive: 139 lotes, lotes residenciais de 128 a 386,32 m², lazer entregue e parâmetros construtivos. O "a partir de R$ 281.600" é coerente com o lote de 128 m² (R$ 2.200 por m²).
+- Fichas de Siena, Cortona e Morada do Bosque não foram encontradas; a pasta "Morada do Bosque" compartilhada pela Bairru aparece vazia.
