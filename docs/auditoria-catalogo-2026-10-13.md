@@ -39,3 +39,17 @@ Regra da especificação: não publicar preço, entrega ou estoque sem validaç�
 - As tabelas EVEX da pasta Floresta usam 0,9488% a.m. nas parcelas de 120x e 180x, a mesma taxa aplicada ao Cortona.
 - `gerar.py` e `integrar.py` agora aceitam `SEO_ROOT`, `SEO_SITE` e `SEO_BRAND` para gerar as páginas de cluster do site de imóveis
   (veja `docs/seo-clusters.md`).
+
+## Atualização (13/10/2026, terceira rodada: outras pastas do Drive)
+
+- A cópia da pasta no Drive do Bruno é a única que abre os arquivos; as pastas originais da EVEX aparecem vazias para o Claude.
+- **Páginas novas "sob consulta"** (autorizadas): Lockwood, NOA, Mirá e Fýsi (Curitiba) e Vivendas do Sol (São José dos Pinhais). Sem preço e sem foto.
+- **Mirá** ficou sem endereço e sem metragem porque o e-book e a tabela trazem endereços diferentes.
+- **Fýsi**: as casas do folder são projetos de exemplo; a condição de 2026 (sinal de 20%, 60x, IPCA + 1% ao mês) não foi publicada.
+- **Vivendas do Parque**: o e-book fala em lotes de 122 m², mas a metragem do site (a partir de 140 m²) não foi alterada, porque falta o preço do lote menor.
+- Sem acesso: Canet Junior, Bairru (demais empreendimentos), Paraíso e Elio Winter (Lumina, Dona Sofia).
+
+## Atualização (13/10/2026, quarta rodada)
+
+- **Firenze** passou a mostrar a ficha técnica do Drive: 139 lotes, lotes residenciais de 128 a 386,32 m², lazer entregue e parâmetros construtivos. O "a partir de R$ 281.600" é coerente com o lote de 128 m² (R$ 2.200 por m²).
+- Fichas de Siena, Cortona e Morada do Bosque não foram encontradas; a pasta "Morada do Bosque" compartilhada pela Bairru aparece vazia.
