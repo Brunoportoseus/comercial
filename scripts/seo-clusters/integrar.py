@@ -102,6 +102,7 @@ CITY_SLUGS = {
     "fazenda-rio-grande": ["perto-de-curitiba"],
     "pinhais": ["perto-de-curitiba"],
     "piraquara": ["perto-de-curitiba"],
+    "quatro-barras": ["perto-de-curitiba"],
 }
 CITY_ANCHORS = ['<section class="section section--tight">\n  <div class="wrap"><div class="ctaband">',
                 '<section class="section"><div class="wrap"><div class="ctaband">']

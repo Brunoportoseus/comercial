@@ -28,3 +28,14 @@ Regra da especificação: não publicar preço, entrega ou estoque sem validaç�
 3. Confirmar se o Colinas do Tanguá tem tipo de 1 dormitório (a especificação cita "Tipos 1, 2, 2 com suíte e 3").
 4. Confirmar a natureza das unidades do Jardim Mazza (lote ou casa).
 5. Dados de endereço, tipo e preço dos demais empreendimentos para novas páginas.
+
+## Atualização (13/10/2026, segunda rodada)
+
+- **Bela Vista** atualizado com o relatório de estoque: 16 lotes à venda a R$ 209.800 (140 e 144,06 m²), entrada de 4% (R$ 8.392) e
+  parcelas recalculadas com as regras da tabela anterior (312x e 252x a 0,9% a.m., 192x a 1,0% a.m.). Saiu a promoção do lote 32.
+- **Páginas novas "sob consulta"** (autorizadas pelo Bruno), com o que o Drive confirma: Floresta do Lago (Campo Largo), Fazenda Di Trento
+  (Piraquara), Ecopark (Quatro Barras, com página de cidade nova) e Residencial Foggiatto (São José dos Pinhais). Nenhuma tem endereço,
+  preço nem foto, porque os arquivos do Drive não trazem endereço e as tabelas são de 2024 e 2025.
+- As tabelas EVEX da pasta Floresta usam 0,9488% a.m. nas parcelas de 120x e 180x, a mesma taxa aplicada ao Cortona.
+- `gerar.py` e `integrar.py` agora aceitam `SEO_ROOT`, `SEO_SITE` e `SEO_BRAND` para gerar as páginas de cluster do site de imóveis
+  (veja `docs/seo-clusters.md`).

@@ -59,3 +59,15 @@ Adicione um item em `CLUSTERS` (`gerar.py`): `slug`, `title`, `h1`, `meta`, `fil
 2. Inspeção de URL nos 7 endereços novos → "Solicitar indexação".
 3. Acompanhar em 4–8 semanas: impressões/cliques por página em Desempenho, e no GA4 `seo_link_click` e leads com
    `lead_source_tool` começando em `cluster_`.
+
+## Site de imóveis
+
+Os mesmos scripts geram o site de imóveis (a estrutura é a mesma). Rode os dois, nesta ordem:
+
+```
+python3 scripts/seo-clusters/gerar.py && python3 scripts/seo-clusters/integrar.py
+SEO_ROOT=imoveis-curitiba-e-regiao SEO_SITE=https://imoveiscuritibaeregiao.com.br SEO_BRAND="Imóveis Curitiba e Região" python3 scripts/seo-clusters/gerar.py
+SEO_ROOT=imoveis-curitiba-e-regiao SEO_SITE=https://imoveiscuritibaeregiao.com.br SEO_BRAND="Imóveis Curitiba e Região" python3 scripts/seo-clusters/integrar.py
+```
+
+Produtos "sobrado", "casas" e "apartamentos" não entram nos clusters de terrenos.
