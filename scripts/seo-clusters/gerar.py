@@ -14,9 +14,12 @@ import os
 import re
 import sys
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "terreno-curitiba-e-regiao")
+# Por padrão gera o site de terrenos; SEO_ROOT/SEO_SITE apontam para o site de imóveis (mesma estrutura):
+#   SEO_ROOT=imoveis-curitiba-e-regiao SEO_SITE=https://imoveiscuritibaeregiao.com.br SEO_BRAND="Imóveis Curitiba e Região" python3 scripts/seo-clusters/gerar.py
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", os.environ.get("SEO_ROOT", "terreno-curitiba-e-regiao"))
 ROOT = os.path.normpath(ROOT)
-SITE = "https://terrenoscuritibaeregiao.com.br"
+SITE = os.environ.get("SEO_SITE", "https://terrenoscuritibaeregiao.com.br")
+BRAND = os.environ.get("SEO_BRAND", "Terrenos Curitiba e Região")
 TEMPLATE = os.path.join(ROOT, "conteudos", "terreno-em-condominio-fechado-vale-a-pena", "index.html")
 ATUALIZADO_ISO = "2026-10-01"
 ATUALIZADO_TXT = "outubro de 2026"
@@ -155,7 +158,7 @@ CLUSTERS = [
         "filter": lambda e: e["cid"] == "almirante-tamandare" and bool(e["preco"]) and e["preco"] <= 200000,
         "sort": lambda e: e["preco"],
         "lead": ("Almirante Tamandaré concentra a maior parte dos terrenos acessíveis da nossa seleção. {n} empreendimentos "
-                 "têm preço a partir de até R$ 200 mil, com entrada e parcela informadas. O Condomínio Bela Vista, a partir de R$ 205.000, "
+                 "têm preço a partir de até R$ 200 mil, com entrada e parcela informadas. O Condomínio Bela Vista, a partir de R$ 209.800, "
                  "fica um pouco acima desse teto e também vale a comparação."),
         "sections": [
             ("O que muda de um empreendimento para outro",
@@ -218,7 +221,7 @@ CLUSTERS = [
         "filter": lambda e: e["cid"] == "almirante-tamandare" and e["slug"] in ("bela-vista", "valparaiso", "jardim-veneza"),
         "sort": lambda e: (e["preco"] is None, e["preco"] or 0),
         "lead": ("Se você procura um lote menor, com 140 m², {n} empreendimentos de Almirante Tamandaré têm lotes nessa metragem: "
-                 "Condomínio Bela Vista (140 m² a 270 m²), Condomínio Valparaíso (140 m² a 302 m²) e Residencial Jardim Veneza "
+                 "Condomínio Bela Vista (140 m² a 144,06 m²), Condomínio Valparaíso (140 m² a 302 m²) e Residencial Jardim Veneza "
                  "(a partir de 140 m²). Em São José dos Pinhais, o Residencial Cortona tem lotes de 128 m² a 204 m²."),
         "sections": [
             ("O que dá para construir em 140 m²",
@@ -271,15 +274,15 @@ CLUSTERS = [
     {
         "slug": "perto-de-curitiba",
         "short": "Terrenos perto de Curitiba",
-        "desc_card": "Opções em Curitiba, Almirante Tamandaré, São José dos Pinhais e Araucária.",
+        "desc_card": "Opções em Curitiba, Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras.",
         "title": "Terrenos perto de Curitiba: opções por cidade",
         "h1": "Terrenos perto de Curitiba: opções por cidade",
-        "meta": "Terrenos em Curitiba e nas cidades vizinhas (Almirante Tamandaré, São José dos Pinhais e Araucária): compare empreendimentos, preços e metragens.",
+        "meta": "Terrenos em Curitiba e nas cidades vizinhas (Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras): compare empreendimentos, preços e metragens.",
         "filter": is_terreno,
         "sort": lambda e: (e["cid"], e["preco"] is None, e["preco"] or 0),
         "by_city": True,
-        "lead": ("Almirante Tamandaré, São José dos Pinhais e Araucária fazem parte da Região Metropolitana de Curitiba e fazem divisa com a "
-                 "capital. Reunimos aqui os {n} empreendimentos de terrenos que comercializamos, agrupados por cidade."),
+        "lead": ("Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras fazem parte da Região Metropolitana de "
+                 "Curitiba. Reunimos aqui os {n} empreendimentos de terrenos que comercializamos, agrupados por cidade."),
         "sections": [
             ("Como escolher a cidade",
              ["<p>Preço, perfil de bairro e acesso variam de cidade para cidade. Para um panorama de cada uma, leia "
@@ -378,7 +381,7 @@ def build_cluster_main(c, items):
         '<span class="eyebrow">Terrenos por perfil</span>',
         f'<h1>{esc(c["h1"])}</h1>',
         f'<div class="article__meta"><span class="cat">Seleção EVEX Imóveis</span>'
-        f'<span>Terrenos Curitiba e Região</span><span>Atualizado em {ATUALIZADO_CURTO}</span></div>',
+        f'<span>{BRAND}</span><span>Atualizado em {ATUALIZADO_CURTO}</span></div>',
         f'<p>{lead}</p>',
         f'<h2>{"Empreendimentos por cidade" if c.get("by_city") else "Comparativo rápido"}</h2>',
         table_html(items, cl, c.get("by_city")),
@@ -426,7 +429,7 @@ def build_hub_main():
         '<span class="eyebrow">Terrenos por perfil</span>',
         "<h1>Terrenos na região de Curitiba por entrada, preço, bairro e metragem</h1>",
         f'<div class="article__meta"><span class="cat">Seleção EVEX Imóveis</span>'
-        f'<span>Terrenos Curitiba e Região</span><span>Atualizado em {ATUALIZADO_CURTO}</span></div>',
+        f'<span>{BRAND}</span><span>Atualizado em {ATUALIZADO_CURTO}</span></div>',
         "<p>Cada pessoa começa a procura por um critério diferente: quanto dá de entrada, quanto pode pagar por mês, em qual "
         "bairro ou que tamanho de lote. Escolha abaixo o perfil mais parecido com o seu e veja os empreendimentos que se encaixam, "
         "com preço, entrada e parcela informados.</p>",
@@ -474,7 +477,7 @@ def jsonld(tpl_head, page_url, title, desc, crumbs, items, faq):
 
 def render(tpl, slug_path, title, desc, main, crumbs, items, faq):
     url = SITE + slug_path
-    full_title = f"{title} | Terrenos Curitiba e Região"
+    full_title = f"{title} | {BRAND}"
     if len(full_title) > 70:  # evita título cortado no Google
         full_title = title
     h = tpl

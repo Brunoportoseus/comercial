@@ -32,3 +32,6 @@ A mesma conta bate com a tela do app da incorporadora (lote L-168: à vista R$ 2
 4. Mantenha `data-preco` igual ao preço do array `PROD` da home (para o Ecoville II, o do lote padrão).
 
 A parcela é uma **estimativa pela Tabela Price**, sem o reajuste anual pelo IPCA; a condição real é confirmada com o corretor.
+
+**Bela Vista (desde 13 de out. de 2026):** preço de R$ 209.800 (relatório de estoque), entrada mínima de 4% (`minEnt` 0.04, `"minPct": 0.04` no `EMPS`),
+prazo inicial de 312x e juros de 0,9% a.m. (taxa da tabela; editável). A tabela de condições da página traz 312x, 252x e 192x, mais a opção com entrada de R$ 50 mil.
