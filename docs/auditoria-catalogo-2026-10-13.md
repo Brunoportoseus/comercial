@@ -60,8 +60,8 @@ Fonte: pasta "Outros Materiais" (cópia no Drive do Bruno) e textos enviados no 
 (originais da Bairru/Elio Winter), Palazzo Stival, Venezian, Sprada 402 e a pasta MAKE IT (SharePoint) continuam sem arquivos legíveis.
 
 - **Vista Alegre (Araucária):** tabela de 13/10/2026 (GV Sul) com 61 lotes disponíveis de 126 a 606,36 m²; "a partir de" passou de R$ 190.060,20 para
-  **R$ 170.100** (lote de 126 m²). Sinal de 4% (parcelável em 2x), 120x e 180x a 1% a.m. O lote 3/2/1 tem a parcela de 120x omitida na página,
-  porque a tabela traz R$ 3.337,83 e o cálculo dá R$ 3.018,34. O lote "sócios" (quadra 10, lote 11) não foi publicado.
+  **R$ 170.100** (lote de 126 m²). Sinal de 4% (parcelável em 2x), 120x e 180x a 1% a.m. No lote 3/2/1 a tabela traz 120x de R$ 3.337,83, valor incompatível com as demais parcelas;
+  por decisão do Bruno (14/10), a página mostra o valor calculado, R$ 3.018,34. O lote "sócios" (quadra 10, lote 11) não foi publicado.
 - **Jardim Mazza:** valores já coincidiam com o texto (R$ 189.000, sinal de R$ 7.560, 312x/252x/192x). O simulador passou a usar o sinal de 4%, como a tabela.
 - **Quebec (SJP):** lote 41 de 161,09 m², R$ 160.000, sinal de R$ 6.400 (4%), 312x/252x/192x. Conferido pela Tabela Price.
 - **Origens (Curitiba):** tabela 09/2026 (gerada em 29/09/2026), 22 lotes disponíveis de 131,62 a 253,10 m², a partir de R$ 429.607,68. Plano: ato, parcela anual,
