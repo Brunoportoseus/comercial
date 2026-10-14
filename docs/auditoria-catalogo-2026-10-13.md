@@ -53,3 +53,28 @@ Regra da especificação: não publicar preço, entrega ou estoque sem validaç�
 
 - **Firenze** passou a mostrar a ficha técnica do Drive: 139 lotes, lotes residenciais de 128 a 386,32 m², lazer entregue e parâmetros construtivos. O "a partir de R$ 281.600" é coerente com o lote de 128 m² (R$ 2.200 por m²).
 - Fichas de Siena, Cortona e Morada do Bosque não foram encontradas; a pasta "Morada do Bosque" compartilhada pela Bairru aparece vazia.
+
+## Atualização (14/10/2026, quinta rodada: tabelas de outubro/2026)
+
+Fonte: pasta "Outros Materiais" (cópia no Drive do Bruno) e textos enviados no chat. As pastas Moradas do Bosque, Terras de Pietro, Bela Vista
+(originais da Bairru/Elio Winter), Palazzo Stival, Venezian, Sprada 402 e a pasta MAKE IT (SharePoint) continuam sem arquivos legíveis.
+
+- **Vista Alegre (Araucária):** tabela de 13/10/2026 (GV Sul) com 61 lotes disponíveis de 126 a 606,36 m²; "a partir de" passou de R$ 190.060,20 para
+  **R$ 170.100** (lote de 126 m²). Sinal de 4% (parcelável em 2x), 120x e 180x a 1% a.m. O lote 3/2/1 tem a parcela de 120x omitida na página,
+  porque a tabela traz R$ 3.337,83 e o cálculo dá R$ 3.018,34. O lote "sócios" (quadra 10, lote 11) não foi publicado.
+- **Jardim Mazza:** valores já coincidiam com o texto (R$ 189.000, sinal de R$ 7.560, 312x/252x/192x). O simulador passou a usar o sinal de 4%, como a tabela.
+- **Quebec (SJP):** lote 41 de 161,09 m², R$ 160.000, sinal de R$ 6.400 (4%), 312x/252x/192x. Conferido pela Tabela Price.
+- **Origens (Curitiba):** tabela 09/2026 (gerada em 29/09/2026), 22 lotes disponíveis de 131,62 a 253,10 m², a partir de R$ 429.607,68. Plano: ato, parcela anual,
+  11 mensais e financiamento de cerca de 80%; entrega em setembro de 2027. Lotes "Reservada" não foram listados.
+- **Foggiatto (SJP), Santa Helena e João Andreassa (Campo Largo), Santa Bárbara (Fazenda Rio Grande):** tabela "Diversos" de outubro/2026 (entrada de 10%,
+  48x sem juros em alguns, 60x a 0,75% e 120x/180x/240x a 0,9488% a.m.). Todas as parcelas foram conferidas pela Tabela Price.
+- **Floresta Angá (Pinhais, página nova):** book (77 lotes a partir de 815 m², Estrada Ecológica de Pinhais, 1168) e tabela de outubro/2026 (37 unidades,
+  de R$ 1.277.219,26 a R$ 2.974.271,45; entrada de 10% e 36 mensais). Sem simulador, porque o saldo é reajustado pelo INCC.
+- **Kasa Vik (Campo Comprido, Curitiba, página nova):** tabela de outubro/2026 (válida até 31/10/2026) com 21 lotes dos urbanísticos Vik 264 e Vik 428;
+  ato de 10%, 8 mensais (5%) e 85% na entrega (CVCO), financiável em até 180x a 0,8% a.m. + IPCA. O endereço não consta. As duas previsões de entrega
+  (julho/2027 e novembro/2028) aparecem sem ligar cada uma a uma fase, porque o texto da tabela não deixa claro. O lote 43 do Vik 428 tem plano diferente e ficou sem parcelas.
+- **Vistas do Brasil e Villa Belluno (Fazenda Rio Grande, páginas novas):** só as condições do texto enviado (sem tabela). O Villa Belluno não tem valor total nem prazo.
+- **Imóvel na Rua Lourenço Pinto (Centro de Curitiba, página nova):** terreno de 386,74 m² com 1.165,40 m² construídos, R$ 4.000.000, entrada de 20% e 48 meses a 1% a.m. + IPCA.
+- **Morada do Bosque:** da tabela de 24/01/2026 entraram a entrada de 5% (R$ 16.615), a metragem (250 a 378,39 m²) e as parcelas do lote de 250 m² (180x de R$ 3.665,06).
+- **Não publicados:** Floresta Wolf (sem cidade/endereço), Edge (apartamentos), Palazzo Stival, Venezian, Sprada 402, Terras de Pietro e MAKE IT (sem acesso aos arquivos).
+- Cidades novas com produto: **Fazenda Rio Grande** e **Pinhais** (páginas de cidade convertidas).
