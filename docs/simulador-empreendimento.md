@@ -21,7 +21,7 @@ A mesma conta bate com a tela do app da incorporadora (lote L-168: à vista R$ 2
 
 **Cortona por grupo de lotes (desde 5 de out. de 2026):** a página tem um seletor `#sLote` com 5 grupos de lotes (cada `<option>` traz `data-preco` e `data-entrada`): 120…195 e 124…181 (128 m²), 66 e 67 (160 m²), 48 (178,16 m²) e 88 (204 m²). Ao trocar o grupo, o preço e a entrada mínima (5%, com centavos: `Math.round(p*5)/100`) são recalculados. As parcelas de todos os grupos conferem com a taxa de 0,948879% a.m. O preço de partida (`data-preco`) é o do primeiro grupo, R$ 235.520, que é o "a partir de" dos cards, da home e das páginas de SEO.
 
-**Siena, Firenze e Morada do Bosque (desde 5 de out. de 2026):** usam a **mesma taxa travada de 0,948879% a.m.** (`data-taxa="0.948879"` e `"taxa": 0.948879` no `EMPS`), com a entrada mínima padrão de 10% (a incorporadora ainda não publicou a entrada desses). As parcelas são estimativas; o PDF de São José dos Pinhais mostra entrada de 10% e 120x/180x calculadas com essa taxa.
+**Siena, Firenze e Morada do Bosque (desde 5 de out. de 2026):** usam a **mesma taxa travada de 0,948879% a.m.** (`data-taxa="0.948879"` e `"taxa": 0.948879` no `EMPS`), com a entrada mínima padrão de 10% (a incorporadora ainda não publicou a entrada de Siena e Firenze). **Morada do Bosque (desde 14 de out. de 2026):** entrada mínima de 5% (tabela de 24/01/2026; `minEnt` 0.05 e `"minPct": 0.05` no `EMPS`). As parcelas são estimativas; o PDF de São José dos Pinhais mostra entrada de 10% e 120x/180x calculadas com essa taxa.
 
 ## Quando a EVEX publicar condições de um empreendimento
 
@@ -35,3 +35,19 @@ A parcela é uma **estimativa pela Tabela Price**, sem o reajuste anual pelo IPC
 
 **Bela Vista (desde 13 de out. de 2026):** preço de R$ 209.800 (relatório de estoque), entrada mínima de 4% (`minEnt` 0.04, `"minPct": 0.04` no `EMPS`),
 prazo inicial de 312x e juros de 0,9% a.m. (taxa da tabela; editável). A tabela de condições da página traz 312x, 252x e 192x, mais a opção com entrada de R$ 50 mil.
+
+**Simuladores novos e ajustados (14 de out. de 2026):**
+
+| Empreendimento | Preço de partida | Entrada mínima | Prazo inicial | Juros (% a.m.) |
+|---|---|---|---|---|
+| Vista Alegre (lote 11/7/1, 126 m²) | R$ 170.100 | 4% | 180x | 1,0 |
+| Jardim Mazza | R$ 189.000 | 4% | 312x | 0,9 |
+| Quebec (lote 41) | R$ 160.000 | 4% | 312x | 0,9 |
+| Foggiatto (unidade 01) | R$ 264.757,95 | 10% | 240x | 0,9488 |
+| Santa Helena (A8-G) | R$ 164.651,53 | 10% | 240x | 0,9488 |
+| João Andreassa (lote 66) | R$ 150.642,17 | 10% | 240x | 0,9488 |
+| Santa Bárbara (unidade 09) | R$ 450.330,74 | 10% | 240x | 0,9488 |
+| Imóvel Rua Lourenço Pinto | R$ 4.000.000 | 20% | 48x | 1,0 (sem IPCA) |
+
+Origens, Kasa Vik, Floresta Angá, Vistas do Brasil e Villa Belluno **não têm simulador** (a seção mostra o plano da tabela e o botão para falar com o corretor):
+os planos têm ato, parcelas durante a obra e saldo na entrega (ou reajuste pelo INCC), ou o material não traz a taxa.

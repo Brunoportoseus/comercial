@@ -274,14 +274,14 @@ CLUSTERS = [
     {
         "slug": "perto-de-curitiba",
         "short": "Terrenos perto de Curitiba",
-        "desc_card": "Opções em Curitiba, Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras.",
+        "desc_card": "Opções em Curitiba, Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara e Quatro Barras.",
         "title": "Terrenos perto de Curitiba: opções por cidade",
         "h1": "Terrenos perto de Curitiba: opções por cidade",
-        "meta": "Terrenos em Curitiba e nas cidades vizinhas (Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras): compare empreendimentos, preços e metragens.",
+        "meta": "Terrenos em Curitiba e nas cidades vizinhas (Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara e Quatro Barras): compare empreendimentos, preços e metragens.",
         "filter": is_terreno,
         "sort": lambda e: (e["cid"], e["preco"] is None, e["preco"] or 0),
         "by_city": True,
-        "lead": ("Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Piraquara e Quatro Barras fazem parte da Região Metropolitana de "
+        "lead": ("Almirante Tamandaré, São José dos Pinhais, Araucária, Campo Largo, Fazenda Rio Grande, Pinhais, Piraquara e Quatro Barras fazem parte da Região Metropolitana de "
                  "Curitiba. Reunimos aqui os {n} empreendimentos de terrenos que comercializamos, agrupados por cidade."),
         "sections": [
             ("Como escolher a cidade",
