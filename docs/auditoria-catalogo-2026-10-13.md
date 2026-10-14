@@ -71,8 +71,7 @@ Fonte: pasta "Outros Materiais" (cópia no Drive do Bruno) e textos enviados no 
 - **Floresta Angá (Pinhais, página nova):** book (77 lotes a partir de 815 m², Estrada Ecológica de Pinhais, 1168) e tabela de outubro/2026 (37 unidades,
   de R$ 1.277.219,26 a R$ 2.974.271,45; entrada de 10% e 36 mensais). Sem simulador, porque o saldo é reajustado pelo INCC.
 - **Kasa Vik (Campo Comprido, Curitiba, página nova):** tabela de outubro/2026 (válida até 31/10/2026) com 21 lotes dos urbanísticos Vik 264 e Vik 428;
-  ato de 10%, 8 mensais (5%) e 85% na entrega (CVCO), financiável em até 180x a 0,8% a.m. + IPCA. O endereço não consta. As duas previsões de entrega
-  (julho/2027 e novembro/2028) aparecem sem ligar cada uma a uma fase, porque o texto da tabela não deixa claro. O lote 43 do Vik 428 tem plano diferente e ficou sem parcelas.
+  ato de 10%, 8 mensais (5%) e 85% na entrega (CVCO), financiável em até 180x a 0,8% a.m. + IPCA. O endereço não consta. Entrega confirmada pelo Bruno em 14/10: Vik 264 em julho/2027; novembro/2028 ficou para o Vik 428 (por exclusão). O lote 43 do Vik 428 tem plano diferente e ficou sem parcelas.
 - **Vistas do Brasil e Villa Belluno (Fazenda Rio Grande, páginas novas):** só as condições do texto enviado (sem tabela). O Villa Belluno não tem valor total nem prazo.
 - **Imóvel na Rua Lourenço Pinto (Centro de Curitiba, página nova):** terreno de 386,74 m² com 1.165,40 m² construídos, R$ 4.000.000, entrada de 20% e 48 meses a 1% a.m. + IPCA.
 - **Morada do Bosque:** da tabela de 24/01/2026 entraram a entrada de 5% (R$ 16.615), a metragem (250 a 378,39 m²) e as parcelas do lote de 250 m² (180x de R$ 3.665,06).
