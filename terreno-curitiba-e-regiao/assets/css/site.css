@@ -740,3 +740,85 @@ table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){whit
 /* simulador do empreendimento: preço (e a taxa, quando não há taxa publicada) travados */
 .calc-card input[readonly]{background:var(--bg-soft);color:var(--ink);cursor:not-allowed;-moz-appearance:textfield}
 .calc-card input[readonly]::-webkit-inner-spin-button,.calc-card input[readonly]::-webkit-outer-spin-button{display:none}
+
+/* =====================================================================
+   Layout por wireframe (15/10/2026): home (desktop e celular) e página de empreendimento (desktop).
+   Só reorganiza blocos já existentes; o conteúdo continua o mesmo.
+   ===================================================================== */
+/* ---- Home: hero em painel claro, com a foto ao lado ---- */
+.hero--wire{background:transparent;color:var(--ink);overflow:visible;isolation:auto}
+.hero--wire{padding:22px 0}
+.hero--wire .hero__inner{max-width:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
+  background:#e4ece6;border-radius:var(--radius-lg);overflow:hidden;align-items:stretch}
+.hero--wire .hero__copy{max-width:none;padding:48px 44px 40px;align-self:center}
+.hero--wire .hero__kicker{background:#fff;border:1px solid var(--line);color:var(--petrol)}
+.hero--wire h1{color:var(--petrol);font-size:clamp(1.7rem,3.2vw,2.5rem)}
+.hero--wire .hero__lead{color:var(--ink);opacity:.82}
+.hero--wire .budget{box-shadow:0 10px 30px rgba(14,58,66,.10);margin:1.2rem 0 .6rem}
+.hero--wire .budget__chips{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hero--wire .hero__benefits{list-style:none;padding:0;margin:.8rem 0 1.1rem;display:grid;gap:.35rem}
+.hero--wire .hero__benefits li{display:flex;gap:.55rem;align-items:flex-start;color:var(--ink)}
+.hero--wire .budget__chips .chip{font-size:.9rem;padding:.45rem .35rem}
+.hero--wire .hero__benefits .fi{color:var(--green)}
+.hero--wire .hero__links a{color:var(--green-600)}
+.hero--wire .hero__micro{color:var(--muted)}
+.hero__media{position:relative;min-height:340px}
+.hero__media .hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% center}
+.budget__see{display:none}
+@media (max-width:900px){
+  .hero--wire .hero__inner{grid-template-columns:1fr}
+  .hero--wire .hero__copy{padding:30px 22px 26px}
+  .hero--wire .budget__chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero__media{order:-1;min-height:0;height:150px}
+  .hero--wire .hero__links{display:none}
+  .hero--wire .hero__benefits{display:none}
+  .hero--budget.hero--wire .hero__lead{display:block;margin-bottom:.4rem}
+  .budget__see{display:flex;justify-content:center;text-align:center;margin-top:.9rem;background:var(--petrol);color:#fff;box-shadow:none}
+  .budget__see:hover{background:var(--petrol-700);color:#fff}
+}
+/* ---- Home: cartões dos empreendimentos em destaque, com imagem ---- */
+#destaques .post--emp{border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:0 8px 24px rgba(14,58,66,.07)}
+#destaques .post--emp:hover{border-color:var(--gold);box-shadow:0 12px 30px rgba(14,58,66,.13)}
+#destaques .post__img{aspect-ratio:16/10;display:block}
+.post__img--ph{background:#cfdad0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100' preserveAspectRatio='xMidYMax slice'%3E%3Ccircle cx='108' cy='34' r='22' fill='%239db69c'/%3E%3Cpath d='M12 100 70 26l58 74z' fill='%2379967b'/%3E%3C/svg%3E") center bottom/cover no-repeat}
+/* ---- Página de empreendimento: título, galeria + condições, localização e diferenciais ---- */
+.pdp{background:var(--bg-cream);padding:26px 0 44px}
+.pdp__title{background:#fff;border-radius:var(--radius-lg);padding:26px 30px;box-shadow:0 6px 22px rgba(14,58,66,.06);margin-bottom:22px}
+.pdp__title h1{margin:0 0 .5rem;font-size:clamp(1.5rem,3vw,2.2rem)}
+.pdp__title .eyebrow{margin-bottom:.4rem}
+.pdp__lead{margin:0;color:var(--muted);font-size:1.02rem}
+.pdp__grid{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:22px;align-items:start}
+.pdp__grid--solo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pdp__media{min-width:0}
+.pdp__media .gallery{columns:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.pdp__media .gallery .media{margin:0;break-inside:auto}
+.pdp__media .gallery .media img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;box-shadow:none;cursor:zoom-in}
+.pdp__media .gallery .media:first-child{grid-column:1/-1}
+.pdp__media .gallery .media:first-child img{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:0 10px 28px rgba(14,58,66,.14)}
+.pdp__media .fignote{margin:.7rem .2rem 0}
+.pdp__tabs{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.9rem .2rem 0;padding:0;list-style:none;font-family:var(--font-head);font-weight:700;font-size:.95rem}
+.pdp__tabs a{color:var(--petrol)}
+.pdp__tabs li+li::before{content:"•";margin-right:1.1rem;color:var(--gold)}
+.pdp__cond,.pdp__info{background:#fff;border-radius:var(--radius-lg);padding:26px 28px;box-shadow:0 6px 22px rgba(14,58,66,.06)}
+.pdp__cond>h2,.pdp__info>h2{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin:0 0 1rem}
+.pdp__cond .pricebox{grid-template-columns:1fr;gap:14px;margin-bottom:1.2rem}
+.pdp__cond .price{background:none;border:0;box-shadow:none;padding:0;text-align:left}
+.pdp__cond .price__label{font-size:.9rem;color:var(--muted)}
+.pdp__cond .price__value{font-size:1.9rem}
+.pdp__cond .price__note{font-size:.85rem}
+.pdp__how{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.pdp__how>h3:first-child{margin-top:0!important}
+.pdp__cta{display:grid;gap:10px;margin:0 0 1.1rem}
+.pdp__cta .btn{width:100%;justify-content:center;text-align:center}
+.pdp__info{margin-top:22px}
+.pdp__grid--solo .pdp__info{margin-top:0}
+@media (min-width:901px){.pdp__grid:not(.pdp__grid--solo) .pdp__cond{position:sticky;top:calc(var(--header-h,70px) + 62px)}}
+@media (max-width:900px){
+  .pdp{padding:18px 0 30px}
+  .pdp__grid,.pdp__grid--solo{grid-template-columns:1fr}
+  .pdp__title{padding:20px 18px}
+  .pdp__cond,.pdp__info{padding:20px 18px}
+  .pdp__media .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pdp__tabs{gap:.35rem .9rem}
+  .pdp__tabs li+li::before{display:none}
+}
