@@ -835,3 +835,11 @@ table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){whit
 .post__city--quatro-barras{background:#e7e3d9}
 .post__city--sao-jose-dos-pinhais{background:#e0e5eb}
 .post__city~.post__tag{top:42px}
+
+/* Imagens ilustrativas nos cards sem foto e no hero (15/10/2026) */
+.post__media{display:block;position:relative}
+.post__media .post__img{display:block}
+.post__ilus,.hero__ilus{position:absolute;bottom:8px;padding:3px 9px;border-radius:999px;background:rgba(20,30,34,.62);color:#fff;font-size:.66rem;font-weight:600;letter-spacing:.03em;line-height:1.4;pointer-events:none}
+.post__ilus{left:10px}
+.hero__ilus{right:12px;bottom:12px}
+@media(max-width:900px){.hero__ilus{right:8px;bottom:8px}}
