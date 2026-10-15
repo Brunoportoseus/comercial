@@ -176,7 +176,7 @@ html:has(body.menu-open){overflow:hidden}
 @supports not selector(:has(*)){body.menu-open{overflow:hidden}}
 
 /* Barra de acesso rápido — cidades com estoque */
-.quicknav{position:static;background:var(--petrol);
+.quicknav{position:relative;background:var(--petrol);
   border-bottom:1px solid rgba(255,255,255,.10)}
 .quicknav__inner{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;
   overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -194,6 +194,22 @@ html:has(body.menu-open){overflow:hidden}
   .quicknav__label{font-size:.72rem}
   .quicknav a{font-size:.8rem;padding:.3rem .66rem}
 }
+
+/* Setas da barra de cidades: avisam que dá para rolar para o lado */
+.quicknav__arrow{position:absolute;top:0;bottom:0;z-index:2;width:56px;display:none;align-items:center;
+  border:0;margin:0;padding:0 .55rem;cursor:pointer;color:#fff;font:inherit}
+.quicknav__arrow.is-visible{display:flex}
+.quicknav__arrow--next{right:0;justify-content:flex-end;
+  background:linear-gradient(to left,var(--petrol) 55%,rgba(14,58,66,0))}
+.quicknav__arrow--prev{left:0;justify-content:flex-start;
+  background:linear-gradient(to right,var(--petrol) 55%,rgba(14,58,66,0))}
+.quicknav__arrow span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+  border-radius:50%;background:var(--gold);color:#231a06;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+.quicknav__arrow svg{width:14px;height:14px;display:block}
+.quicknav__arrow--next span{animation:qnNudge 1.6s ease-in-out infinite}
+.quicknav__arrow:hover span,.quicknav__arrow:focus-visible span{background:#fff}
+@keyframes qnNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.quicknav__arrow--next span{animation:none}}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;color:#fff;isolation:isolate}

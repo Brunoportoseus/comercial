@@ -101,6 +101,37 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
   }
 
+  /* ---------------- Barra de cidades: setas indicam que dá para rolar ---------------- */
+  (function () {
+    var nav = $(".quicknav"), inner = nav && $(".quicknav__inner", nav);
+    if (!nav || !inner) return;
+    var make = function (dir) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "quicknav__arrow quicknav__arrow--" + dir;
+      b.setAttribute("aria-label", dir === "next" ? "Ver mais cidades" : "Ver cidades anteriores");
+      b.innerHTML = '<span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + (dir === "next" ? "M6 3l5 5-5 5" : "M10 3L5 8l5 5") + '"/></svg></span>';
+      b.addEventListener("click", function () {
+        inner.scrollBy({ left: (dir === "next" ? 1 : -1) * Math.max(160, inner.clientWidth * 0.6), behavior: "smooth" });
+      });
+      nav.appendChild(b);
+      return b;
+    };
+    var prev = make("prev"), next = make("next");
+    var update = function () {
+      var max = inner.scrollWidth - inner.clientWidth, x = Math.round(inner.scrollLeft);
+      var n = nav.getBoundingClientRect(), r = inner.getBoundingClientRect();
+      next.style.right = Math.max(0, n.right - r.right) + "px";
+      prev.style.left = Math.max(0, r.left - n.left) + "px";
+      next.classList.toggle("is-visible", max > 4 && x < max - 4);
+      prev.classList.toggle("is-visible", max > 4 && x > 4);
+    };
+    inner.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    window.addEventListener("load", update);
+    update();
+  })();
+
   /* ---------------- Lightbox / zoom nas fotos da galeria ---------------- */
   (function () {
     var imgs = $$("figure.media img");
