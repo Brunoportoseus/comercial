@@ -426,7 +426,7 @@ table.data tr:last-child td{border-bottom:0}
 .partner{display:flex;flex-direction:column;justify-content:center;gap:.45rem;margin-left:auto;padding:8px 8px 8px 28px;
   border-left:1px solid rgba(255,255,255,.12)}
 .partner__label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a9c0bf}
-.partner__logo{display:block;height:44px;width:auto}
+.partner__logo{display:block;align-self:flex-start;height:44px;width:auto;max-width:100%;object-fit:contain}
 @media (max-width:700px){.footer__brokers .partner{margin-left:0;padding:14px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.12)}}
 .footer__legal{border-top:1px solid rgba(255,255,255,.12);padding:16px 0;font-size:.8rem;color:#93aeac;
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
