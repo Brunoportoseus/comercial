@@ -644,6 +644,10 @@ textarea{resize:vertical;min-height:80px}
 .benefits span{font-size:.87rem;color:var(--muted)}
 
 /* ---------- Form: detalhes opcionais ---------- */
+.qualify{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg-soft);margin:0;
+  padding:.35rem .9rem .9rem;display:grid;gap:12px;min-width:0}
+.qualify>legend{padding:0 .35rem;font-weight:700;font-size:.9rem;color:var(--green-600)}
+.qualify>legend small{font-weight:500;color:var(--muted)}
 .form-more{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg-soft)}
 .form-more>summary{cursor:pointer;padding:.7rem .9rem;font-weight:600;font-size:.9rem;color:var(--green-600);
   list-style:none;display:flex;align-items:center;gap:.4rem}

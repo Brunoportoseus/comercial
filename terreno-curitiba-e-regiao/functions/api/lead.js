@@ -43,6 +43,7 @@ const LEADS_SCHEMA = `CREATE TABLE IF NOT EXISTS leads (
   entrada_informada REAL, faixa_parcela TEXT, simulacao_financeira TEXT, potencial_construtivo TEXT,
   lead_source_tool TEXT, consentimento_texto TEXT,
   ga_client_id TEXT, ga_session_id TEXT, ga_eventos TEXT,
+  faixa_entrada TEXT, fbclid TEXT, fbc TEXT, fbp TEXT,
   ip TEXT, user_agent TEXT, raw TEXT
 )`;
 
@@ -62,6 +63,10 @@ const LEADS_NEW_COLUMNS = [
   "ALTER TABLE leads ADD COLUMN ga_client_id TEXT",
   "ALTER TABLE leads ADD COLUMN ga_session_id TEXT",
   "ALTER TABLE leads ADD COLUMN ga_eventos TEXT",
+  "ALTER TABLE leads ADD COLUMN faixa_entrada TEXT",
+  "ALTER TABLE leads ADD COLUMN fbclid TEXT",
+  "ALTER TABLE leads ADD COLUMN fbc TEXT",
+  "ALTER TABLE leads ADD COLUMN fbp TEXT",
 ];
 
 async function ensureLeadsTable(db) {
@@ -95,10 +100,12 @@ async function sendLeadEmail(env, lead) {
     ["Nome", lead.nome], ["Telefone", lead.telefone], ["E-mail", lead.email],
     ["Cidade", lead.cidade], ["Empreendimento", lead.empreendimento_interesse],
     ["Objetivo", lead.objetivo], ["Faixa de investimento", lead.faixa_investimento],
-    ["Forma de pagamento", lead.forma_pagamento], ["Prazo", lead.prazo], ["Região", lead.regiao],
+    ["Forma de pagamento", lead.forma_pagamento], ["Entrada disponível", lead.faixa_entrada],
+    ["Parcela mensal", lead.faixa_parcela], ["Prazo", lead.prazo], ["Região", lead.regiao],
     ["Observações", lead.observacoes], ["Página de origem", lead.pagina_origem],
     ["Campanha (UTM)", [lead.utm_source, lead.utm_medium, lead.utm_campaign].filter(Boolean).join(" / ")],
     ["Veio do Google Ads", lead.gclid ? "Sim (clique rastreado)" : ""],
+    ["Veio do Meta Ads", lead.fbclid ? "Sim (clique rastreado)" : ""],
     ["Enviado em", lead.criado_em],
     ["ID do lead (D1)", lead.id ? "#" + lead.id : ""],
   ];
@@ -137,8 +144,9 @@ function insertLead(db, lead, body) {
         utm_source,utm_medium,utm_campaign,utm_content,utm_term,gclid,
         entrada_informada,faixa_parcela,simulacao_financeira,potencial_construtivo,
         lead_source_tool,consentimento_texto,ga_client_id,ga_session_id,
+        faixa_entrada,fbclid,fbc,fbp,
         ip,user_agent,raw)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
     .bind(
       lead.criado_em, lead.nome, lead.telefone, lead.email, lead.cidade, lead.objetivo,
@@ -147,6 +155,7 @@ function insertLead(db, lead, body) {
       lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content, lead.utm_term,
       lead.gclid, lead.entrada_informada, lead.faixa_parcela, lead.simulacao_financeira, lead.potencial_construtivo,
       lead.lead_source_tool, lead.consentimento_texto, lead.ga_client_id, lead.ga_session_id,
+      lead.faixa_entrada, lead.fbclid, lead.fbc, lead.fbp,
       lead.ip, lead.user_agent, JSON.stringify(body)
     )
     .run();
@@ -170,6 +179,9 @@ async function notifyWhatsApp(env, lead) {
     lead.cidade ? "📍 " + lead.cidade : "",
     lead.objetivo ? "🎯 " + lead.objetivo : "",
     lead.faixa_investimento ? "💰 " + lead.faixa_investimento : "",
+    lead.faixa_entrada ? "💵 Entrada: " + lead.faixa_entrada : "",
+    lead.faixa_parcela ? "📆 Parcela: " + lead.faixa_parcela : "",
+    lead.prazo ? "⏱️ Prazo: " + lead.prazo : "",
     utm ? "📊 " + utm : "",
   ].filter(Boolean);
   const url = "https://api.callmebot.com/whatsapp.php?phone=" + phone +
@@ -242,6 +254,12 @@ export async function onRequestPost(context) {
     // Validados no formato do GA para nunca repassar texto livre ao GA4.
     ga_client_id: /^\d{1,12}\.\d{1,12}$/.test(String(body.ga_client_id || "")) ? String(body.ga_client_id) : "",
     ga_session_id: /^\d{1,12}$/.test(String(body.ga_session_id || "")) ? String(body.ga_session_id) : "",
+    // Qualificação do briefing de Meta Ads (quanto tem de entrada) e IDs do Meta (clique e navegador, só com
+    // consentimento de cookies). Validados no formato do Meta para nunca repassar texto livre.
+    faixa_entrada: String(body.faixa_entrada || "").trim().slice(0, 60),
+    fbclid: /^[\w-]{1,300}$/.test(String(body.fbclid || "")) ? String(body.fbclid) : "",
+    fbc: /^fb\.\d\.\d{10,13}\.[\w-]{1,300}$/.test(String(body.fbc || "")) ? String(body.fbc) : "",
+    fbp: /^fb\.\d\.\d{10,13}\.\d{1,20}$/.test(String(body.fbp || "")) ? String(body.fbp) : "",
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: request.headers.get("User-Agent") || "",
   };

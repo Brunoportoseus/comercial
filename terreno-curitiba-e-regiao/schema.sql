@@ -13,6 +13,9 @@
 --   WHERE id=42;
 -- Depois exporte para o Google Ads em /api/leads-export?token=SEU_TOKEN&format=gads
 --
+-- faixa_entrada: resposta "Quanto você dispõe para a entrada?" (briefing Meta Ads); faixa_parcela, prazo e objetivo
+--   guardam as outras três perguntas de qualificação. fbclid/fbc/fbp: IDs do Meta (só com consentimento de cookies).
+--   Em bancos já existentes a função /api/lead cria as colunas novas sozinha (ALTER TABLE) na 1ª gravação.
 -- ga_client_id / ga_session_id: IDs do GA4 do visitante que aceitou cookies (vazios caso contrário).
 -- ga_eventos: eventos já enviados ao GA4 por /api/leads-qualify (ex.: 'qualify_lead'), para não duplicar.
 
@@ -50,6 +53,10 @@ CREATE TABLE IF NOT EXISTS leads (
   ga_client_id TEXT,
   ga_session_id TEXT,
   ga_eventos TEXT,
+  faixa_entrada TEXT,
+  fbclid TEXT,
+  fbc TEXT,
+  fbp TEXT,
   ip TEXT,
   user_agent TEXT,
   raw TEXT

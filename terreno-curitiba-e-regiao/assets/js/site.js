@@ -271,6 +271,23 @@
     return v;
   }
 
+  // Meta Ads: clique (fbclid -> fbc) e navegador (_fbp). Servem para o servidor devolver conversões ao Meta (CAPI) e
+  // cruzar o lead com o anúncio. Como os IDs do GA4, só vão junto do lead se o visitante aceitou os cookies.
+  function captureFbIds() {
+    var out = {}, qs = new URLSearchParams(location.search), id = qs.get("fbclid");
+    try {
+      if (id) sessionStorage.setItem("tat_fb", JSON.stringify({ fbclid: id, fbc: "fb.1." + Date.now() + "." + id }));
+      var saved = JSON.parse(sessionStorage.getItem("tat_fb") || "null");
+      if (saved) { out.fbclid = saved.fbclid; out.fbc = saved.fbc; }
+    } catch (e) {}
+    if (CFG.requireCookieConsent && getConsent() !== "accepted") return {};
+    var jar = {};
+    document.cookie.split(/;\s*/).forEach(function (kv) { var i = kv.indexOf("="); if (i > 0) jar[kv.slice(0, i)] = kv.slice(i + 1); });
+    if (jar._fbc) out.fbc = decodeURIComponent(jar._fbc);
+    if (jar._fbp) out.fbp = decodeURIComponent(jar._fbp);
+    return out;
+  }
+
   // IDs do GA4 do visitante (cookies _ga e _ga_<id>), enviados junto com o lead para o servidor devolver ao GA4
   // o estágio "qualificado/fechado" (Measurement Protocol, ver functions/api/leads-qualify.js). Só com consentimento
   // de cookies: sem aceite, ou sem os cookies, não vai nada.
@@ -341,8 +358,39 @@
     return v.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
   }
 
+  // Perguntas de qualificação (briefing Meta Ads): entrada, parcela, prazo e finalidade, visíveis e opcionais.
+  // "prazo" e "objetivo" já existem em "mais detalhes": o campo é movido para o bloco e ganha as opções do briefing.
+  var QUAL = [
+    { name: "faixa_entrada", label: "Quanto você dispõe para a entrada?", opts: ["Até R$ 6 mil", "R$ 6–10 mil", "R$ 10–20 mil", "Acima de R$ 20 mil"] },
+    { name: "faixa_parcela", label: "Qual parcela mensal você procura?", opts: ["Até R$ 1 mil", "R$ 1–1,5 mil", "R$ 1,5–2 mil", "Acima de R$ 2 mil"] },
+    { name: "prazo", label: "Prazo para comprar", opts: ["Até 3 meses", "3–6 meses", "Somente pesquisando"] },
+    { name: "objetivo", label: "Finalidade", opts: ["Construir para morar", "Investimento", "Ainda indefinida"] }
+  ];
+  function buildQualify(form) {
+    if ($(".qualify", form)) return;
+    var anchor = $(".consent", form); if (!anchor) return;
+    var box = document.createElement("fieldset"); box.className = "qualify";
+    box.innerHTML = '<legend>Ajude o corretor a trazer a melhor opção <small>(opcional)</small></legend>';
+    var row = null;
+    QUAL.forEach(function (q, i) {
+      var sel = $("[name=" + q.name + "]", form), field;
+      if (sel) { field = sel.closest(".field"); while (sel.firstChild) sel.removeChild(sel.firstChild); }
+      else {
+        field = document.createElement("div"); field.className = "field";
+        field.innerHTML = '<label></label><select name="' + q.name + '"></select>'; sel = $("select", field);
+      }
+      var lab = $("label", field); if (lab) lab.textContent = q.label;
+      var o0 = document.createElement("option"); o0.value = ""; o0.textContent = "Selecione"; sel.appendChild(o0);
+      q.opts.forEach(function (t) { var o = document.createElement("option"); o.value = t; o.textContent = t; sel.appendChild(o); });
+      if (i % 2 === 0) { row = document.createElement("div"); row.className = "row"; box.appendChild(row); }
+      row.appendChild(field);
+    });
+    anchor.parentNode.insertBefore(box, anchor);
+  }
+
   // aplica em todos os formulários com class .lead-form
   $$(".lead-form").forEach(function (form) {
+    buildQualify(form);
     var tel = $("[name=telefone]", form);
     if (tel) tel.addEventListener("input", function () { tel.value = maskPhone(tel.value); });
 
@@ -401,9 +449,11 @@
         else data[el.name] = el.value;
       });
       if (form.closest("#leadModal")) Object.assign(data, modalCtx); // só o modal herda a origem do clique
+      var selParcela = $("[name=faixa_parcela]", form); if (selParcela && selParcela.value) data.faixa_parcela = selParcela.value; // a resposta do formulário vale mais que a do assistente
       Object.assign(data, captureUTM());
       data.gclid = captureGCLID();
       Object.assign(data, captureGaIds());
+      Object.assign(data, captureFbIds());
       data.pagina_origem = location.pathname + location.search;
       data.url_completa = location.href;
       data.referrer = document.referrer || "";
@@ -416,6 +466,7 @@
           interesse_form: data.empreendimento_interesse || "", // valor bruto do campo (pode ser "Quero comparar" ou uma cidade)
           form_location: form.closest("#leadModal") ? "modal" : "pagina",
           lead_source_tool: data.lead_source_tool || "", faixa_parcela: data.faixa_parcela || "",
+          faixa_entrada: data.faixa_entrada || "", prazo_compra: data.prazo || "", finalidade: data.objetivo || "",
           cta_location: data.cta_location || "", cta_text: data.cta_text || ""
         };
         if (!success) {
