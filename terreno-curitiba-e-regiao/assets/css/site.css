@@ -822,3 +822,16 @@ table.data--cluster td:nth-child(n+3),table.data--cluster th:nth-child(n+3){whit
   .pdp__tabs{gap:.35rem .9rem}
   .pdp__tabs li+li::before{display:none}
 }
+
+/* Tarja da cidade nos cards de empreendimento (15/10/2026) */
+.post__city{display:block;padding:7px 20px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;color:#3d4a4e;background:#e6e8e8;border-bottom:1px solid rgba(30,42,46,.1)}
+.post__city--almirante-tamandare{background:#e9e6df}
+.post__city--araucaria{background:#e3e7ea}
+.post__city--campo-largo{background:#ece4dc}
+.post__city--curitiba{background:#e1e4e6}
+.post__city--fazenda-rio-grande{background:#e8e8e0}
+.post__city--pinhais{background:#e5e1e6}
+.post__city--piraquara{background:#dfe6e4}
+.post__city--quatro-barras{background:#e7e3d9}
+.post__city--sao-jose-dos-pinhais{background:#e0e5eb}
+.post__city~.post__tag{top:42px}
