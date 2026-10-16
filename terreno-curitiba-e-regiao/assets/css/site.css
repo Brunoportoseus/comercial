@@ -375,26 +375,37 @@ table.data tr:last-child td{border-bottom:0}
 .post__body h3{font-size:1.1rem;color:var(--petrol);margin-bottom:.4rem}
 .post__excerpt{color:var(--muted);font-size:.93rem;margin:0 0 .8rem}
 .post__more{margin-top:auto;font-weight:700;color:var(--green-600);font-size:.9rem}
-/* ---- Card de empreendimento: condições comerciais (entrada > parcela > valor total) ---- */
-.post__price{margin:.2rem 0 1rem;padding:12px;background:var(--green-050);border-radius:var(--radius-sm);margin-top:auto}
-.post__terms{display:flex;flex-wrap:wrap;gap:8px;margin:0}
-.post__term{flex:1 1 128px;min-width:0;margin:0;padding:10px 12px;background:#fff;border:1px solid #cfe2d4;border-radius:8px}
-.post__term dt{font-family:var(--font-body);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.3;text-wrap:balance}
-.post__term dd{margin:.25rem 0 0;font-family:var(--font-head);font-weight:800;font-size:1.15rem;line-height:1.2;color:var(--petrol);white-space:nowrap;font-variant-numeric:tabular-nums}
-.post__term dd small{display:block;font-family:var(--font-body);font-size:.74rem;font-weight:600;color:var(--muted);margin-top:.1rem}
-@media (max-width:520px){.post__term dd small{display:inline;margin-left:.15rem}}
-.post__total{margin:.65rem 2px 0;font-size:.82rem;color:var(--muted);line-height:1.35}
-.post__total strong{color:var(--petrol);font-weight:700;white-space:nowrap}
-.post__price:not(:has(.post__total)) .post__term dd{font-size:1.3rem}
-.post .post__more{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:46px;margin-top:0;
-  padding:.65rem 1rem;border-radius:var(--radius-sm);background:var(--green-600);color:#fff;
-  font-family:var(--font-head);font-weight:700;font-size:.95rem;transition:background .15s}
-.post:hover .post__more,.post:focus-visible .post__more{background:var(--petrol)}
-.post:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--radius)}
-.post--emp .post__body{padding:18px 20px 20px}
-.post--emp .post__cat{color:var(--muted);font-weight:600}
-.post--emp .post__body h3{font-size:1.2rem;font-weight:700}
+/* ---- Card de empreendimento: condições comerciais (entrada > parcela > valor à vista) ---- */
+.post--emp{border:1px solid var(--line);border-radius:var(--radius-lg)}
+.post--emp:hover{border-color:var(--gold)}
+.post--emp>.post__img{width:calc(100% - 24px);margin:12px 12px 0;border-radius:12px}
+.post--emp>.post__media{margin:12px 12px 0;border-radius:12px;overflow:hidden}
+.post.post--emp .post__city{top:24px;left:24px;right:auto;padding:6px 12px 6px 30px;border:0;border-radius:999px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.4'/%3E%3C/svg%3E") 9px 50%/14px no-repeat;
+  color:var(--petrol);font-size:.68rem;box-shadow:var(--shadow-sm);position:absolute;z-index:2;width:auto}
+.post.post--emp .post__tag{top:62px;left:24px;right:auto}
+.post--emp .post__body{padding:16px 20px 20px}
+.post--emp .post__cat{color:var(--green-600);font-weight:700}
+.post.post--emp .post__body h3{font-size:1.4rem;font-weight:700;color:var(--petrol);margin-bottom:.35rem}
 .post--emp .post__excerpt{font-weight:400}
+.post__price{margin:.2rem 0 1rem;margin-top:auto}
+.post__terms{display:flex;flex-direction:column;gap:10px;margin:0}
+.post__term{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:14px;align-items:center;margin:0;padding:12px 14px;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm)}
+.post__term::before{content:"";grid-row:1/3;width:44px;height:44px;border-radius:50%;background:#f1f3f3 center/22px no-repeat}
+.post__term--entry::before{background-color:#dcebdf;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.5' y='6.5' width='19' height='11' rx='2'/%3E%3Ccircle cx='12' cy='12' r='2.6'/%3E%3Cpath d='M6 10v.01M18 14v.01'/%3E%3C/svg%3E")}
+.post__term--inst::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E")}
+.post__term--total::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7a1.5 1.5 0 0 1 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 3 12.2z'/%3E%3Ccircle cx='8' cy='8' r='1.3'/%3E%3C/svg%3E")}
+.post__term--entry{background:var(--green-050);border-color:#cfe2d4}
+.post__term dt{font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.3}
+.post__term dd{margin:.15rem 0 0;font-family:var(--font-head);font-weight:700;font-size:1.25rem;line-height:1.2;color:var(--petrol);white-space:nowrap;font-variant-numeric:tabular-nums}
+.post__term--entry dd{font-size:1.7rem;font-weight:800}
+.post__term--total dd{font-size:1.05rem;font-weight:500;color:var(--muted)}
+.post__term dd small{font-family:var(--font-body);font-size:.85rem;font-weight:600;color:var(--muted);margin-left:.1rem}
+.post .post__more{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:48px;margin-top:0;
+  padding:.65rem 1rem;border-radius:999px;background:var(--petrol);color:#fff;
+  font-family:var(--font-head);font-weight:700;font-size:.95rem;transition:background .15s}
+.post:hover .post__more,.post:focus-visible .post__more{background:var(--green-600)}
+.post:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--radius)}
 
 /* ---------- CTA band ---------- */
 .ctaband{background:linear-gradient(120deg,var(--petrol),var(--green-600));color:#fff;border-radius:var(--radius-lg);
