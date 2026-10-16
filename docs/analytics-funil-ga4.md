@@ -29,7 +29,7 @@ Todos passam por `window.trackEvent`, que envia ao `dataLayer` (GTM), ao GA4 (`g
 | Falha | `form_error` | Envio falhou (servidor, validação ou rede) | `status` (HTTP; `0` = rede) e os mesmos de `form_submit` |
 | **Contato** | `whatsapp_click` | Clique em qualquer botão de WhatsApp do site | `location` |
 | Pós-lead | `lead_whatsapp_click` | WhatsApp da tela "Recebemos seus dados" | `lead_id` |
-| Compartilhamento | `share_empreendimento` | Compartilhar pelo WhatsApp, copiar link ou compartilhamento nativo | `share_method`, `share_position`, `page_url` |
+| Compartilhamento | `share_empreendimento` | Compartilhar pelo WhatsApp, copiar link ou compartilhamento nativo | `share_method`, `share_position` (`cartao` = dentro do card "Condições de compra", `bloco` = bloco depois do simulador, `compacto` = antes do formulário), `page_url` |
 | SEO local | `seo_link_click` | Clique em link marcado `data-seo` (páginas `/terrenos/…`, blocos "Encontre pelo seu perfil" e "Compare com outros terrenos") | `seo_origem`, `cluster`, `link_url`, `link_text` |
 | Outros | `phone_click`, `select_faixa` | Clique em telefone; escolha da faixa de investimento no formulário | — |
 

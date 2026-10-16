@@ -852,3 +852,12 @@ h3{letter-spacing:-.012em}
 .hero--wire h1{font-size:clamp(1.85rem,3.5vw,2.75rem);line-height:1.1;letter-spacing:-.024em;font-weight:700}
 @media(max-width:900px){.hero--wire h1{font-size:clamp(1.7rem,7vw,2.1rem);line-height:1.12}}
 body{font-size:17.6px;line-height:1.62}   /* Manrope tem altura-x menor que a Inter: leve compensação para manter a leitura */
+
+/* Compartilhar dentro do card "Condições de compra" (16/10/2026) */
+.share--card{border-radius:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px;max-width:none;margin:14px 0 0;padding:14px 0 0;border-top:1px solid var(--line);text-align:left}
+.share--card .share__text{flex:1 0 100%;padding:0}
+.share--card .share__title{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.share--card .share__actions{display:flex;flex:1 1 auto;gap:8px;min-width:0}
+.share--card .share__btn{flex:1 1 0;min-height:42px;padding:.55rem .5rem;font-size:.88rem}
+.share--card .share__more{position:static;flex:0 0 auto;width:42px;height:42px;border:1.5px solid var(--line);border-radius:999px;background:#fff}
+.share--card.share--native .share__text{padding:0}
