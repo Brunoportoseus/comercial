@@ -853,11 +853,13 @@ h3{letter-spacing:-.012em}
 @media(max-width:900px){.hero--wire h1{font-size:clamp(1.7rem,7vw,2.1rem);line-height:1.12}}
 body{font-size:17.6px;line-height:1.62}   /* Manrope tem altura-x menor que a Inter: leve compensação para manter a leitura */
 
-/* Compartilhar dentro do card "Condições de compra" (16/10/2026) */
-.share--card{border-radius:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px;max-width:none;margin:14px 0 0;padding:14px 0 0;border-top:1px solid var(--line);text-align:left}
-.share--card .share__text{flex:1 0 100%;padding:0}
-.share--card .share__title{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--muted)}
-.share--card .share__actions{display:flex;flex:1 1 auto;gap:8px;min-width:0}
-.share--card .share__btn{flex:1 1 0;min-height:42px;padding:.55rem .5rem;font-size:.88rem}
-.share--card .share__more{position:static;flex:0 0 auto;width:42px;height:42px;border:1.5px solid var(--line);border-radius:999px;background:#fff}
-.share--card.share--native .share__text{padding:0}
+/* Link "Compartilhar" no card "Condições de compra" (16/10/2026) */
+.share-link{position:relative;display:flex;justify-content:flex-end;margin:10px 0 0}
+.share-link__btn{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .15rem;border:0;background:none;font:inherit;font-weight:600;font-size:.95rem;color:var(--gold-600);cursor:pointer}
+.share-link__btn:hover{text-decoration:underline}
+.share-link__btn svg{width:1.15em;height:1.15em;flex:0 0 auto}
+.share-link__menu{position:absolute;right:0;bottom:calc(100% + 2px);z-index:6;min-width:200px;padding:6px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(14,58,66,.18)}
+.share-link__menu[hidden]{display:none}
+.share-link__item{display:flex;align-items:center;gap:.6rem;width:100%;padding:.6rem .7rem;border:0;border-radius:8px;background:none;font:inherit;font-size:.92rem;font-weight:600;color:var(--ink);text-align:left;text-decoration:none;cursor:pointer}
+.share-link__item:hover{background:var(--petrol-050);text-decoration:none}
+.share-link__item svg{width:1.2em;height:1.2em;flex:0 0 auto}

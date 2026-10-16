@@ -630,17 +630,17 @@
 
     var seq = 0;
     function build(position) {
-      var card = position === "cartao";
-      var compact = position === "compacto" || card;
+      if (position === "cartao") return buildLink(position);
+      var compact = position === "compacto";
       var id = "share-" + (++seq);
       var box = document.createElement("div");
-      var native = canNative && position !== "compacto"; // compartilhamento nativo no bloco principal e no card
-      box.className = "share" + (compact ? " share--compact" : "") + (card ? " share--card" : "") + (native ? " share--native" : "");
+      var native = canNative && !compact; // compartilhamento nativo só no bloco principal
+      box.className = "share" + (compact ? " share--compact" : "") + (native ? " share--native" : "");
       box.setAttribute("role", "group");
       box.setAttribute("aria-labelledby", id);
       box.innerHTML =
         '<div class="share__text"><p class="share__title" id="' + id + '">' +
-        (card ? "Compartilhar este empreendimento" : compact ? "Compartilhe este empreendimento" : "Gostou deste empreendimento?") + "</p>" +
+        (compact ? "Compartilhe este empreendimento" : "Gostou deste empreendimento?") + "</p>" +
         (compact ? "" : '<p class="share__lead">Compartilhe com alguém que também pode se interessar.</p>') + "</div>" +
         '<div class="share__actions">' +
         '<a class="btn btn--wa share__btn" target="_blank" rel="noopener"><span class="share__ico" data-slot="wa"></span><span>WhatsApp</span></a>' +
@@ -674,6 +674,53 @@
         navigator.share({ title: name, text: text + "\nAchei interessante e resolvi te enviar.", url: pageUrl })
           .then(function () { track("native_share", position); })
           .catch(function () { /* cancelado pelo usuário */ });
+      });
+      return box;
+    }
+
+    // Link "Compartilhar" (ícone + texto) para o card "Condições de compra": no celular abre o
+    // compartilhamento do aparelho; no computador, um menu com WhatsApp e Copiar link.
+    function buildLink(position) {
+      var box = document.createElement("div");
+      box.className = "share-link";
+      box.innerHTML =
+        '<button type="button" class="share-link__btn" aria-haspopup="true" aria-expanded="false" aria-label="Compartilhar este empreendimento">' +
+        ICON_SHARE + "<span>Compartilhar</span></button>" +
+        '<div class="share-link__menu" hidden>' +
+        '<a class="share-link__item share-link__wa" target="_blank" rel="noopener"><span data-slot="wa"></span><span>WhatsApp</span></a>' +
+        '<button type="button" class="share-link__item share-link__copy">' + ICON_COPY + '<span class="share__label">Copiar link</span></button>' +
+        "</div>" +
+        '<span class="share__sr" role="status" aria-live="polite"></span>';
+      var btn = $(".share-link__btn", box), menu = $(".share-link__menu", box), sr = $(".share__sr", box), timer;
+      var wa = $(".share-link__wa", box);
+      wa.setAttribute("href", waHref);
+      wa.setAttribute("aria-label", "Compartilhar " + name + " no WhatsApp");
+      var slot = $("[data-slot=wa]", box);
+      if (waIcon) slot.parentNode.replaceChild(waIcon.cloneNode(true), slot); else slot.parentNode.removeChild(slot);
+      wa.addEventListener("click", function () { track("whatsapp", position); close(); });
+
+      function open() { menu.hidden = false; btn.setAttribute("aria-expanded", "true"); }
+      function close() { menu.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+      btn.addEventListener("click", function () {
+        if (canNative) {
+          navigator.share({ title: name, text: text + "\nAchei interessante e resolvi te enviar.", url: pageUrl })
+            .then(function () { track("native_share", position); })
+            .catch(function () { /* cancelado pelo usuário */ });
+          return;
+        }
+        if (menu.hidden) open(); else close();
+      });
+      document.addEventListener("click", function (e) { if (!menu.hidden && !box.contains(e.target)) close(); });
+      box.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { close(); btn.focus(); } });
+
+      var copyBtn = $(".share-link__copy", box), label = $(".share__label", copyBtn);
+      copyBtn.addEventListener("click", function () {
+        copyText(pageUrl).then(function () {
+          track("copy_link", position);
+          label.textContent = "✓ Link copiado!"; sr.textContent = "Link copiado";
+          clearTimeout(timer);
+          timer = setTimeout(function () { label.textContent = "Copiar link"; sr.textContent = ""; close(); }, 1400);
+        }).catch(function () { window.prompt("Copie o link:", pageUrl); });
       });
       return box;
     }
