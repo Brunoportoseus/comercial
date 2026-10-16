@@ -346,10 +346,10 @@ def cards_html(items, cl):
         def row(k, lbl, val):
             return f'<div class="post__term post__term--{k}"><dt>{lbl}</dt><dd>{val}</dd></div>'
         terms = ""
-        if e["entrada"]:
-            terms += row("entry", "Entrada a partir de", f'R$ {e["entrada"]}')
         if e["parcela"]:
             terms += row("inst", "Parcelas a partir de", f'R$ {e["parcela"]}<small>/mês</small>')
+        if e["entrada"]:
+            terms += row("entry", "Entrada a partir de", f'R$ {e["entrada"]}')
         if e["preco"]:
             terms += row("total", "Valor à vista de referência", esc(e["precoDisp"]))
         else:

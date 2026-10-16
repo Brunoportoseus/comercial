@@ -393,13 +393,16 @@ table.data tr:last-child td{border-bottom:0}
 .post__term{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:14px;align-items:center;margin:0;padding:12px 14px;
   background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm)}
 .post__term::before{content:"";grid-row:1/3;width:44px;height:44px;border-radius:50%;background:#f1f3f3 center/22px no-repeat}
-.post__term--entry::before{background-color:#dcebdf;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.5' y='6.5' width='19' height='11' rx='2'/%3E%3Ccircle cx='12' cy='12' r='2.6'/%3E%3Cpath d='M6 10v.01M18 14v.01'/%3E%3C/svg%3E")}
-.post__term--inst::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E")}
+.post__term--entry::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17'/%3E%3Cpath d='m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9'/%3E%3Cpath d='m2 16 6 6'/%3E%3Ccircle cx='16' cy='9' r='2.9'/%3E%3Ccircle cx='6' cy='5' r='3'/%3E%3C/svg%3E")}
+.post__term--inst::before{background-color:#dcebdf;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E")}
 .post__term--total::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7a1.5 1.5 0 0 1 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 3 12.2z'/%3E%3Ccircle cx='8' cy='8' r='1.3'/%3E%3C/svg%3E")}
-.post__term--entry{background:var(--green-050);border-color:#cfe2d4}
+.post__term--inst,.post__term--entry:first-child{background:var(--green-050);border-color:#cfe2d4}
+.post__term--entry:first-child::before{background-color:#dcebdf}
 .post__term dt{font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.3}
 .post__term dd{margin:.15rem 0 0;font-family:var(--font-head);font-weight:700;font-size:1.25rem;line-height:1.2;color:var(--petrol);white-space:nowrap;font-variant-numeric:tabular-nums}
-.post__term--entry dd{font-size:1.7rem;font-weight:800}
+.post__term--entry dd{font-size:1.5rem;font-weight:700}
+.post__term--inst dd,.post__term--entry:first-child dd{font-size:1.7rem;font-weight:800}
+.post__term--inst dd small{font-size:1.05rem;font-weight:600;color:var(--petrol)}
 .post__term--total dd{font-size:1.05rem;font-weight:500;color:var(--muted)}
 .post__term dd small{font-family:var(--font-body);font-size:.85rem;font-weight:600;color:var(--muted);margin-left:.1rem}
 .post .post__more{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:48px;margin-top:0;
@@ -413,9 +416,12 @@ table.data tr:last-child td{border-bottom:0}
   .post__term{grid-template-columns:38px minmax(0,1fr);column-gap:10px;padding:12px 10px}
   .post__term::before{width:38px;height:38px;background-size:20px}
   .post__term dd{font-size:1.1rem}
-  .post__term--entry dd{font-size:1.4rem}
+  .post__term--entry dd{font-size:1.3rem}
+  .post__term--inst dd,.post__term--entry:first-child dd{font-size:1.25rem}
+  .post__term--inst dd small{font-size:.85rem}
   .post__term--total dd{font-size:1rem}
 }
+@media (max-width:340px){.post__term--inst dd,.post__term--entry:first-child dd{font-size:1.12rem}.post__term--entry dd{font-size:1.15rem}}
 
 /* ---------- CTA band ---------- */
 .ctaband{background:linear-gradient(120deg,var(--petrol),var(--green-600));color:#fff;border-radius:var(--radius-lg);
