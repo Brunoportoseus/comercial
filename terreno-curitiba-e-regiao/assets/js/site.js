@@ -574,7 +574,8 @@
     var isEmp = $$(".eyebrow").some(function (e) { return /^Empreendimento\b/.test(e.textContent.trim()); });
     var manual = $("[data-share-property]");
     var interesse = $("#interesse");
-    if (!manual && !(isEmp && interesse)) return;
+    var cond = $(".pdp__cond"); // card "Condições de compra" das páginas de empreendimento
+    if (!manual && !(isEmp && interesse) && !cond) return;
 
     var clean = function (t) { return (t || "").replace(/\s+/g, " ").trim(); };
     var crumb = $(".crumbs [aria-current=\"page\"]");
@@ -629,16 +630,17 @@
 
     var seq = 0;
     function build(position) {
-      var compact = position === "compacto";
+      var card = position === "cartao";
+      var compact = position === "compacto" || card;
       var id = "share-" + (++seq);
       var box = document.createElement("div");
-      var native = canNative && !compact; // compartilhamento nativo só no bloco principal
-      box.className = "share" + (compact ? " share--compact" : "") + (native ? " share--native" : "");
+      var native = canNative && position !== "compacto"; // compartilhamento nativo no bloco principal e no card
+      box.className = "share" + (compact ? " share--compact" : "") + (card ? " share--card" : "") + (native ? " share--native" : "");
       box.setAttribute("role", "group");
       box.setAttribute("aria-labelledby", id);
       box.innerHTML =
         '<div class="share__text"><p class="share__title" id="' + id + '">' +
-        (compact ? "Compartilhe este empreendimento" : "Gostou deste empreendimento?") + "</p>" +
+        (card ? "Compartilhar este empreendimento" : compact ? "Compartilhe este empreendimento" : "Gostou deste empreendimento?") + "</p>" +
         (compact ? "" : '<p class="share__lead">Compartilhe com alguém que também pode se interessar.</p>') + "</div>" +
         '<div class="share__actions">' +
         '<a class="btn btn--wa share__btn" target="_blank" rel="noopener"><span class="share__ico" data-slot="wa"></span><span>WhatsApp</span></a>' +
@@ -683,6 +685,10 @@
     }
 
     if (manual) { manual.appendChild(build("bloco")); return; }
+
+    // 0) versão compacta dentro do card "Condições de compra", logo abaixo dos selos
+    if (cond) cond.appendChild(build("cartao"));
+    if (!(isEmp && interesse)) return;
 
     // 1) bloco completo: depois das informações principais e do CTA/simulador (#empsim);
     //    sem simulador, logo depois da seção com a ficha "Resumo".
