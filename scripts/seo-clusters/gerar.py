@@ -343,10 +343,18 @@ def table_html(items, cl, by_city=False):
 def cards_html(items, cl):
     out = []
     for e in items:
-        preco = (f'<span class="post__entry">Entrada de <strong>R$ {e["entrada"]}</strong></span>' if e["entrada"] else "")
-        preco += (f'<span class="post__inst">parcelas de <strong>R$ {e["parcela"]}</strong>/mês</span>' if e["parcela"] else "")
-        preco += (f'<span class="post__total">Valor total a partir de {esc(e["precoDisp"])}</span>' if e["preco"]
-                  else '<span class="post__total post__total--solo">Preço sob consulta</span>')
+        terms = ""
+        if e["entrada"]:
+            terms += f'<div class="post__term"><dt>Entrada a partir de</dt><dd>R$ {e["entrada"]}</dd></div>'
+        if e["parcela"]:
+            terms += f'<div class="post__term"><dt>Parcelas a partir de</dt><dd>R$ {e["parcela"]}<small>/mês</small></dd></div>'
+        total = esc(e["precoDisp"]) if e["preco"] else "Sob consulta"
+        if terms:
+            preco = (f'<dl class="post__terms">{terms}</dl>'
+                     f'<p class="post__total">Valor à vista de referência: <strong>{total}</strong></p>')
+        else:
+            lbl = "Valor à vista de referência" if e["preco"] else "Condições"
+            preco = f'<dl class="post__terms"><div class="post__term"><dt>{lbl}</dt><dd>{total}</dd></div></dl>'
         out.append(
             f'<a class="post post--emp" href="{e["url"]}" data-seo="cluster_{cl}"><div class="post__body">'
             f'<span class="post__cat">{esc(e["bairro"])} · {esc(e["cidade"])}</span>'

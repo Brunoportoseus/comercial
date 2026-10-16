@@ -373,15 +373,28 @@ table.data tr:last-child td{border-bottom:0}
 .post__body{padding:18px 20px;display:flex;flex-direction:column;flex:1}
 .post__cat{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-600);margin-bottom:.4rem}
 .post__body h3{font-size:1.1rem;color:var(--petrol);margin-bottom:.4rem}
-.post__price{display:flex;flex-direction:column;gap:.15rem;margin:.2rem 0 .8rem}
-.post__entry{color:var(--petrol);font-size:.95rem}
-.post__entry strong{font-size:1.35rem;font-weight:800;line-height:1.2}
-.post__inst{color:var(--petrol);font-size:.95rem}
-.post__inst strong{font-size:1.05rem;font-weight:700}
-.post__total{color:var(--muted);font-size:.82rem;margin-top:.15rem}
-.post__total--solo{color:var(--petrol);font-size:1rem;font-weight:700}
 .post__excerpt{color:var(--muted);font-size:.93rem;margin:0 0 .8rem}
 .post__more{margin-top:auto;font-weight:700;color:var(--green-600);font-size:.9rem}
+/* ---- Card de empreendimento: condições comerciais (entrada > parcela > valor total) ---- */
+.post__price{margin:.2rem 0 1rem;padding:12px;background:var(--green-050);border-radius:var(--radius-sm);margin-top:auto}
+.post__terms{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.post__term{flex:1 1 128px;min-width:0;margin:0;padding:10px 12px;background:#fff;border:1px solid #cfe2d4;border-radius:8px}
+.post__term dt{font-family:var(--font-body);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.3;text-wrap:balance}
+.post__term dd{margin:.25rem 0 0;font-family:var(--font-head);font-weight:800;font-size:1.15rem;line-height:1.2;color:var(--petrol);white-space:nowrap;font-variant-numeric:tabular-nums}
+.post__term dd small{display:block;font-family:var(--font-body);font-size:.74rem;font-weight:600;color:var(--muted);margin-top:.1rem}
+@media (max-width:520px){.post__term dd small{display:inline;margin-left:.15rem}}
+.post__total{margin:.65rem 2px 0;font-size:.82rem;color:var(--muted);line-height:1.35}
+.post__total strong{color:var(--petrol);font-weight:700;white-space:nowrap}
+.post__price:not(:has(.post__total)) .post__term dd{font-size:1.3rem}
+.post .post__more{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:46px;margin-top:0;
+  padding:.65rem 1rem;border-radius:var(--radius-sm);background:var(--green-600);color:#fff;
+  font-family:var(--font-head);font-weight:700;font-size:.95rem;transition:background .15s}
+.post:hover .post__more,.post:focus-visible .post__more{background:var(--petrol)}
+.post:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--radius)}
+.post--emp .post__body{padding:18px 20px 20px}
+.post--emp .post__cat{color:var(--muted);font-weight:600}
+.post--emp .post__body h3{font-size:1.2rem;font-weight:700}
+.post--emp .post__excerpt{font-weight:400}
 
 /* ---------- CTA band ---------- */
 .ctaband{background:linear-gradient(120deg,var(--petrol),var(--green-600));color:#fff;border-radius:var(--radius-lg);
