@@ -362,7 +362,9 @@ def cards_html(items, cl):
             f'<p class="post__excerpt">{esc(e["tipo"])} · {esc(e["metragem"])}</p>'
             f'<div class="post__price">{preco}</div>'
             f'<span class="post__more">Ver empreendimento →</span></div></a>')
-    return f'<div class="cluster-cards">{"".join(out)}</div>'
+    return (f'<div class="cluster-cards">{"".join(out)}</div>'
+            '<p class="post-note">Condições informadas pelos empreendimentos. Valores e prazos sujeitos a correção monetária, '
+            'análise de crédito, disponibilidade e alteração sem aviso. Confirme as condições vigentes antes de decidir.</p>')
 
 
 def related_html(c):
