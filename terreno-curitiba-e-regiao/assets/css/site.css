@@ -382,7 +382,8 @@ table.data tr:last-child td{border-bottom:0}
 .post--emp>.post__media{margin:12px 12px 0;border-radius:12px;overflow:hidden}
 .post.post--emp .post__city{top:24px;left:24px;right:auto;padding:6px 12px 6px 30px;border:0;border-radius:999px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23356f45' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.4'/%3E%3C/svg%3E") 9px 50%/14px no-repeat;
   color:var(--petrol);font-size:.68rem;box-shadow:var(--shadow-sm);position:absolute;z-index:2;width:auto}
-.post.post--emp .post__tag{top:62px;left:24px;right:auto}
+.post.post--emp .post__tag{top:14px;right:14px;left:auto}
+.post.post--emp .post__city~.post__tag{top:62px;left:24px;right:auto}
 .post--emp .post__body{padding:16px 20px 20px}
 .post--emp .post__cat{color:var(--green-600);font-weight:700}
 .post.post--emp .post__body h3{font-size:1.4rem;font-weight:700;color:var(--petrol);margin-bottom:.35rem}
@@ -406,6 +407,14 @@ table.data tr:last-child td{border-bottom:0}
   font-family:var(--font-head);font-weight:700;font-size:.95rem;transition:background .15s}
 .post:hover .post__more,.post:focus-visible .post__more{background:var(--green-600)}
 .post:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:var(--radius)}
+@media (max-width:380px){
+  .post--emp .post__body{padding:14px 16px 18px}
+  .post__term{grid-template-columns:38px minmax(0,1fr);column-gap:10px;padding:12px 10px}
+  .post__term::before{width:38px;height:38px;background-size:20px}
+  .post__term dd{font-size:1.1rem}
+  .post__term--entry dd{font-size:1.4rem}
+  .post__term--total dd{font-size:1rem}
+}
 
 /* ---------- CTA band ---------- */
 .ctaband{background:linear-gradient(120deg,var(--petrol),var(--green-600));color:#fff;border-radius:var(--radius-lg);
