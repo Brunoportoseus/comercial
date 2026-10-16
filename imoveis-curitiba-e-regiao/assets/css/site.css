@@ -374,6 +374,13 @@ table.data tr:last-child td{border-bottom:0}
 .post__body{padding:18px 20px;display:flex;flex-direction:column;flex:1}
 .post__cat{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-600);margin-bottom:.4rem}
 .post__body h3{font-size:1.1rem;color:var(--petrol);margin-bottom:.4rem}
+.post__price{display:flex;flex-direction:column;gap:.15rem;margin:.2rem 0 .8rem}
+.post__entry{color:var(--petrol);font-size:.95rem}
+.post__entry strong{font-size:1.35rem;font-weight:800;line-height:1.2}
+.post__inst{color:var(--petrol);font-size:.95rem}
+.post__inst strong{font-size:1.05rem;font-weight:700}
+.post__total{color:var(--muted);font-size:.82rem;margin-top:.15rem}
+.post__total--solo{color:var(--petrol);font-size:1rem;font-weight:700}
 .post__excerpt{color:var(--muted);font-size:.93rem;margin:0 0 .8rem}
 .post__more{margin-top:auto;font-weight:700;color:var(--green-600);font-size:.9rem}
 
