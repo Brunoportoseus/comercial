@@ -343,17 +343,16 @@ def table_html(items, cl, by_city=False):
 def cards_html(items, cl):
     out = []
     for e in items:
-        extra = ""
-        if e["entrada"] and e["parcela"]:
-            extra = (f'<br><span style="color:var(--muted);font-size:.85rem">Entrada de R$ {e["entrada"]} · '
-                     f'parcelas de R$ {e["parcela"]}/mês</span>')
-        preco = f'A partir de {esc(e["precoDisp"])}' if e["preco"] else "Preço sob consulta"
+        preco = (f'<span class="post__entry">Entrada de <strong>R$ {e["entrada"]}</strong></span>' if e["entrada"] else "")
+        preco += (f'<span class="post__inst">parcelas de <strong>R$ {e["parcela"]}</strong>/mês</span>' if e["parcela"] else "")
+        preco += (f'<span class="post__total">Valor total a partir de {esc(e["precoDisp"])}</span>' if e["preco"]
+                  else '<span class="post__total post__total--solo">Preço sob consulta</span>')
         out.append(
             f'<a class="post post--emp" href="{e["url"]}" data-seo="cluster_{cl}"><div class="post__body">'
             f'<span class="post__cat">{esc(e["bairro"])} · {esc(e["cidade"])}</span>'
             f'<h3>{esc(e["nome"])}</h3>'
             f'<p class="post__excerpt">{esc(e["tipo"])} · {esc(e["metragem"])}</p>'
-            f'<p style="margin:.2rem 0 .6rem"><strong>{preco}</strong>{extra}</p>'
+            f'<div class="post__price">{preco}</div>'
             f'<span class="post__more">Ver empreendimento →</span></div></a>')
     return f'<div class="cluster-cards">{"".join(out)}</div>'
 
