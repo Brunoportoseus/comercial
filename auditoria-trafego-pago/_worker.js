@@ -1,5 +1,5 @@
 /**
- * Diagnóstico de Tráfego Pago — Worker
+ * Auditoria de Tráfego Pago — Worker
  *
  * Rotas de API:
  *   POST /api/lead        → grava um lead do formulário de interesse no D1 (público)
@@ -242,7 +242,7 @@ function json(obj, status = 200, extraHeaders = {}) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   BLOG — Diagnóstico de Tráfego Pago
+   BLOG — Auditoria de Tráfego Pago
    ═══════════════════════════════════════════════════════════ */
 
 const CATS = [
@@ -360,16 +360,16 @@ function waFloat() {
   return `<a class="wa" href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20quero%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-ev="whatsapp_float"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8 8 0 0 0 4 14.6L3 20l5.5-1a8 8 0 0 0 11.4-7.3 8 8 0 0 0-2.3-5.4Zm-5.6 12.3a6.6 6.6 0 0 1-3.4-.9l-.24-.15-3.3.62.63-3.2-.16-.26A6.65 6.65 0 1 1 12 18.6Z"/></svg></a>`;
 }
 function bhdr() {
-  return `<a class="skip" href="#conteudo">Pular para o conteúdo</a><header class="bhdr"><div class="wrap in"><a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" width="34" height="34"><div><b>Bruno Porto</b><span>Diagnóstico de Tráfego Pago</span></div></a><nav><a href="/">Início</a><a class="hide-sm" href="/blog">Blog</a><a class="hide-sm" href="/#pacotes">Pacotes</a><a class="cta" href="/#form" data-ev="cta_header">Solicitar diagnóstico</a></nav></div></header>`;
+  return `<a class="skip" href="#conteudo">Pular para o conteúdo</a><header class="bhdr"><div class="wrap in"><a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" width="34" height="34"><div><b>Bruno Porto</b><span>Auditoria de Tráfego Pago</span></div></a><nav><a href="/">Início</a><a class="hide-sm" href="/blog">Blog</a><a class="hide-sm" href="/#pacotes">Pacotes</a><a class="cta" href="/#form" data-ev="cta_header">Solicitar diagnóstico</a></nav></div></header>`;
 }
 function bfoot() {
-  return `<footer class="bfoot"><div class="wrap"><div class="in"><div><b style="color:#fff;font-family:Sora,sans-serif">Diagnóstico de Tráfego Pago</b><div style="font-size:.8rem;margin-top:.25rem">Análise independente · sem comissão sobre mídia</div></div><nav style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="/blog">Blog</a><a href="/#pacotes">Pacotes</a><a href="/#faq">Dúvidas</a><a href="/privacidade/">Privacidade</a><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Bruno Porto</a></nav></div><div class="in" style="margin-top:.9rem;font-size:.86rem"><div>📧 <a href="mailto:bruno@soubrunoporto.com.br">bruno@soubrunoporto.com.br</a> &nbsp;·&nbsp; 📞 <a href="tel:+5541998448989">+55 (41) 99844-8989</a></div></div><div class="legal">© ${new Date().getFullYear()} Midialike LTDA · Curitiba/PR. Análise independente, sem comissão sobre mídia e sem vínculo com agências. As recomendações não constituem garantia de resultado.</div></div></footer>`;
+  return `<footer class="bfoot"><div class="wrap"><div class="in"><div><b style="color:#fff;font-family:Sora,sans-serif">Auditoria de Tráfego Pago</b><div style="font-size:.8rem;margin-top:.25rem">Análise independente · sem comissão sobre mídia</div></div><nav style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="/blog">Blog</a><a href="/#pacotes">Pacotes</a><a href="/#faq">Dúvidas</a><a href="/privacidade/">Privacidade</a><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Bruno Porto</a></nav></div><div class="in" style="margin-top:.9rem;font-size:.86rem"><div>📧 <a href="mailto:bruno@soubrunoporto.com.br">bruno@soubrunoporto.com.br</a> &nbsp;·&nbsp; 📞 <a href="tel:+5541998448989">+55 (41) 99844-8989</a></div></div><div class="legal">© ${new Date().getFullYear()} Midialike LTDA · Curitiba/PR. Análise independente, sem comissão sobre mídia e sem vínculo com agências. As recomendações não constituem garantia de resultado.</div></div></footer>`;
 }
 function shell(o) {
   const ogType = o.ogType || "website";
   const img = o.image ? `<meta property="og:image" content="${esc(o.image)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${esc(o.image)}">` : "";
   const robots = o.noindex ? `<meta name="robots" content="noindex, follow">` : `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">`;
-  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">${robots}<title>${esc(o.title)}</title><meta name="description" content="${esc(o.description)}"><link rel="canonical" href="${esc(o.canonical)}"><meta name="theme-color" content="#0B172A"><meta property="og:type" content="${ogType}"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Diagnóstico de Tráfego Pago"><meta property="og:title" content="${esc(o.title)}"><meta property="og:description" content="${esc(o.description)}"><meta property="og:url" content="${esc(o.canonical)}">${img}<link rel="icon" type="image/x-icon" href="/assets/favicon.ico"><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-latin.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin><link rel="stylesheet" href="/blog.css?v=3">${o.headExtra || ""}</head><body>${bhdr()}<main id="conteudo">${o.body}</main>${bfoot()}${waFloat()}<script>window.dataLayer=window.dataLayer||[];document.addEventListener("click",function(e){var a=e.target.closest("[data-ev]");if(a){try{window.dataLayer.push({event:"bp_"+a.getAttribute("data-ev")});if(window.bpGA)window.bpGA(a.getAttribute("data-ev"));}catch(_){}}});</script><script src="/assets/cookies.js?v=2" defer></script>${o.bodyScript || ""}</body></html>`;
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">${robots}<title>${esc(o.title)}</title><meta name="description" content="${esc(o.description)}"><link rel="canonical" href="${esc(o.canonical)}"><meta name="theme-color" content="#0B172A"><meta property="og:type" content="${ogType}"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Auditoria de Tráfego Pago"><meta property="og:title" content="${esc(o.title)}"><meta property="og:description" content="${esc(o.description)}"><meta property="og:url" content="${esc(o.canonical)}">${img}<link rel="icon" type="image/x-icon" href="/assets/favicon.ico"><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-latin.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin><link rel="stylesheet" href="/blog.css?v=3">${o.headExtra || ""}</head><body>${bhdr()}<main id="conteudo">${o.body}</main>${bfoot()}${waFloat()}<script>window.dataLayer=window.dataLayer||[];document.addEventListener("click",function(e){var a=e.target.closest("[data-ev]");if(a){try{window.dataLayer.push({event:"bp_"+a.getAttribute("data-ev")});if(window.bpGA)window.bpGA(a.getAttribute("data-ev"));}catch(_){}}});</script><script src="/assets/cookies.js?v=2" defer></script>${o.bodyScript || ""}</body></html>`;
 }
 function htmlResp(str, status = 200) {
   return new Response(str, { status, headers: { "Content-Type": "text/html; charset=utf-8" } });
@@ -418,7 +418,7 @@ async function blogIndexPage(env, url) {
   const body = `<section class="wrap blog-hero"><span class="eyebrow">Blog</span><h1>Conteúdos sobre tráfego pago, leads, vendas e rentabilidade</h1><p>Entenda onde suas campanhas podem estar perdendo dinheiro e aprenda a avaliar os resultados do tráfego pago além dos cliques e das métricas das plataformas.</p><div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="q" type="search" placeholder="Qual é a sua dúvida sobre tráfego pago?" aria-label="Buscar no blog"></div>${catsNav("")}</section>${featHtml}${ctaSection()}${list}`;
   const bodyScript = `<script>(function(){var q=document.getElementById("q"),g=document.getElementById("grid"),nr=document.getElementById("noResults");if(!q||!g)return;q.addEventListener("input",function(){var v=q.value.trim().toLowerCase();var n=0;g.querySelectorAll(".card").forEach(function(c){var ok=!v||(c.getAttribute("data-search")||"").indexOf(v)>-1;c.hidden=!ok;if(ok)n++;});if(nr)nr.hidden=n>0;});})();</script>`;
   return htmlResp(shell({
-    title: "Blog · Diagnóstico de Tráfego Pago | Bruno Porto",
+    title: "Blog · Auditoria de Tráfego Pago | Bruno Porto",
     description: "Conteúdos sobre tráfego pago, leads, conversão, vendas e rentabilidade para empresários que investem em Google Ads e Meta Ads e querem avaliar os resultados.",
     canonical: SITE + "/blog", body, bodyScript,
   }));
@@ -437,7 +437,7 @@ async function blogCategoryPage(cat, env, url) {
     { "@type": "ListItem", position: 3, name: catLabel(cat), item: SITE + "/blog/categoria/" + cat },
   ] };
   return htmlResp(shell({
-    title: catLabel(cat) + " · Blog | Diagnóstico de Tráfego Pago",
+    title: catLabel(cat) + " · Blog | Auditoria de Tráfego Pago",
     description: "Artigos sobre " + catLabel(cat).toLowerCase() + " para empresários que investem em tráfego pago e querem avaliar os resultados.",
     canonical: SITE + "/blog/categoria/" + cat, body,
     headExtra: `<script type="application/ld+json">${JSON.stringify(ld)}</script>`,
@@ -450,7 +450,7 @@ async function blogAuthorPage(env, url) {
   const body = `<section class="wrap blog-hero"><nav class="breadcrumb"><a href="/">Início</a> › <a href="/blog">Blog</a> › <span>Autor</span></nav><div class="author-box" style="margin-top:1rem"><img src="/assets/bruno.jpg" alt="Foto de Bruno Porto" width="72" height="72"><div><h3>Bruno Porto Seus</h3><p>${esc(AUTHOR_BIO)}</p><p style="margin-top:.7rem;display:flex;gap:1rem;flex-wrap:wrap"><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Site oficial</a><a href="https://www.linkedin.com/in/brunoportoseus/" target="_blank" rel="noopener">LinkedIn</a></p></div></div><h2 style="margin:2rem 0 1rem">Artigos publicados</h2>${list}</section>${ctaSection()}`;
   const ld = { "@context": "https://schema.org", "@type": "Person", name: AUTHOR_NAME, url: SITE + "/blog/autor/bruno-porto", description: AUTHOR_BIO, image: SITE + "/assets/bruno.jpg", sameAs: ["https://soubrunoporto.com.br/", "https://www.linkedin.com/in/brunoportoseus/"] };
   return htmlResp(shell({
-    title: "Bruno Porto · Autor | Diagnóstico de Tráfego Pago",
+    title: "Bruno Porto · Autor | Auditoria de Tráfego Pago",
     description: "Bruno Porto — 30+ anos em negócios e mais de duas décadas no digital. Diagnóstico independente de performance em tráfego pago.",
     canonical: SITE + "/blog/autor/bruno-porto", body,
     headExtra: `<script type="application/ld+json">${JSON.stringify(ld)}</script>`,
@@ -535,7 +535,7 @@ async function blogArticlePage(slug, env, url) {
     `<meta property="article:published_time" content="${esc(pub)}"><meta property="article:modified_time" content="${esc(upd)}"><meta property="article:author" content="${esc(AUTHOR_NAME)}">`;
 
   return htmlResp(shell({
-    title: (post.seo_title || post.title) + " | Diagnóstico de Tráfego Pago",
+    title: (post.seo_title || post.title) + " | Auditoria de Tráfego Pago",
     description: post.seo_description || post.excerpt || "",
     canonical, ogType: "article", image: post.cover || SITE + "/assets/og-card.jpg",
     noindex: !!post.noindex, headExtra, body,
@@ -544,7 +544,7 @@ async function blogArticlePage(slug, env, url) {
 
 function notFoundBody() {
   return shell({
-    title: "Página não encontrada | Diagnóstico de Tráfego Pago",
+    title: "Página não encontrada | Auditoria de Tráfego Pago",
     description: "Conteúdo não encontrado.", canonical: SITE + "/blog", noindex: true,
     body: `<section class="wrap blog-hero"><h1>Conteúdo não encontrado</h1><p>O artigo que você procura pode ter sido movido ou ainda não foi publicado.</p><p style="margin-top:1.2rem"><a class="btn btn-primary" href="/blog">Ver todos os conteúdos</a></p></section>`,
   });
