@@ -246,7 +246,7 @@ function json(obj, status = 200, extraHeaders = {}) {
    ═══════════════════════════════════════════════════════════ */
 
 const CATS = [
-  ["diagnostico-de-trafego-pago", "Diagnóstico de tráfego pago"],
+  ["diagnostico-de-trafego-pago", "Auditoria de tráfego pago"],
   ["google-ads", "Google Ads"],
   ["meta-ads", "Meta Ads"],
   ["leads-e-conversao", "Leads e conversão"],
@@ -265,7 +265,7 @@ const catLabel = (s) => CAT_MAP[s] || s || "";
 // Página pilar de cada categoria (para o backlink automático artigo → guia).
 // Categorias ainda sem pilar simplesmente não exibem o aviso.
 const CAT_PILLAR = {
-  "diagnostico-de-trafego-pago": { slug: "guia-completo-do-diagnostico-de-trafego-pago", title: "Guia completo do diagnóstico de tráfego pago" },
+  "diagnostico-de-trafego-pago": { slug: "guia-completo-do-diagnostico-de-trafego-pago", title: "Guia completo da auditoria de tráfego pago" },
   "metricas-e-rentabilidade": { slug: "metricas-de-trafego-pago-guia-para-empresarios", title: "Métricas de tráfego pago: guia para empresários" },
   "leads-e-conversao": { slug: "guia-completo-para-melhorar-a-qualidade-dos-leads", title: "Guia completo para melhorar a qualidade dos leads" },
   "agencias-e-gestao-de-trafego": { slug: "como-avaliar-sua-agencia-de-trafego-pago", title: "Como avaliar sua agência de tráfego pago" },
@@ -282,7 +282,7 @@ const CAT_PILLAR = {
 const SITE = "https://auditoriatrafegopago.com.br";
 const AUTHOR_NAME = "Bruno Porto Seus";
 const AUTHOR_BIO =
-  "Bruno Porto atua há mais de 30 anos em negócios e mais de duas décadas no digital, integrando marketing, vendas, e-commerce e inteligência artificial. Realiza diagnósticos independentes de performance em tráfego pago, analisando toda a jornada — da campanha ao processo comercial — para mostrar onde a empresa perde dinheiro entre o anúncio e a venda.";
+  "Bruno Porto atua há mais de 30 anos em negócios e mais de duas décadas no digital, integrando marketing, vendas, e-commerce e inteligência artificial. Realiza auditorias independentes de performance em tráfego pago, analisando toda a jornada — da campanha ao processo comercial — para mostrar onde a empresa perde dinheiro entre o anúncio e a venda.";
 
 async function ensurePostsTable(env) {
   if (!env.DB) return false;
@@ -352,7 +352,7 @@ const CTAS = {
 };
 function ctaBlock(type) {
   const c = CTAS[type] || CTAS.default;
-  return `<div class="article-cta"><h3>${esc(c.h)}</h3><p>${esc(c.p)}</p><a class="btn btn-primary" href="/#form" data-ev="cta_blog_${esc(type || "default")}">Solicitar diagnóstico</a></div>`;
+  return `<div class="article-cta"><h3>${esc(c.h)}</h3><p>${esc(c.p)}</p><a class="btn btn-primary" href="/#form" data-ev="cta_blog_${esc(type || "default")}">Solicitar auditoria</a></div>`;
 }
 
 /* ---------- shell / layout ---------- */
@@ -360,7 +360,7 @@ function waFloat() {
   return `<a class="wa" href="https://wa.me/5541998448989?text=Ol%C3%A1%20Bruno%2C%20quero%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-ev="whatsapp_float"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8 8 0 0 0 4 14.6L3 20l5.5-1a8 8 0 0 0 11.4-7.3 8 8 0 0 0-2.3-5.4Zm-5.6 12.3a6.6 6.6 0 0 1-3.4-.9l-.24-.15-3.3.62.63-3.2-.16-.26A6.65 6.65 0 1 1 12 18.6Z"/></svg></a>`;
 }
 function bhdr() {
-  return `<a class="skip" href="#conteudo">Pular para o conteúdo</a><header class="bhdr"><div class="wrap in"><a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" width="34" height="34"><div><b>Bruno Porto</b><span>Auditoria de Tráfego Pago</span></div></a><nav><a href="/">Início</a><a class="hide-sm" href="/blog">Blog</a><a class="hide-sm" href="/#pacotes">Pacotes</a><a class="cta" href="/#form" data-ev="cta_header">Solicitar diagnóstico</a></nav></div></header>`;
+  return `<a class="skip" href="#conteudo">Pular para o conteúdo</a><header class="bhdr"><div class="wrap in"><a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" width="34" height="34"><div><b>Bruno Porto</b><span>Auditoria de Tráfego Pago</span></div></a><nav><a href="/">Início</a><a class="hide-sm" href="/blog">Blog</a><a class="hide-sm" href="/#pacotes">Pacotes</a><a class="cta" href="/#form" data-ev="cta_header">Solicitar auditoria</a></nav></div></header>`;
 }
 function bfoot() {
   return `<footer class="bfoot"><div class="wrap"><div class="in"><div><b style="color:#fff;font-family:Sora,sans-serif">Auditoria de Tráfego Pago</b><div style="font-size:.8rem;margin-top:.25rem">Análise independente · sem comissão sobre mídia</div></div><nav style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="/blog">Blog</a><a href="/#pacotes">Pacotes</a><a href="/#faq">Dúvidas</a><a href="/privacidade/">Privacidade</a><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Bruno Porto</a></nav></div><div class="in" style="margin-top:.9rem;font-size:.86rem"><div>📧 <a href="mailto:bruno@soubrunoporto.com.br">bruno@soubrunoporto.com.br</a> &nbsp;·&nbsp; 📞 <a href="tel:+5541998448989">+55 (41) 99844-8989</a></div></div><div class="legal">© ${new Date().getFullYear()} Midialike LTDA · Curitiba/PR. Análise independente, sem comissão sobre mídia e sem vínculo com agências. As recomendações não constituem garantia de resultado.</div></div></footer>`;
@@ -383,7 +383,7 @@ function cardEl(post) {
   return `<article class="card" data-search="${esc((post.title + " " + (post.excerpt || "") + " " + catLabel(post.category) + " " + (post.tags || "")).toLowerCase())}">${cardImg(post)}<div class="body"><span class="cat-pill">${esc(catLabel(post.category))}</span><h3><a href="/blog/${esc(post.slug)}">${esc(post.title)}</a></h3><p>${esc(post.excerpt || "")}</p><div class="meta"><span>${rt} min de leitura</span></div></div></article>`;
 }
 function ctaSection() {
-  return `<section class="wrap"><div class="cta-block"><div><h2>Você investe em tráfego pago, mas está inseguro com os resultados?</h2><p>Solicite uma análise independente e descubra se o problema está nas campanhas, na qualidade dos leads, na página de destino ou no processo comercial.</p></div><a class="btn btn-primary" href="/#form" data-ev="cta_blog_lista">Quero solicitar um diagnóstico</a></div></section>`;
+  return `<section class="wrap"><div class="cta-block"><div><h2>Você investe em tráfego pago, mas está inseguro com os resultados?</h2><p>Solicite uma análise independente e descubra se o problema está nas campanhas, na qualidade dos leads, na página de destino ou no processo comercial.</p></div><a class="btn btn-primary" href="/#form" data-ev="cta_blog_lista">Quero solicitar uma auditoria</a></div></section>`;
 }
 function catsNav(active) {
   return `<nav class="cats" aria-label="Categorias">${CATS.map(([s, l]) => `<a href="/blog/categoria/${s}"${active === s ? ' class="active"' : ""}>${esc(l)}</a>`).join("")}</nav>`;
@@ -451,7 +451,7 @@ async function blogAuthorPage(env, url) {
   const ld = { "@context": "https://schema.org", "@type": "Person", name: AUTHOR_NAME, url: SITE + "/blog/autor/bruno-porto", description: AUTHOR_BIO, image: SITE + "/assets/bruno.jpg", sameAs: ["https://soubrunoporto.com.br/", "https://www.linkedin.com/in/brunoportoseus/"] };
   return htmlResp(shell({
     title: "Bruno Porto · Autor | Auditoria de Tráfego Pago",
-    description: "Bruno Porto — 30+ anos em negócios e mais de duas décadas no digital. Diagnóstico independente de performance em tráfego pago.",
+    description: "Bruno Porto — 30+ anos em negócios e mais de duas décadas no digital. Auditoria independente de performance em tráfego pago.",
     canonical: SITE + "/blog/autor/bruno-porto", body,
     headExtra: `<script type="application/ld+json">${JSON.stringify(ld)}</script>`,
   }));
@@ -694,14 +694,14 @@ const SEED_POSTS = [
     subtitle: "Quando o volume de contatos cresce mas o faturamento não acompanha, o gargalo raramente está só no anúncio. Veja como localizar onde o dinheiro se perde.",
     category: "leads-e-conversao",
     tags: "leads,conversão,vendas,qualidade de leads",
-    excerpt: "Receber muitos leads e vender pouco é um sintoma, não um diagnóstico. O problema pode estar na segmentação, na promessa do anúncio, na qualificação, na página ou no atendimento.",
+    excerpt: "Receber muitos leads e vender pouco é um sintoma, não uma auditoria. O problema pode estar na segmentação, na promessa do anúncio, na qualificação, na página ou no atendimento.",
     seo_title: "Muitos leads e poucas vendas: onde está o problema?",
     seo_description: "Recebe muitos leads e vende pouco? Entenda as causas mais comuns — segmentação, promessa, qualificação, página e atendimento — e como identificar cada uma.",
     cta_type: "leads",
     featured: 1,
     related: "como-saber-se-o-trafego-pago-esta-funcionando,cliques-nao-sao-vendas-como-avaliar-o-resultado-real",
     content: `<p>Se a sua empresa recebe muitos contatos vindos dos anúncios, mas poucos viram venda, o primeiro passo é entender uma coisa: <strong>quantidade de leads não é qualidade de leads</strong>. Volume alto com venda baixa é um sintoma que pode ter origem em vários pontos diferentes da jornada.</p>
-<p>A resposta direta é: o problema pode estar em cinco lugares — na <strong>segmentação</strong>, na <strong>promessa do anúncio</strong>, na <strong>qualificação</strong>, na <strong>página de destino</strong> ou no <strong>atendimento comercial</strong>. Encontrar em qual deles a sua operação está perdendo dinheiro é justamente o trabalho de um diagnóstico.</p>
+<p>A resposta direta é: o problema pode estar em cinco lugares — na <strong>segmentação</strong>, na <strong>promessa do anúncio</strong>, na <strong>qualificação</strong>, na <strong>página de destino</strong> ou no <strong>atendimento comercial</strong>. Encontrar em qual deles a sua operação está perdendo dinheiro é justamente o trabalho de uma auditoria.</p>
 <h2>As causas mais comuns</h2>
 <p>Antes de aumentar ou cortar orçamento, vale investigar cada hipótese com calma.</p>
 <h3>1. Segmentação atraindo o público errado</h3>
@@ -762,7 +762,7 @@ const SEED_POSTS = [
 <h2>Consequências de olhar só para o painel</h2>
 <p>Decidir aumentar ou cortar verba com base apenas em cliques e conversões da plataforma pode escalar o desperdício ou desligar o que estava dando certo. O risco financeiro não está no número em si — está em confiar no número errado.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você não consegue afirmar, com dados, quanto cada campanha vendeu e se deu lucro, um diagnóstico independente ajuda a ligar mídia, rastreamento e vendas — e a responder, de uma vez, se o investimento está funcionando.</p>
+<p>Se você não consegue afirmar, com dados, quanto cada campanha vendeu e se deu lucro, uma auditoria independente ajuda a ligar mídia, rastreamento e vendas — e a responder, de uma vez, se o investimento está funcionando.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Um ROAS alto significa lucro?</summary><div class="fa">Não necessariamente. O ROAS compara receita e investimento em mídia, mas não considera margem, impostos, custo do produto e devoluções. É possível ter ROAS alto e prejuízo.</div></details>
 <details><summary>Quanto tempo até saber se a campanha funciona?</summary><div class="fa">Depende do volume de conversões e do ciclo de venda. Decisões precoces, com poucos dados, costumam levar a conclusões erradas. O importante é ter dados suficientes e consistência.</div></details>
@@ -800,7 +800,7 @@ const SEED_POSTS = [
 <h2>Consequências de decidir pelo clique</h2>
 <p>Escalar uma campanha "porque o CPC está baixo" pode significar comprar mais tráfego que não vende. Cortar uma "porque teve poucos cliques" pode desligar a que trazia os melhores clientes. A decisão baseada no clique isolado é uma aposta às cegas.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se o seu relatório para no clique ou na conversão do painel, e você ainda não enxerga vendas e margem por campanha, um diagnóstico independente ajuda a reconstruir o funil completo e a mostrar onde o investimento perde eficiência.</p>
+<p>Se o seu relatório para no clique ou na conversão do painel, e você ainda não enxerga vendas e margem por campanha, uma auditoria independente ajuda a reconstruir o funil completo e a mostrar onde o investimento perde eficiência.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Então cliques não servem para nada?</summary><div class="fa">Servem, sim — para operar e otimizar campanhas no dia a dia. O que não se deve é decidir se o investimento vale a pena olhando apenas para cliques, sem ligar à venda.</div></details>
 <details><summary>Como ligar o clique à venda?</summary><div class="fa">Com rastreamento correto e integração ao CRM, registrando a origem de cada lead e o desfecho comercial. Assim é possível atribuir vendas e margem a cada campanha.</div></details>
@@ -835,7 +835,7 @@ const SEED_POSTS = [
 <h2>O que costuma corrigir</h2>
 <ul><li>Refinar segmentação e localização;</li><li>Ajustar a mensagem para atrair quem tem perfil;</li><li>Incluir perguntas de qualificação no formulário;</li><li>Enviar dados de vendas de volta às plataformas, para otimizarem por clientes — e não por contatos.</li></ul>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você já tentou ajustes e os leads ruins continuam, um diagnóstico independente cruza segmentação, criativos, formulário e qualidade real dos contatos para apontar a origem exata.</p>
+<p>Se você já tentou ajustes e os leads ruins continuam, uma auditoria independente cruza segmentação, criativos, formulário e qualidade real dos contatos para apontar a origem exata.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Formulário mais longo melhora a qualidade?</summary><div class="fa">Costuma melhorar, porque filtra quem não tem interesse real. Mas pode reduzir o volume — o equilíbrio depende do seu ciclo de venda e do valor do cliente.</div></details>
 <details><summary>A culpa é do gestor de tráfego?</summary><div class="fa">Nem sempre. A segmentação e a promessa influenciam muito, mas oferta, formulário e atendimento também. Por isso a análise precisa olhar a jornada completa.</div></details>
@@ -844,17 +844,17 @@ const SEED_POSTS = [
   },
   {
     slug: "dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico",
-    title: "Dez sinais de que suas campanhas precisam de um diagnóstico",
+    title: "Dez sinais de que suas campanhas precisam de uma auditoria",
     subtitle: "Nem sempre é preciso trocar de agência ou aumentar a verba. Às vezes falta enxergar onde o investimento perde eficiência. Veja os sinais.",
     category: "diagnostico-de-trafego-pago",
-    tags: "diagnóstico,sinais,auditoria",
+    tags: "auditoria,sinais,auditoria",
     excerpt: "Dez sintomas comuns de que suas campanhas de tráfego pago merecem uma análise independente antes da próxima decisão de orçamento.",
-    seo_title: "Dez sinais de que suas campanhas precisam de um diagnóstico",
-    seo_description: "Conheça dez sinais de que suas campanhas de tráfego pago precisam de um diagnóstico independente — de leads ruins a relatórios que não mostram vendas.",
+    seo_title: "Dez sinais de que suas campanhas precisam de uma auditoria",
+    seo_description: "Conheça dez sinais de que suas campanhas de tráfego pago precisam de uma auditoria independente — de leads ruins a relatórios que não mostram vendas.",
     cta_type: "default",
     featured: 0,
     related: "o-que-e-um-diagnostico-de-trafego-pago,muitos-leads-e-poucas-vendas-onde-esta-o-problema",
-    content: `<p>Um diagnóstico não serve para "achar culpado". Ele serve para responder, com dados, onde a sua empresa perde eficiência entre o anúncio e a venda. Se você reconhece vários dos sinais abaixo, provavelmente é hora de olhar a operação de perto.</p>
+    content: `<p>Uma auditoria não serve para "achar culpado". Ele serve para responder, com dados, onde a sua empresa perde eficiência entre o anúncio e a venda. Se você reconhece vários dos sinais abaixo, provavelmente é hora de olhar a operação de perto.</p>
 <h2>Os dez sinais</h2>
 <ol>
 <li><strong>Muitos leads, poucas vendas.</strong> O volume cresce, o faturamento não acompanha.</li>
@@ -872,12 +872,12 @@ const SEED_POSTS = [
 <h2>Por que isso importa financeiramente</h2>
 <p>Cada um desses sinais representa dinheiro que pode estar sendo gasto com o público errado, tempo comercial desperdiçado ou decisões de orçamento baseadas em números que não refletem a venda. Quanto mais tempo sem enxergar, maior o custo acumulado.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você marcou três ou mais sinais, um diagnóstico independente ajuda a validar os dados, encontrar o gargalo real e transformar o achado em um plano de ação — antes da próxima decisão de verba.</p>
+<p>Se você marcou três ou mais sinais, uma auditoria independente ajuda a validar os dados, encontrar o gargalo real e transformar o achado em um plano de ação — antes da próxima decisão de verba.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
-<details><summary>Preciso trocar de agência para fazer um diagnóstico?</summary><div class="fa">Não. O diagnóstico é independente e pode, inclusive, ajudar a agência atual a melhorar, indicando onde focar. Não é sobre substituir ninguém.</div></details>
-<details><summary>O diagnóstico garante que vou encontrar erros?</summary><div class="fa">Não. Ele identifica problemas, riscos e oportunidades quando existem, e também confirma o que está saudável. O objetivo é clareza, não encontrar culpados.</div></details>
+<details><summary>Preciso trocar de agência para fazer uma auditoria?</summary><div class="fa">Não. A auditoria é independente e pode, inclusive, ajudar a agência atual a melhorar, indicando onde focar. Não é sobre substituir ninguém.</div></details>
+<details><summary>A auditoria garante que vou encontrar erros?</summary><div class="fa">Não. Ele identifica problemas, riscos e oportunidades quando existem, e também confirma o que está saudável. O objetivo é clareza, não encontrar culpados.</div></details>
 </section>
-<div class="box resume"><div class="box-t">Em resumo</div><p>Leads ruins, relatórios que não mostram venda, medição inconsistente e decisões de orçamento no escuro são sinais de que suas campanhas merecem um diagnóstico. Três ou mais sinais juntos já justificam uma análise independente antes de gastar mais.</p></div>`,
+<div class="box resume"><div class="box-t">Em resumo</div><p>Leads ruins, relatórios que não mostram venda, medição inconsistente e decisões de orçamento no escuro são sinais de que suas campanhas merecem uma auditoria. Três ou mais sinais juntos já justificam uma análise independente antes de gastar mais.</p></div>`,
   },
   {
     slug: "como-calcular-o-retorno-do-trafego-pago",
@@ -905,7 +905,7 @@ const SEED_POSTS = [
 <h2>E quando a venda não acontece no site?</h2>
 <p>Se a conversão ocorre no WhatsApp, por telefone ou dias depois, o retorno só fica visível com rastreamento e CRM integrados — registrando qual campanha originou cada venda. Sem isso, parte do retorno fica invisível.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você não tem o ROAS de equilíbrio calculado, ou não consegue ligar vendas às campanhas, um diagnóstico independente organiza esses números e mostra o retorno real por campanha.</p>
+<p>Se você não tem o ROAS de equilíbrio calculado, ou não consegue ligar vendas às campanhas, uma auditoria independente organiza esses números e mostra o retorno real por campanha.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Um ROAS de 5 é bom?</summary><div class="fa">Depende da sua margem. Para um negócio de margem alta, pode ser ótimo; para um de margem baixa, pode ser prejuízo. O "bom" é relativo ao seu ROAS de equilíbrio.</div></details>
 <details><summary>Faturamento e lucro são a mesma coisa?</summary><div class="fa">Não. Faturamento é o total vendido; lucro é o que sobra depois de todos os custos. Campanhas podem aumentar o faturamento e reduzir o lucro se venderem itens sem margem.</div></details>
@@ -914,20 +914,20 @@ const SEED_POSTS = [
   },
   {
     slug: "o-que-e-um-diagnostico-de-trafego-pago",
-    title: "O que é um diagnóstico de tráfego pago?",
+    title: "O que é uma auditoria de tráfego pago?",
     subtitle: "Uma análise independente que olha toda a jornada — da campanha à venda — para mostrar onde o investimento perde eficiência. Entenda como funciona.",
     category: "diagnostico-de-trafego-pago",
-    tags: "diagnóstico,auditoria,independente",
-    excerpt: "Diagnóstico de tráfego pago é uma análise independente que avalia campanhas, rastreamento, qualidade dos leads e processo comercial para apontar o gargalo real.",
-    seo_title: "O que é um diagnóstico de tráfego pago?",
-    seo_description: "Entenda o que é um diagnóstico de tráfego pago: uma análise independente que avalia campanhas, dados, leads e vendas para mostrar onde o investimento se perde.",
+    tags: "auditoria,auditoria,independente",
+    excerpt: "Auditoria de tráfego pago é uma análise independente que avalia campanhas, rastreamento, qualidade dos leads e processo comercial para apontar o gargalo real.",
+    seo_title: "O que é uma auditoria de tráfego pago?",
+    seo_description: "Entenda o que é uma auditoria de tráfego pago: uma análise independente que avalia campanhas, dados, leads e vendas para mostrar onde o investimento se perde.",
     cta_type: "default",
     featured: 0,
     related: "dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico,como-saber-se-o-trafego-pago-esta-funcionando",
-    content: `<p>Um diagnóstico de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão. Em vez de operar campanhas no dia a dia, ele examina o conjunto — do anúncio até a venda — para responder uma pergunta central: <strong>onde sua empresa perde dinheiro entre o clique e o cliente?</strong></p>
+    content: `<p>Uma auditoria de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão. Em vez de operar campanhas no dia a dia, ele examina o conjunto — do anúncio até a venda — para responder uma pergunta central: <strong>onde sua empresa perde dinheiro entre o clique e o cliente?</strong></p>
 <p>Direto ao ponto: é um trabalho de leitura e interpretação de dados, feito por quem não está envolvido na operação diária e, por isso, não precisa defender decisões anteriores.</p>
-<h2>O que um diagnóstico analisa</h2>
-<p>A força do diagnóstico está em olhar a jornada inteira, e não uma peça isolada:</p>
+<h2>O que uma auditoria analisa</h2>
+<p>A força da auditoria está em olhar a jornada inteira, e não uma peça isolada:</p>
 <ul>
 <li><strong>Campanhas</strong> — estrutura, segmentação, palavras-chave, criativos e orçamento;</li>
 <li><strong>Rastreamento e dados</strong> — se as conversões e as integrações medem o que importa;</li>
@@ -937,18 +937,18 @@ const SEED_POSTS = [
 <li><strong>Rentabilidade</strong> — se as campanhas geram lucro, não só faturamento.</li>
 </ul>
 <h2>O que a empresa recebe</h2>
-<p>Em geral, um diagnóstico entrega o que está funcionando, o que representa risco ou desperdício, e uma lista de prioridades — de preferência transformável em plano de ação. O objetivo é <strong>clareza para decidir</strong>, não uma pilha de gráficos.</p>
-<div class="box info"><div class="box-t">ℹ️ Diagnóstico não é gestão</div><p>A gestão opera as campanhas todos os dias. O diagnóstico é pontual e independente: avalia, aponta prioridades e recomenda — sem assumir a operação. Os dois se complementam.</p></div>
+<p>Em geral, uma auditoria entrega o que está funcionando, o que representa risco ou desperdício, e uma lista de prioridades — de preferência transformável em plano de ação. O objetivo é <strong>clareza para decidir</strong>, não uma pilha de gráficos.</p>
+<div class="box info"><div class="box-t">ℹ️ Auditoria não é gestão</div><p>A gestão opera as campanhas todos os dias. A auditoria é pontual e independente: avalia, aponta prioridades e recomenda — sem assumir a operação. Os dois se complementam.</p></div>
 <h2>Independência: por que importa</h2>
-<p>Como não vende mídia e não gerencia as campanhas avaliadas, o diagnóstico independente não tem incentivo para esconder problemas nem para inflar resultados. Isso muda a qualidade da conversa entre empresa, agência e time comercial.</p>
+<p>Como não vende mídia e não gerencia as campanhas avaliadas, a auditoria independente não tem incentivo para esconder problemas nem para inflar resultados. Isso muda a qualidade da conversa entre empresa, agência e time comercial.</p>
 <h2>Quando faz sentido</h2>
 <p>Faz sentido antes de aumentar o orçamento, quando há muitos leads e poucas vendas, quando os relatórios não mostram resultado comercial, ou simplesmente como revisão periódica de uma conta que roda há tempos sem uma segunda opinião.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
-<details><summary>O diagnóstico substitui a agência?</summary><div class="fa">Não. Ele avalia a operação e orienta a empresa. As recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
+<details><summary>A auditoria substitui a agência?</summary><div class="fa">Não. Ele avalia a operação e orienta a empresa. As recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
 <details><summary>Quais acessos são necessários?</summary><div class="fa">Dependendo do escopo, acessos apenas de leitura às plataformas de anúncios, Analytics, Tag Manager, CRM e relatórios comerciais.</div></details>
-<details><summary>O diagnóstico garante aumento de vendas?</summary><div class="fa">Não. Ele identifica problemas e recomenda ações; os resultados dependem da execução, da oferta e do mercado.</div></details>
+<details><summary>A auditoria garante aumento de vendas?</summary><div class="fa">Não. Ele identifica problemas e recomenda ações; os resultados dependem da execução, da oferta e do mercado.</div></details>
 </section>
-<div class="box resume"><div class="box-t">Em resumo</div><p>Diagnóstico de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas — para mostrar onde o investimento perde eficiência e priorizar o que corrigir. Avalia e orienta; não assume a operação.</p></div>`,
+<div class="box resume"><div class="box-t">Em resumo</div><p>Auditoria de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas — para mostrar onde o investimento perde eficiência e priorizar o que corrigir. Avalia e orienta; não assume a operação.</p></div>`,
   },
   {
     slug: "google-ads-caro-quais-podem-ser-as-causas",
@@ -979,7 +979,7 @@ const SEED_POSTS = [
 <h2>Como identificar a causa na sua conta</h2>
 <table><thead><tr><th>Sintoma</th><th>Onde olhar primeiro</th></tr></thead><tbody><tr><td>CPC subindo em termos genéricos</td><td>Tipo de correspondência e negativas</td></tr><tr><td>Muitos cliques, poucas conversões</td><td>Índice de qualidade e página de destino</td></tr><tr><td>Gasto com buscas estranhas</td><td>Relatório de termos de pesquisa</td></tr><tr><td>Custo alto só em certas regiões/horários</td><td>Segmentação e ajustes de lance</td></tr></tbody></table>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se o custo subiu e você não sabe apontar a causa — ou se a conta é gerida por terceiros e falta transparência — um diagnóstico independente revisa estrutura, termos, índice de qualidade e rastreamento para mostrar onde o dinheiro escapa.</p>
+<p>Se o custo subiu e você não sabe apontar a causa — ou se a conta é gerida por terceiros e falta transparência — uma auditoria independente revisa estrutura, termos, índice de qualidade e rastreamento para mostrar onde o dinheiro escapa.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Concorrente clicando no meu anúncio encarece a conta?</summary><div class="fa">Cliques inválidos existem, mas o Google filtra boa parte automaticamente. Antes de atribuir o custo a isso, vale investigar causas internas, que costumam ter peso maior.</div></details>
 <details><summary>Baixar o lance resolve?</summary><div class="fa">Pode reduzir o custo, mas também a exposição — e não corrige a causa. Melhorar relevância, negativar termos e ajustar correspondência costuma trazer resultado mais consistente.</div></details>
@@ -988,33 +988,33 @@ const SEED_POSTS = [
   },
   {
     slug: "diagnostico-de-trafego-pago-ou-gestao-de-campanhas",
-    title: "Diagnóstico de tráfego pago ou gestão de campanhas: qual é a diferença?",
+    title: "Auditoria de tráfego pago ou gestão de campanhas: qual é a diferença?",
     subtitle: "São serviços diferentes, com objetivos diferentes. Entender a distinção evita contratar a coisa errada para o problema que você tem.",
     category: "diagnostico-de-trafego-pago",
-    tags: "diagnóstico,gestão,agência",
-    excerpt: "Gestão opera as campanhas no dia a dia; o diagnóstico avalia a operação de forma independente e pontual. Veja quando cada um faz sentido.",
-    seo_title: "Diagnóstico de tráfego pago ou gestão de campanhas?",
-    seo_description: "Entenda a diferença entre diagnóstico de tráfego pago e gestão de campanhas — objetivos, independência e quando contratar cada um.",
+    tags: "auditoria,gestão,agência",
+    excerpt: "Gestão opera as campanhas no dia a dia; a auditoria avalia a operação de forma independente e pontual. Veja quando cada um faz sentido.",
+    seo_title: "Auditoria de tráfego pago ou gestão de campanhas?",
+    seo_description: "Entenda a diferença entre auditoria de tráfego pago e gestão de campanhas — objetivos, independência e quando contratar cada um.",
     cta_type: "default",
     featured: 0,
     related: "o-que-e-um-diagnostico-de-trafego-pago,como-saber-se-minha-agencia-de-trafego-esta-dando-resultado",
-    content: `<p>É comum confundir os dois — mas <strong>diagnóstico</strong> e <strong>gestão</strong> de tráfego pago resolvem problemas diferentes. Contratar um esperando o outro costuma gerar frustração.</p>
-<p>Direto ao ponto: a <strong>gestão</strong> opera suas campanhas no dia a dia (cria, ajusta, otimiza); o <strong>diagnóstico</strong> é uma análise independente e pontual, que avalia a operação — incluindo, muitas vezes, o próprio trabalho da gestão — e aponta prioridades.</p>
+    content: `<p>É comum confundir os dois — mas <strong>auditoria</strong> e <strong>gestão</strong> de tráfego pago resolvem problemas diferentes. Contratar um esperando o outro costuma gerar frustração.</p>
+<p>Direto ao ponto: a <strong>gestão</strong> opera suas campanhas no dia a dia (cria, ajusta, otimiza); o <strong>auditoria</strong> é uma análise independente e pontual, que avalia a operação — incluindo, muitas vezes, o próprio trabalho da gestão — e aponta prioridades.</p>
 <h2>O que faz a gestão de campanhas</h2>
 <p>É um trabalho contínuo: estruturar campanhas, escolher palavras-chave e públicos, criar anúncios, acompanhar métricas e otimizar ao longo do tempo. A gestão está dentro da operação e responde pelo desempenho corrente.</p>
-<h2>O que faz o diagnóstico</h2>
+<h2>O que faz a auditoria</h2>
 <p>É pontual e independente. Em vez de operar, ele lê os dados de toda a jornada — campanhas, rastreamento, qualidade dos leads, página e vendas — e responde onde o investimento perde eficiência. Não assume a conta; entrega clareza e recomendações.</p>
-<table><thead><tr><th></th><th>Gestão</th><th>Diagnóstico</th></tr></thead><tbody><tr><td>Natureza</td><td>Contínua</td><td>Pontual</td></tr><tr><td>Papel</td><td>Operar as campanhas</td><td>Avaliar e orientar</td></tr><tr><td>Posição</td><td>Dentro da operação</td><td>Independente</td></tr><tr><td>Entrega</td><td>Desempenho no dia a dia</td><td>Prioridades e plano de ação</td></tr></tbody></table>
-<div class="box info"><div class="box-t">ℹ️ Não são concorrentes</div><p>O diagnóstico pode, inclusive, ajudar a gestão a melhorar — mostrando onde focar. Um avalia; o outro executa. Os dois se complementam.</p></div>
+<table><thead><tr><th></th><th>Gestão</th><th>Auditoria</th></tr></thead><tbody><tr><td>Natureza</td><td>Contínua</td><td>Pontual</td></tr><tr><td>Papel</td><td>Operar as campanhas</td><td>Avaliar e orientar</td></tr><tr><td>Posição</td><td>Dentro da operação</td><td>Independente</td></tr><tr><td>Entrega</td><td>Desempenho no dia a dia</td><td>Prioridades e plano de ação</td></tr></tbody></table>
+<div class="box info"><div class="box-t">ℹ️ Não são concorrentes</div><p>A auditoria pode, inclusive, ajudar a gestão a melhorar — mostrando onde focar. Um avalia; o outro executa. Os dois se complementam.</p></div>
 <h2>Quando contratar cada um</h2>
-<ul><li><strong>Gestão</strong>: quando você precisa de alguém operando as campanhas de forma consistente.</li><li><strong>Diagnóstico</strong>: quando você quer uma segunda opinião, está inseguro com os resultados, vai aumentar a verba ou precisa entender por que "os números são bons, mas a venda não vem".</li></ul>
+<ul><li><strong>Gestão</strong>: quando você precisa de alguém operando as campanhas de forma consistente.</li><li><strong>Auditoria</strong>: quando você quer uma segunda opinião, está inseguro com os resultados, vai aumentar a verba ou precisa entender por que "os números são bons, mas a venda não vem".</li></ul>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você já tem gestão (interna ou por agência) e mesmo assim falta clareza sobre o retorno, o diagnóstico independente entra sem substituir ninguém — só para mostrar o que os relatórios do dia a dia não mostram.</p>
+<p>Se você já tem gestão (interna ou por agência) e mesmo assim falta clareza sobre o retorno, a auditoria independente entra sem substituir ninguém — só para mostrar o que os relatórios do dia a dia não mostram.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
-<details><summary>Posso ter os dois ao mesmo tempo?</summary><div class="fa">Sim, e é comum. A gestão cuida da operação; o diagnóstico faz uma leitura independente periódica. Um não exclui o outro.</div></details>
-<details><summary>O diagnóstico cria conflito com a agência?</summary><div class="fa">Não precisa. Bem conduzido, ele fornece informação útil para todos e melhora a conversa entre empresa, agência e comercial.</div></details>
+<details><summary>Posso ter os dois ao mesmo tempo?</summary><div class="fa">Sim, e é comum. A gestão cuida da operação; a auditoria faz uma leitura independente periódica. Um não exclui o outro.</div></details>
+<details><summary>A auditoria cria conflito com a agência?</summary><div class="fa">Não precisa. Bem conduzido, ele fornece informação útil para todos e melhora a conversa entre empresa, agência e comercial.</div></details>
 </section>
-<div class="box resume"><div class="box-t">Em resumo</div><p>Gestão opera as campanhas; diagnóstico avalia a operação de forma independente e pontual. Se falta clareza sobre o retorno mesmo com gestão ativa, o diagnóstico entra para orientar — não para substituir.</p></div>`,
+<div class="box resume"><div class="box-t">Em resumo</div><p>Gestão opera as campanhas; auditoria avalia a operação de forma independente e pontual. Se falta clareza sobre o retorno mesmo com gestão ativa, a auditoria entra para orientar — não para substituir.</p></div>`,
   },
   {
     slug: "por-que-o-relatorio-da-agencia-nao-mostra-o-resultado-comercial",
@@ -1041,7 +1041,7 @@ const SEED_POSTS = [
 <h2>O que pedir no relatório</h2>
 <ul><li>Leads qualificados por campanha (não só o total de contatos);</li><li>Quais campanhas geraram vendas — com integração ao CRM;</li><li>Custo por lead <em>e</em> custo por cliente;</li><li>Receita atribuível e, quando possível, margem;</li><li>Comparação de períodos com contexto (sazonalidade, mudanças na conta).</li></ul>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se o relatório não evolui para mostrar vendas, ou se falta a integração que ligaria mídia a resultado, um diagnóstico independente ajuda a montar essa ponte e a definir os indicadores que você deveria acompanhar.</p>
+<p>Se o relatório não evolui para mostrar vendas, ou se falta a integração que ligaria mídia a resultado, uma auditoria independente ajuda a montar essa ponte e a definir os indicadores que você deveria acompanhar.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>A agência deveria mostrar vendas no relatório?</summary><div class="fa">Idealmente sim, mas só consegue se tiver acesso aos dados de venda (CRM/comercial) e à integração correta. Muitas vezes o dado está do lado da empresa.</div></details>
 <details><summary>Como ligar a venda à campanha?</summary><div class="fa">Com rastreamento correto, parâmetros de origem (UTMs) e integração ao CRM, registrando de onde veio cada lead e se ele virou cliente.</div></details>
@@ -1082,7 +1082,7 @@ const SEED_POSTS = [
 <h2>Avaliar não é acusar</h2>
 <p>Muitas vezes a agência trabalha bem, mas falta a empresa fornecer os dados de venda para fechar a conta. O objetivo da avaliação é <strong>melhorar a parceria</strong> e alinhar o foco, não procurar culpado.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você quer uma leitura imparcial — sem interromper o trabalho da agência — um diagnóstico independente avalia a operação e devolve uma visão objetiva do que está bom e do que pode melhorar.</p>
+<p>Se você quer uma leitura imparcial — sem interromper o trabalho da agência — uma auditoria independente avalia a operação e devolve uma visão objetiva do que está bom e do que pode melhorar.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Devo ser dono da minha conta de anúncios?</summary><div class="fa">Sim, é recomendável. A conta e o histórico são ativos da empresa. Isso evita perder dados ao trocar de fornecedor e aumenta a transparência.</div></details>
 <details><summary>Uma agência pode garantir vendas?</summary><div class="fa">Não de forma responsável. Ela pode se comprometer com método, acompanhamento e otimização, mas o resultado depende de oferta, mercado e execução comercial.</div></details>
@@ -1094,7 +1094,7 @@ const SEED_POSTS = [
     title: "Como descobrir onde sua empresa perde dinheiro entre o anúncio e a venda",
     subtitle: "Entre o clique e o cliente existe um funil com vários pontos de fuga. Veja como mapear cada etapa e achar onde o investimento escapa.",
     category: "estrategia-digital",
-    tags: "funil,jornada,rentabilidade,diagnóstico",
+    tags: "funil,jornada,rentabilidade,auditoria",
     excerpt: "O dinheiro do tráfego pago se perde em pontos específicos entre o anúncio e a venda. Aprenda a mapear o funil e localizar onde está a maior fuga.",
     seo_title: "Onde sua empresa perde dinheiro entre o anúncio e a venda",
     seo_description: "Descubra como mapear a jornada do clique à venda e localizar onde o investimento em tráfego pago se perde — do anúncio ao processo comercial.",
@@ -1119,7 +1119,7 @@ const SEED_POSTS = [
 <h2>O papel dos dados</h2>
 <p>Esse mapeamento só é confiável com rastreamento correto e integração ao CRM. Sem ligar campanha, lead e venda, as etapas ficam desconectadas e o ponto de fuga permanece invisível.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se você suspeita que perde dinheiro, mas não sabe em qual etapa, um diagnóstico independente reconstrói o funil completo, encontra a maior fuga e transforma isso em prioridades de ação.</p>
+<p>Se você suspeita que perde dinheiro, mas não sabe em qual etapa, uma auditoria independente reconstrói o funil completo, encontra a maior fuga e transforma isso em prioridades de ação.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Preciso de ferramentas caras para mapear o funil?</summary><div class="fa">Não. O essencial é organização: rastreamento correto, parâmetros de origem e registro do desfecho de cada lead no CRM. A ferramenta ajuda, mas não substitui o método.</div></details>
 <details><summary>E se a maior perda não estiver no marketing?</summary><div class="fa">É comum. Muitas vezes o gargalo está no atendimento, na oferta ou na margem. Por isso a análise precisa olhar do anúncio até a venda, e não só as campanhas.</div></details>
@@ -1128,26 +1128,26 @@ const SEED_POSTS = [
   },
   {
     slug: "guia-completo-do-diagnostico-de-trafego-pago",
-    title: "Guia completo do diagnóstico de tráfego pago",
+    title: "Guia completo da auditoria de tráfego pago",
     subtitle: "O que é, quando fazer, o que é analisado e o que esperar de uma análise independente das suas campanhas — reunido em um único guia.",
     category: "diagnostico-de-trafego-pago",
-    tags: "diagnóstico,guia,auditoria,independente",
-    excerpt: "Guia completo sobre diagnóstico de tráfego pago: o que é, quando fazer, o que é analisado, o que você recebe e como se preparar.",
-    seo_title: "Guia completo do diagnóstico de tráfego pago",
-    seo_description: "Tudo sobre diagnóstico de tráfego pago em um guia: o que é, quando fazer, o que é analisado, diferença para a gestão e como se preparar.",
+    tags: "auditoria,guia,auditoria,independente",
+    excerpt: "Guia completo sobre auditoria de tráfego pago: o que é, quando fazer, o que é analisado, o que você recebe e como se preparar.",
+    seo_title: "Guia completo da auditoria de tráfego pago",
+    seo_description: "Tudo sobre auditoria de tráfego pago em um guia: o que é, quando fazer, o que é analisado, diferença para a gestão e como se preparar.",
     cta_type: "default",
     featured: 1,
     related: "o-que-e-um-diagnostico-de-trafego-pago,dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico,diagnostico-de-trafego-pago-ou-gestao-de-campanhas",
-    content: `<p>Este guia reúne, em um só lugar, o essencial sobre <strong>diagnóstico de tráfego pago</strong>: o que é, quando faz sentido, o que é analisado e o que você recebe. Ao longo do texto, há links para artigos que aprofundam cada tema.</p>
-<div class="box info"><div class="box-t">ℹ️ Resposta rápida</div><p>Diagnóstico de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão — da campanha à venda — para mostrar onde o investimento perde eficiência e o que priorizar.</p></div>
-<h2>O que é um diagnóstico</h2>
-<p>Diferente da operação diária, o diagnóstico lê e interpreta os dados de toda a jornada, sem defender decisões anteriores. Ele avalia e orienta; não assume as campanhas. Para uma explicação detalhada, veja <a href="/blog/o-que-e-um-diagnostico-de-trafego-pago">o que é um diagnóstico de tráfego pago</a>.</p>
-<h2>Diagnóstico não é gestão</h2>
-<p>A gestão opera as campanhas; o diagnóstico faz uma leitura independente e pontual. Os dois se complementam — entenda a distinção em <a href="/blog/diagnostico-de-trafego-pago-ou-gestao-de-campanhas">diagnóstico ou gestão de campanhas</a>.</p>
-<h2>Quando fazer um diagnóstico</h2>
-<p>Faz sentido antes de aumentar o orçamento, quando há muitos leads e poucas vendas, quando os relatórios não mostram resultado comercial, ou como revisão periódica. Se quiser um checklist de sintomas, veja os <a href="/blog/dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico">dez sinais de que suas campanhas precisam de um diagnóstico</a>.</p>
+    content: `<p>Este guia reúne, em um só lugar, o essencial sobre <strong>auditoria de tráfego pago</strong>: o que é, quando faz sentido, o que é analisado e o que você recebe. Ao longo do texto, há links para artigos que aprofundam cada tema.</p>
+<div class="box info"><div class="box-t">ℹ️ Resposta rápida</div><p>Auditoria de tráfego pago é uma <strong>análise independente</strong> da sua operação de anúncios e conversão — da campanha à venda — para mostrar onde o investimento perde eficiência e o que priorizar.</p></div>
+<h2>O que é uma auditoria</h2>
+<p>Diferente da operação diária, a auditoria lê e interpreta os dados de toda a jornada, sem defender decisões anteriores. Ele avalia e orienta; não assume as campanhas. Para uma explicação detalhada, veja <a href="/blog/o-que-e-um-diagnostico-de-trafego-pago">o que é uma auditoria de tráfego pago</a>.</p>
+<h2>Auditoria não é gestão</h2>
+<p>A gestão opera as campanhas; a auditoria faz uma leitura independente e pontual. Os dois se complementam — entenda a distinção em <a href="/blog/diagnostico-de-trafego-pago-ou-gestao-de-campanhas">auditoria ou gestão de campanhas</a>.</p>
+<h2>Quando fazer uma auditoria</h2>
+<p>Faz sentido antes de aumentar o orçamento, quando há muitos leads e poucas vendas, quando os relatórios não mostram resultado comercial, ou como revisão periódica. Se quiser um checklist de sintomas, veja os <a href="/blog/dez-sinais-de-que-suas-campanhas-precisam-de-um-diagnostico">dez sinais de que suas campanhas precisam de uma auditoria</a>.</p>
 <h2>O que é analisado</h2>
-<p>Um bom diagnóstico olha a jornada inteira:</p>
+<p>Um boa auditoria olha a jornada inteira:</p>
 <ul>
 <li><strong>Campanhas</strong> — estrutura, segmentação, palavras-chave, criativos, orçamento;</li>
 <li><strong>Rastreamento e dados</strong> — se a medição reflete o que importa;</li>
@@ -1159,13 +1159,13 @@ const SEED_POSTS = [
 <h2>O que você recebe</h2>
 <p>Em geral: o que está funcionando, o que representa risco ou desperdício, e uma lista de prioridades — de preferência transformável em plano de ação. O objetivo é clareza para decidir.</p>
 <h2>Como se preparar</h2>
-<p>Reúna acessos de leitura às plataformas de anúncios, ao Analytics, ao Tag Manager, ao CRM e aos relatórios comerciais. Quanto mais completa a informação, mais preciso o diagnóstico.</p>
+<p>Reúna acessos de leitura às plataformas de anúncios, ao Analytics, ao Tag Manager, ao CRM e aos relatórios comerciais. Quanto mais completa a informação, mais preciso a auditoria.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
-<details><summary>O diagnóstico substitui a agência?</summary><div class="fa">Não. Avalia a operação e orienta a empresa; as recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
+<details><summary>A auditoria substitui a agência?</summary><div class="fa">Não. Avalia a operação e orienta a empresa; as recomendações podem ser executadas pela agência, pelo gestor atual ou pela equipe interna.</div></details>
 <details><summary>Quanto tempo leva?</summary><div class="fa">Depende do escopo e da disponibilidade dos dados. Contas com boa organização e acessos completos são analisadas mais rápido.</div></details>
-<details><summary>Preciso pausar as campanhas?</summary><div class="fa">Não. O diagnóstico é feito em paralelo, sem interromper a operação.</div></details>
+<details><summary>Preciso pausar as campanhas?</summary><div class="fa">Não. A auditoria é feita em paralelo, sem interromper a operação.</div></details>
 </section>
-<div class="box resume"><div class="box-t">Em resumo</div><p>O diagnóstico de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas. Serve para mostrar onde o investimento perde eficiência e priorizar correções, sem assumir a operação. Use os links deste guia para aprofundar cada tema.</p></div>`,
+<div class="box resume"><div class="box-t">Em resumo</div><p>A auditoria de tráfego pago é uma análise independente da jornada completa — campanhas, dados, leads, página e vendas. Serve para mostrar onde o investimento perde eficiência e priorizar correções, sem assumir a operação. Use os links deste guia para aprofundar cada tema.</p></div>`,
   },
   {
     slug: "metricas-de-trafego-pago-guia-para-empresarios",
@@ -1314,11 +1314,11 @@ const SEED_POSTS = [
 <h2>Consequências de não investigar</h2>
 <p>Sem separar causa de mercado de causa interna, é comum reagir errado: aumentar verba numa campanha que está apenas cara, ou desligar uma que estava vendendo mas parou de ser medida. Os dois erros custam dinheiro.</p>
 <h2>Quando procurar uma análise independente</h2>
-<p>Se o resultado caiu e você não consegue afirmar <em>por quê</em>, um diagnóstico cruza mídia, rastreamento, criativo e vendas para mostrar onde está a perda — e o que dá para recuperar agora. Veja também <a href="/blog/como-saber-se-o-trafego-pago-esta-funcionando">como saber se o tráfego pago está funcionando</a>.</p>
+<p>Se o resultado caiu e você não consegue afirmar <em>por quê</em>, uma auditoria cruza mídia, rastreamento, criativo e vendas para mostrar onde está a perda — e o que dá para recuperar agora. Veja também <a href="/blog/como-saber-se-o-trafego-pago-esta-funcionando">como saber se o tráfego pago está funcionando</a>.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Aumentar o orçamento resolve a queda?</summary><div class="fa">Nem sempre. Se a causa for criativo fadigado ou rastreamento quebrado, mais verba escala o problema. Vale descobrir a causa antes de investir mais.</div></details>
 <details><summary>O Meta piorou ou é impressão minha?</summary><div class="fa">O ambiente ficou mais caro e a medição mais difícil — isso é real e afeta todo mundo. Mas parte da diferença costuma estar em fatores internos que dá para ajustar.</div></details>
-<details><summary>Trocar de plataforma resolve?</summary><div class="fa">Só se o problema for de canal. Muitas vezes o mesmo gargalo (oferta, página, rastreamento) apareceria em qualquer plataforma. Diagnosticar evita a troca por troca.</div></details>
+<details><summary>Trocar de plataforma resolve?</summary><div class="fa">Só se o problema for de canal. Muitas vezes o mesmo gargalo (oferta, página, rastreamento) apareceria em qualquer plataforma. Auditar evita a troca por troca.</div></details>
 </section>
 <div class="box resume"><div class="box-t">Em resumo</div><p>Meta Ads render menos que antes é resultado de causas somadas: mais concorrência, mídia mais cara, rastreamento enfraquecido e criativos fadigados. Separe o que é de mercado do que está no seu controle — criativo, oferta, medição e página — antes de mexer no orçamento.</p></div>`,
   },
@@ -1392,7 +1392,7 @@ const SEED_POSTS = [
 <h2>O erro de escolher pela plataforma, não pela estratégia</h2>
 <p>Investir onde "todo mundo está" ou onde o vizinho teve resultado ignora o que importa: como <em>o seu</em> cliente decide. A mesma verba pode render muito num canal e pouco no outro, dependendo do encaixe. E, se o Google está caro, nem sempre a resposta é migrar — veja <a href="/blog/google-ads-caro-quais-podem-ser-as-causas">as causas de um Google Ads caro</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você está dividido entre os canais ou já investe em ambos sem saber qual traz cliente de verdade, um diagnóstico avalia a operação e mostra onde cada real rende mais.</p>
+<p>Se você está dividido entre os canais ou já investe em ambos sem saber qual traz cliente de verdade, uma auditoria avalia a operação e mostra onde cada real rende mais.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Dá para usar os dois ao mesmo tempo?</summary><div class="fa">Sim, e é comum. O importante é dar papéis claros a cada um e medir o resultado separadamente para saber onde investir mais.</div></details>
 <details><summary>Qual é mais barato?</summary><div class="fa">Depende do setor e da concorrência. "Mais barato" no clique não significa "mais barato" por cliente. O que importa é o custo de aquisição em cada canal.</div></details>
@@ -1466,7 +1466,7 @@ const SEED_POSTS = [
 <h2>Consequências de ignorar isso</h2>
 <p>Decidir só pelo painel do Meta pode superestimar o resultado; decidir só pelo Analytics pode subestimá-lo. Nos dois casos, você move verba com base numa contabilidade que não corresponde ao caixa. Veja também por que <a href="/blog/cliques-nao-sao-vendas-como-avaliar-o-resultado-real">cliques não são vendas</a>.</p>
 <h2>Quando procurar ajuda</h2>
-<p>Se os números não batem e você não sabe qual usar para decidir, um diagnóstico organiza a medição: define uma fonte de verdade, alinha atribuição e conecta campanhas às vendas reais — para que a decisão pare de depender de qual tela você abriu.</p>
+<p>Se os números não batem e você não sabe qual usar para decidir, uma auditoria organiza a medição: define uma fonte de verdade, alinha atribuição e conecta campanhas às vendas reais — para que a decisão pare de depender de qual tela você abriu.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Um dos números está errado?</summary><div class="fa">Não necessariamente. Eles medem coisas diferentes com regras diferentes. O "erro" está em tratá-los como se fossem a mesma medição e esperar que coincidam.</div></details>
 <details><summary>Como faço para ter um número confiável?</summary><div class="fa">Elegendo uma fonte de verdade para o resultado comercial — normalmente o CRM ou o sistema de vendas — e usando as plataformas para otimização, não como placar final.</div></details>
@@ -1504,7 +1504,7 @@ const SEED_POSTS = [
 <h2>A boa notícia</h2>
 <p>Na maioria dos casos, o que falta não é uma ferramenta cara, e sim <strong>organização</strong>: instalar o Pixel e a API de Conversões corretamente, marcar os eventos certos (compra, lead, contato) e validar se disparam quando deveriam. É um trabalho de base — pouco glamouroso, mas o de maior impacto.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você desconfia que os números não refletem a realidade, um diagnóstico começa justamente pela medição: verifica se o rastreamento está íntegro antes de discutir criativo ou orçamento — porque, sem essa base, o resto é chute.</p>
+<p>Se você desconfia que os números não refletem a realidade, uma auditoria começa justamente pela medição: verifica se o rastreamento está íntegro antes de discutir criativo ou orçamento — porque, sem essa base, o resto é chute.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>O Pixel sozinho resolve o rastreamento?</summary><div class="fa">Ajuda, mas hoje o Pixel isolado perde parte dos dados por bloqueios de privacidade. Combinar com a API de Conversões (envio pelo servidor) devolve boa parte desse sinal.</div></details>
 <details><summary>Preciso de programador para configurar?</summary><div class="fa">Depende da estrutura do site. Muitos casos se resolvem com gerenciador de tags e as integrações nativas das plataformas; outros exigem apoio técnico. O essencial é validar se está disparando certo.</div></details>
@@ -1543,7 +1543,7 @@ const SEED_POSTS = [
 <h2>A conta que não fecha</h2>
 <p>Quando a página não converte, o custo por lead sobe mesmo com o anúncio funcionando bem. É um dos pontos onde a empresa <a href="/blog/onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda">perde dinheiro entre o anúncio e a venda</a>: o clique foi pago, mas a jornada trava logo na chegada.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se os anúncios geram cliques mas poucos contatos, vale olhar para onde o tráfego está caindo. Um diagnóstico avalia a página de destino junto com a campanha — porque, muitas vezes, o problema não está no anúncio, e sim no que vem depois dele.</p>
+<p>Se os anúncios geram cliques mas poucos contatos, vale olhar para onde o tráfego está caindo. Uma auditoria avalia a página de destino junto com a campanha — porque, muitas vezes, o problema não está no anúncio, e sim no que vem depois dele.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Preciso de uma landing page para cada campanha?</summary><div class="fa">Não obrigatoriamente, mas cada campanha deveria levar a uma página coerente com sua promessa. Uma landing bem feita pode servir a campanhas semelhantes; ofertas muito diferentes pedem páginas próprias.</div></details>
 <details><summary>Landing page precisa ser cara ou complexa?</summary><div class="fa">Não. Uma página simples, clara e rápida, com uma oferta e um objetivo, costuma converter melhor que um site elaborado cheio de distrações.</div></details>
@@ -1581,8 +1581,8 @@ const SEED_POSTS = [
 <li><strong>Decidir só pelo painel</strong>, sem confirmar a venda no caixa;</li>
 <li><strong>Deixar o mesmo criativo</strong> rodando até cansar o público.</li>
 </ul>
-<h2>Quando um diagnóstico ajuda</h2>
-<p>Se você investe no Meta e não consegue dizer, com dados, quanto cada campanha vendeu e se deu lucro, um diagnóstico independente cruza mídia, rastreamento, página e vendas — e mostra onde está a perda antes de você aumentar a verba.</p>
+<h2>Quando uma auditoria ajuda</h2>
+<p>Se você investe no Meta e não consegue dizer, com dados, quanto cada campanha vendeu e se deu lucro, uma auditoria independente cruza mídia, rastreamento, página e vendas — e mostra onde está a perda antes de você aumentar a verba.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Meta Ads é o mesmo que impulsionar post?</summary><div class="fa">Impulsionar é a versão mais simples e limitada. O Meta Ads (pelo Gerenciador de Anúncios) permite objetivos, públicos e medição muito mais completos — e costuma render mais quando bem usado.</div></details>
 <details><summary>Preciso estar no Instagram e no Facebook?</summary><div class="fa">A plataforma entrega nos dois e em outros espaços da Meta. Onde o seu público está e onde o resultado aparece é algo que se descobre medindo, não presumindo.</div></details>
@@ -1620,7 +1620,7 @@ const SEED_POSTS = [
 <li><strong>Não acompanhar o relatório de termos de pesquisa</strong>;</li>
 <li><strong>Decidir verba pelo painel</strong>, sem ligar à venda real.</li>
 </ul>
-<h2>Quando um diagnóstico ajuda</h2>
+<h2>Quando uma auditoria ajuda</h2>
 <p>Se a conta está cara e você não sabe onde a verba escapa, uma auditoria independente olha estrutura de campanhas, termos de pesquisa e página de destino — e mostra o desperdício e o que dá para recuperar sem aumentar o orçamento.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Google Ads serve para qualquer negócio?</summary><div class="fa">Serve melhor quando há busca ativa pelo que você oferece. Se ninguém procura pelo produto ainda, gerar demanda no Meta pode fazer mais sentido como ponto de partida.</div></details>
@@ -1658,8 +1658,8 @@ const SEED_POSTS = [
 <li><strong>Comparar o registrado com o caixa</strong> de tempos em tempos.</li>
 </ul>
 <div class="box tip"><div class="box-t">💡 Quase nunca é falta de ferramenta</div><p>Na maioria dos casos, o que falta não é um software caro, e sim organização: rastreamento correto, eventos certos e integração com o CRM. É trabalho de base, de alto impacto.</p></div>
-<h2>Quando um diagnóstico ajuda</h2>
-<p>Se você desconfia que os números não refletem a realidade, um diagnóstico começa pela medição: verifica se o rastreamento está íntegro antes de discutir criativo ou orçamento — porque, sem essa base, o resto é chute.</p>
+<h2>Quando uma auditoria ajuda</h2>
+<p>Se você desconfia que os números não refletem a realidade, uma auditoria começa pela medição: verifica se o rastreamento está íntegro antes de discutir criativo ou orçamento — porque, sem essa base, o resto é chute.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Qual ferramenta devo usar como fonte de verdade?</summary><div class="fa">Para o resultado comercial, normalmente o CRM ou o sistema de vendas — é onde a venda real fica registrada. As plataformas de anúncio servem para otimizar, não como placar final.</div></details>
 <details><summary>Rastreamento não é assunto só de técnico?</summary><div class="fa">A implementação é técnica, mas a decisão de exigir dados confiáveis é do dono do negócio. Sem essa cobrança, é comum a operação rodar meses medindo errado.</div></details>
@@ -1701,8 +1701,8 @@ const SEED_POSTS = [
 <li><strong>Formulário longo</strong> demais ou objetivo confuso;</li>
 <li><strong>Falta de provas</strong> que sustentem a oferta.</li>
 </ul>
-<h2>Quando um diagnóstico ajuda</h2>
-<p>Se os anúncios geram cliques mas poucos contatos ou vendas, vale avaliar a página junto com a campanha. Um diagnóstico independente olha a jornada inteira — do anúncio à página ao atendimento — e mostra onde o clique pago está travando.</p>
+<h2>Quando uma auditoria ajuda</h2>
+<p>Se os anúncios geram cliques mas poucos contatos ou vendas, vale avaliar a página junto com a campanha. Uma auditoria independente olha a jornada inteira — do anúncio à página ao atendimento — e mostra onde o clique pago está travando.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Toda campanha precisa de uma landing page própria?</summary><div class="fa">Não obrigatoriamente, mas cada campanha deveria levar a uma página coerente com sua promessa. Ofertas muito diferentes pedem páginas próprias; semelhantes podem compartilhar uma boa landing.</div></details>
 <details><summary>Uma landing page precisa ser cara?</summary><div class="fa">Não. Uma página simples, clara e rápida, com uma oferta e um objetivo, costuma converter mais do que um site elaborado e cheio de distrações.</div></details>
@@ -1742,7 +1742,7 @@ const SEED_POSTS = [
 <h2>Quando o problema é o follow-up e quando é o lead</h2>
 <p>Se leads da mesma origem fecham quando bem trabalhados e somem quando mal acompanhados, o gargalo é o processo, não a qualidade. Distinguir os dois é parte de descobrir <a href="/blog/muitos-leads-e-poucas-vendas-onde-esta-o-problema">onde está o problema entre muitos leads e poucas vendas</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se o comercial reclama da qualidade e o marketing jura que os leads são bons, um diagnóstico olha a jornada inteira — inclusive o follow-up — e mostra, com dados, onde a venda realmente se perde.</p>
+<p>Se o comercial reclama da qualidade e o marketing jura que os leads são bons, uma auditoria olha a jornada inteira — inclusive o follow-up — e mostra, com dados, onde a venda realmente se perde.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Quantas vezes posso tentar contato sem incomodar?</summary><div class="fa">Não há número mágico, mas alguns toques espaçados e com valor costumam ser bem recebidos. O que incomoda não é a quantidade, e sim a mensagem vazia e repetida.</div></details>
 <details><summary>Follow-up por WhatsApp funciona?</summary><div class="fa">Sim, é um dos canais mais eficazes no Brasil — desde que com mensagens úteis e no timing certo, não spam. Combinar canais (ligação, WhatsApp, e-mail) tende a melhorar a resposta.</div></details>
@@ -1779,7 +1779,7 @@ const SEED_POSTS = [
 <table><thead><tr><th>Situação comum</th><th>Ajuste simples</th></tr></thead><tbody><tr><td>Leads chegam em canais diferentes</td><td>Centralizar num CRM ou caixa única</td></tr><tr><td>Ninguém sabe de quem é a vez</td><td>Definir responsável e revezamento</td></tr><tr><td>Ninguém percebe o lead novo</td><td>Alerta imediato de entrada</td></tr></tbody></table>
 <p>Centralizar os contatos é também o que permite medir e não perder ninguém — assunto de <a href="/blog/crm-por-que-o-trafego-pago-precisa-de-um">por que o tráfego pago precisa de um CRM</a>. E responder rápido é o começo de um bom <a href="/blog/lead-nao-responde-como-fazer-follow-up-que-funciona">follow-up</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você desconfia que bons leads estão esfriando por demora, um diagnóstico mede o tempo de resposta da sua operação e mostra quanto isso pesa nas vendas — muitas vezes a correção mais barata e mais rápida de todas.</p>
+<p>Se você desconfia que bons leads estão esfriando por demora, uma auditoria mede o tempo de resposta da sua operação e mostra quanto isso pesa nas vendas — muitas vezes a correção mais barata e mais rápida de todas.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Qual é o tempo ideal de resposta?</summary><div class="fa">Quanto antes, melhor — os primeiros minutos são os mais valiosos. Não existe número universal, mas responder em minutos supera de longe responder em horas.</div></details>
 <details><summary>Resposta automática resolve?</summary><div class="fa">Ajuda a segurar o lead e a dar um primeiro sinal, mas não substitui o atendimento humano. Serve de ponte até alguém assumir a conversa, não como resposta final.</div></details>
@@ -1815,7 +1815,7 @@ const SEED_POSTS = [
 <p>CRM não é sinônimo de sistema caro e cheio de recursos. Para a maioria das PMEs, começar simples — registrar lead, origem, status e próximo passo — já resolve o essencial. Ferramentas como Kommo, Pipedrive e outras atendem bem; o que importa é a <strong>disciplina de usar</strong>, não o software em si.</p>
 <table><thead><tr><th>Sem CRM</th><th>Com CRM usado de verdade</th></tr></thead><tbody><tr><td>Leads espalhados e esquecidos</td><td>Todos registrados e com próximo passo</td></tr><tr><td>"Acho que essa campanha vende"</td><td>Dados de qual campanha gera cliente</td></tr><tr><td>Follow-up depende da memória</td><td>Acompanhamento organizado e medido</td></tr></tbody></table>
 <h2>Quando procurar uma análise</h2>
-<p>Se você investe em anúncios mas não consegue dizer quantos leads viraram cliente nem por qual campanha, um diagnóstico ajuda a estruturar essa medição — ligando mídia, CRM e vendas para que a verba pare de ser decidida no escuro.</p>
+<p>Se você investe em anúncios mas não consegue dizer quantos leads viraram cliente nem por qual campanha, uma auditoria ajuda a estruturar essa medição — ligando mídia, CRM e vendas para que a verba pare de ser decidida no escuro.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Uma planilha serve como CRM?</summary><div class="fa">Para começar, uma planilha bem organizada já é melhor que nada. Ela costuma travar quando o volume cresce e vários vendedores atualizam ao mesmo tempo — aí um CRM de verdade compensa.</div></details>
 <details><summary>CRM é caro?</summary><div class="fa">Há opções acessíveis e até gratuitas para começar. O maior custo não é a mensalidade, e sim a disciplina de manter o registro em dia — sem isso, nenhum CRM entrega valor.</div></details>
@@ -1851,7 +1851,7 @@ const SEED_POSTS = [
 <p>O ponto de partida é simples e poderoso: <strong>uma definição única de lead qualificado</strong> e um <strong>dado compartilhado</strong> que os dois times olhem. Quando o comercial registra o desfecho de cada lead e o marketing enxerga isso por campanha, a conversa deixa de ser "seus leads são ruins" e vira "esta campanha traz cliente, aquela não". Parte da qualidade também nasce no anúncio — tema de <a href="/blog/por-que-minhas-campanhas-geram-leads-desqualificados">por que minhas campanhas geram leads desqualificados</a>.</p>
 <table><thead><tr><th>Sintoma</th><th>O que costuma faltar</th></tr></thead><tbody><tr><td>"Os leads são ruins" x "os leads são bons"</td><td>Definição comum de lead qualificado</td></tr><tr><td>Ninguém sabe qual campanha vende</td><td>Registro do desfecho ligado à origem</td></tr><tr><td>Reuniões viram troca de culpa</td><td>Um dado único, não dois relatórios</td></tr></tbody></table>
 <h2>Quando procurar uma análise</h2>
-<p>Se marketing e vendas já vivem apontando o dedo um para o outro, um diagnóstico independente entra sem defender nenhum lado: cruza campanhas, qualidade de leads e desfecho comercial para mostrar, com dados, onde a empresa está de fato perdendo dinheiro.</p>
+<p>Se marketing e vendas já vivem apontando o dedo um para o outro, uma auditoria independente entra sem defender nenhum lado: cruza campanhas, qualidade de leads e desfecho comercial para mostrar, com dados, onde a empresa está de fato perdendo dinheiro.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>De quem é a culpa quando o lead não fecha?</summary><div class="fa">Quase nunca é de um lado só. Pode ser segmentação, promessa do anúncio, qualificação, página ou atendimento. Por isso a resposta exige olhar a jornada inteira, não escolher um culpado.</div></details>
 <details><summary>Como alinhar sem uma reunião interminável?</summary><div class="fa">Começando pelo essencial: uma definição comum de lead qualificado e um dado único que os dois times acompanhem. O alinhamento vem do fato compartilhado, não da discussão de opiniões.</div></details>
@@ -1916,7 +1916,7 @@ const SEED_POSTS = [
 <h2>O caminho, em ordem</h2>
 <table><thead><tr><th>Etapa</th><th>Antes de escalar</th></tr></thead><tbody><tr><td>Medição</td><td>Compra e receita rastreadas corretamente</td></tr><tr><td>Catálogo</td><td>Integrado e organizado</td></tr><tr><td>Margem</td><td>Conhecida por produto</td></tr><tr><td>Remarketing</td><td>Ativo para quem já visitou</td></tr></tbody></table>
 <h2>Quando procurar uma análise</h2>
-<p>Se a sua loja investe em anúncios mas você não tem certeza se está lucrando, um diagnóstico verifica medição, catálogo e margem — e mostra onde a operação ganha ou perde dinheiro antes de aumentar o orçamento.</p>
+<p>Se a sua loja investe em anúncios mas você não tem certeza se está lucrando, uma auditoria verifica medição, catálogo e margem — e mostra onde a operação ganha ou perde dinheiro antes de aumentar o orçamento.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Google Shopping ou Meta para e-commerce?</summary><div class="fa">Depende do produto e da demanda. Shopping captura quem já procura pelo item; o Meta gera descoberta. Muitas lojas usam os dois com papéis diferentes.</div></details>
 <details><summary>Preciso de muita verba para começar?</summary><div class="fa">Mais importante que o valor é ter medição e margem claras. Sem isso, qualquer verba vira aposta. Com isso, dá para começar controlado e escalar o que prova lucro.</div></details>
@@ -1954,7 +1954,7 @@ const SEED_POSTS = [
 <h2>O que isso tem a ver com o tráfego pago</h2>
 <p>Se você paga para trazer visitantes e eles abandonam no checkout, o custo por venda sobe mesmo com o anúncio funcionando. É um vazamento que aparece como "tráfego caro", quando o problema está na loja — parte de <a href="/blog/trafego-pago-para-e-commerce-por-onde-comecar">por onde começar no e-commerce</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se a sua loja recebe visitas dos anúncios mas converte pouco, um diagnóstico olha a jornada do clique ao checkout e mostra onde o carrinho se perde — e o que dá para recuperar sem gastar mais em mídia.</p>
+<p>Se a sua loja recebe visitas dos anúncios mas converte pouco, uma auditoria olha a jornada do clique ao checkout e mostra onde o carrinho se perde — e o que dá para recuperar sem gastar mais em mídia.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Qual é uma taxa normal de abandono?</summary><div class="fa">O abandono é alto na maioria das lojas — a maior parte dos carrinhos não é finalizada. Mais útil que comparar com uma média é reduzir o seu próprio abandono removendo barreiras.</div></details>
 <details><summary>Vale a pena dar desconto para recuperar?</summary><div class="fa">Às vezes, mas cuidado: descontar sempre ensina o cliente a abandonar de propósito. Muitas vezes o problema é frete ou confiança, não preço — e aí desconto não resolve.</div></details>
@@ -1991,7 +1991,7 @@ const SEED_POSTS = [
 <h2>Por que isso engana tanta gente</h2>
 <p>O ROAS é o número que a plataforma mostra de graça, na cara. Margem exige puxar dados de vários lugares. Então é natural decidir pelo que é fácil de ver — e é exatamente aí que muita loja escala o prejuízo achando que escala o lucro.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se a sua loja tem "bom ROAS" mas o caixa não confirma, um diagnóstico monta a conta real — margem, ROAS de equilíbrio e resultado por produto — para mostrar se você está lucrando ou financiando as próprias vendas.</p>
+<p>Se a sua loja tem "bom ROAS" mas o caixa não confirma, uma auditoria monta a conta real — margem, ROAS de equilíbrio e resultado por produto — para mostrar se você está lucrando ou financiando as próprias vendas.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Qual ROAS é bom?</summary><div class="fa">Não existe número universal. O ROAS "bom" é o que fica acima do seu ROAS de equilíbrio — e isso depende da sua margem, não da média do mercado.</div></details>
 <details><summary>O ROAS do painel é confiável?</summary><div class="fa">Ele mede o que a plataforma atribui a si mesma, o que pode divergir do real. Serve para otimizar, mas a decisão de lucro se fecha com os dados de margem e vendas.</div></details>
@@ -2061,7 +2061,7 @@ const SEED_POSTS = [
 <h2>Como usar a IA a seu favor</h2>
 <p>O melhor resultado vem da divisão certa: a IA cuida da <em>execução em escala</em>; você cuida da <em>direção</em>. Isso significa dar à máquina objetivos corretos (conversões que são vendas reais), bons dados (rastreamento íntegro) e boas matérias-primas (ofertas e criativos). Lixo na entrada, lixo otimizado na saída.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você desconfia que a automação está "rodando sozinha" sem entregar resultado, um diagnóstico verifica se os objetivos, a medição e as entradas estão certos — porque a IA só é tão boa quanto aquilo que você entrega a ela.</p>
+<p>Se você desconfia que a automação está "rodando sozinha" sem entregar resultado, uma auditoria verifica se os objetivos, a medição e as entradas estão certos — porque a IA só é tão boa quanto aquilo que você entrega a ela.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>A IA vai substituir o gestor de tráfego?</summary><div class="fa">Ela substitui tarefas operacionais, não o julgamento. Estratégia, leitura de negócio, oferta e decisão sobre o que é bom cliente seguem humanos — e ficam mais importantes, não menos.</div></details>
 <details><summary>Posso confiar a campanha inteira à automação?</summary><div class="fa">Pode delegar a execução, desde que você defina bem o objetivo, garanta a medição e forneça boas entradas. Sem isso, a automação otimiza para o alvo errado com eficiência.</div></details>
@@ -2093,14 +2093,14 @@ const SEED_POSTS = [
 <ul>
 <li><strong>Visibilidade:</strong> fica mais difícil saber o que exatamente está performando;</li>
 <li><strong>Controle fino:</strong> menos poder sobre onde e para quem aparecer;</li>
-<li><strong>Diagnóstico:</strong> a "caixa-preta" dificulta entender por que algo deu certo ou errado.</li>
+<li><strong>Auditoria:</strong> a "caixa-preta" dificulta entender por que algo deu certo ou errado.</li>
 </ul>
 <div class="box alert"><div class="box-t">⚠️ Automação não conserta base errada</div><p>Se o rastreamento está quebrado ou o objetivo é uma conversão que não é venda, a campanha automatizada vai otimizar para o alvo errado — com uma eficiência que torna o problema maior e mais difícil de enxergar.</p></div>
 <h2>Como não perder as rédeas</h2>
 <table><thead><tr><th>Cuidado</th><th>Por quê</th></tr></thead><tbody><tr><td>Definir o objetivo certo</td><td>A máquina persegue o alvo que você aponta</td></tr><tr><td>Garantir rastreamento íntegro</td><td>Sem dado bom, a otimização é cega</td></tr><tr><td>Alimentar bons criativos e ofertas</td><td>A automação combina o que você dá</td></tr><tr><td>Confirmar no caixa, não só no painel</td><td>A caixa-preta mostra conversões, não lucro</td></tr></tbody></table>
 <p>O ponto de partida é sempre a medição: sem ela, delegar para a automação é dirigir vendado — por isso <a href="/blog/rastreamento-de-conversoes-por-que-e-a-base-de-tudo">rastreamento de conversões</a> é pré-requisito. E o princípio geral de dar direção à máquina está em <a href="/blog/inteligencia-artificial-no-trafego-pago-o-que-muda-de-verdade">o que a IA muda de verdade</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você roda PMax ou Advantage+ e não consegue explicar de onde vêm os resultados, um diagnóstico ajuda a abrir a caixa-preta até onde é possível — verificando objetivos, medição e entradas — para você delegar com controle, não às cegas.</p>
+<p>Se você roda PMax ou Advantage+ e não consegue explicar de onde vêm os resultados, uma auditoria ajuda a abrir a caixa-preta até onde é possível — verificando objetivos, medição e entradas — para você delegar com controle, não às cegas.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Campanha automatizada é melhor que manual?</summary><div class="fa">Depende do caso. Para alguns negócios, entrega mais com menos esforço; para outros, o controle fino de campanhas manuais rende mais. O erro é adotar por moda, sem medir.</div></details>
 <details><summary>Consigo ver o que a PMax está fazendo?</summary><div class="fa">Parcialmente. A visibilidade é menor que em campanhas tradicionais, mas há relatórios e sinais que ajudam a entender a entrega. Exigir esses dados é parte de manter o controle.</div></details>
@@ -2136,7 +2136,7 @@ const SEED_POSTS = [
 <h2>O papel do humano, na prática</h2>
 <p>Cabe a você (ou a quem te assessora) definir o rumo e checar se a máquina está indo para onde interessa: os objetivos estão certos? A medição reflete vendas reais? A oferta está competitiva? A IA cuida do resto — e faz bem. A relação entre execução automática e direção humana está detalhada em <a href="/blog/inteligencia-artificial-no-trafego-pago-o-que-muda-de-verdade">o que a IA muda de verdade</a>.</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se as campanhas "rodam com IA" mas o resultado de negócio não aparece, o problema costuma ser de direção, não de execução. Um diagnóstico independente avalia a estratégia por trás das campanhas — objetivo, oferta, público e medição — que é onde a decisão humana faz diferença.</p>
+<p>Se as campanhas "rodam com IA" mas o resultado de negócio não aparece, o problema costuma ser de direção, não de execução. Uma auditoria independente avalia a estratégia por trás das campanhas — objetivo, oferta, público e medição — que é onde a decisão humana faz diferença.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Se a IA é tão boa, por que preciso de estratégia?</summary><div class="fa">Porque a IA executa o que você pede, não decide o que pedir. Sem estratégia, ela otimiza rumo a objetivos que podem não gerar lucro — com muita eficiência.</div></details>
 <details><summary>Estratégia é coisa de empresa grande?</summary><div class="fa">Não. Estratégia é clareza sobre oferta, cliente e margem — necessária em qualquer tamanho. Negócios pequenos, com verba limitada, precisam ainda mais de direção certa.</div></details>
@@ -2198,7 +2198,7 @@ const SEED_POSTS = [
 <h2>Orçamento mínimo para aprender</h2>
 <p>Existe também um piso prático: verba suficiente para as campanhas saírem do aprendizado e gerarem dados. Abaixo disso, você não tem informação para decidir — e conclui, injustamente, que "não funciona".</p>
 <h2>Quando procurar uma análise</h2>
-<p>Se você não sabe quanto a sua margem permite pagar por cliente, um diagnóstico ajuda a montar essa conta e a definir um orçamento realista — antes de escalar no escuro ou desistir cedo demais.</p>
+<p>Se você não sabe quanto a sua margem permite pagar por cliente, uma auditoria ajuda a montar essa conta e a definir um orçamento realista — antes de escalar no escuro ou desistir cedo demais.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Existe um percentual ideal do faturamento?</summary><div class="fa">Não. Percentuais genéricos ignoram margem e valor do cliente. O orçamento certo parte do CAC que você suporta e da meta de clientes, não de uma fração fixa.</div></details>
 <details><summary>Melhor começar pequeno?</summary><div class="fa">Começar controlado é saudável, desde que a verba gere dados suficientes para aprender. Pequeno demais só adia a informação necessária para decidir.</div></details>
@@ -2234,7 +2234,7 @@ const SEED_POSTS = [
 <li><strong>Equilibre</strong> a verba entre encher o topo e colher o fundo.</li>
 </ul>
 <h2>Quando procurar uma análise</h2>
-<p>Se as suas campanhas vivem sendo ligadas e desligadas sem critério, um diagnóstico ajuda a enxergar o funil inteiro — e a distribuir verba e expectativa conforme o papel de cada etapa.</p>
+<p>Se as suas campanhas vivem sendo ligadas e desligadas sem critério, uma auditoria ajuda a enxergar o funil inteiro — e a distribuir verba e expectativa conforme o papel de cada etapa.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Preciso de campanhas para cada etapa?</summary><div class="fa">Não necessariamente todas, mas é útil ter clareza de qual etapa cada campanha atende. Negócios de compra imediata focam mais no fundo; marcas novas precisam alimentar o topo.</div></details>
 <details><summary>Como sei se meu problema é falta de topo?</summary><div class="fa">Um sinal comum: as vendas caem depois de um tempo só investindo em fundo de funil, sinal de que o público pronto para comprar se esgotou sem reposição.</div></details>
@@ -2247,7 +2247,7 @@ const SEED_POSTS = [
     title: "Tráfego pago sem estratégia: por que anunciar mais não resolve",
     subtitle: "Quando o resultado cai, o reflexo é aumentar a verba. Mas gastar mais sobre uma base torta só acelera o problema. Veja o que precisa vir antes do orçamento.",
     category: "estrategia-digital",
-    tags: "estratégia,orçamento,diagnóstico,tráfego pago",
+    tags: "estratégia,orçamento,auditoria,tráfego pago",
     excerpt: "Aumentar a verba sem estratégia costuma escalar o problema, não a venda. Entenda por que anunciar mais não resolve e o que precisa vir antes do orçamento.",
     seo_title: "Tráfego pago sem estratégia: por que anunciar mais não resolve",
     seo_description: "Por que aumentar o investimento em anúncios sem estratégia não resolve: gastar mais sobre uma base torta escala o desperdício. O que corrigir antes do orçamento.",
@@ -2271,7 +2271,7 @@ const SEED_POSTS = [
 <h2>Como saber se o problema é estratégia ou verba</h2>
 <table><thead><tr><th>Sintoma</th><th>O que costuma indicar</th></tr></thead><tbody><tr><td>Muitos cliques, poucas vendas</td><td>Oferta, página ou processo — não verba</td></tr><tr><td>Bom volume, mas sem lucro</td><td>Margem, público ou medição</td></tr><tr><td>Resultado cai ao escalar</td><td>Base não sustenta mais volume</td></tr></tbody></table>
 <h2>Quando procurar uma análise</h2>
-<p>Se o seu reflexo tem sido aumentar a verba e o resultado não acompanha, um diagnóstico independente examina a base — oferta, página, medição e processo — antes de qualquer decisão de orçamento. Muitas vezes, a maior economia não é gastar mais, e sim corrigir o que faz o dinheiro vazar.</p>
+<p>Se o seu reflexo tem sido aumentar a verba e o resultado não acompanha, uma auditoria independente examina a base — oferta, página, medição e processo — antes de qualquer decisão de orçamento. Muitas vezes, a maior economia não é gastar mais, e sim corrigir o que faz o dinheiro vazar.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Nunca devo aumentar a verba?</summary><div class="fa">Deve — quando a base está sólida e a conta fecha. O erro não é escalar; é escalar antes de corrigir o que está drenando o resultado.</div></details>
 <details><summary>Como sei se minha base está boa?</summary><div class="fa">Se as campanhas geram vendas com lucro de forma consistente e você consegue explicar de onde vêm, a base tende a estar sólida. Se o resultado é instável ou inexplicável, vale revisar antes de escalar.</div></details>
@@ -2302,7 +2302,7 @@ const SEED_POSTS = [
 <h2>Onde o dinheiro realmente se perde</h2>
 <p>A estratégia digital não termina no anúncio: ela cobre toda a jornada até a venda, onde ficam os maiores vazamentos. Esse mapa está em <a href="/blog/onde-sua-empresa-perde-dinheiro-entre-o-anuncio-e-a-venda">onde sua empresa perde dinheiro entre o anúncio e a venda</a>.</p>
 <h2>A visão que amarra tudo</h2>
-<p>Oferta, público, funil, orçamento, página, medição e processo comercial não são assuntos separados — são partes de uma mesma estratégia. Tratá-los isoladamente é a origem da maior parte do desperdício. Um diagnóstico independente serve justamente para olhar o conjunto, não a peça.</p>
+<p>Oferta, público, funil, orçamento, página, medição e processo comercial não são assuntos separados — são partes de uma mesma estratégia. Tratá-los isoladamente é a origem da maior parte do desperdício. Uma auditoria independente serve justamente para olhar o conjunto, não a peça.</p>
 <section class="faq"><h2>Perguntas frequentes</h2>
 <details><summary>Estratégia digital é só para empresas grandes?</summary><div class="fa">Não. Quanto menor a verba, mais importante é a direção certa — não há margem para desperdício. Estratégia é clareza, não tamanho.</div></details>
 <details><summary>Por onde começo?</summary><div class="fa">Por clareza de oferta e de cliente ideal, seguida da conta de quanto vale conquistar um cliente. Com isso, as decisões de campanha e orçamento ganham chão.</div></details>
