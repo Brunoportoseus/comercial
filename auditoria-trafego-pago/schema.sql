@@ -1,5 +1,5 @@
 -- Schema do banco D1 — Leads do formulário de interesse
--- Site: www.diagnosticotrafegopago.com.br
+-- Site: auditoriatrafegopago.com.br
 --
 -- Criar o banco e rodar o schema (uma vez):
 --   wrangler d1 create diagnostico-trafego-leads

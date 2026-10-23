@@ -9,16 +9,16 @@
     "not_found_handling": "404-page",
     "run_worker_first": true
   },
-  // Domínios próprios. Canônico: www.diagnosticotrafegopago.com.br.
-  // O apex do novo domínio e o domínio antigo (auditoria*) redirecionam 301
-  // para o canônico via _worker.js. Requer as zonas ATIVAS na Cloudflare — se
-  // o `wrangler deploy` falhar ao criar algum custom domain (zona ainda não
+  // Domínios próprios. Canônico: auditoriatrafegopago.com.br (apex).
+  // O www e o domínio antigo (diagnostico*) redirecionam 301 para o canônico
+  // via _worker.js. Requer as zonas ATIVAS na Cloudflare — se o
+  // `wrangler deploy` falhar ao criar algum custom domain (zona ainda não
   // ativa), adicione-o pelo painel (Workers > Settings > Domains & Routes).
   "routes": [
-    { "pattern": "diagnosticotrafegopago.com.br", "custom_domain": true },
-    { "pattern": "www.diagnosticotrafegopago.com.br", "custom_domain": true },
     { "pattern": "auditoriatrafegopago.com.br", "custom_domain": true },
-    { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true }
+    { "pattern": "www.auditoriatrafegopago.com.br", "custom_domain": true },
+    { "pattern": "diagnosticotrafegopago.com.br", "custom_domain": true },
+    { "pattern": "www.diagnosticotrafegopago.com.br", "custom_domain": true }
   ],
 
   // ── Banco de leads (D1) — ver SETUP-LEADS.md ────────────────────────────

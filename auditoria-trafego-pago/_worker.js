@@ -9,7 +9,7 @@
  *   GET  /api/leads       → lista os leads (protegido)
  *   GET  /api/leads.csv   → exporta os leads em CSV (protegido)
  *
- * Redireciona 301 os hosts não-canônicos para www.diagnosticotrafegopago.com.br.
+ * Redireciona 301 os hosts não-canônicos para auditoriatrafegopago.com.br.
  * O resto é servido como asset estático.
  *
  * O binding do banco (env.DB) só existe depois que o D1 for criado e ligado no
@@ -17,11 +17,11 @@
  * responde de forma graciosa (o formulário cai no fallback do WhatsApp).
  */
 
-const CANON = "www.diagnosticotrafegopago.com.br";
+const CANON = "auditoriatrafegopago.com.br";
 const REDIRECT = new Set([
-  "diagnosticotrafegopago.com.br",
-  "auditoriatrafegopago.com.br",
   "www.auditoriatrafegopago.com.br",
+  "diagnosticotrafegopago.com.br",
+  "www.diagnosticotrafegopago.com.br",
 ]);
 
 const COOKIE = "dtp_sess";
@@ -159,7 +159,7 @@ async function exportLeads(request, env) {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="leads-diagnosticotrafegopago.csv"`,
+      "Content-Disposition": `attachment; filename="leads-auditoriatrafegopago.csv"`,
     },
   });
 }
@@ -279,7 +279,7 @@ const CAT_PILLAR = {
   "estrategia-digital": { slug: "estrategia-digital-guia-para-empresarios", title: "Estratégia digital para empresários: o guia completo" },
 };
 
-const SITE = "https://www.diagnosticotrafegopago.com.br";
+const SITE = "https://auditoriatrafegopago.com.br";
 const AUTHOR_NAME = "Bruno Porto Seus";
 const AUTHOR_BIO =
   "Bruno Porto atua há mais de 30 anos em negócios e mais de duas décadas no digital, integrando marketing, vendas, e-commerce e inteligência artificial. Realiza diagnósticos independentes de performance em tráfego pago, analisando toda a jornada — da campanha ao processo comercial — para mostrar onde a empresa perde dinheiro entre o anúncio e a venda.";
