@@ -47,7 +47,7 @@ Pré-requisito: `wrangler` autenticado na conta Cloudflare
    dar push no `main`).
 
 Pronto: os envios passam a ser gravados e ficam visíveis em
-`https://www.diagnosticotrafegopago.com.br/admin`.
+`https://auditoriatrafegopago.com.br/admin`.
 
 ## Se você usa o painel da Cloudflare (Workers Builds) em vez do wrangler
 
