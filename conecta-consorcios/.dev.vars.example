@@ -9,8 +9,8 @@
 # KOMMO_WEBHOOK_URL="https://sua-conta.kommo.com/..."
 
 # E-mail via Resend:
-# LEAD_EMAIL_TO="comercial@conectaconsorciosbrasil.com.br"
-# LEAD_EMAIL_FROM="Conecta Consórcios <no-reply@conectaconsorciosbrasil.com.br>"
+# LEAD_EMAIL_TO="comercial@conectaconsorcioservopa.com.br"
+# LEAD_EMAIL_FROM="Conecta Consórcios <no-reply@conectaconsorcioservopa.com.br>"
 # RESEND_API_KEY="re_xxx"
 
 # Proteção anti-bot (opcional) — Cloudflare Turnstile:

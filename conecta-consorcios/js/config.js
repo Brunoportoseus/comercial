@@ -34,8 +34,8 @@ window.CONECTA_CONFIG = {
   /* ---- Metadados de contato exibidos no site ----------------------------
    * CONFIRMAR todos antes de publicar. */
   contato: {
-    email: "conectaconsorciosbrasil@gmail.com",
-    site: "https://www.conectaconsorciosbrasil.com.br",
+    email: "conectaconsorcioservopa@gmail.com",
+    site: "https://www.conectaconsorcioservopa.com.br",
     instagram: "conectaconsorcioservopa",
     instagramUrl: "https://www.instagram.com/conectaconsorcioservopa",
     telefoneExibicao: "(41) 98852-0906",
