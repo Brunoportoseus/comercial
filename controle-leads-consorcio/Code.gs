@@ -23,9 +23,19 @@ function onOpen() {
 
 function montarPlanilha() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  ss.setSpreadsheetLocale('pt_BR');
   ss.setSpreadsheetTimeZone('America/Sao_Paulo');
+  // As fórmulas são gravadas em sintaxe inglesa (vírgulas). Com a planilha em pt_BR isso gera #ERROR!,
+  // então a montagem acontece em en_US e a planilha volta para pt_BR no final (as fórmulas se adaptam sozinhas).
+  ss.setSpreadsheetLocale('en_US');
+  try {
+    montarTudo_(ss);
+  } finally {
+    ss.setSpreadsheetLocale('pt_BR');
+  }
+  SpreadsheetApp.getUi().alert('Planilha montada.\n\nPróximo passo: menu Controle de Leads > 2. Ativar automações.');
+}
 
+function montarTudo_(ss) {
   var ordem = [NOMES.ajuda, NOMES.leads, NOMES.hist, NOMES.painel, NOMES.cfg, NOMES.listas];
   var sheets = {};
   ordem.forEach(function (n) { sheets[n] = ss.getSheetByName(n) || ss.insertSheet(n); });
@@ -43,7 +53,6 @@ function montarPlanilha() {
 
   ss.setActiveSheet(sheets[NOMES.leads]);
   SpreadsheetApp.flush();
-  SpreadsheetApp.getUi().alert('Planilha montada.\n\nPróximo passo: menu Controle de Leads > 2. Ativar automações.');
 }
 
 var COR = { cadastro: '#1c4587', atend: '#274e13', auto: '#4a4a4a', aux: '#999999', cab: '#f3f3f3' };
