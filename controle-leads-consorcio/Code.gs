@@ -32,7 +32,13 @@ function montarPlanilha() {
   } finally {
     ss.setSpreadsheetLocale('pt_BR');
   }
-  SpreadsheetApp.getUi().alert('Planilha montada.\n\nPróximo passo: menu Controle de Leads > 2. Ativar automações.');
+  SpreadsheetApp.flush();
+  var teste = ss.getSheetByName(NOMES.leads).getRange('AG3').getDisplayValue() + ss.getSheetByName(NOMES.cfg).getRange('B19').getDisplayValue();
+  if (teste.indexOf('#') >= 0) {
+    SpreadsheetApp.getUi().alert('ATENÇÃO: ainda há fórmulas com erro (' + teste + ').\nMe envie esta mensagem e uma foto da célula com erro.');
+    return;
+  }
+  SpreadsheetApp.getUi().alert('Planilha montada e fórmulas conferidas.\n\nPróximo passo: menu Controle de Leads > 2. Ativar automações.');
 }
 
 function montarTudo_(ss) {
