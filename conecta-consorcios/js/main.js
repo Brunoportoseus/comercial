@@ -474,6 +474,10 @@
           // revela o "chip" branco do rodapé, se houver (caso Servopa)
           var chip = img.closest(".footer-logo-chip");
           if (chip) chip.hidden = false;
+          // esconde a ilustração de fallback, se houver (cards de produtos)
+          var parent = img.parentElement;
+          var illu = parent && parent.querySelector("[data-illu]");
+          if (illu) illu.hidden = true;
         };
         probe.onerror = tryNext;
         probe.src = url;

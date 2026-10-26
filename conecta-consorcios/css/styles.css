@@ -604,6 +604,75 @@ section {
   font-size: 0.96rem;
 }
 
+/* ---- Produtos (tipos de consórcio) --------------------------------- */
+.prod-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.prod-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.prod-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+}
+.prod-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background: var(--grad-navy);
+  color: #fff;
+}
+.prod-media [data-illu] {
+  width: 76px;
+  height: 76px;
+  color: #fff;
+  opacity: 0.95;
+}
+.prod-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prod-body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.prod-body h3 {
+  font-size: 1.1rem;
+}
+.prod-body p {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+.prod-meta {
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--turq-2);
+  border-top: 1px solid var(--line);
+}
+.prod-cta {
+  text-align: center;
+  margin-top: 34px;
+}
+
 /* ---- How it works (steps) ------------------------------------------- */
 .steps {
   counter-reset: step;
@@ -1318,6 +1387,9 @@ section {
   .grid.cols-2 {
     grid-template-columns: repeat(2, 1fr);
   }
+  .prod-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .cookie-banner {
     flex-direction: row;
     align-items: center;
@@ -1354,6 +1426,9 @@ section {
     grid-template-columns: repeat(4, 1fr);
   }
   .grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .prod-grid {
     grid-template-columns: repeat(3, 1fr);
   }
   .grid.cols-4 {
