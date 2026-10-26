@@ -228,10 +228,10 @@
         firstInvalid = firstInvalid || email;
         ok = false;
       }
-      var objetivo = form.querySelector("#f-objetivo");
-      if (!objetivo.value) {
-        setFieldError(objetivo, "Selecione uma opção.");
-        firstInvalid = firstInvalid || objetivo;
+      var produto = form.querySelector("#f-produto");
+      if (!produto.value) {
+        setFieldError(produto, "Selecione um produto.");
+        firstInvalid = firstInvalid || produto;
         ok = false;
       }
       var consent = form.querySelector("#f-consent");
@@ -267,8 +267,9 @@
         nome: form.querySelector("#f-nome").value.trim(),
         whatsapp: phoneDigits(phone.value),
         email: form.querySelector("#f-email").value.trim(),
+        produto: form.querySelector("#f-produto").value,
         objetivo: form.querySelector("#f-objetivo").value,
-        faixa: form.querySelector("#f-faixa").value,
+        faixa: form.querySelector("#f-faixa").value.trim(),
         prazo: form.querySelector("#f-prazo").value,
         periodo: form.querySelector("#f-periodo").value,
         consent: form.querySelector("#f-consent").checked,
@@ -485,12 +486,47 @@
     });
   }
 
+  /* ---------------------------------------------------------------- *
+   * Seleção de produto: botões dos cards pré-preenchem o formulário;
+   * a finalidade (imóveis) só aparece quando o produto é "imovel".
+   * ---------------------------------------------------------------- */
+  function initProdutos() {
+    var sel = document.getElementById("f-produto");
+    var objField = document.getElementById("field-objetivo");
+
+    function syncObjetivo() {
+      if (!sel || !objField) return;
+      objField.hidden = sel.value !== "imovel";
+    }
+    if (sel) {
+      sel.addEventListener("change", syncObjetivo);
+      syncObjetivo();
+    }
+
+    document.querySelectorAll("[data-produto-pick]").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        var produto = btn.getAttribute("data-produto-pick");
+        if (sel && produto) {
+          sel.value = produto;
+          syncObjetivo();
+        }
+        track("produto_pick", { produto: produto });
+        // o href="#simulacao" já rola até o formulário; foca o nome em seguida
+        setTimeout(function () {
+          var nome = document.getElementById("f-nome");
+          if (nome) nome.focus({ preventScroll: true });
+        }, 500);
+      });
+    });
+  }
+
   /* ---------------------------------------------------------------- */
   function init() {
     initLogos();
     initWhatsApp();
     initNav();
     initForm();
+    initProdutos();
     initFaq();
     initTracking();
     initReveal();

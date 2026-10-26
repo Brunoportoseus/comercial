@@ -72,7 +72,8 @@ function isValidBrPhone(digits) {
   return true;
 }
 
-const OBJETIVOS = ["comprar", "construir", "reformar", "terreno", "outro"];
+const PRODUTOS = ["imovel", "veiculos", "servicos", "moveis", "agro"];
+const OBJETIVOS = ["comprar", "construir", "reformar", "terreno", "quitar"];
 
 async function handleLead(request, env, ctx) {
   let body;
@@ -96,13 +97,15 @@ async function handleLead(request, env, ctx) {
   const nome = sanitize(body.nome, 120);
   const whatsapp = sanitize(body.whatsapp, 15).replace(/\D/g, "");
   const email = sanitize(body.email, 160);
+  const produto = sanitize(body.produto, 40);
   const objetivo = sanitize(body.objetivo, 40);
 
   const errors = [];
   if (nome.length < 2) errors.push("nome");
   if (!isValidBrPhone(whatsapp)) errors.push("whatsapp");
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("email");
-  if (!OBJETIVOS.includes(objetivo)) errors.push("objetivo");
+  if (!PRODUTOS.includes(produto)) errors.push("produto");
+  if (objetivo && !OBJETIVOS.includes(objetivo)) errors.push("objetivo");
   if (body.consent !== true) errors.push("consent");
 
   if (errors.length) {
@@ -129,8 +132,9 @@ async function handleLead(request, env, ctx) {
     nome,
     whatsapp, // só dígitos (DDD + número)
     email: email || null,
-    objetivo,
-    faixa: sanitize(body.faixa, 40) || null,
+    produto,
+    objetivo: objetivo || null,
+    faixa: sanitize(body.faixa, 60) || null,
     prazo: sanitize(body.prazo, 40) || null,
     periodo: sanitize(body.periodo, 40) || null,
     origem: sanitize(body.origem, 80) || "landing:conecta-consorcios",
@@ -149,7 +153,7 @@ async function handleLead(request, env, ctx) {
   }
 
   // Log de observabilidade (visível no painel Cloudflare).
-  console.log("lead_recebido", JSON.stringify({ nome, whatsapp, objetivo }));
+  console.log("lead_recebido", JSON.stringify({ nome, whatsapp, produto, objetivo }));
 
   return json({ success: true });
 }
@@ -206,8 +210,9 @@ async function sendEmail(lead, env) {
     linha("Nome", lead.nome) +
     linha("WhatsApp", lead.whatsapp) +
     linha("E-mail", lead.email) +
+    linha("Produto", lead.produto) +
     linha("Objetivo", lead.objetivo) +
-    linha("Faixa de crédito", lead.faixa) +
+    linha("Valor de crédito", lead.faixa) +
     linha("Prazo", lead.prazo) +
     linha("Período p/ contato", lead.periodo) +
     linha("Origem", lead.origem) +
@@ -223,7 +228,7 @@ async function sendEmail(lead, env) {
       // CONFIRMAR: remetente precisa ser um domínio verificado no Resend.
       from: env.LEAD_EMAIL_FROM || "Conecta Consórcios <no-reply@conectaconsorciosbrasil.com.br>",
       to: [env.LEAD_EMAIL_TO],
-      subject: `Novo lead: ${lead.nome} (${lead.objetivo})`,
+      subject: `Novo lead: ${lead.nome} (${lead.produto})`,
       html,
     }),
   });
