@@ -475,10 +475,12 @@
           // revela o "chip" branco do rodapé, se houver (caso Servopa)
           var chip = img.closest(".footer-logo-chip");
           if (chip) chip.hidden = false;
-          // esconde a ilustração de fallback, se houver (cards de produtos)
+          // esconde a ilustração de fallback, se houver (cards de produtos).
+          // Obs.: em SVG, a propriedade .hidden não reflete no atributo, então
+          // usamos style.display para garantir a ocultação.
           var parent = img.parentElement;
           var illu = parent && parent.querySelector("[data-illu]");
-          if (illu) illu.hidden = true;
+          if (illu) illu.style.display = "none";
         };
         probe.onerror = tryNext;
         probe.src = url;
