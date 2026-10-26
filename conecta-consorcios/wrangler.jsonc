@@ -9,13 +9,14 @@
     "not_found_handling": "404-page"
   },
   // Domínio próprio (conectaconsorcioservopa.com.br).
-  // A Cloudflare cria DNS + SSL automaticamente ao publicar, desde que o
-  // domínio já esteja adicionado e ATIVO na mesma conta Cloudflare.
+  // Usamos Workers Routes (pattern + zone_name) em vez de custom_domain:
+  // as rotas aproveitam os registros DNS "proxied" que já existem na zona
+  // (o domínio foi migrado do Wix), então o Worker assume o tráfego sem
+  // precisar criar/alterar DNS e sem o conflito code: 100117.
   // O redirect de www -> apex é feito em _worker.js.
-  // CONFIRMAR o domínio antes de habilitar as rotas abaixo.
   "routes": [
-    { "pattern": "conectaconsorcioservopa.com.br", "custom_domain": true },
-    { "pattern": "www.conectaconsorcioservopa.com.br", "custom_domain": true }
+    { "pattern": "conectaconsorcioservopa.com.br/*", "zone_name": "conectaconsorcioservopa.com.br" },
+    { "pattern": "www.conectaconsorcioservopa.com.br/*", "zone_name": "conectaconsorcioservopa.com.br" }
   ]
   // Variáveis de ambiente / secrets do destino de leads (configurar no painel
   // Cloudflare ou via `wrangler secret put`). NUNCA colocar valores aqui:
