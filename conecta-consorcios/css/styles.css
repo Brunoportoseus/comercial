@@ -1227,6 +1227,12 @@ section {
   padding: 10px 14px;
   color: #b9cbd9;
 }
+.footer-entity {
+  color: #d7e2ec;
+}
+.footer-entity strong {
+  color: #fff;
+}
 
 /* ---- WhatsApp float ------------------------------------------------- */
 .wa-float {
