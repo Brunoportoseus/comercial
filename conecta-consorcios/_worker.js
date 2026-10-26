@@ -28,8 +28,8 @@ export default {
     const url = new URL(request.url);
 
     // 1) Redireciona www -> apex (produção). Ajuste o domínio se necessário.
-    if (url.hostname === "www.conectaconsorciosbrasil.com.br") {
-      url.hostname = "conectaconsorciosbrasil.com.br";
+    if (url.hostname === "www.conectaconsorcioservopa.com.br") {
+      url.hostname = "conectaconsorcioservopa.com.br";
       return Response.redirect(url.toString(), 301);
     }
 
@@ -226,7 +226,7 @@ async function sendEmail(lead, env) {
     },
     body: JSON.stringify({
       // CONFIRMAR: remetente precisa ser um domínio verificado no Resend.
-      from: env.LEAD_EMAIL_FROM || "Conecta Consórcios <no-reply@conectaconsorciosbrasil.com.br>",
+      from: env.LEAD_EMAIL_FROM || "Conecta Consórcios <no-reply@conectaconsorcioservopa.com.br>",
       to: [env.LEAD_EMAIL_TO],
       subject: `Novo lead: ${lead.nome} (${lead.produto})`,
       html,

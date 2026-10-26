@@ -8,14 +8,14 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
-  // Domínio próprio (conectaconsorciosbrasil.com.br).
+  // Domínio próprio (conectaconsorcioservopa.com.br).
   // A Cloudflare cria DNS + SSL automaticamente ao publicar, desde que o
   // domínio já esteja adicionado e ATIVO na mesma conta Cloudflare.
   // O redirect de www -> apex é feito em _worker.js.
   // CONFIRMAR o domínio antes de habilitar as rotas abaixo.
   "routes": [
-    { "pattern": "conectaconsorciosbrasil.com.br", "custom_domain": true },
-    { "pattern": "www.conectaconsorciosbrasil.com.br", "custom_domain": true }
+    { "pattern": "conectaconsorcioservopa.com.br", "custom_domain": true },
+    { "pattern": "www.conectaconsorcioservopa.com.br", "custom_domain": true }
   ]
   // Variáveis de ambiente / secrets do destino de leads (configurar no painel
   // Cloudflare ou via `wrangler secret put`). NUNCA colocar valores aqui:
