@@ -1,7 +1,7 @@
 /* =====================================================================
    site.js — interações do portal
    Nav mobile, modal de lead, validação e envio do formulário,
-   captura de UTM/origem, eventos de analytics e consentimento de cookies.
+   captura de UTM/origem, eventos de analytics, consentimento de cookies e busca do site (lupa).
    ===================================================================== */
 (function () {
   "use strict";
@@ -754,5 +754,235 @@
       slot.appendChild(build("compacto"));
       interesse.parentNode.insertBefore(slot, interesse);
     }
+  })();
+
+  /* ---------------- Busca do site (lupa no cabeçalho) ----------------
+     Índice estático em /assets/js/search-index.json (gerado por scripts/busca/gerar.py),
+     carregado só quando a pessoa abre a busca. Casa por prefixo de palavra, sem acentos,
+     e entende valores ("até 200 mil") para listar empreendimentos dentro do preço. */
+  (function () {
+    var btns = $$(".nav-search");
+    if (!btns.length) return;
+    var INDEX_URL = "/assets/js/search-index.json";
+    var GROUPS = [
+      ["empreendimento", "Empreendimentos", "🏡"], ["cidade", "Cidades", "📍"], ["perfil", "Terrenos por perfil", "🔎"],
+      ["conteudo", "Conteúdos", "📰"], ["pagina", "Páginas", "📄"]
+    ];
+    var QUICK = [
+      ["Almirante Tamandaré", "/almirante-tamandare/"], ["Curitiba", "/curitiba/"], ["São José dos Pinhais", "/sao-jose-dos-pinhais/"],
+      ["Entrada até R$ 10 mil", "/terrenos/entrada-ate-10-mil/"], ["Financiamento direto", "/terrenos/financiamento-direto/"],
+      ["Comparar empreendimentos", "/comparar/"]
+    ];
+    var index = null, loading = null, lastFocusS = null, active = -1, lastTracked = "", timer = null;
+
+    function norm(s) {
+      s = (s || "").toString().toLowerCase();
+      try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) { /* navegador antigo */ }
+      return s.replace(/[²]/g, "2").replace(/(\d)(m2|m)\b/g, "$1 $2").replace(/[^a-z0-9$,.\s]/g, " ").replace(/\s+/g, " ").trim();
+    }
+    function esc(s) { return (s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+    function prep(it) {
+      it._t = norm(it.titulo); it._s = norm(it.sub); it._d = norm(it.desc); it._k = norm(it.kw);
+      return it;
+    }
+    // "até 200 mil", "200mil", "r$ 250.000", "250000" → limite em reais; null se não houver valor
+    function moneyLimit(q) {
+      var m = /(\d{1,3}(?:[.,]\d{1,3})?)\s*mil\b/.exec(q);
+      if (m) return Math.round(parseFloat(m[1].replace(",", ".")) * 1000);
+      m = /(?:r\$\s*)?(\d{1,3}(?:\.\d{3}){1,2}|\d{5,8})(?![\d,])/.exec(q);
+      if (m) return parseInt(m[1].replace(/\./g, ""), 10);
+      return null;
+    }
+    function score(it, tokens, q) {
+      var total = 0;
+      for (var i = 0; i < tokens.length; i++) {
+        var t = tokens[i], re = new RegExp("(^|\\s)" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        var s = 0;
+        if (re.test(it._t)) s = 10; else if (re.test(it._s)) s = 6; else if (re.test(it._k)) s = 4; else if (re.test(it._d)) s = 2;
+        if (!s) return 0;                       // toda palavra precisa casar em algum campo
+        total += s;
+      }
+      if (it._t.indexOf(q) === 0) total += 8;   // título começa com a busca
+      else if (it._t.indexOf(q) > -1) total += 4;
+      if (it.tipo === "empreendimento") total += 1;
+      return total;
+    }
+    function search(q) {
+      q = norm(q);
+      if (!index || q.length < 2) return { q: q, tokens: [], hits: [], faixa: null };
+      var limit = moneyLimit(q);
+      var tokens = q.split(" ").filter(function (t) { return t && !/^(de|do|da|em|no|na|um|uma|o|a|os|as|e|ate|r\$|reais|mil)$/.test(t); });
+      var hits = [];
+      if (tokens.length) {
+        index.forEach(function (it) { var s = score(it, tokens, q); if (s) hits.push({ it: it, s: s }); });
+        hits.sort(function (a, b) { return b.s - a.s || a.it.titulo.localeCompare(b.it.titulo); });
+      }
+      var faixa = null;
+      if (limit && limit >= 50000) {
+        var seen = {}; hits.forEach(function (h) { seen[h.it.url] = 1; });
+        var city = tokens.filter(function (t) { return !/^\d/.test(t); });
+        faixa = { limite: limit, itens: index.filter(function (it) {
+          if (it.tipo !== "empreendimento" || !it.precoNum || it.precoNum > limit || seen[it.url]) return false;
+          // se escreveu uma cidade/bairro junto do valor, restringe a ela
+          return !city.length || city.every(function (t) { return (it._s + " " + it._k).indexOf(t) > -1; });
+        }).sort(function (a, b) { return a.precoNum - b.precoNum; }) };
+        if (!faixa.itens.length) faixa = null;
+      }
+      return { q: q, tokens: tokens, hits: hits.map(function (h) { return h.it; }), faixa: faixa };
+    }
+    function hl(text, tokens) {
+      if (!tokens.length) return esc(text);
+      var out = esc(text);
+      // marca cada palavra buscada no texto original, aceitando as variantes acentuadas de cada letra
+      tokens.forEach(function (t) {
+        if (t.length < 2) return;
+        var re = new RegExp("(^|[\\s(·/,-])(" + t.split("").map(function (c) {
+          var map = { a: "[aáàãâä]", e: "[eéèêë]", i: "[iíìîï]", o: "[oóòõôö]", u: "[uúùûü]", c: "[cç]", n: "[nñ]", y: "[yý]", "2": "[2²]" };
+          return map[c] || c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        }).join("") + ")", "ig");
+        out = out.replace(re, "$1<mark>$2</mark>");
+      });
+      return out;
+    }
+    function brl(v) { try { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(v); } catch (e) { return "R$ " + v; } }
+    function item(it, tokens, pos) {
+      var price = "";
+      if (it.tipo === "empreendimento") {
+        var parts = (it.cond || "").split(" · ").filter(Boolean);
+        var small = parts.filter(function (p) { return p.indexOf("Parcela") === 0; })[0] || parts[0] || "";
+        price = '<span class="search__price">' + esc(it.preco || "Sob consulta") + (small ? "<small>" + esc(small) + "</small>" : "") + "</span>";
+      }
+      var ico = (GROUPS.filter(function (g) { return g[0] === it.tipo; })[0] || GROUPS[4])[2];
+      var sub = it.tipo === "empreendimento" ? it.sub + (it.desc ? " · " + it.desc : "") : (it.desc || it.sub);
+      return '<li role="option" id="searchOpt' + pos + '"><a class="search__item search__item--' + esc(it.tipo) + '" href="' + esc(it.url) + '" data-pos="' + pos + '" data-tipo="' + esc(it.tipo) + '">' +
+        '<span class="search__ico" aria-hidden="true">' + ico + '</span><span class="search__main"><span class="search__title">' + hl(it.titulo, tokens) + '</span>' +
+        '<span class="search__sub">' + hl(sub, tokens) + '</span></span>' + price + '</a></li>';
+    }
+
+    /* painel */
+    var panel = document.createElement("div");
+    panel.className = "search"; panel.id = "siteSearch"; panel.hidden = true;
+    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); panel.setAttribute("aria-label", "Buscar no site");
+    panel.innerHTML =
+      '<div class="search__backdrop" data-search-close></div>' +
+      '<div class="search__card">' +
+        '<form class="search__form" role="search" autocomplete="off">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>' +
+          '<input class="search__input" type="search" id="siteSearchInput" placeholder="Buscar empreendimento, cidade, bairro ou valor…" aria-label="Buscar no site" aria-controls="siteSearchResults" aria-autocomplete="list" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false">' +
+          '<button type="button" class="search__x" data-search-close aria-label="Fechar busca">Fechar</button>' +
+        '</form>' +
+        '<div class="search__body" id="siteSearchResults" role="listbox" aria-label="Resultados"></div>' +
+        '<div class="search__foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navegar · <kbd>Enter</kbd> abrir · <kbd>Esc</kbd> fechar</span>' +
+          '<button type="button" class="btn btn--primary btn--sm" data-open-form data-emp="" data-lead-tool="busca_site">Não achou? Fale com o corretor</button></div>' +
+      '</div>';
+    document.body.appendChild(panel);
+    var input = $(".search__input", panel), body = $(".search__body", panel);
+
+    function renderHome() {
+      body.innerHTML = '<p class="search__hint">Digite o nome do empreendimento, a cidade, o bairro, a metragem (ex.: <b>140 m²</b>) ou um valor (ex.: <b>até 200 mil</b>).</p>' +
+        '<span class="search__group">Buscas frequentes</span><div class="search__quick">' +
+        QUICK.map(function (q) { return '<a class="chip" href="' + q[1] + '" data-quick>' + esc(q[0]) + "</a>"; }).join("") + "</div>";
+      active = -1;
+    }
+    function render(res) {
+      if (res.q.length < 2) { renderHome(); return; }
+      var tokens = res.tokens, html = "", pos = 0, n = 0;
+      GROUPS.forEach(function (g) {
+        var list = res.hits.filter(function (it) { return it.tipo === g[0]; });
+        if (!list.length) return;
+        if (g[0] !== "empreendimento") list = list.slice(0, 6);
+        html += '<span class="search__group">' + g[1] + "</span><ul class=\"search__list\">" + list.map(function (it) { n++; return item(it, tokens, pos++); }).join("") + "</ul>";
+      });
+      if (res.faixa) {
+        html += '<span class="search__group">Empreendimentos até ' + brl(res.faixa.limite) + "</span><ul class=\"search__list\">" +
+          res.faixa.itens.slice(0, 12).map(function (it) { n++; return item(it, [], pos++); }).join("") + "</ul>";
+      }
+      if (!n) {
+        html = '<div class="search__empty"><p>Nenhum resultado para <b>“' + esc(input.value.trim()) + '”</b>.</p>' +
+          '<p>Tente o nome da cidade ou do bairro, ou veja <a href="/terrenos/">todos os terrenos por perfil</a> e a <a href="/comparar/">comparação de empreendimentos</a>.</p></div>';
+      }
+      body.innerHTML = html;
+      active = -1;
+      // analytics: 1 evento por termo, depois de a pessoa parar de digitar
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (res.q === lastTracked || !res.q) return; lastTracked = res.q;
+        if (typeof window.trackEvent === "function") window.trackEvent("search", { search_term: res.q.slice(0, 80), resultados: n });
+      }, 700);
+    }
+    function load() {
+      if (index) return Promise.resolve(index);
+      if (loading) return loading;
+      loading = fetch(INDEX_URL, { credentials: "same-origin" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (d) { index = (d.itens || []).map(prep); return index; })
+        .catch(function () { loading = null; body.innerHTML = '<div class="search__empty"><p>Não foi possível carregar a busca agora. Veja <a href="/terrenos/">os terrenos por perfil</a> ou <a href="/comparar/">compare empreendimentos</a>.</p></div>'; return null; });
+      return loading;
+    }
+    function update() {
+      var v = input.value;
+      if (!index) { if (norm(v).length >= 2) body.innerHTML = '<p class="search__hint">Carregando…</p>'; else renderHome(); load().then(function (ix) { if (ix) update(); }); return; }
+      render(search(v));
+    }
+    function setActive(i) {
+      var links = $$(".search__item", body); if (!links.length) return;
+      active = (i + links.length) % links.length;
+      links.forEach(function (a, k) { a.classList.toggle("is-active", k === active); a.setAttribute("aria-selected", k === active ? "true" : "false"); });
+      input.setAttribute("aria-activedescendant", "searchOpt" + active);
+      links[active].scrollIntoView({ block: "nearest" });
+    }
+    function open(opener) {
+      if (!panel.hidden) return;
+      lastFocusS = opener || document.activeElement;
+      if (menu && menu.classList.contains("is-open") && typeof setMenu === "function") setMenu(false);
+      panel.hidden = false; document.body.classList.add("menu-open");
+      btns.forEach(function (b) { b.setAttribute("aria-expanded", "true"); });
+      if (!input.value) renderHome(); else update();
+      load();
+      setTimeout(function () { input.focus(); input.select(); }, 30);
+      if (typeof window.trackEvent === "function") window.trackEvent("tool_use", { tool: "busca_site" });
+    }
+    function close() {
+      if (panel.hidden) return;
+      panel.hidden = true; document.body.classList.remove("menu-open");
+      btns.forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+      if (lastFocusS && lastFocusS.focus) lastFocusS.focus();
+    }
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () { open(b); });
+      b.addEventListener("pointerenter", function () { load(); }, { once: true }); // pré-carrega o índice ao passar o mouse
+    });
+    $$("[data-search-close]", panel).forEach(function (b) { b.addEventListener("click", close); });
+    // o botão do rodapé abre o formulário de lead (o painel foi criado depois do bind geral de [data-open-form])
+    var leadBtn = $("[data-open-form]", panel);
+    if (leadBtn) leadBtn.addEventListener("click", function (e) { e.preventDefault(); var op = lastFocusS; close(); openModal("", leadBtn); if (op) lastFocus = op; });
+    input.addEventListener("input", update);
+    $(".search__form", panel).addEventListener("submit", function (e) {
+      e.preventDefault();
+      var links = $$(".search__item", body);
+      if (!links.length) return;
+      (links[active > -1 ? active : 0]).click();
+    });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown") { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+    });
+    body.addEventListener("click", function (e) {
+      var a = e.target.closest("a"); if (!a) return;
+      if (typeof window.trackEvent === "function") {
+        if (a.hasAttribute("data-quick")) window.trackEvent("search_quick_click", { link_text: a.textContent.trim(), link_url: a.getAttribute("href") });
+        else window.trackEvent("search_result_click", { search_term: norm(input.value).slice(0, 80), link_url: a.getAttribute("href"), tipo: a.getAttribute("data-tipo") || "", posicao: +a.getAttribute("data-pos") + 1 });
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !panel.hidden) { e.stopPropagation(); close(); return; }
+      if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) { e.preventDefault(); panel.hidden ? open() : close(); }
+    }, true);
+    // abre a busca por link (?busca=termo ou #buscar), ex.: vindo da página 404
+    var qsBusca = new URLSearchParams(location.search).get("busca");
+    if (qsBusca || location.hash === "#buscar") { input.value = qsBusca || ""; open(); }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href="#buscar"]');
+      if (a) { e.preventDefault(); open(a); }
+    });
   })();
 })();

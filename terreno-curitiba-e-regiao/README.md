@@ -34,6 +34,11 @@ fina) e serve de destino para o menu e para o 301 do domínio de cada cidade.
 **Menu:** o topo tem um dropdown **"Cidades"** com as 8 cidades da RMC (no mobile, vira uma lista
 agrupada), além de Guia do comprador, Financiamento e Conteúdos.
 
+**Busca (lupa):** o cabeçalho tem um botão de busca em todas as páginas, no desktop e no mobile (ao lado do
+menu ☰). Procura empreendimentos, cidades, bairros, metragem, valor ("até 200 mil"), conteúdos e páginas,
+sem acento e por prefixo. O índice é `assets/js/search-index.json`, gerado por `scripts/busca/gerar.py`
+(rode de novo após criar páginas ou alterar o `PROD`). Detalhes em `docs/busca-site.md`.
+
 ## Publicar (novo projeto Cloudflare Pages)
 1. **Workers & Pages → Create → Pages → Connect to Git** → repo `Brunoportoseus/comercial`.
 2. **Project name:** `terreno-curitiba-e-regiao` · **Production branch:** `main` ·
