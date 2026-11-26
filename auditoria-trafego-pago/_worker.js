@@ -363,7 +363,7 @@ function bhdr() {
   return `<a class="skip" href="#conteudo">Pular para o conteúdo</a><header class="bhdr"><div class="wrap in"><a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" width="34" height="34"><div><b>Bruno Porto</b><span>Auditoria de Tráfego Pago</span></div></a><nav><a href="/">Início</a><a class="hide-sm" href="/blog">Blog</a><a class="hide-sm" href="/#pacotes">Pacotes</a><a class="cta" href="/#form" data-ev="cta_header">Solicitar auditoria</a></nav></div></header>`;
 }
 function bfoot() {
-  return `<footer class="bfoot"><div class="wrap"><div class="in"><div><b style="color:#fff;font-family:Sora,sans-serif">Auditoria de Tráfego Pago</b><div style="font-size:.8rem;margin-top:.25rem">Análise independente · sem comissão sobre mídia</div></div><nav style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="/blog">Blog</a><a href="/#pacotes">Pacotes</a><a href="/#faq">Dúvidas</a><a href="/privacidade/">Privacidade</a><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Bruno Porto</a></nav></div><div class="in" style="margin-top:.9rem;font-size:.86rem"><div>📧 <a href="mailto:bruno@soubrunoporto.com.br">bruno@soubrunoporto.com.br</a> &nbsp;·&nbsp; 📞 <a href="tel:+5541998448989">+55 (41) 99844-8989</a></div></div><div class="legal">© ${new Date().getFullYear()} Midialike LTDA · Curitiba/PR. Análise independente, sem comissão sobre mídia e sem vínculo com agências. As recomendações não constituem garantia de resultado.</div></div></footer>`;
+  return `<footer class="bfoot"><div class="wrap"><div class="in"><div><b style="color:#fff;font-family:Sora,sans-serif">Auditoria de Tráfego Pago</b><div style="font-size:.8rem;margin-top:.25rem">Análise independente · sem comissão sobre mídia</div></div><nav style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="/blog">Blog</a><a href="/#pacotes">Pacotes</a><a href="/#faq">Dúvidas</a><a href="/privacidade/">Privacidade</a><a href="/parceiros/sul-consulting/">Parceiro</a><a href="https://soubrunoporto.com.br/" target="_blank" rel="noopener">Bruno Porto</a></nav></div><div class="in" style="margin-top:.9rem;font-size:.86rem"><div>📧 <a href="mailto:bruno@soubrunoporto.com.br">bruno@soubrunoporto.com.br</a> &nbsp;·&nbsp; 📞 <a href="tel:+5541998448989">+55 (41) 99844-8989</a></div></div><div class="legal">© ${new Date().getFullYear()} Midialike LTDA · Curitiba/PR. Análise independente, sem comissão sobre mídia e sem vínculo com agências. As recomendações não constituem garantia de resultado.</div></div></footer>`;
 }
 function shell(o) {
   const ogType = o.ogType || "website";
@@ -670,6 +670,7 @@ async function sitemap(env) {
     { loc: SITE + "/blog", pri: "0.8", freq: "weekly" },
     { loc: SITE + "/blog/autor/bruno-porto", pri: "0.4", freq: "monthly" },
     { loc: SITE + "/privacidade/", pri: "0.3", freq: "yearly" },
+    { loc: SITE + "/parceiros/sul-consulting/", pri: "0.4", freq: "monthly" },
   ];
   for (const [s] of CATS) urls.push({ loc: SITE + "/blog/categoria/" + s, pri: "0.5", freq: "weekly" });
   try {
