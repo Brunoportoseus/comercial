@@ -28,7 +28,7 @@ window.SITE_CONFIG = {
     ga4: "G-09VDSHN8G3",        // Google Analytics 4
     gtm: "GTM-NXGFDKN6",        // Google Tag Manager
     googleAds: "AW-18455696294",  // Google Ads (gtag) — tag de remarketing/conversão
-    metaPixel: "",  // ex.: "123456789012345"
+    metaPixel: "1832122198004655",  // Meta Pixel "Terrenos Curitiba e Região · Site" (BM 1733530731042796)
     // Ações de conversão do Google Ads por evento (send_to: "AW-XXXX/label")
     adsConversions: {
       whatsapp_click: "AW-18455696294/jHnYCLz46vscEKanruBE",
